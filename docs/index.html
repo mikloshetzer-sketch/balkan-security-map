@@ -12,30 +12,97 @@
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
     #map { height: 100vh; width: 100vw; }
 
+    /* ===== Alert banner ===== */
+    .alert-banner {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 2000;
+      display: none;
+      padding: 10px 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(6px);
+    }
+    .alert-banner .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .alert-banner .left {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .alert-banner .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: #f2f2f2;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .alert-banner .title {
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .alert-banner .text {
+      font-size: 13px;
+      color: #222;
+    }
+    .alert-banner button {
+      border: 0;
+      border-radius: 10px;
+      padding: 6px 10px;
+      cursor: pointer;
+      background: #f2f2f2;
+      font-size: 12px;
+    }
+    /* finom szintkülönbség (nem “színezünk túl”) */
+    .alert-banner.info   { background: rgba(247,251,255,0.96); }
+    .alert-banner.watch  { background: rgba(251,251,247,0.96); }
+    .alert-banner.medium { background: rgba(255,249,242,0.96); }
+    .alert-banner.high   { background: rgba(255,243,243,0.96); }
+
+    /* a banner ne takarja a panelt (ha megjelenik) */
     .panel {
       position: absolute; top: 12px; left: 12px; z-index: 999;
       background: rgba(255,255,255,0.95); padding: 12px 12px; border-radius: 12px;
       box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-      max-width: 500px;
+      max-width: 540px;
+      margin-top: 44px; /* banner miatt */
     }
+
     .panel h1 { font-size: 16px; margin: 0 0 6px; }
     .panel small { color:#444; display:block; margin-bottom:10px; line-height:1.25; }
 
-    .summary {
+    .summary, .weekly {
       border-radius: 12px;
       background: #fafafa;
       padding: 10px 10px;
       margin: 8px 0 10px;
       border: 1px solid #eee;
     }
-    .summary h2 { font-size: 13px; margin: 0 0 4px; }
-    .summary .meta { font-size: 12px; color:#555; margin: 0 0 6px; }
-    .summary ul { margin: 0; padding-left: 18px; }
-    .summary li { font-size: 12px; color:#333; margin: 4px 0; line-height: 1.25; }
+    .summary h2, .weekly h2 { font-size: 13px; margin: 0 0 4px; }
+    .summary .meta, .weekly .meta { font-size: 12px; color:#555; margin: 0 0 6px; }
+    .summary ul, .weekly ul { margin: 0; padding-left: 18px; }
+    .summary li, .weekly li { font-size: 12px; color:#333; margin: 4px 0; line-height: 1.25; }
 
-    .row { display:flex; gap:8px; align-items:center; margin:8px 0; }
-    .row label { font-size: 13px; }
-    .row input { transform: translateY(1px); }
+    details { margin-top: 8px; }
+    summary { cursor: pointer; font-size: 12px; color:#333; }
+
+    .weekly .examples { margin-top: 8px; }
+    .weekly .examples a { font-size: 12px; color:#1a1a1a; text-decoration: underline; }
+    .weekly .examples .src { font-size: 12px; color:#666; }
+
+    .rowCk { display:flex; gap:8px; align-items:center; margin:8px 0; }
+    .rowCk label { font-size: 13px; }
+    .rowCk input { transform: translateY(1px); }
 
     .badge { display:inline-block; padding:2px 8px; border-radius:999px; background:#f2f2f2; font-size:12px; margin-right:6px; }
     .legend { font-size: 12px; color:#333; line-height: 1.35; margin-top:10px; }
@@ -55,6 +122,19 @@
   </style>
 </head>
 <body>
+
+  <!-- ALERT BANNER -->
+  <div class="alert-banner" id="alertBanner" role="status" aria-live="polite">
+    <div class="row">
+      <div class="left">
+        <span class="tag" id="alertTag">RIASZTÁS</span>
+        <span class="title" id="alertTitle">—</span>
+        <span class="text" id="alertText">—</span>
+      </div>
+      <button id="alertClose" type="button">Bezár</button>
+    </div>
+  </div>
+
   <div id="map"></div>
 
   <div class="panel">
@@ -67,27 +147,36 @@
       <ul id="sumList"><li>Betöltés...</li></ul>
     </div>
 
-    <div class="row">
+    <details class="weekly" open>
+      <summary><b>Heti kivonat (7 nap)</b></summary>
+      <div style="margin-top:8px;">
+        <div class="meta" id="weekTime">Kivonat frissítése: —</div>
+        <ul id="weekList"><li>Betöltés...</li></ul>
+        <div class="examples" id="weekExamples"></div>
+      </div>
+    </details>
+
+    <div class="rowCk">
       <input type="checkbox" id="layerBorders" checked>
       <label for="layerBorders"><span class="badge">HATÁR</span> vizsgált országok kontúr</label>
     </div>
 
-    <div class="row">
+    <div class="rowCk">
       <input type="checkbox" id="layerHot" checked>
       <label for="layerHot"><span class="badge">HOTSPOT</span> feszültség (rács)</label>
     </div>
 
-    <div class="row">
+    <div class="rowCk">
       <input type="checkbox" id="layerGdelt" checked>
       <label for="layerGdelt"><span class="badge">GDELT</span> jelzések</label>
     </div>
 
-    <div class="row">
+    <div class="rowCk">
       <input type="checkbox" id="layerUsgs">
       <label for="layerUsgs"><span class="badge">USGS</span> földrengések</label>
     </div>
 
-    <div class="row">
+    <div class="rowCk">
       <input type="checkbox" id="layerGdacs">
       <label for="layerGdacs"><span class="badge">GDACS</span> riasztások</label>
     </div>
@@ -98,7 +187,7 @@
     </div>
 
     <div class="legend">
-      A HOTSPOT rács a jelzések frissességét és típusát súlyozza. Trend: 🆕 új, 🔺 emelkedő, 🔻 csökkenő, ▬ stabil.
+      HOTSPOT: súlyozott aktivitás. Trend: 🆕 új, 🔺 emelkedő, 🔻 csökkenő, ▬ stabil.
     </div>
   </div>
 
@@ -147,21 +236,14 @@
       return { radius: 6, weight: 1, fillOpacity: 0.5 };
     }
 
-    // Heat-like: radius + opacity score alapján (színhez nem nyúlunk)
+    // Heat-like: radius + opacity score alapján
     function hotspotStyle(score, maxScore) {
       const s = Math.max(0, Number(score) || 0);
       const m = Math.max(0.001, Number(maxScore) || 0.001);
-      const t = Math.min(1, s / m); // 0..1
-
-      // radius: 6..22
-      const radius = 6 + t * 16;
-
-      // fillOpacity: 0.08..0.45
-      const fillOpacity = 0.08 + t * 0.37;
-
-      // stroke opacity kicsit erősebb
-      const opacity = 0.18 + t * 0.52;
-
+      const t = Math.min(1, s / m);
+      const radius = 6 + t * 16;           // 6..22
+      const fillOpacity = 0.08 + t * 0.37; // 0.08..0.45
+      const opacity = 0.18 + t * 0.52;     // 0.18..0.70
       return { radius, weight: 1, fillOpacity, opacity };
     }
 
@@ -178,7 +260,6 @@
       const r = await fetch(url, { cache: "no-store" });
       const gj = await r.json();
 
-      // maxScore a normalizáláshoz
       let maxScore = 0;
       for (const f of (gj.features || [])) {
         const s = Number((f.properties || {}).score) || 0;
@@ -188,8 +269,7 @@
       return L.geoJSON(gj, {
         pointToLayer: (feature, latlng) => {
           const p = feature.properties || {};
-          const st = hotspotStyle(p.score, maxScore);
-          return L.circleMarker(latlng, st);
+          return L.circleMarker(latlng, hotspotStyle(p.score, maxScore));
         },
         onEachFeature: (feature, layer) => {
           const p = feature.properties || {};
@@ -212,25 +292,43 @@
       const r = await fetch(url, { cache: "no-store" });
       const gj = await r.json();
       return L.geoJSON(gj, {
-        style: () => ({
-          weight: 1.25,
-          opacity: 0.6,
-          fillOpacity: 0.0
-        })
+        style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0 })
       });
     }
 
+    // ===== Banner render =====
+    function renderAlertBanner(alert) {
+      const banner = document.getElementById('alertBanner');
+      if (!alert) {
+        banner.style.display = 'none';
+        banner.className = 'alert-banner';
+        return;
+      }
+
+      const level = (alert.level || 'info').toLowerCase();
+      banner.className = `alert-banner ${level}`;
+      document.getElementById('alertTitle').textContent = alert.title || 'Riasztás';
+      document.getElementById('alertText').textContent = alert.text || '';
+      document.getElementById('alertTag').textContent = 'RIASZTÁS';
+
+      banner.style.display = 'block';
+    }
+
+    document.getElementById('alertClose').addEventListener('click', () => {
+      document.getElementById('alertBanner').style.display = 'none';
+    });
+
     function renderSummary(sum) {
       document.getElementById('sumTitle').textContent = sum?.headline || 'Balkán biztonsági helyzet – napi kivonat';
-
       const t = fmtBudapest(sum?.generated_utc);
-      document.getElementById('sumTime').textContent = t
-        ? `Kivonat frissítése (Budapest): ${t.bud}`
-        : 'Kivonat frissítése: —';
+      document.getElementById('sumTime').textContent = t ? `Kivonat frissítése (Budapest): ${t.bud}` : 'Kivonat frissítése: —';
+
+      // banner on top of map
+      renderAlertBanner(sum?.alert || null);
 
       const ul = document.getElementById('sumList');
       ul.innerHTML = '';
-      const bullets = (sum?.bullets || []).slice(0, 6);
+      const bullets = (sum?.bullets || []).slice(0, 8);
       if (!bullets.length) {
         const li = document.createElement('li');
         li.textContent = 'Nincs elérhető kivonat (még nincs friss adat).';
@@ -241,6 +339,59 @@
         const li = document.createElement('li');
         li.textContent = b;
         ul.appendChild(li);
+      }
+    }
+
+    function renderWeekly(w) {
+      const t = fmtBudapest(w?.generated_utc);
+      document.getElementById('weekTime').textContent = t ? `Kivonat frissítése (Budapest): ${t.bud}` : 'Kivonat frissítése: —';
+
+      const ul = document.getElementById('weekList');
+      ul.innerHTML = '';
+      const bullets = (w?.bullets || []).slice(0, 10);
+
+      // Ha kevés adat van, is legyen értelmes szöveg
+      if (!bullets.length) {
+        const li = document.createElement('li');
+        li.textContent = 'A heti kivonat még gyűlik: néhány nap után lesz igazán informatív (több hír + több esemény).';
+        ul.appendChild(li);
+      } else {
+        for (const b of bullets) {
+          const li = document.createElement('li');
+          li.textContent = b;
+          ul.appendChild(li);
+        }
+      }
+
+      const ex = document.getElementById('weekExamples');
+      ex.innerHTML = '';
+      const examples = (w?.examples || []).slice(0, 5);
+
+      if (examples.length) {
+        const head = document.createElement('div');
+        head.className = 'src';
+        head.textContent = 'Példa események (hírcím + link):';
+        ex.appendChild(head);
+
+        const list = document.createElement('ul');
+        list.style.margin = '6px 0 0';
+        list.style.paddingLeft = '18px';
+
+        for (const e of examples) {
+          const li = document.createElement('li');
+          li.style.margin = '4px 0';
+          const title = e.title || '(nincs cím)';
+          const url = e.url || '#';
+          const dom = e.domain ? ` (${e.domain})` : '';
+          li.innerHTML = `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(title)}</a><span class="src">${esc(dom)}</span>`;
+          list.appendChild(li);
+        }
+        ex.appendChild(list);
+      } else {
+        const msg = document.createElement('div');
+        msg.className = 'src';
+        msg.textContent = 'Példa események: még nincs elég heti hírcím a listához.';
+        ex.appendChild(msg);
       }
     }
 
@@ -289,12 +440,20 @@
         document.getElementById('meta').textContent = 'Meta betöltése nem sikerült.';
       }
 
-      // summary
+      // daily summary (+ banner)
       try {
         const sumResp = await fetch('./data/summary.json', { cache: "no-store" });
         renderSummary(await sumResp.json());
       } catch {
-        renderSummary({ headline: 'Balkán biztonsági helyzet – napi kivonat', bullets: [] });
+        renderSummary({ headline: 'Balkán biztonsági helyzet – napi kivonat', bullets: [], alert: null });
+      }
+
+      // weekly summary
+      try {
+        const wResp = await fetch('./data/weekly.json', { cache: "no-store" });
+        renderWeekly(await wResp.json());
+      } catch {
+        renderWeekly({ bullets: [], examples: [] });
       }
 
       // layers
@@ -324,7 +483,7 @@
         if (e.target.checked) map.addLayer(layers.gdacs); else map.removeLayer(layers.gdacs);
       });
 
-      // top list with trend
+      // top list
       try {
         const topResp = await fetch('./data/hotspots.json', { cache: "no-store" });
         const top = await topResp.json();
