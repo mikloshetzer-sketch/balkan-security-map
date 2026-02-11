@@ -2,7 +2,7 @@ name: Update map data
 
 on:
   schedule:
-    - cron: "0 5 * * *"   # naponta 05:00 UTC (Budapest: 06:00 vagy 07:00 attól függően DST)
+    - cron: "0 5 * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,5 +33,5 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/*.geojson docs/data/meta.json
+          git add docs/data/*.geojson docs/data/*.json
           git diff --cached --quiet || (git commit -m "data: daily update" && git push)
