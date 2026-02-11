@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Balkán Biztonsági Monitor</title>
+  <title>Balkán Biztonsági Monitor – Feszültség</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -13,48 +13,67 @@
     #map { height: 100vh; width: 100vw; }
     .panel {
       position: absolute; top: 12px; left: 12px; z-index: 999;
-      background: rgba(255,255,255,0.95); padding: 10px 12px; border-radius: 12px;
+      background: rgba(255,255,255,0.95); padding: 12px 12px; border-radius: 12px;
       box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-      max-width: 380px;
+      max-width: 420px;
     }
     .panel h1 { font-size: 16px; margin: 0 0 6px; }
-    .panel small { color:#444; display:block; margin-bottom:8px; }
+    .panel small { color:#444; display:block; margin-bottom:10px; line-height:1.25; }
     .row { display:flex; gap:8px; align-items:center; margin:8px 0; }
     .row label { font-size: 13px; }
     .row input { transform: translateY(1px); }
     .badge { display:inline-block; padding:2px 8px; border-radius:999px; background:#f2f2f2; font-size:12px; margin-right:6px; }
-    .legend { font-size: 12px; color:#333; line-height: 1.35; }
+    .legend { font-size: 12px; color:#333; line-height: 1.35; margin-top:10px; }
+    .hotspots { margin-top:10px; }
+    .hotspots h2 { font-size: 13px; margin: 10px 0 6px; }
+    .list { list-style:none; padding:0; margin:0; }
+    .item {
+      display:flex; justify-content:space-between; gap:10px;
+      padding:6px 8px; border-radius:10px; cursor:pointer;
+    }
+    .item:hover { background:#f2f2f2; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; color:#333; }
   </style>
 </head>
 <body>
   <div id="map"></div>
 
   <div class="panel">
-    <h1>Balkán Biztonsági Monitor</h1>
+    <h1>Balkán – Feszültség monitor</h1>
     <small id="meta">Adatok betöltése...</small>
 
     <div class="row">
-      <input type="checkbox" id="layerGdelt" checked>
-      <label for="layerGdelt"><span class="badge">GDELT</span> híralapú események</label>
+      <input type="checkbox" id="layerHot" checked>
+      <label for="layerHot"><span class="badge">HOTSPOT</span> feszültség (rács)</label>
     </div>
 
     <div class="row">
-      <input type="checkbox" id="layerUsgs" checked>
+      <input type="checkbox" id="layerGdelt" checked>
+      <label for="layerGdelt"><span class="badge">GDELT</span> jelzések</label>
+    </div>
+
+    <div class="row">
+      <input type="checkbox" id="layerUsgs">
       <label for="layerUsgs"><span class="badge">USGS</span> földrengések</label>
     </div>
 
     <div class="row">
-      <input type="checkbox" id="layerGdacs" checked>
+      <input type="checkbox" id="layerGdacs">
       <label for="layerGdacs"><span class="badge">GDACS</span> riasztások</label>
     </div>
 
+    <div class="hotspots">
+      <h2>Top hotspotok (7–14 nap súlyozott)</h2>
+      <ul class="list" id="hotList"></ul>
+    </div>
+
     <div class="legend">
-      Tipp: kattints a pontokra részletekért. Ez egy OSINT jellegű monitor: a híralapú jelzések zajosak lehetnek.
+      A “HOTSPOT” rács a pontok frissességét és típusát súlyozza (híralapú jelzések nagyobb súlyt kapnak).
+      Kattints a hotspot listára a zoomhoz.
     </div>
   </div>
 
   <script>
-    // Balkán közép
     const map = L.map('map', { zoomControl: true }).setView([44.2, 20.6], 6);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -70,20 +89,16 @@
       if (!isoUtcString) return null;
       const d = new Date(isoUtcString);
       if (isNaN(d.getTime())) return null;
-
-      // Budapest idő (DST-t automatikusan kezeli a böngésző)
       const bud = new Intl.DateTimeFormat('hu-HU', {
         timeZone: 'Europe/Budapest',
         year: 'numeric', month: '2-digit', day: '2-digit',
         hour: '2-digit', minute: '2-digit', second: '2-digit'
       }).format(d);
-
       const utc = new Intl.DateTimeFormat('hu-HU', {
         timeZone: 'UTC',
         year: 'numeric', month: '2-digit', day: '2-digit',
         hour: '2-digit', minute: '2-digit', second: '2-digit'
       }).format(d);
-
       return { bud, utc };
     }
 
@@ -98,10 +113,15 @@
     }
 
     function circleStyle(source) {
-      // színt nem állítunk fixen, csak méretet – egyszerű MVP
       if (source === 'USGS') return { radius: 7, weight: 1, fillOpacity: 0.5 };
       if (source === 'GDACS') return { radius: 8, weight: 1, fillOpacity: 0.5 };
-      return { radius: 6, weight: 1, fillOpacity: 0.5 }; // GDELT
+      return { radius: 6, weight: 1, fillOpacity: 0.5 };
+    }
+
+    function hotspotRadius(score) {
+      // score alapján méret
+      const s = Math.max(0, Number(score) || 0);
+      return Math.min(22, 6 + s * 6);
     }
 
     async function loadGeoJson(url, sourceName) {
@@ -119,7 +139,56 @@
       });
     }
 
-    const layers = { gdelt: null, usgs: null, gdacs: null };
+    async function loadHotspotsGeo(url) {
+      const r = await fetch(url, { cache: "no-store" });
+      const gj = await r.json();
+      return L.geoJSON(gj, {
+        pointToLayer: (feature, latlng) => {
+          const p = feature.properties || {};
+          const radius = hotspotRadius(p.score);
+          return L.circleMarker(latlng, { radius, weight: 1, fillOpacity: 0.25 });
+        },
+        onEachFeature: (feature, layer) => {
+          const p = feature.properties || {};
+          const src = p.sources ? `GDELT:${p.sources.GDELT||0}, USGS:${p.sources.USGS||0}, GDACS:${p.sources.GDACS||0}` : '';
+          layer.bindPopup(
+            `<div><b>Hotspot cell</b></div>
+             <div><b>Score:</b> ${esc(p.score)}</div>
+             <div><b>Count:</b> ${esc(p.count)}</div>
+             <div class="mono">${esc(src)}</div>`
+          );
+        }
+      });
+    }
+
+    function renderHotList(items) {
+      const ul = document.getElementById('hotList');
+      ul.innerHTML = '';
+      for (const it of items) {
+        const li = document.createElement('li');
+        li.className = 'item';
+        li.innerHTML = `
+          <div>
+            <div class="mono">(${it.lat.toFixed(2)}, ${it.lon.toFixed(2)})</div>
+            <div style="font-size:12px;color:#444;">db: ${it.count} | G:${it.sources.GDELT} U:${it.sources.USGS} D:${it.sources.GDACS}</div>
+          </div>
+          <div class="mono">S=${Number(it.score).toFixed(2)}</div>
+        `;
+        li.addEventListener('click', () => {
+          map.setView([it.lat, it.lon], 9);
+        });
+        ul.appendChild(li);
+      }
+      if (!items.length) {
+        const li = document.createElement('li');
+        li.style.fontSize = '12px';
+        li.style.color = '#555';
+        li.textContent = 'Nincs elég adat a hotspotokhoz (vagy üres feed).';
+        ul.appendChild(li);
+      }
+    }
+
+    const layers = { hot: null, gdelt: null, usgs: null, gdacs: null };
 
     async function init() {
       // meta
@@ -128,26 +197,27 @@
         const meta = await metaResp.json();
 
         const t = fmtBudapest(meta.generated_utc);
-        const timeText = t
-          ? `Utolsó frissítés (Budapest): ${t.bud}  (UTC: ${t.utc})`
-          : `Utolsó frissítés: ismeretlen`;
+        const timeText = t ? `Utolsó frissítés (Budapest): ${t.bud} (UTC: ${t.utc})` : `Utolsó frissítés: ismeretlen`;
 
         document.getElementById('meta').textContent =
-          `${timeText} | GDELT: ${meta.counts.gdelt}, USGS: ${meta.counts.usgs}, GDACS: ${meta.counts.gdacs}`;
+          `${timeText} | hotspot cellák: ${meta.counts.hotspot_cells ?? 0} | GDELT: ${meta.counts.gdelt}, USGS: ${meta.counts.usgs}, GDACS: ${meta.counts.gdacs}`;
       } catch (e) {
         document.getElementById('meta').textContent = 'Meta betöltése nem sikerült.';
       }
 
       // layers
+      layers.hot   = await loadHotspotsGeo('./data/hotspots.geojson');
       layers.gdelt = await loadGeoJson('./data/gdelt.geojson', 'GDELT');
       layers.usgs  = await loadGeoJson('./data/usgs.geojson', 'USGS');
       layers.gdacs = await loadGeoJson('./data/gdacs.geojson', 'GDACS');
 
+      layers.hot.addTo(map);
       layers.gdelt.addTo(map);
-      layers.usgs.addTo(map);
-      layers.gdacs.addTo(map);
 
       // toggles
+      document.getElementById('layerHot').addEventListener('change', (e) => {
+        if (e.target.checked) map.addLayer(layers.hot); else map.removeLayer(layers.hot);
+      });
       document.getElementById('layerGdelt').addEventListener('change', (e) => {
         if (e.target.checked) map.addLayer(layers.gdelt); else map.removeLayer(layers.gdelt);
       });
@@ -157,6 +227,15 @@
       document.getElementById('layerGdacs').addEventListener('change', (e) => {
         if (e.target.checked) map.addLayer(layers.gdacs); else map.removeLayer(layers.gdacs);
       });
+
+      // load top hotspots list
+      try {
+        const topResp = await fetch('./data/hotspots.json', { cache: "no-store" });
+        const top = await topResp.json();
+        renderHotList(top.top || []);
+      } catch (e) {
+        renderHotList([]);
+      }
     }
 
     init();
