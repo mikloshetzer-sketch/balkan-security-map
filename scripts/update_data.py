@@ -1,660 +1,428 @@
-#!/usr/bin/env python3
-from __future__ import annotations
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Balkán Biztonsági Monitor – Feszültség</title>
 
-import json
-import os
-import math
-import time
-from datetime import datetime, timedelta, timezone
-from typing import Any, Dict, List, Optional, Tuple
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-import requests
-from dateutil import parser as dateparser
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+    #map { height: 100vh; width: 100vw; }
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DOCS_DATA_DIR = os.path.join(ROOT, "docs", "data")
+    .panel {
+      position: absolute; top: 12px; left: 12px; z-index: 999;
+      background: rgba(255,255,255,0.95); padding: 12px 12px; border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+      max-width: 520px;
+    }
+    .panel h1 { font-size: 16px; margin: 0 0 6px; }
+    .panel small { color:#444; display:block; margin-bottom:10px; line-height:1.25; }
 
-# Balkán bounding box (durva)
-BALKAN_BBOX = (13.0, 37.0, 30.0, 47.5)
+    .alert {
+      display:none;
+      border-radius: 12px;
+      padding: 10px 10px;
+      margin: 8px 0 10px;
+      border: 1px solid #eee;
+      background: #fff;
+    }
+    .alert .title { font-size: 13px; font-weight: 750; margin: 0 0 4px; }
+    .alert .text { font-size: 12px; color:#333; margin: 0; line-height: 1.25; }
+    /* Színeket itt nem “márkázunk”, csak finom háttérkülönbség */
+    .alert.info   { background: #f7fbff; }
+    .alert.watch  { background: #fbfbf7; }
+    .alert.medium { background: #fff9f2; }
+    .alert.high   { background: #fff3f3; }
 
-# Vizsgált országok (kontúrhoz)
-BALKAN_COUNTRIES = [
-    "Albania",
-    "Bosnia and Herzegovina",
-    "Bulgaria",
-    "Croatia",
-    "Greece",
-    "Kosovo",
-    "Montenegro",
-    "North Macedonia",
-    "Romania",
-    "Serbia",
-    "Slovenia",
-    "Turkey",
-    "Moldova",
-    "Hungary",
-]
+    .summary, .weekly {
+      border-radius: 12px;
+      background: #fafafa;
+      padding: 10px 10px;
+      margin: 8px 0 10px;
+      border: 1px solid #eee;
+    }
+    .summary h2, .weekly h2 { font-size: 13px; margin: 0 0 4px; }
+    .summary .meta, .weekly .meta { font-size: 12px; color:#555; margin: 0 0 6px; }
+    .summary ul, .weekly ul { margin: 0; padding-left: 18px; }
+    .summary li, .weekly li { font-size: 12px; color:#333; margin: 4px 0; line-height: 1.25; }
 
-USER_AGENT = "balkan-security-map/1.5 (github actions; public blog)"
-TIMEOUT = 30
+    .weekly .examples { margin-top: 8px; }
+    .weekly .examples a { font-size: 12px; color:#1a1a1a; text-decoration: underline; }
+    .weekly .examples .src { font-size: 12px; color:#666; }
 
-CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
+    details { margin-top: 8px; }
+    summary { cursor: pointer; font-size: 12px; color:#333; }
 
+    .row { display:flex; gap:8px; align-items:center; margin:8px 0; }
+    .row label { font-size: 13px; }
+    .row input { transform: translateY(1px); }
 
-def ensure_dirs() -> None:
-    os.makedirs(DOCS_DATA_DIR, exist_ok=True)
+    .badge { display:inline-block; padding:2px 8px; border-radius:999px; background:#f2f2f2; font-size:12px; margin-right:6px; }
+    .legend { font-size: 12px; color:#333; line-height: 1.35; margin-top:10px; }
 
+    .hotspots { margin-top:10px; }
+    .hotspots h2 { font-size: 13px; margin: 10px 0 6px; }
+    .list { list-style:none; padding:0; margin:0; }
+    .item {
+      display:flex; justify-content:space-between; gap:10px;
+      padding:6px 8px; border-radius:10px; cursor:pointer;
+    }
+    .item:hover { background:#f2f2f2; }
 
-def http_get(url: str, params: Optional[dict] = None, headers: Optional[dict] = None) -> requests.Response:
-    h = {"User-Agent": USER_AGENT}
-    if headers:
-        h.update(headers)
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; color:#333; }
+    .place { font-size: 12px; color:#222; font-weight: 650; }
+    .sub { font-size: 12px; color:#444; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
 
-    backoff = 2
-    last_exc: Optional[Exception] = None
+  <div class="panel">
+    <h1>Balkán – Feszültség monitor</h1>
+    <small id="meta">Adatok betöltése...</small>
 
-    for attempt in range(1, 4):
-        try:
-            r = requests.get(url, params=params, headers=h, timeout=TIMEOUT)
-            if r.status_code in (429, 500, 502, 503, 504):
-                print(f"[http_get] retry {attempt}/3 status={r.status_code} url={url}")
-                time.sleep(backoff)
-                backoff *= 2
-                continue
-            r.raise_for_status()
-            return r
-        except Exception as e:
-            last_exc = e
-            print(f"[http_get] error retry {attempt}/3: {e}")
-            time.sleep(backoff)
-            backoff *= 2
+    <div class="alert" id="alertBox">
+      <div class="title" id="alertTitle"></div>
+      <p class="text" id="alertText"></p>
+    </div>
 
-    raise last_exc if last_exc else RuntimeError("http_get failed")
+    <div class="summary">
+      <h2 id="sumTitle">Balkán biztonsági helyzet – napi kivonat</h2>
+      <div class="meta" id="sumTime">Kivonat frissítése: —</div>
+      <ul id="sumList"><li>Betöltés...</li></ul>
+    </div>
 
+    <details class="weekly" open>
+      <summary><b>Heti kivonat (7 nap)</b></summary>
+      <div style="margin-top:8px;">
+        <div class="meta" id="weekTime">Kivonat frissítése: —</div>
+        <ul id="weekList"><li>Betöltés...</li></ul>
+        <div class="examples" id="weekExamples"></div>
+      </div>
+    </details>
 
-def in_bbox(lon: float, lat: float, bbox: Tuple[float, float, float, float]) -> bool:
-    lon_min, lat_min, lon_max, lat_max = bbox
-    return (lon_min <= lon <= lon_max) and (lat_min <= lat <= lat_max)
+    <div class="row">
+      <input type="checkbox" id="layerBorders" checked>
+      <label for="layerBorders"><span class="badge">HATÁR</span> vizsgált országok kontúr</label>
+    </div>
 
+    <div class="row">
+      <input type="checkbox" id="layerHot" checked>
+      <label for="layerHot"><span class="badge">HOTSPOT</span> feszültség (rács)</label>
+    </div>
 
-def to_feature(lon: float, lat: float, props: Dict[str, Any]) -> Dict[str, Any]:
-    return {
-        "type": "Feature",
-        "geometry": {"type": "Point", "coordinates": [lon, lat]},
-        "properties": props,
+    <div class="row">
+      <input type="checkbox" id="layerGdelt" checked>
+      <label for="layerGdelt"><span class="badge">GDELT</span> jelzések</label>
+    </div>
+
+    <div class="row">
+      <input type="checkbox" id="layerUsgs">
+      <label for="layerUsgs"><span class="badge">USGS</span> földrengések</label>
+    </div>
+
+    <div class="row">
+      <input type="checkbox" id="layerGdacs">
+      <label for="layerGdacs"><span class="badge">GDACS</span> riasztások</label>
+    </div>
+
+    <div class="hotspots">
+      <h2>Top hotspotok (trenddel)</h2>
+      <ul class="list" id="hotList"></ul>
+    </div>
+
+    <div class="legend">
+      HOTSPOT: súlyozott aktivitás. Trend: 🆕 új, 🔺 emelkedő, 🔻 csökkenő, ▬ stabil.
+    </div>
+  </div>
+
+  <script>
+    const map = L.map('map', { zoomControl: true }).setView([44.2, 20.6], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    function esc(s) {
+      return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
 
-
-def save_geojson(path: str, features: List[Dict[str, Any]]) -> None:
-    fc = {"type": "FeatureCollection", "features": features}
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(fc, f, ensure_ascii=False, indent=2)
-
-
-# -------------------------
-# Borders (weekly refresh)
-# -------------------------
-def ensure_balkan_borders() -> None:
-    out_path = os.path.join(DOCS_DATA_DIR, "balkan_borders.geojson")
-
-    if os.path.exists(out_path):
-        mtime = datetime.fromtimestamp(os.path.getmtime(out_path), tz=timezone.utc)
-        if datetime.now(timezone.utc) - mtime < timedelta(days=7):
-            return
-
-    url = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
-    print("[borders] downloading world countries geojson...")
-    data = http_get(url).json()
-
-    keep = set(BALKAN_COUNTRIES)
-    out_feats = []
-    for f in (data.get("features", []) or []):
-        props = f.get("properties") or {}
-        if props.get("name") in keep:
-            out_feats.append(f)
-
-    with open(out_path, "w", encoding="utf-8") as f:
-        json.dump({"type": "FeatureCollection", "features": out_feats}, f, ensure_ascii=False, indent=2)
-
-    print(f"[borders] saved {len(out_feats)} borders -> {out_path}")
-
-
-# -------------------------
-# Sources
-# -------------------------
-def fetch_usgs(days: int = 7, min_magnitude: float = 2.5) -> List[Dict[str, Any]]:
-    url = "https://earthquake.usgs.gov/fdsnws/event/1/query"
-    end = datetime.now(timezone.utc)
-    start = end - timedelta(days=days)
-    params = {
-        "format": "geojson",
-        "starttime": start.strftime("%Y-%m-%d"),
-        "endtime": end.strftime("%Y-%m-%d"),
-        "minmagnitude": str(min_magnitude),
-    }
-    data = http_get(url, params=params).json()
-
-    out: List[Dict[str, Any]] = []
-    for f in data.get("features", []):
-        coords = (f.get("geometry") or {}).get("coordinates") or []
-        if len(coords) < 2:
-            continue
-        lon, lat = float(coords[0]), float(coords[1])
-        if not in_bbox(lon, lat, BALKAN_BBOX):
-            continue
-        p = f.get("properties") or {}
-        t_ms = p.get("time")
-        dt = datetime.fromtimestamp(t_ms / 1000, tz=timezone.utc).isoformat() if isinstance(t_ms, (int, float)) else None
-        out.append(
-            to_feature(
-                lon, lat,
-                {
-                    "source": "USGS",
-                    "kind": "earthquake",
-                    "mag": p.get("mag"),
-                    "place": p.get("place"),
-                    "time": dt,
-                    "url": p.get("url"),
-                    "title": p.get("title"),
-                },
-            )
-        )
-    return out
-
-
-def fetch_gdacs(days: int = 14) -> List[Dict[str, Any]]:
-    url = "https://www.gdacs.org/xml/rss.xml"
-    xml = http_get(url).text
-    items = xml.split("<item>")[1:]
-    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
-
-    def get_tag(chunk: str, tag: str) -> Optional[str]:
-        open_t = f"<{tag}>"
-        close_t = f"</{tag}>"
-        if open_t in chunk and close_t in chunk:
-            return chunk.split(open_t, 1)[1].split(close_t, 1)[0].strip()
-        return None
-
-    out: List[Dict[str, Any]] = []
-    for raw in items:
-        chunk = raw.split("</item>")[0]
-        title = get_tag(chunk, "title")
-        link = get_tag(chunk, "link")
-        pub = get_tag(chunk, "pubDate")
-        point = get_tag(chunk, "georss:point") or get_tag(chunk, "point")
-        if not pub or not point:
-            continue
-        try:
-            pub_dt = dateparser.parse(pub).astimezone(timezone.utc)
-        except Exception:
-            continue
-        if pub_dt < cutoff:
-            continue
-        try:
-            lat_s, lon_s = point.split()
-            lat, lon = float(lat_s), float(lon_s)
-        except Exception:
-            continue
-        if not in_bbox(lon, lat, BALKAN_BBOX):
-            continue
-
-        out.append(
-            to_feature(
-                lon, lat,
-                {
-                    "source": "GDACS",
-                    "kind": "disaster_alert",
-                    "title": title,
-                    "time": pub_dt.isoformat(),
-                    "url": link,
-                },
-            )
-        )
-    return out
-
-
-def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
-    url = "https://api.gdeltproject.org/api/v2/doc/doc"
-    end = datetime.now(timezone.utc)
-    start = end - timedelta(days=days)
-
-    keywords = ["protest", "demonstration", "riot", "clash", "violence", "border", "checkpoint", "police", "attack", "explosion"]
-    countries = [
-        "Albania", "Bosnia", "Herzegovina", "Bulgaria", "Croatia", "Greece", "Kosovo",
-        "Montenegro", "North Macedonia", "Romania", "Serbia", "Slovenia", "Turkey", "Moldova", "Hungary"
-    ]
-    query = "(" + " OR ".join(keywords) + ") AND (" + " OR ".join(countries) + ")"
-
-    params = {
-        "query": query,
-        "mode": "ArtList",
-        "format": "json",
-        "maxrecords": str(max_records),
-        "startdatetime": start.strftime("%Y%m%d%H%M%S"),
-        "enddatetime": end.strftime("%Y%m%d%H%M%S"),
-        "sort": "HybridRel",
+    function fmtBudapest(isoUtcString) {
+      if (!isoUtcString) return null;
+      const d = new Date(isoUtcString);
+      if (isNaN(d.getTime())) return null;
+      const bud = new Intl.DateTimeFormat('hu-HU', {
+        timeZone: 'Europe/Budapest',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      }).format(d);
+      const utc = new Intl.DateTimeFormat('hu-HU', {
+        timeZone: 'UTC',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      }).format(d);
+      return { bud, utc };
     }
 
-    resp = http_get(url, params=params)
-    try:
-        data = resp.json()
-    except Exception:
-        snippet = (resp.text or "")[:250].replace("\n", " ")
-        print(f"[GDELT] Non-JSON response. status={resp.status_code} head={snippet!r}")
-        return []
+    function makePopup(props) {
+      const t = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
+      const title = props.title ? `<div style="margin-bottom:6px;"><b>${esc(props.title)}</b></div>` : '';
+      const place = props.place ? `<div><b>Hely:</b> ${esc(props.place)}</div>` : '';
+      const mag = (props.mag !== undefined && props.mag !== null) ? `<div><b>Magnitúdó:</b> ${esc(props.mag)}</div>` : '';
+      const domain = props.domain ? `<div><b>Domain:</b> ${esc(props.domain)}</div>` : '';
+      const url = props.url ? `<div style="margin-top:6px;"><a href="${esc(props.url)}" target="_blank" rel="noopener">Forrás</a></div>` : '';
+      return `${title}${t}${place}${mag}${domain}${url}`;
+    }
 
-    arts = data.get("articles", []) or []
-    out: List[Dict[str, Any]] = []
+    function circleStyle(source) {
+      if (source === 'USGS') return { radius: 7, weight: 1, fillOpacity: 0.5 };
+      if (source === 'GDACS') return { radius: 8, weight: 1, fillOpacity: 0.5 };
+      return { radius: 6, weight: 1, fillOpacity: 0.5 };
+    }
 
-    for a in arts:
-        loc = a.get("location") or {}
-        geo = loc.get("geo") or {}
-        lat = geo.get("latitude")
-        lon = geo.get("longitude")
-        if lat is None or lon is None:
-            continue
+    function hotspotStyle(score, maxScore) {
+      const s = Math.max(0, Number(score) || 0);
+      const m = Math.max(0.001, Number(maxScore) || 0.001);
+      const t = Math.min(1, s / m);
+      const radius = 6 + t * 16;          // 6..22
+      const fillOpacity = 0.08 + t * 0.37; // 0.08..0.45
+      const opacity = 0.18 + t * 0.52;     // 0.18..0.70
+      return { radius, weight: 1, fillOpacity, opacity };
+    }
 
-        try:
-            lat_f, lon_f = float(lat), float(lon)
-        except Exception:
-            continue
-        if not in_bbox(lon_f, lat_f, BALKAN_BBOX):
-            continue
+    async function loadGeoJson(url, sourceName) {
+      const r = await fetch(url, { cache: "no-store" });
+      const gj = await r.json();
+      return L.geoJSON(gj, {
+        pointToLayer: (feature, latlng) => L.circleMarker(latlng, circleStyle(sourceName)),
+        onEachFeature: (feature, layer) => layer.bindPopup(makePopup(feature.properties || {}))
+      });
+    }
 
-        seendate = a.get("seendate")
-        time_iso = None
-        if seendate:
-            try:
-                time_iso = dateparser.parse(seendate).astimezone(timezone.utc).isoformat()
-            except Exception:
-                time_iso = None
+    async function loadHotspotsHeat(url) {
+      const r = await fetch(url, { cache: "no-store" });
+      const gj = await r.json();
 
-        out.append(
-            to_feature(
-                lon_f, lat_f,
-                {
-                    "source": "GDELT",
-                    "kind": "news_event",
-                    "title": a.get("title"),
-                    "time": time_iso,
-                    "url": a.get("url"),
-                    "domain": a.get("domain"),
-                    "language": a.get("language"),
-                },
-            )
-        )
+      let maxScore = 0;
+      for (const f of (gj.features || [])) {
+        const s = Number((f.properties || {}).score) || 0;
+        if (s > maxScore) maxScore = s;
+      }
 
-    seen = set()
-    deduped = []
-    for f in out:
-        u = (f.get("properties") or {}).get("url")
-        if not u or u in seen:
-            continue
-        seen.add(u)
-        deduped.append(f)
-    return deduped
-
-
-# -------------------------
-# Scoring + time
-# -------------------------
-def parse_time_iso(t: Optional[str]) -> Optional[datetime]:
-    if not t:
-        return None
-    try:
-        dt = dateparser.parse(t)
-        if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=timezone.utc)
-        return dt.astimezone(timezone.utc)
-    except Exception:
-        return None
-
-
-def score_feature(props: Dict[str, Any]) -> float:
-    src = props.get("source")
-    kind = props.get("kind")
-
-    if src == "GDELT" and kind == "news_event":
-        return 1.0
-    if src == "GDACS":
-        return 0.5
-    if src == "USGS":
-        try:
-            m = float(props.get("mag"))
-        except Exception:
-            m = 0.0
-        return 0.2 + min(0.6, max(0.0, (m - 3.0) * 0.15))
-    return 0.1
-
-
-def time_decay(dt: Optional[datetime], now: datetime) -> float:
-    # félidő ~ 72 óra
-    if dt is None:
-        return 0.6
-    age_hours = (now - dt).total_seconds() / 3600.0
-    return 0.5 ** (age_hours / 72.0)
-
-
-# -------------------------
-# Hotspot aggregation + trend
-# -------------------------
-def grid_key(lon: float, lat: float, cell_deg: float) -> Tuple[int, int]:
-    return (int(math.floor(lon / cell_deg)), int(math.floor(lat / cell_deg)))
-
-
-def cell_center(ix: int, iy: int, cell_deg: float) -> Tuple[float, float]:
-    return ((ix + 0.5) * cell_deg, (iy + 0.5) * cell_deg)
-
-
-def trend_from(last7: float, prev7: float) -> Tuple[str, Optional[float], str]:
-    """
-    trend_code, change_pct, arrow
-    """
-    if last7 <= 0 and prev7 <= 0:
-        return "na", 0.0, "·"
-    if prev7 <= 0 and last7 > 0:
-        return "new", None, "🆕"
-    change = (last7 - prev7) / prev7 * 100.0
-
-    # küszöbök blogra (nem túl “ideges”)
-    if change >= 12:
-        return "up", change, "🔺"
-    if change <= -12:
-        return "down", change, "🔻"
-    return "flat", change, "▬"
-
-
-def build_hotspots_with_trend(
-    all_features: List[Dict[str, Any]],
-    cell_deg: float = 0.5,
-    top_n: int = 10,
-) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
-    now = datetime.now(timezone.utc)
-    cutoff_7 = now - timedelta(days=7)
-    cutoff_14 = now - timedelta(days=14)
-
-    acc: Dict[Tuple[int, int], Dict[str, Any]] = {}
-
-    for f in all_features:
-        coords = (f.get("geometry") or {}).get("coordinates") or []
-        if len(coords) < 2:
-            continue
-        lon, lat = float(coords[0]), float(coords[1])
-
-        props = f.get("properties") or {}
-        dt = parse_time_iso(props.get("time"))
-
-        base = score_feature(props)
-        w = time_decay(dt, now)
-        s = base * w  # össz-score (decay-elt)
-
-        k = grid_key(lon, lat, cell_deg)
-        bucket = acc.get(k)
-        if bucket is None:
-            acc[k] = {
-                "score": 0.0,
-                "count": 0,
-                "sources": {"GDELT": 0, "USGS": 0, "GDACS": 0},
-                "last7_score": 0.0,
-                "prev7_score": 0.0,
-            }
-            bucket = acc[k]
-
-        bucket["score"] += s
-        bucket["count"] += 1
-        src = props.get("source")
-        if src in bucket["sources"]:
-            bucket["sources"][src] += 1
-
-        # trend score-k (csak ha van dt)
-        if dt is not None:
-            if dt >= cutoff_7:
-                bucket["last7_score"] += s
-            elif cutoff_14 <= dt < cutoff_7:
-                bucket["prev7_score"] += s
-
-    hotspot_features: List[Dict[str, Any]] = []
-    rows: List[Dict[str, Any]] = []
-
-    for (ix, iy), v in acc.items():
-        lon_c, lat_c = cell_center(ix, iy, cell_deg)
-        if not in_bbox(lon_c, lat_c, BALKAN_BBOX):
-            continue
-
-        last7 = float(v["last7_score"])
-        prev7 = float(v["prev7_score"])
-        trend_code, change_pct, arrow = trend_from(last7, prev7)
-
-        props = {
-            "type": "hotspot_cell",
-            "score": round(float(v["score"]), 3),
-            "count": int(v["count"]),
-            "cell_deg": cell_deg,
-            "sources": v["sources"],
-            "last7_score": round(last7, 3),
-            "prev7_score": round(prev7, 3),
-            "trend": trend_code,
-            "trend_arrow": arrow,
-            "change_pct": None if change_pct is None else round(change_pct, 1),
-        }
-
-        hotspot_features.append(to_feature(lon_c, lat_c, props))
-        rows.append({"lon": lon_c, "lat": lat_c, **props})
-
-    rows_sorted = sorted(rows, key=lambda x: x["score"], reverse=True)
-    return hotspot_features, rows_sorted[:top_n]
-
-
-# -------------------------
-# Reverse geocode for top hotspots (cached)
-# -------------------------
-def load_cache() -> Dict[str, Any]:
-    if not os.path.exists(CACHE_PATH):
-        return {}
-    try:
-        with open(CACHE_PATH, "r", encoding="utf-8") as f:
-            return json.load(f) or {}
-    except Exception:
-        return {}
-
-
-def save_cache(cache: Dict[str, Any]) -> None:
-    with open(CACHE_PATH, "w", encoding="utf-8") as f:
-        json.dump(cache, f, ensure_ascii=False, indent=2)
-
-
-def cache_key(lat: float, lon: float) -> str:
-    return f"{lat:.2f},{lon:.2f}"
-
-
-def reverse_geocode_osm(lat: float, lon: float, cache: Dict[str, Any]) -> str:
-    k = cache_key(lat, lon)
-    if k in cache:
-        return cache[k]
-
-    url = "https://nominatim.openstreetmap.org/reverse"
-    params = {"format": "jsonv2", "lat": str(lat), "lon": str(lon), "zoom": "10", "addressdetails": "1"}
-
-    try:
-        resp = http_get(url, params=params, headers={"Accept-Language": "en"})
-        data = resp.json()
-        addr = data.get("address") or {}
-
-        # Blogbarátabb sorrend: admin/megye → város → falu
-        name = (
-            addr.get("county")
-            or addr.get("state")
-            or addr.get("municipality")
-            or addr.get("city")
-            or addr.get("town")
-            or addr.get("village")
-            or ""
-        )
-        country = addr.get("country") or ""
-        if name and country and country not in name:
-            place = f"{name}, {country}"
-        else:
-            place = name or country or "unknown"
-
-        cache[k] = place
-        time.sleep(1.0)  # udvarias throttling
-        return place
-    except Exception:
-        cache[k] = "unknown"
-        return "unknown"
-
-
-# -------------------------
-# Blog summary (hybrid)
-# -------------------------
-def pct_change(curr: float, prev: float) -> Optional[float]:
-    if prev <= 0 and curr <= 0:
-        return 0.0
-    if prev <= 0:
-        return None
-    return (curr - prev) / prev * 100.0
-
-
-def compute_total_score(features: List[Dict[str, Any]], now: datetime) -> float:
-    total = 0.0
-    for f in features:
-        props = f.get("properties") or {}
-        dt = parse_time_iso(props.get("time"))
-        total += score_feature(props) * time_decay(dt, now)
-    return total
-
-
-def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str, Any]], counts: Dict[str, int]) -> Dict[str, Any]:
-    now = datetime.now(timezone.utc)
-    cutoff_7 = now - timedelta(days=7)
-    cutoff_14 = now - timedelta(days=14)
-
-    last7: List[Dict[str, Any]] = []
-    prev7: List[Dict[str, Any]] = []
-
-    for f in all_features:
-        dt = parse_time_iso((f.get("properties") or {}).get("time"))
-        if dt is None:
-            continue
-        if dt >= cutoff_7:
-            last7.append(f)
-        elif cutoff_14 <= dt < cutoff_7:
-            prev7.append(f)
-
-    score_last7 = compute_total_score(last7, now)
-    score_prev7 = compute_total_score(prev7, now)
-    change = pct_change(score_last7, score_prev7)
-
-    if change is None:
-        trend_text = "Trend: nincs elég bázisadat az összehasonlításhoz."
-    else:
-        if change > 12:
-            trend_text = f"Trend: emelkedő (+{change:.0f}%) az előző 7 naphoz képest."
-        elif change < -12:
-            trend_text = f"Trend: csökkenő ({change:.0f}%) az előző 7 naphoz képest."
-        else:
-            trend_text = f"Trend: nagyjából stagnáló ({change:+.0f}%) az előző 7 naphoz képest."
-
-    if top_hotspots:
-        h0 = top_hotspots[0]
-        place = h0.get("place") or "ismeretlen térség"
-        arrow = h0.get("trend_arrow", "")
-        ch = h0.get("change_pct")
-        ch_txt = "n/a" if ch is None else f"{ch:+.0f}%"
-        top_text = (
-            f"Legerősebb góc: {place} {arrow} (rácspont {h0['lat']:.2f}, {h0['lon']:.2f}; "
-            f"score {float(h0['score']):.2f}; 7 napos változás: {ch_txt})."
-        )
-        note = "Megjegyzés: a hotspot híralapú jelzéseken alapul; érdemes a forrásokat kézzel ellenőrizni."
-    else:
-        top_text = "Legerősebb góc: jelenleg nincs elég geokódolt jelzés a térképes kiemeléshez."
-        note = "Megjegyzés: a híralapú geokódolás hullámzó lehet; a rendszer automatikusan frissül."
-
-    bullets = [
-        top_text,
-        trend_text,
-        f"Forráskép: GDELT {counts.get('gdelt',0)}, USGS {counts.get('usgs',0)}, GDACS {counts.get('gdacs',0)}.",
-        note,
-    ]
-
-    return {
-        "generated_utc": now.isoformat(),
-        "headline": "Balkán biztonsági helyzet – napi kivonat",
-        "bullets": bullets,
-        "stats": {
-            "score_last7": round(score_last7, 3),
-            "score_prev7": round(score_prev7, 3),
-            "change_pct": None if change is None else round(change, 2),
+      return L.geoJSON(gj, {
+        pointToLayer: (feature, latlng) => {
+          const p = feature.properties || {};
+          return L.circleMarker(latlng, hotspotStyle(p.score, maxScore));
         },
+        onEachFeature: (feature, layer) => {
+          const p = feature.properties || {};
+          const src = p.sources ? `GDELT:${p.sources.GDELT||0}, USGS:${p.sources.USGS||0}, GDACS:${p.sources.GDACS||0}` : '';
+          const tr = p.trend_arrow ? ` ${p.trend_arrow}` : '';
+          const ch = (p.change_pct === null || p.change_pct === undefined) ? 'n/a' : `${p.change_pct > 0 ? '+' : ''}${p.change_pct}%`;
+
+          layer.bindPopup(
+            `<div><b>Hotspot cell</b>${esc(tr)}</div>
+             <div><b>Score:</b> ${esc(p.score)}</div>
+             <div><b>7 napos változás:</b> ${esc(ch)}</div>
+             <div><b>Count:</b> ${esc(p.count)}</div>
+             <div class="mono">${esc(src)}</div>`
+          );
+        }
+      });
     }
 
-
-def main() -> int:
-    ensure_dirs()
-
-    try:
-        ensure_balkan_borders()
-    except Exception as e:
-        print(f"[borders] failed: {e}")
-
-    print("Fetching USGS...")
-    try:
-        usgs = fetch_usgs(days=7, min_magnitude=2.5)
-    except Exception as e:
-        print(f"[USGS] fetch failed, continuing with empty layer: {e}")
-        usgs = []
-    print(f"USGS features: {len(usgs)}")
-
-    print("Fetching GDACS...")
-    try:
-        gdacs = fetch_gdacs(days=14)
-    except Exception as e:
-        print(f"[GDACS] fetch failed, continuing with empty layer: {e}")
-        gdacs = []
-    print(f"GDACS features: {len(gdacs)}")
-
-    print("Fetching GDELT...")
-    try:
-        gdelt = fetch_gdelt(days=2, max_records=250)
-    except Exception as e:
-        print(f"[GDELT] fetch failed, continuing with empty layer: {e}")
-        gdelt = []
-    print(f"GDELT features: {len(gdelt)}")
-
-    save_geojson(os.path.join(DOCS_DATA_DIR, "usgs.geojson"), usgs)
-    save_geojson(os.path.join(DOCS_DATA_DIR, "gdacs.geojson"), gdacs)
-    save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt.geojson"), gdelt)
-
-    all_feats = gdelt + gdacs + usgs
-
-    hotspot_geo, top_hotspots = build_hotspots_with_trend(all_feats, cell_deg=0.5, top_n=10)
-
-    # place names for top list
-    cache = load_cache()
-    for h in top_hotspots:
-        h["place"] = reverse_geocode_osm(float(h["lat"]), float(h["lon"]), cache)
-    save_cache(cache)
-
-    save_geojson(os.path.join(DOCS_DATA_DIR, "hotspots.geojson"), hotspot_geo)
-    with open(os.path.join(DOCS_DATA_DIR, "hotspots.json"), "w", encoding="utf-8") as f:
-        json.dump({"generated_utc": datetime.now(timezone.utc).isoformat(), "top": top_hotspots}, f, ensure_ascii=False, indent=2)
-
-    counts = {"usgs": len(usgs), "gdacs": len(gdacs), "gdelt": len(gdelt), "hotspot_cells": len(hotspot_geo)}
-    summary = make_summary(all_feats, top_hotspots, counts)
-    with open(os.path.join(DOCS_DATA_DIR, "summary.json"), "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
-
-    meta = {
-        "generated_utc": datetime.now(timezone.utc).isoformat(),
-        "counts": counts,
-        "bbox": {"lon_min": BALKAN_BBOX[0], "lat_min": BALKAN_BBOX[1], "lon_max": BALKAN_BBOX[2], "lat_max": BALKAN_BBOX[3]},
+    async function loadBorders(url) {
+      const r = await fetch(url, { cache: "no-store" });
+      const gj = await r.json();
+      return L.geoJSON(gj, {
+        style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0 })
+      });
     }
-    with open(os.path.join(DOCS_DATA_DIR, "meta.json"), "w", encoding="utf-8") as f:
-        json.dump(meta, f, ensure_ascii=False, indent=2)
 
-    print("Done.")
-    return 0
+    function renderAlert(alert) {
+      const box = document.getElementById('alertBox');
+      if (!alert) {
+        box.style.display = 'none';
+        box.className = 'alert';
+        return;
+      }
+      box.style.display = 'block';
+      box.className = `alert ${esc(alert.level || 'info')}`;
+      document.getElementById('alertTitle').textContent = alert.title || 'Riasztás';
+      document.getElementById('alertText').textContent = alert.text || '';
+    }
 
+    function renderSummary(sum) {
+      document.getElementById('sumTitle').textContent = sum?.headline || 'Balkán biztonsági helyzet – napi kivonat';
+      const t = fmtBudapest(sum?.generated_utc);
+      document.getElementById('sumTime').textContent = t ? `Kivonat frissítése (Budapest): ${t.bud}` : 'Kivonat frissítése: —';
 
-if __name__ == "__main__":
-    raise SystemExit(main())
+      renderAlert(sum?.alert || null);
+
+      const ul = document.getElementById('sumList');
+      ul.innerHTML = '';
+      const bullets = (sum?.bullets || []).slice(0, 6);
+      if (!bullets.length) {
+        const li = document.createElement('li');
+        li.textContent = 'Nincs elérhető kivonat (még nincs friss adat).';
+        ul.appendChild(li);
+        return;
+      }
+      for (const b of bullets) {
+        const li = document.createElement('li');
+        li.textContent = b;
+        ul.appendChild(li);
+      }
+    }
+
+    function renderWeekly(w) {
+      const t = fmtBudapest(w?.generated_utc);
+      document.getElementById('weekTime').textContent = t ? `Kivonat frissítése (Budapest): ${t.bud}` : 'Kivonat frissítése: —';
+
+      const ul = document.getElementById('weekList');
+      ul.innerHTML = '';
+      const bullets = (w?.bullets || []).slice(0, 8);
+      if (!bullets.length) {
+        const li = document.createElement('li');
+        li.textContent = 'Nincs elérhető heti kivonat.';
+        ul.appendChild(li);
+      } else {
+        for (const b of bullets) {
+          const li = document.createElement('li');
+          li.textContent = b;
+          ul.appendChild(li);
+        }
+      }
+
+      const ex = document.getElementById('weekExamples');
+      ex.innerHTML = '';
+      const examples = (w?.examples || []).slice(0, 5);
+      if (examples.length) {
+        const head = document.createElement('div');
+        head.className = 'src';
+        head.textContent = 'Példa események (hírcím + link):';
+        ex.appendChild(head);
+
+        const list = document.createElement('ul');
+        list.style.margin = '6px 0 0';
+        list.style.paddingLeft = '18px';
+
+        for (const e of examples) {
+          const li = document.createElement('li');
+          li.style.margin = '4px 0';
+          const title = e.title || '(nincs cím)';
+          const url = e.url || '#';
+          const dom = e.domain ? ` (${e.domain})` : '';
+          li.innerHTML = `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(title)}</a><span class="src">${esc(dom)}</span>`;
+          list.appendChild(li);
+        }
+        ex.appendChild(list);
+      }
+    }
+
+    function renderHotList(items) {
+      const ul = document.getElementById('hotList');
+      ul.innerHTML = '';
+      for (const it of items) {
+        const li = document.createElement('li');
+        li.className = 'item';
+
+        const place = it.place ? it.place : 'ismeretlen térség';
+        const arrow = it.trend_arrow ? it.trend_arrow : '·';
+        const ch = (it.change_pct === null || it.change_pct === undefined) ? 'n/a' : `${it.change_pct > 0 ? '+' : ''}${it.change_pct}%`;
+
+        li.innerHTML = `
+          <div>
+            <div class="place">${esc(place)} <span class="mono">${esc(arrow)}</span> <span class="mono">(${esc(ch)})</span></div>
+            <div class="sub">${esc(`(${it.lat.toFixed(2)}, ${it.lon.toFixed(2)}) • db: ${it.count} • G:${it.sources.GDELT} U:${it.sources.USGS} D:${it.sources.GDACS}`)}</div>
+          </div>
+          <div class="mono">S=${Number(it.score).toFixed(2)}</div>
+        `;
+        li.addEventListener('click', () => map.setView([it.lat, it.lon], 9));
+        ul.appendChild(li);
+      }
+      if (!items.length) {
+        const li = document.createElement('li');
+        li.style.fontSize = '12px';
+        li.style.color = '#555';
+        li.textContent = 'Nincs elég adat a hotspotokhoz (vagy üres feed).';
+        ul.appendChild(li);
+      }
+    }
+
+    const layers = { borders: null, hot: null, gdelt: null, usgs: null, gdacs: null };
+
+    async function init() {
+      // meta
+      try {
+        const metaResp = await fetch('./data/meta.json', { cache: "no-store" });
+        const meta = await metaResp.json();
+        const t = fmtBudapest(meta.generated_utc);
+        const timeText = t ? `Utolsó frissítés (Budapest): ${t.bud} (UTC: ${t.utc})` : `Utolsó frissítés: ismeretlen`;
+        document.getElementById('meta').textContent =
+          `${timeText} | hotspot cellák: ${meta.counts.hotspot_cells ?? 0} | GDELT: ${meta.counts.gdelt}, USGS: ${meta.counts.usgs}, GDACS: ${meta.counts.gdacs}`;
+      } catch {
+        document.getElementById('meta').textContent = 'Meta betöltése nem sikerült.';
+      }
+
+      // daily summary (+ alert)
+      try {
+        const sumResp = await fetch('./data/summary.json', { cache: "no-store" });
+        renderSummary(await sumResp.json());
+      } catch {
+        renderSummary({ headline: 'Balkán biztonsági helyzet – napi kivonat', bullets: [], alert: null });
+      }
+
+      // weekly summary
+      try {
+        const wResp = await fetch('./data/weekly.json', { cache: "no-store" });
+        renderWeekly(await wResp.json());
+      } catch {
+        renderWeekly({ bullets: [], examples: [] });
+      }
+
+      // layers
+      layers.borders = await loadBorders('./data/balkan_borders.geojson');
+      layers.hot     = await loadHotspotsHeat('./data/hotspots.geojson');
+      layers.gdelt   = await loadGeoJson('./data/gdelt.geojson', 'GDELT');
+      layers.usgs    = await loadGeoJson('./data/usgs.geojson', 'USGS');
+      layers.gdacs   = await loadGeoJson('./data/gdacs.geojson', 'GDACS');
+
+      layers.borders.addTo(map);
+      layers.hot.addTo(map);
+      layers.gdelt.addTo(map);
+
+      document.getElementById('layerBorders').addEventListener('change', (e) => {
+        if (e.target.checked) map.addLayer(layers.borders); else map.removeLayer(layers.borders);
+      });
+      document.getElementById('layerHot').addEventListener('change', (e) => {
+        if (e.target.checked) map.addLayer(layers.hot); else map.removeLayer(layers.hot);
+      });
+      document.getElementById('layerGdelt').addEventListener('change', (e) => {
+        if (e.target.checked) map.addLayer(layers.gdelt); else map.removeLayer(layers.gdelt);
+      });
+      document.getElementById('layerUsgs').addEventListener('change', (e) => {
+        if (e.target.checked) map.addLayer(layers.usgs); else map.removeLayer(layers.usgs);
+      });
+      document.getElementById('layerGdacs').addEventListener('change', (e) => {
+        if (e.target.checked) map.addLayer(layers.gdacs); else map.removeLayer(layers.gdacs);
+      });
+
+      // top list
+      try {
+        const topResp = await fetch('./data/hotspots.json', { cache: "no-store" });
+        const top = await topResp.json();
+        renderHotList(top.top || []);
+      } catch {
+        renderHotList([]);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
