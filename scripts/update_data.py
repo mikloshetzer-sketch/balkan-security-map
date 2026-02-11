@@ -34,11 +34,20 @@ BALKAN_COUNTRIES = [
     "Hungary",
 ]
 
-USER_AGENT = "balkan-security-map/1.6 (github actions; public blog)"
+USER_AGENT = "balkan-security-map/2.0 (github actions; public blog)"
 TIMEOUT = 30
-
 CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
 
+# --- HIBRID EARLY WARNING zónák (egyszerű bbox alapú közelítés) ---
+# Ezek nem politikai állásfoglalások, csak "érzékenyebb" riasztási területek OSINT-ben.
+SENSITIVE_ZONES = [
+    {"name": "Kosovo–Serbia", "bbox": (19.5, 42.0, 21.8, 43.6), "mult": 1.35},
+    {"name": "Bosznia (entitásvonal tág)", "bbox": (16.0, 43.0, 19.8, 45.1), "mult": 1.20},
+    {"name": "Görög–török Égei", "bbox": (24.0, 35.6, 28.9, 41.5), "mult": 1.25},
+    {"name": "Moldova–Transznisztria", "bbox": (28.0, 46.0, 30.3, 48.2), "mult": 1.30},
+]
+
+# ------------------------------------------------------------
 
 def ensure_dirs() -> None:
     os.makedirs(DOCS_DATA_DIR, exist_ok=True)
@@ -295,7 +304,7 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
 
 
 # -------------------------
-# Scoring + time
+# Time + scoring
 # -------------------------
 def parse_time_iso(t: Optional[str]) -> Optional[datetime]:
     if not t:
@@ -373,10 +382,8 @@ def build_hotspots_with_trend(
         if len(coords) < 2:
             continue
         lon, lat = float(coords[0]), float(coords[1])
-
         props = f.get("properties") or {}
         dt = parse_time_iso(props.get("time"))
-
         s = score_feature(props) * time_decay(dt, now)
 
         k = grid_key(lon, lat, cell_deg)
@@ -549,7 +556,7 @@ def build_weekly(all_features: List[Dict[str, Any]]) -> Dict[str, Any]:
             "domain": p.get("domain"),
         })
 
-    topics = extract_topics([(p.get("title") or "") for _, p in [(x[0], x[1].get("properties") or {}) for x in gdelt_items[:50]]])
+    topics = extract_topics([((x[1].get("properties") or {}).get("title") or "") for x in gdelt_items[:50]])
 
     bullets = [
         f"Híralapú jelzések (GDELT): {counts['GDELT']} db az elmúlt 7 napban.",
@@ -569,7 +576,7 @@ def build_weekly(all_features: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 # -------------------------
-# Daily summary + alert
+# Daily summary + banner alert
 # -------------------------
 def pct_change(curr: float, prev: float) -> Optional[float]:
     if prev <= 0 and curr <= 0:
@@ -694,6 +701,163 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
     }
 
 
+# -------------------------
+# EARLY WARNING (hibrid)
+# Output: docs/data/early.geojson + docs/data/early.json
+# -------------------------
+def zone_multiplier(lon: float, lat: float) -> Tuple[float, Optional[str]]:
+    mult = 1.0
+    zname: Optional[str] = None
+    for z in SENSITIVE_ZONES:
+        if in_bbox(lon, lat, z["bbox"]):
+            if z["mult"] > mult:
+                mult = float(z["mult"])
+                zname = str(z["name"])
+    return mult, zname
+
+
+def neighbor_keys(k: Tuple[int, int]) -> List[Tuple[int, int]]:
+    x, y = k
+    return [(x-1,y-1),(x,y-1),(x+1,y-1),(x-1,y),(x+1,y),(x-1,y+1),(x,y+1),(x+1,y+1)]
+
+
+def build_early_warning(
+    all_features: List[Dict[str, Any]],
+    cell_deg: float = 0.5,
+    lookback_days: int = 7,
+    recent_hours: int = 48,
+    top_n: int = 10,
+) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    """
+    Early warning: a *gyorsulást* keresi.
+    - recent window: utolsó 48 óra
+    - baseline: 48 óra előtti időszak a 7 napos lookback-on belül
+    - forrásmix, szomszédos cellák aktiválódása, és érzékeny zónák szorzója
+    """
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=lookback_days)
+    recent_cut = now - timedelta(hours=recent_hours)
+
+    acc: Dict[Tuple[int,int], Dict[str, Any]] = {}
+
+    def get_bucket(k: Tuple[int,int]) -> Dict[str, Any]:
+        b = acc.get(k)
+        if b is None:
+            b = {
+                "recent": 0.0,
+                "baseline": 0.0,
+                "recent_cnt": 0,
+                "baseline_cnt": 0,
+                "src_recent": {"GDELT": 0, "USGS": 0, "GDACS": 0},
+            }
+            acc[k] = b
+        return b
+
+    # aggregate
+    for f in all_features:
+        coords = (f.get("geometry") or {}).get("coordinates") or []
+        if len(coords) < 2:
+            continue
+        lon, lat = float(coords[0]), float(coords[1])
+        if not in_bbox(lon, lat, BALKAN_BBOX):
+            continue
+        props = f.get("properties") or {}
+        dt = parse_time_iso(props.get("time"))
+        if dt is None or dt < cutoff:
+            continue
+
+        s = score_feature(props)  # itt NEM erős idődecay: a cél a gyorsulás
+        k = grid_key(lon, lat, cell_deg)
+        b = get_bucket(k)
+
+        src = props.get("source")
+        if dt >= recent_cut:
+            b["recent"] += s
+            b["recent_cnt"] += 1
+            if src in b["src_recent"]:
+                b["src_recent"][src] += 1
+        else:
+            b["baseline"] += s
+            b["baseline_cnt"] += 1
+
+    # compute raw escalation per cell
+    raw: Dict[Tuple[int,int], float] = {}
+    meta: Dict[Tuple[int,int], Dict[str, Any]] = {}
+
+    for k, b in acc.items():
+        lon_c, lat_c = cell_center(k[0], k[1], cell_deg)
+        if not in_bbox(lon_c, lat_c, BALKAN_BBOX):
+            continue
+
+        recent = float(b["recent"])
+        base = float(b["baseline"])
+
+        if recent <= 0.75:
+            continue  # ne jelezzen 1 db apró jelzésre belsőben (szűrő)
+
+        # ratio/acceleration: baseline kicsi → nagy ugrás, de óvatosan
+        ratio = (recent + 0.5) / (base + 1.5)
+
+        # source-mix: ha többféle jel jön (pl. GDACS/USGS is), az növeli a bizalmat
+        src_mix = sum(1 for v in b["src_recent"].values() if v > 0)
+        mix_boost = 1.0 + 0.08 * (src_mix - 1) if src_mix >= 2 else 1.0
+
+        # sensitive zone multiplier (hibrid)
+        z_mult, z_name = zone_multiplier(lon_c, lat_c)
+
+        # raw escalation
+        esc = (recent * 10.0) * math.log1p(ratio) * mix_boost * z_mult
+
+        raw[k] = esc
+        meta[k] = {
+            "recent": round(recent, 3),
+            "baseline": round(base, 3),
+            "ratio": round(ratio, 3),
+            "src_mix": int(src_mix),
+            "zone": z_name,
+            "zone_mult": round(z_mult, 2),
+            "recent_cnt": int(b["recent_cnt"]),
+            "baseline_cnt": int(b["baseline_cnt"]),
+            "src_recent": b["src_recent"],
+        }
+
+    if not raw:
+        return [], []
+
+    # neighbor reinforcement: ha több szomszéd is emelkedik, az "kialakuló öv"
+    # normalizálás: top raw alapján skálázunk 0..100-ra
+    max_raw = max(raw.values()) or 1.0
+
+    signals: List[Dict[str, Any]] = []
+    rows: List[Dict[str, Any]] = []
+
+    for k, esc_raw in raw.items():
+        neigh = neighbor_keys(k)
+        neigh_active = sum(1 for nk in neigh if nk in raw and raw[nk] >= 0.35 * max_raw)
+        spread_boost = 1.0 + 0.06 * neigh_active  # 0..~0.48
+
+        score0_100 = min(100.0, (esc_raw * spread_boost) / max_raw * 100.0)
+        lon_c, lat_c = cell_center(k[0], k[1], cell_deg)
+
+        props = {
+            "type": "early_warning",
+            "escalation": round(score0_100, 1),
+            "cell_deg": cell_deg,
+            "neighbor_active": int(neigh_active),
+            **meta[k],
+        }
+
+        signals.append(to_feature(lon_c, lat_c, props))
+        rows.append({"lon": lon_c, "lat": lat_c, **props})
+
+    rows_sorted = sorted(rows, key=lambda x: x["escalation"], reverse=True)
+    top = rows_sorted[:top_n]
+    return signals, top
+
+
+# -------------------------
+# main
+# -------------------------
 def main() -> int:
     ensure_dirs()
 
@@ -726,12 +890,14 @@ def main() -> int:
         gdelt = []
     print(f"GDELT features: {len(gdelt)}")
 
+    # Save source layers
     save_geojson(os.path.join(DOCS_DATA_DIR, "usgs.geojson"), usgs)
     save_geojson(os.path.join(DOCS_DATA_DIR, "gdacs.geojson"), gdacs)
     save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt.geojson"), gdelt)
 
     all_feats = gdelt + gdacs + usgs
 
+    # Hotspots
     hotspot_geo, top_hotspots = build_hotspots_with_trend(all_feats, cell_deg=0.5, top_n=10)
 
     cache = load_cache()
@@ -743,6 +909,7 @@ def main() -> int:
     with open(os.path.join(DOCS_DATA_DIR, "hotspots.json"), "w", encoding="utf-8") as f:
         json.dump({"generated_utc": datetime.now(timezone.utc).isoformat(), "top": top_hotspots}, f, ensure_ascii=False, indent=2)
 
+    # Daily summary + weekly summary
     counts = {"usgs": len(usgs), "gdacs": len(gdacs), "gdelt": len(gdelt), "hotspot_cells": len(hotspot_geo)}
     summary = make_summary(all_feats, top_hotspots, counts)
     with open(os.path.join(DOCS_DATA_DIR, "summary.json"), "w", encoding="utf-8") as f:
@@ -752,10 +919,25 @@ def main() -> int:
     with open(os.path.join(DOCS_DATA_DIR, "weekly.json"), "w", encoding="utf-8") as f:
         json.dump(weekly, f, ensure_ascii=False, indent=2)
 
+    # EARLY WARNING output
+    early_geo, early_top = build_early_warning(all_feats, cell_deg=0.5, lookback_days=7, recent_hours=48, top_n=10)
+
+    # geocode top early for readability
+    cache = load_cache()
+    for e in early_top:
+        e["place"] = reverse_geocode_osm(float(e["lat"]), float(e["lon"]), cache)
+    save_cache(cache)
+
+    save_geojson(os.path.join(DOCS_DATA_DIR, "early.geojson"), early_geo)
+    with open(os.path.join(DOCS_DATA_DIR, "early.json"), "w", encoding="utf-8") as f:
+        json.dump({"generated_utc": datetime.now(timezone.utc).isoformat(), "top": early_top}, f, ensure_ascii=False, indent=2)
+
+    # meta
     meta = {
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "counts": counts,
         "bbox": {"lon_min": BALKAN_BBOX[0], "lat_min": BALKAN_BBOX[1], "lon_max": BALKAN_BBOX[2], "lat_max": BALKAN_BBOX[3]},
+        "early": {"cells": len(early_geo), "recent_hours": 48, "lookback_days": 7},
     }
     with open(os.path.join(DOCS_DATA_DIR, "meta.json"), "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
