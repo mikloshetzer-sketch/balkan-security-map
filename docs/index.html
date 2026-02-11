@@ -15,7 +15,7 @@
       position: absolute; top: 12px; left: 12px; z-index: 999;
       background: rgba(255,255,255,0.95); padding: 10px 12px; border-radius: 12px;
       box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-      max-width: 360px;
+      max-width: 380px;
     }
     .panel h1 { font-size: 16px; margin: 0 0 6px; }
     .panel small { color:#444; display:block; margin-bottom:8px; }
@@ -66,6 +66,27 @@
       return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
 
+    function fmtBudapest(isoUtcString) {
+      if (!isoUtcString) return null;
+      const d = new Date(isoUtcString);
+      if (isNaN(d.getTime())) return null;
+
+      // Budapest idő (DST-t automatikusan kezeli a böngésző)
+      const bud = new Intl.DateTimeFormat('hu-HU', {
+        timeZone: 'Europe/Budapest',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      }).format(d);
+
+      const utc = new Intl.DateTimeFormat('hu-HU', {
+        timeZone: 'UTC',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      }).format(d);
+
+      return { bud, utc };
+    }
+
     function makePopup(props) {
       const t = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
       const title = props.title ? `<div style="margin-bottom:6px;"><b>${esc(props.title)}</b></div>` : '';
@@ -77,8 +98,7 @@
     }
 
     function circleStyle(source) {
-      // Ne állítsunk fix színt (később lehet finomítani)
-      // Most csak radius különbség
+      // színt nem állítunk fixen, csak méretet – egyszerű MVP
       if (source === 'USGS') return { radius: 7, weight: 1, fillOpacity: 0.5 };
       if (source === 'GDACS') return { radius: 8, weight: 1, fillOpacity: 0.5 };
       return { radius: 6, weight: 1, fillOpacity: 0.5 }; // GDELT
@@ -89,7 +109,6 @@
       const gj = await r.json();
       return L.geoJSON(gj, {
         pointToLayer: (feature, latlng) => {
-          const props = feature.properties || {};
           const style = circleStyle(sourceName);
           return L.circleMarker(latlng, style);
         },
@@ -100,19 +119,21 @@
       });
     }
 
-    const layers = {
-      gdelt: null,
-      usgs: null,
-      gdacs: null,
-    };
+    const layers = { gdelt: null, usgs: null, gdacs: null };
 
     async function init() {
       // meta
       try {
         const metaResp = await fetch('./data/meta.json', { cache: "no-store" });
         const meta = await metaResp.json();
+
+        const t = fmtBudapest(meta.generated_utc);
+        const timeText = t
+          ? `Utolsó frissítés (Budapest): ${t.bud}  (UTC: ${t.utc})`
+          : `Utolsó frissítés: ismeretlen`;
+
         document.getElementById('meta').textContent =
-          `Utolsó frissítés (UTC): ${meta.generated_utc} | GDELT: ${meta.counts.gdelt}, USGS: ${meta.counts.usgs}, GDACS: ${meta.counts.gdacs}`;
+          `${timeText} | GDELT: ${meta.counts.gdelt}, USGS: ${meta.counts.usgs}, GDACS: ${meta.counts.gdacs}`;
       } catch (e) {
         document.getElementById('meta').textContent = 'Meta betöltése nem sikerült.';
       }
