@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import os
+import math
 import time
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple
@@ -13,11 +14,11 @@ from dateutil import parser as dateparser
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS_DATA_DIR = os.path.join(ROOT, "docs", "data")
 
-# Balkán "doboz" (bounding box) – később finomítható
+# Balkán bounding box (durva)
 # lon_min, lat_min, lon_max, lat_max
 BALKAN_BBOX = (13.0, 37.0, 30.0, 47.5)
 
-USER_AGENT = "balkan-security-map/1.1 (github actions)"
+USER_AGENT = "balkan-security-map/1.2 (github actions)"
 TIMEOUT = 30
 
 
@@ -26,9 +27,6 @@ def ensure_dirs() -> None:
 
 
 def http_get(url: str, params: Optional[dict] = None, headers: Optional[dict] = None) -> requests.Response:
-    """
-    Robusztus GET: retry + backoff átmeneti hibákra / rate limitre.
-    """
     h = {"User-Agent": USER_AGENT}
     if headers:
         h.update(headers)
@@ -36,7 +34,7 @@ def http_get(url: str, params: Optional[dict] = None, headers: Optional[dict] = 
     backoff = 2
     last_exc: Optional[Exception] = None
 
-    for attempt in range(1, 4):  # 3 próbálkozás
+    for attempt in range(1, 4):
         try:
             r = requests.get(url, params=params, headers=h, timeout=TIMEOUT)
             if r.status_code in (429, 500, 502, 503, 504):
@@ -75,155 +73,106 @@ def save_geojson(path: str, features: List[Dict[str, Any]]) -> None:
 
 
 # -------------------------
-# USGS Earthquakes (GeoJSON)
+# Sources
 # -------------------------
 def fetch_usgs(days: int = 7, min_magnitude: float = 2.5) -> List[Dict[str, Any]]:
     url = "https://earthquake.usgs.gov/fdsnws/event/1/query"
     end = datetime.now(timezone.utc)
     start = end - timedelta(days=days)
-
     params = {
         "format": "geojson",
         "starttime": start.strftime("%Y-%m-%d"),
         "endtime": end.strftime("%Y-%m-%d"),
         "minmagnitude": str(min_magnitude),
     }
-
-    resp = http_get(url, params=params)
-    data = resp.json()
+    data = http_get(url, params=params).json()
 
     out: List[Dict[str, Any]] = []
     for f in data.get("features", []):
-        geom = f.get("geometry") or {}
-        coords = geom.get("coordinates") or []
+        coords = (f.get("geometry") or {}).get("coordinates") or []
         if len(coords) < 2:
             continue
-
         lon, lat = float(coords[0]), float(coords[1])
         if not in_bbox(lon, lat, BALKAN_BBOX):
             continue
-
         p = f.get("properties") or {}
         t_ms = p.get("time")
         dt = datetime.fromtimestamp(t_ms / 1000, tz=timezone.utc).isoformat() if isinstance(t_ms, (int, float)) else None
-
         out.append(
             to_feature(
-                lon,
-                lat,
+                lon, lat,
                 {
                     "source": "USGS",
-                    "type": "earthquake",
+                    "kind": "earthquake",
                     "mag": p.get("mag"),
                     "place": p.get("place"),
                     "time": dt,
                     "url": p.get("url"),
                     "title": p.get("title"),
-                },
+                }
             )
         )
     return out
 
 
-# -------------------------
-# GDACS (RSS)
-# -------------------------
 def fetch_gdacs(days: int = 14) -> List[Dict[str, Any]]:
     url = "https://www.gdacs.org/xml/rss.xml"
     xml = http_get(url).text
-
     items = xml.split("<item>")[1:]
     cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+
+    def get_tag(chunk: str, tag: str) -> Optional[str]:
+        open_t = f"<{tag}>"
+        close_t = f"</{tag}>"
+        if open_t in chunk and close_t in chunk:
+            return chunk.split(open_t, 1)[1].split(close_t, 1)[0].strip()
+        return None
 
     out: List[Dict[str, Any]] = []
     for raw in items:
         chunk = raw.split("</item>")[0]
-
-        def get_tag(tag: str) -> Optional[str]:
-            open_t = f"<{tag}>"
-            close_t = f"</{tag}>"
-            if open_t in chunk and close_t in chunk:
-                return chunk.split(open_t, 1)[1].split(close_t, 1)[0].strip()
-            return None
-
-        title = get_tag("title")
-        link = get_tag("link")
-        pub = get_tag("pubDate")
-        point = get_tag("georss:point") or get_tag("point")
-
+        title = get_tag(chunk, "title")
+        link = get_tag(chunk, "link")
+        pub = get_tag(chunk, "pubDate")
+        point = get_tag(chunk, "georss:point") or get_tag(chunk, "point")
         if not pub or not point:
             continue
-
         try:
             pub_dt = dateparser.parse(pub).astimezone(timezone.utc)
         except Exception:
             continue
         if pub_dt < cutoff:
             continue
-
         try:
             lat_s, lon_s = point.split()
             lat, lon = float(lat_s), float(lon_s)
         except Exception:
             continue
-
         if not in_bbox(lon, lat, BALKAN_BBOX):
             continue
 
         out.append(
             to_feature(
-                lon,
-                lat,
+                lon, lat,
                 {
                     "source": "GDACS",
-                    "type": "disaster_alert",
+                    "kind": "disaster_alert",
                     "title": title,
                     "time": pub_dt.isoformat(),
                     "url": link,
-                },
+                }
             )
         )
     return out
 
 
-# -------------------------
-# GDELT 2 DOC (JSON) – híralapú jelzések
-# -------------------------
 def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
     url = "https://api.gdeltproject.org/api/v2/doc/doc"
     end = datetime.now(timezone.utc)
     start = end - timedelta(days=days)
 
-    keywords = [
-        "protest",
-        "demonstration",
-        "riot",
-        "clash",
-        "violence",
-        "border",
-        "checkpoint",
-        "police",
-        "attack",
-        "explosion",
-    ]
-    countries = [
-        "Albania",
-        "Bosnia",
-        "Herzegovina",
-        "Bulgaria",
-        "Croatia",
-        "Greece",
-        "Kosovo",
-        "Montenegro",
-        "North Macedonia",
-        "Romania",
-        "Serbia",
-        "Slovenia",
-        "Turkey",
-        "Moldova",
-        "Hungary",
-    ]
-
+    keywords = ["protest", "demonstration", "riot", "clash", "violence", "border", "checkpoint", "police", "attack", "explosion"]
+    countries = ["Albania","Bosnia","Herzegovina","Bulgaria","Croatia","Greece","Kosovo","Montenegro","North Macedonia","Romania","Serbia","Slovenia","Turkey","Moldova","Hungary"]
     query = "(" + " OR ".join(keywords) + ") AND (" + " OR ".join(countries) + ")"
 
     params = {
@@ -237,8 +186,6 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
     }
 
     resp = http_get(url, params=params)
-
-    # GDELT néha nem JSON-t ad vissza (HTML/üres), ezt toleráljuk
     try:
         data = resp.json()
     except Exception:
@@ -256,12 +203,10 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
         lon = geo.get("longitude")
         if lat is None or lon is None:
             continue
-
         try:
             lat_f, lon_f = float(lat), float(lon)
         except Exception:
             continue
-
         if not in_bbox(lon_f, lat_f, BALKAN_BBOX):
             continue
 
@@ -275,21 +220,20 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
 
         out.append(
             to_feature(
-                lon_f,
-                lat_f,
+                lon_f, lat_f,
                 {
                     "source": "GDELT",
-                    "type": "news_event",
+                    "kind": "news_event",
                     "title": a.get("title"),
                     "time": time_iso,
                     "url": a.get("url"),
                     "domain": a.get("domain"),
                     "language": a.get("language"),
-                },
+                }
             )
         )
 
-    # duplikátum szűrés URL alapján
+    # dedupe URL
     seen = set()
     deduped = []
     for f in out:
@@ -298,14 +242,144 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
             continue
         seen.add(u)
         deduped.append(f)
-
     return deduped
+
+
+# -------------------------
+# Hotspot aggregation (grid)
+# -------------------------
+def parse_time_iso(t: Optional[str]) -> Optional[datetime]:
+    if not t:
+        return None
+    try:
+        dt = dateparser.parse(t)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except Exception:
+        return None
+
+
+def score_feature(props: Dict[str, Any]) -> float:
+    """
+    "Feszültség" pontszám.
+    Blog/OSINT: egyszerű, transzparens.
+    """
+    src = props.get("source")
+    kind = props.get("kind")
+
+    # híralapú események dominálnak a "feszültség" szempontból
+    if src == "GDELT" and kind == "news_event":
+        return 1.0
+
+    # GDACS riasztás: kisebb súly (biztonságpolitikai kontextus: humán / ellátás)
+    if src == "GDACS":
+        return 0.5
+
+    # USGS: természeti esemény -> alacsonyabb (de fontos lehet)
+    if src == "USGS":
+        mag = props.get("mag")
+        try:
+            m = float(mag)
+        except Exception:
+            m = 0.0
+        # nagyobb rengés kicsit jobban számít
+        return 0.2 + min(0.6, max(0.0, (m - 3.0) * 0.15))
+
+    return 0.1
+
+
+def time_decay(dt: Optional[datetime], now: datetime) -> float:
+    """
+    Lejárat: frissebb = több pont.
+    Félidő ~ 3 nap: 3 naponta feleződik.
+    """
+    if dt is None:
+        return 0.6
+    age_hours = (now - dt).total_seconds() / 3600.0
+    # half-life 72h => decay = 0.5^(age/72)
+    return 0.5 ** (age_hours / 72.0)
+
+
+def grid_key(lon: float, lat: float, cell_deg: float) -> Tuple[int, int]:
+    return (int(math.floor(lon / cell_deg)), int(math.floor(lat / cell_deg)))
+
+
+def cell_center(ix: int, iy: int, cell_deg: float) -> Tuple[float, float]:
+    return ((ix + 0.5) * cell_deg, (iy + 0.5) * cell_deg)
+
+
+def build_hotspots(all_features: List[Dict[str, Any]], cell_deg: float = 0.5, top_n: int = 10) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    """
+    Visszaad:
+    - hotspot pontok GeoJSON feature-ként (minden rácscella pont)
+    - top lista JSON-hoz (top_n)
+    """
+    now = datetime.now(timezone.utc)
+
+    acc: Dict[Tuple[int, int], Dict[str, Any]] = {}
+
+    for f in all_features:
+        geom = f.get("geometry") or {}
+        coords = geom.get("coordinates") or []
+        if len(coords) < 2:
+            continue
+        lon, lat = float(coords[0]), float(coords[1])
+
+        props = f.get("properties") or {}
+        dt = parse_time_iso(props.get("time"))
+        base = score_feature(props)
+        w = time_decay(dt, now)
+        s = base * w
+
+        k = grid_key(lon, lat, cell_deg)
+        bucket = acc.get(k)
+        if bucket is None:
+            acc[k] = {
+                "score": 0.0,
+                "count": 0,
+                "sources": {"GDELT": 0, "USGS": 0, "GDACS": 0},
+            }
+            bucket = acc[k]
+
+        bucket["score"] += s
+        bucket["count"] += 1
+        src = props.get("source")
+        if src in bucket["sources"]:
+            bucket["sources"][src] += 1
+
+    # GeoJSON features for every cell that has activity
+    hotspot_features: List[Dict[str, Any]] = []
+    rows: List[Dict[str, Any]] = []
+
+    for (ix, iy), v in acc.items():
+        lon_c, lat_c = cell_center(ix, iy, cell_deg)
+        if not in_bbox(lon_c, lat_c, BALKAN_BBOX):
+            continue
+
+        score = float(v["score"])
+        count = int(v["count"])
+        sources = v["sources"]
+
+        props = {
+            "type": "hotspot_cell",
+            "score": round(score, 3),
+            "count": count,
+            "cell_deg": cell_deg,
+            "sources": sources,
+        }
+
+        hotspot_features.append(to_feature(lon_c, lat_c, props))
+        rows.append({"lon": lon_c, "lat": lat_c, **props})
+
+    rows_sorted = sorted(rows, key=lambda x: x["score"], reverse=True)
+    top = rows_sorted[:top_n]
+    return hotspot_features, top
 
 
 def main() -> int:
     ensure_dirs()
 
-    # USGS
     print("Fetching USGS...")
     try:
         usgs = fetch_usgs(days=7, min_magnitude=2.5)
@@ -314,7 +388,6 @@ def main() -> int:
         usgs = []
     print(f"USGS features: {len(usgs)}")
 
-    # GDACS
     print("Fetching GDACS...")
     try:
         gdacs = fetch_gdacs(days=14)
@@ -323,7 +396,6 @@ def main() -> int:
         gdacs = []
     print(f"GDACS features: {len(gdacs)}")
 
-    # GDELT
     print("Fetching GDELT...")
     try:
         gdelt = fetch_gdelt(days=2, max_records=250)
@@ -332,20 +404,28 @@ def main() -> int:
         gdelt = []
     print(f"GDELT features: {len(gdelt)}")
 
-    # mentés
+    # save base layers
     save_geojson(os.path.join(DOCS_DATA_DIR, "usgs.geojson"), usgs)
     save_geojson(os.path.join(DOCS_DATA_DIR, "gdacs.geojson"), gdacs)
     save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt.geojson"), gdelt)
 
+    # build hotspots (feszültség)
+    all_feats = gdelt + gdacs + usgs
+    hotspot_geo, top_hotspots = build_hotspots(all_feats, cell_deg=0.5, top_n=10)
+
+    save_geojson(os.path.join(DOCS_DATA_DIR, "hotspots.geojson"), hotspot_geo)
+    with open(os.path.join(DOCS_DATA_DIR, "hotspots.json"), "w", encoding="utf-8") as f:
+        json.dump({"generated_utc": datetime.now(timezone.utc).isoformat(), "top": top_hotspots}, f, ensure_ascii=False, indent=2)
+
     meta = {
         "generated_utc": datetime.now(timezone.utc).isoformat(),
-        "counts": {"usgs": len(usgs), "gdacs": len(gdacs), "gdelt": len(gdelt)},
-        "bbox": {
-            "lon_min": BALKAN_BBOX[0],
-            "lat_min": BALKAN_BBOX[1],
-            "lon_max": BALKAN_BBOX[2],
-            "lat_max": BALKAN_BBOX[3],
+        "counts": {
+            "usgs": len(usgs),
+            "gdacs": len(gdacs),
+            "gdelt": len(gdelt),
+            "hotspot_cells": len(hotspot_geo),
         },
+        "bbox": {"lon_min": BALKAN_BBOX[0], "lat_min": BALKAN_BBOX[1], "lon_max": BALKAN_BBOX[2], "lat_max": BALKAN_BBOX[3]},
     }
     with open(os.path.join(DOCS_DATA_DIR, "meta.json"), "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
