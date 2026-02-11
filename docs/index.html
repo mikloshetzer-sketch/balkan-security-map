@@ -11,19 +11,34 @@
   <style>
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
     #map { height: 100vh; width: 100vw; }
+
     .panel {
       position: absolute; top: 12px; left: 12px; z-index: 999;
       background: rgba(255,255,255,0.95); padding: 12px 12px; border-radius: 12px;
       box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-      max-width: 420px;
+      max-width: 480px;
     }
     .panel h1 { font-size: 16px; margin: 0 0 6px; }
     .panel small { color:#444; display:block; margin-bottom:10px; line-height:1.25; }
+
+    .summary {
+      border-radius: 12px;
+      background: #fafafa;
+      padding: 10px 10px;
+      margin: 8px 0 10px;
+      border: 1px solid #eee;
+    }
+    .summary h2 { font-size: 13px; margin: 0 0 6px; }
+    .summary ul { margin: 0; padding-left: 18px; }
+    .summary li { font-size: 12px; color:#333; margin: 4px 0; line-height: 1.25; }
+
     .row { display:flex; gap:8px; align-items:center; margin:8px 0; }
     .row label { font-size: 13px; }
     .row input { transform: translateY(1px); }
+
     .badge { display:inline-block; padding:2px 8px; border-radius:999px; background:#f2f2f2; font-size:12px; margin-right:6px; }
     .legend { font-size: 12px; color:#333; line-height: 1.35; margin-top:10px; }
+
     .hotspots { margin-top:10px; }
     .hotspots h2 { font-size: 13px; margin: 10px 0 6px; }
     .list { list-style:none; padding:0; margin:0; }
@@ -33,6 +48,8 @@
     }
     .item:hover { background:#f2f2f2; }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; color:#333; }
+    .place { font-size: 12px; color:#222; font-weight: 600; }
+    .sub { font-size: 12px; color:#444; }
   </style>
 </head>
 <body>
@@ -41,6 +58,16 @@
   <div class="panel">
     <h1>Balkán – Feszültség monitor</h1>
     <small id="meta">Adatok betöltése...</small>
+
+    <div class="summary">
+      <h2 id="sumTitle">Balkán biztonsági helyzet – napi kivonat</h2>
+      <ul id="sumList"><li>Betöltés...</li></ul>
+    </div>
+
+    <div class="row">
+      <input type="checkbox" id="layerBorders" checked>
+      <label for="layerBorders"><span class="badge">HATÁR</span> vizsgált országok kontúr</label>
+    </div>
 
     <div class="row">
       <input type="checkbox" id="layerHot" checked>
@@ -63,13 +90,13 @@
     </div>
 
     <div class="hotspots">
-      <h2>Top hotspotok (7–14 nap súlyozott)</h2>
+      <h2>Top hotspotok (súlyozott)</h2>
       <ul class="list" id="hotList"></ul>
     </div>
 
     <div class="legend">
-      A “HOTSPOT” rács a pontok frissességét és típusát súlyozza (híralapú jelzések nagyobb súlyt kapnak).
-      Kattints a hotspot listára a zoomhoz.
+      A HOTSPOT rács a jelzések frissességét és típusát súlyozza (híralapú jelzések nagyobb súlyt kapnak).
+      A város/terület megnevezés automatikus (OSM), tájékoztató jellegű.
     </div>
   </div>
 
@@ -119,7 +146,6 @@
     }
 
     function hotspotRadius(score) {
-      // score alapján méret
       const s = Math.max(0, Number(score) || 0);
       return Math.min(22, 6 + s * 6);
     }
@@ -161,22 +187,33 @@
       });
     }
 
+    async function loadBorders(url) {
+      const r = await fetch(url, { cache: "no-store" });
+      const gj = await r.json();
+      return L.geoJSON(gj, {
+        style: () => ({
+          weight: 2,
+          opacity: 0.9,
+          fillOpacity: 0.0
+        })
+      });
+    }
+
     function renderHotList(items) {
       const ul = document.getElementById('hotList');
       ul.innerHTML = '';
       for (const it of items) {
         const li = document.createElement('li');
         li.className = 'item';
+        const place = it.place ? it.place : 'ismeretlen térség';
         li.innerHTML = `
           <div>
-            <div class="mono">(${it.lat.toFixed(2)}, ${it.lon.toFixed(2)})</div>
-            <div style="font-size:12px;color:#444;">db: ${it.count} | G:${it.sources.GDELT} U:${it.sources.USGS} D:${it.sources.GDACS}</div>
+            <div class="place">${esc(place)}</div>
+            <div class="sub">${esc(`(${it.lat.toFixed(2)}, ${it.lon.toFixed(2)}) • db: ${it.count} • G:${it.sources.GDELT} U:${it.sources.USGS} D:${it.sources.GDACS}`)}</div>
           </div>
           <div class="mono">S=${Number(it.score).toFixed(2)}</div>
         `;
-        li.addEventListener('click', () => {
-          map.setView([it.lat, it.lon], 9);
-        });
+        li.addEventListener('click', () => map.setView([it.lat, it.lon], 9));
         ul.appendChild(li);
       }
       if (!items.length) {
@@ -188,33 +225,62 @@
       }
     }
 
-    const layers = { hot: null, gdelt: null, usgs: null, gdacs: null };
+    function renderSummary(sum) {
+      document.getElementById('sumTitle').textContent = sum?.headline || 'Balkán biztonsági helyzet – napi kivonat';
+      const ul = document.getElementById('sumList');
+      ul.innerHTML = '';
+      const bullets = (sum?.bullets || []).slice(0, 6);
+      if (!bullets.length) {
+        const li = document.createElement('li');
+        li.textContent = 'Nincs elérhető kivonat (még nincs friss adat).';
+        ul.appendChild(li);
+        return;
+      }
+      for (const b of bullets) {
+        const li = document.createElement('li');
+        li.textContent = b;
+        ul.appendChild(li);
+      }
+    }
+
+    const layers = { borders: null, hot: null, gdelt: null, usgs: null, gdacs: null };
 
     async function init() {
       // meta
       try {
         const metaResp = await fetch('./data/meta.json', { cache: "no-store" });
         const meta = await metaResp.json();
-
         const t = fmtBudapest(meta.generated_utc);
         const timeText = t ? `Utolsó frissítés (Budapest): ${t.bud} (UTC: ${t.utc})` : `Utolsó frissítés: ismeretlen`;
-
         document.getElementById('meta').textContent =
           `${timeText} | hotspot cellák: ${meta.counts.hotspot_cells ?? 0} | GDELT: ${meta.counts.gdelt}, USGS: ${meta.counts.usgs}, GDACS: ${meta.counts.gdacs}`;
-      } catch (e) {
+      } catch {
         document.getElementById('meta').textContent = 'Meta betöltése nem sikerült.';
       }
 
-      // layers
-      layers.hot   = await loadHotspotsGeo('./data/hotspots.geojson');
-      layers.gdelt = await loadGeoJson('./data/gdelt.geojson', 'GDELT');
-      layers.usgs  = await loadGeoJson('./data/usgs.geojson', 'USGS');
-      layers.gdacs = await loadGeoJson('./data/gdacs.geojson', 'GDACS');
+      // summary
+      try {
+        const sumResp = await fetch('./data/summary.json', { cache: "no-store" });
+        renderSummary(await sumResp.json());
+      } catch {
+        renderSummary({ headline: 'Balkán biztonsági helyzet – napi kivonat', bullets: [] });
+      }
 
+      // layers
+      layers.borders = await loadBorders('./data/balkan_borders.geojson');
+      layers.hot     = await loadHotspotsGeo('./data/hotspots.geojson');
+      layers.gdelt   = await loadGeoJson('./data/gdelt.geojson', 'GDELT');
+      layers.usgs    = await loadGeoJson('./data/usgs.geojson', 'USGS');
+      layers.gdacs   = await loadGeoJson('./data/gdacs.geojson', 'GDACS');
+
+      // default layers
+      layers.borders.addTo(map);
       layers.hot.addTo(map);
       layers.gdelt.addTo(map);
 
-      // toggles
+      document.getElementById('layerBorders').addEventListener('change', (e) => {
+        if (e.target.checked) map.addLayer(layers.borders); else map.removeLayer(layers.borders);
+      });
       document.getElementById('layerHot').addEventListener('change', (e) => {
         if (e.target.checked) map.addLayer(layers.hot); else map.removeLayer(layers.hot);
       });
@@ -228,12 +294,12 @@
         if (e.target.checked) map.addLayer(layers.gdacs); else map.removeLayer(layers.gdacs);
       });
 
-      // load top hotspots list
+      // top hotspots list
       try {
         const topResp = await fetch('./data/hotspots.json', { cache: "no-store" });
         const top = await topResp.json();
         renderHotList(top.top || []);
-      } catch (e) {
+      } catch {
         renderHotList([]);
       }
     }
