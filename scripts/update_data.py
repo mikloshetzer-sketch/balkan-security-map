@@ -15,11 +15,30 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS_DATA_DIR = os.path.join(ROOT, "docs", "data")
 
 # Balkán bounding box (durva)
-# lon_min, lat_min, lon_max, lat_max
 BALKAN_BBOX = (13.0, 37.0, 30.0, 47.5)
 
-USER_AGENT = "balkan-security-map/1.3 (github actions)"
+# A "vizsgált országok" listája (határkontúrhoz)
+BALKAN_COUNTRIES = [
+    "Albania",
+    "Bosnia and Herzegovina",
+    "Bulgaria",
+    "Croatia",
+    "Greece",
+    "Kosovo",
+    "Montenegro",
+    "North Macedonia",
+    "Romania",
+    "Serbia",
+    "Slovenia",
+    "Turkey",
+    "Moldova",
+    "Hungary",
+]
+
+USER_AGENT = "balkan-security-map/1.4 (github actions; contact: yourblog)"
 TIMEOUT = 30
+
+CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
 
 
 def ensure_dirs() -> None:
@@ -70,6 +89,41 @@ def save_geojson(path: str, features: List[Dict[str, Any]]) -> None:
     fc = {"type": "FeatureCollection", "features": features}
     with open(path, "w", encoding="utf-8") as f:
         json.dump(fc, f, ensure_ascii=False, indent=2)
+
+
+# -------------------------
+# Borders: world countries -> Balkan subset
+# -------------------------
+def ensure_balkan_borders() -> None:
+    """
+    Letölt egy world countries GeoJSON-t és kiszűri belőle a Balkán országokat.
+    Kimenet: docs/data/balkan_borders.geojson
+    """
+    out_path = os.path.join(DOCS_DATA_DIR, "balkan_borders.geojson")
+
+    # ne töltsük le minden futásnál, elég heti egyszer (vagy ha hiányzik)
+    if os.path.exists(out_path):
+        mtime = datetime.fromtimestamp(os.path.getmtime(out_path), tz=timezone.utc)
+        if datetime.now(timezone.utc) - mtime < timedelta(days=7):
+            return
+
+    url = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
+    print("[borders] downloading world countries geojson...")
+    data = http_get(url).json()
+    feats = data.get("features", []) or []
+
+    keep = set(BALKAN_COUNTRIES)
+    out_feats = []
+    for f in feats:
+        props = f.get("properties") or {}
+        name = props.get("name")
+        if name in keep:
+            out_feats.append(f)
+
+    fc = {"type": "FeatureCollection", "features": out_feats}
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(fc, f, ensure_ascii=False, indent=2)
+    print(f"[borders] saved {len(out_feats)} borders -> {out_path}")
 
 
 # -------------------------
@@ -172,7 +226,10 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
     start = end - timedelta(days=days)
 
     keywords = ["protest", "demonstration", "riot", "clash", "violence", "border", "checkpoint", "police", "attack", "explosion"]
-    countries = ["Albania","Bosnia","Herzegovina","Bulgaria","Croatia","Greece","Kosovo","Montenegro","North Macedonia","Romania","Serbia","Slovenia","Turkey","Moldova","Hungary"]
+    countries = [
+        "Albania","Bosnia","Herzegovina","Bulgaria","Croatia","Greece","Kosovo",
+        "Montenegro","North Macedonia","Romania","Serbia","Slovenia","Turkey","Moldova","Hungary"
+    ]
     query = "(" + " OR ".join(keywords) + ") AND (" + " OR ".join(countries) + ")"
 
     params = {
@@ -342,6 +399,66 @@ def build_hotspots(all_features: List[Dict[str, Any]], cell_deg: float = 0.5, to
 
 
 # -------------------------
+# Reverse geocode (city/area) for top hotspots
+# -------------------------
+def load_cache() -> Dict[str, Any]:
+    if not os.path.exists(CACHE_PATH):
+        return {}
+    try:
+        with open(CACHE_PATH, "r", encoding="utf-8") as f:
+            return json.load(f) or {}
+    except Exception:
+        return {}
+
+
+def save_cache(cache: Dict[str, Any]) -> None:
+    with open(CACHE_PATH, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=2)
+
+
+def cache_key(lat: float, lon: float) -> str:
+    # 2 tizedes fok ~ 1-2 km nagyságrend; hotspot cellához elég
+    return f"{lat:.2f},{lon:.2f}"
+
+
+def reverse_geocode_osm(lat: float, lon: float, cache: Dict[str, Any]) -> str:
+    k = cache_key(lat, lon)
+    if k in cache:
+        return cache[k]
+
+    # Nominatim reverse
+    url = "https://nominatim.openstreetmap.org/reverse"
+    params = {"format": "jsonv2", "lat": str(lat), "lon": str(lon), "zoom": "10", "addressdetails": "1"}
+    try:
+        resp = http_get(url, params=params, headers={"Accept-Language": "en"})
+        data = resp.json()
+        addr = data.get("address") or {}
+        name = (
+            addr.get("city")
+            or addr.get("town")
+            or addr.get("village")
+            or addr.get("municipality")
+            or addr.get("county")
+            or addr.get("state")
+            or addr.get("country")
+            or ""
+        )
+        country = addr.get("country") or ""
+        if name and country and country not in name:
+            place = f"{name}, {country}"
+        else:
+            place = name or country or "unknown"
+
+        cache[k] = place
+        # udvarias késleltetés (public endpoint)
+        time.sleep(1.0)
+        return place
+    except Exception:
+        cache[k] = "unknown"
+        return "unknown"
+
+
+# -------------------------
 # Blog summary
 # -------------------------
 def pct_change(curr: float, prev: float) -> Optional[float]:
@@ -394,8 +511,9 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
 
     if top_hotspots:
         h0 = top_hotspots[0]
-        top_text = f"Legerősebb góc: rácspont {h0['lat']:.2f}, {h0['lon']:.2f} (score {float(h0['score']):.2f}, jelzések: {int(h0['count'])})."
-        note = "Megjegyzés: a jelzések híralapúak, érdemes a forrásokat kézzel ellenőrizni."
+        place = h0.get("place") or "ismeretlen térség"
+        top_text = f"Legerősebb góc: {place} (rácspont {h0['lat']:.2f}, {h0['lon']:.2f}; score {float(h0['score']):.2f}; jelzések: {int(h0['count'])})."
+        note = "Megjegyzés: a hotspot híralapú jelzéseken alapul; érdemes a forrásokat kézzel ellenőrizni."
     else:
         top_text = "Legerősebb góc: jelenleg nincs elég geokódolt jelzés a térképes kiemeléshez."
         note = "Megjegyzés: a híralapú geokódolás hullámzó lehet; a rendszer automatikusan frissül."
@@ -421,6 +539,12 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
 
 def main() -> int:
     ensure_dirs()
+
+    # borders (weekly)
+    try:
+        ensure_balkan_borders()
+    except Exception as e:
+        print(f"[borders] failed: {e}")
 
     print("Fetching USGS...")
     try:
@@ -452,6 +576,12 @@ def main() -> int:
 
     all_feats = gdelt + gdacs + usgs
     hotspot_geo, top_hotspots = build_hotspots(all_feats, cell_deg=0.5, top_n=10)
+
+    # add "place" to top hotspots using reverse geocode + cache
+    cache = load_cache()
+    for h in top_hotspots:
+        h["place"] = reverse_geocode_osm(float(h["lat"]), float(h["lon"]), cache)
+    save_cache(cache)
 
     save_geojson(os.path.join(DOCS_DATA_DIR, "hotspots.geojson"), hotspot_geo)
     with open(os.path.join(DOCS_DATA_DIR, "hotspots.json"), "w", encoding="utf-8") as f:
