@@ -17,7 +17,7 @@ DOCS_DATA_DIR = os.path.join(ROOT, "docs", "data")
 # Balkán bounding box (durva)
 BALKAN_BBOX = (13.0, 37.0, 30.0, 47.5)
 
-# A "vizsgált országok" listája (határkontúrhoz)
+# Vizsgált országok (kontúrhoz)
 BALKAN_COUNTRIES = [
     "Albania",
     "Bosnia and Herzegovina",
@@ -35,7 +35,7 @@ BALKAN_COUNTRIES = [
     "Hungary",
 ]
 
-USER_AGENT = "balkan-security-map/1.4 (github actions; contact: yourblog)"
+USER_AGENT = "balkan-security-map/1.5 (github actions; public blog)"
 TIMEOUT = 30
 
 CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
@@ -92,16 +92,11 @@ def save_geojson(path: str, features: List[Dict[str, Any]]) -> None:
 
 
 # -------------------------
-# Borders: world countries -> Balkan subset
+# Borders (weekly refresh)
 # -------------------------
 def ensure_balkan_borders() -> None:
-    """
-    Letölt egy world countries GeoJSON-t és kiszűri belőle a Balkán országokat.
-    Kimenet: docs/data/balkan_borders.geojson
-    """
     out_path = os.path.join(DOCS_DATA_DIR, "balkan_borders.geojson")
 
-    # ne töltsük le minden futásnál, elég heti egyszer (vagy ha hiányzik)
     if os.path.exists(out_path):
         mtime = datetime.fromtimestamp(os.path.getmtime(out_path), tz=timezone.utc)
         if datetime.now(timezone.utc) - mtime < timedelta(days=7):
@@ -110,19 +105,17 @@ def ensure_balkan_borders() -> None:
     url = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json"
     print("[borders] downloading world countries geojson...")
     data = http_get(url).json()
-    feats = data.get("features", []) or []
 
     keep = set(BALKAN_COUNTRIES)
     out_feats = []
-    for f in feats:
+    for f in (data.get("features", []) or []):
         props = f.get("properties") or {}
-        name = props.get("name")
-        if name in keep:
+        if props.get("name") in keep:
             out_feats.append(f)
 
-    fc = {"type": "FeatureCollection", "features": out_feats}
     with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(fc, f, ensure_ascii=False, indent=2)
+        json.dump({"type": "FeatureCollection", "features": out_feats}, f, ensure_ascii=False, indent=2)
+
     print(f"[borders] saved {len(out_feats)} borders -> {out_path}")
 
 
@@ -227,8 +220,8 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
 
     keywords = ["protest", "demonstration", "riot", "clash", "violence", "border", "checkpoint", "police", "attack", "explosion"]
     countries = [
-        "Albania","Bosnia","Herzegovina","Bulgaria","Croatia","Greece","Kosovo",
-        "Montenegro","North Macedonia","Romania","Serbia","Slovenia","Turkey","Moldova","Hungary"
+        "Albania", "Bosnia", "Herzegovina", "Bulgaria", "Croatia", "Greece", "Kosovo",
+        "Montenegro", "North Macedonia", "Romania", "Serbia", "Slovenia", "Turkey", "Moldova", "Hungary"
     ]
     query = "(" + " OR ".join(keywords) + ") AND (" + " OR ".join(countries) + ")"
 
@@ -291,7 +284,6 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
             )
         )
 
-    # dedupe URL
     seen = set()
     deduped = []
     for f in out:
@@ -304,7 +296,7 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
 
 
 # -------------------------
-# Hotspot aggregation
+# Scoring + time
 # -------------------------
 def parse_time_iso(t: Optional[str]) -> Optional[datetime]:
     if not t:
@@ -336,12 +328,16 @@ def score_feature(props: Dict[str, Any]) -> float:
 
 
 def time_decay(dt: Optional[datetime], now: datetime) -> float:
+    # félidő ~ 72 óra
     if dt is None:
         return 0.6
     age_hours = (now - dt).total_seconds() / 3600.0
     return 0.5 ** (age_hours / 72.0)
 
 
+# -------------------------
+# Hotspot aggregation + trend
+# -------------------------
 def grid_key(lon: float, lat: float, cell_deg: float) -> Tuple[int, int]:
     return (int(math.floor(lon / cell_deg)), int(math.floor(lat / cell_deg)))
 
@@ -350,8 +346,33 @@ def cell_center(ix: int, iy: int, cell_deg: float) -> Tuple[float, float]:
     return ((ix + 0.5) * cell_deg, (iy + 0.5) * cell_deg)
 
 
-def build_hotspots(all_features: List[Dict[str, Any]], cell_deg: float = 0.5, top_n: int = 10) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+def trend_from(last7: float, prev7: float) -> Tuple[str, Optional[float], str]:
+    """
+    trend_code, change_pct, arrow
+    """
+    if last7 <= 0 and prev7 <= 0:
+        return "na", 0.0, "·"
+    if prev7 <= 0 and last7 > 0:
+        return "new", None, "🆕"
+    change = (last7 - prev7) / prev7 * 100.0
+
+    # küszöbök blogra (nem túl “ideges”)
+    if change >= 12:
+        return "up", change, "🔺"
+    if change <= -12:
+        return "down", change, "🔻"
+    return "flat", change, "▬"
+
+
+def build_hotspots_with_trend(
+    all_features: List[Dict[str, Any]],
+    cell_deg: float = 0.5,
+    top_n: int = 10,
+) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
     now = datetime.now(timezone.utc)
+    cutoff_7 = now - timedelta(days=7)
+    cutoff_14 = now - timedelta(days=14)
+
     acc: Dict[Tuple[int, int], Dict[str, Any]] = {}
 
     for f in all_features:
@@ -362,12 +383,21 @@ def build_hotspots(all_features: List[Dict[str, Any]], cell_deg: float = 0.5, to
 
         props = f.get("properties") or {}
         dt = parse_time_iso(props.get("time"))
-        s = score_feature(props) * time_decay(dt, now)
+
+        base = score_feature(props)
+        w = time_decay(dt, now)
+        s = base * w  # össz-score (decay-elt)
 
         k = grid_key(lon, lat, cell_deg)
         bucket = acc.get(k)
         if bucket is None:
-            acc[k] = {"score": 0.0, "count": 0, "sources": {"GDELT": 0, "USGS": 0, "GDACS": 0}}
+            acc[k] = {
+                "score": 0.0,
+                "count": 0,
+                "sources": {"GDELT": 0, "USGS": 0, "GDACS": 0},
+                "last7_score": 0.0,
+                "prev7_score": 0.0,
+            }
             bucket = acc[k]
 
         bucket["score"] += s
@@ -375,6 +405,13 @@ def build_hotspots(all_features: List[Dict[str, Any]], cell_deg: float = 0.5, to
         src = props.get("source")
         if src in bucket["sources"]:
             bucket["sources"][src] += 1
+
+        # trend score-k (csak ha van dt)
+        if dt is not None:
+            if dt >= cutoff_7:
+                bucket["last7_score"] += s
+            elif cutoff_14 <= dt < cutoff_7:
+                bucket["prev7_score"] += s
 
     hotspot_features: List[Dict[str, Any]] = []
     rows: List[Dict[str, Any]] = []
@@ -384,13 +421,23 @@ def build_hotspots(all_features: List[Dict[str, Any]], cell_deg: float = 0.5, to
         if not in_bbox(lon_c, lat_c, BALKAN_BBOX):
             continue
 
+        last7 = float(v["last7_score"])
+        prev7 = float(v["prev7_score"])
+        trend_code, change_pct, arrow = trend_from(last7, prev7)
+
         props = {
             "type": "hotspot_cell",
             "score": round(float(v["score"]), 3),
             "count": int(v["count"]),
             "cell_deg": cell_deg,
             "sources": v["sources"],
+            "last7_score": round(last7, 3),
+            "prev7_score": round(prev7, 3),
+            "trend": trend_code,
+            "trend_arrow": arrow,
+            "change_pct": None if change_pct is None else round(change_pct, 1),
         }
+
         hotspot_features.append(to_feature(lon_c, lat_c, props))
         rows.append({"lon": lon_c, "lat": lat_c, **props})
 
@@ -399,7 +446,7 @@ def build_hotspots(all_features: List[Dict[str, Any]], cell_deg: float = 0.5, to
 
 
 # -------------------------
-# Reverse geocode (city/area) for top hotspots
+# Reverse geocode for top hotspots (cached)
 # -------------------------
 def load_cache() -> Dict[str, Any]:
     if not os.path.exists(CACHE_PATH):
@@ -417,7 +464,6 @@ def save_cache(cache: Dict[str, Any]) -> None:
 
 
 def cache_key(lat: float, lon: float) -> str:
-    # 2 tizedes fok ~ 1-2 km nagyságrend; hotspot cellához elég
     return f"{lat:.2f},{lon:.2f}"
 
 
@@ -426,21 +472,22 @@ def reverse_geocode_osm(lat: float, lon: float, cache: Dict[str, Any]) -> str:
     if k in cache:
         return cache[k]
 
-    # Nominatim reverse
     url = "https://nominatim.openstreetmap.org/reverse"
     params = {"format": "jsonv2", "lat": str(lat), "lon": str(lon), "zoom": "10", "addressdetails": "1"}
+
     try:
         resp = http_get(url, params=params, headers={"Accept-Language": "en"})
         data = resp.json()
         addr = data.get("address") or {}
+
+        # Blogbarátabb sorrend: admin/megye → város → falu
         name = (
-            addr.get("city")
+            addr.get("county")
+            or addr.get("state")
+            or addr.get("municipality")
+            or addr.get("city")
             or addr.get("town")
             or addr.get("village")
-            or addr.get("municipality")
-            or addr.get("county")
-            or addr.get("state")
-            or addr.get("country")
             or ""
         )
         country = addr.get("country") or ""
@@ -450,8 +497,7 @@ def reverse_geocode_osm(lat: float, lon: float, cache: Dict[str, Any]) -> str:
             place = name or country or "unknown"
 
         cache[k] = place
-        # udvarias késleltetés (public endpoint)
-        time.sleep(1.0)
+        time.sleep(1.0)  # udvarias throttling
         return place
     except Exception:
         cache[k] = "unknown"
@@ -459,7 +505,7 @@ def reverse_geocode_osm(lat: float, lon: float, cache: Dict[str, Any]) -> str:
 
 
 # -------------------------
-# Blog summary
+# Blog summary (hybrid)
 # -------------------------
 def pct_change(curr: float, prev: float) -> Optional[float]:
     if prev <= 0 and curr <= 0:
@@ -512,7 +558,13 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
     if top_hotspots:
         h0 = top_hotspots[0]
         place = h0.get("place") or "ismeretlen térség"
-        top_text = f"Legerősebb góc: {place} (rácspont {h0['lat']:.2f}, {h0['lon']:.2f}; score {float(h0['score']):.2f}; jelzések: {int(h0['count'])})."
+        arrow = h0.get("trend_arrow", "")
+        ch = h0.get("change_pct")
+        ch_txt = "n/a" if ch is None else f"{ch:+.0f}%"
+        top_text = (
+            f"Legerősebb góc: {place} {arrow} (rácspont {h0['lat']:.2f}, {h0['lon']:.2f}; "
+            f"score {float(h0['score']):.2f}; 7 napos változás: {ch_txt})."
+        )
         note = "Megjegyzés: a hotspot híralapú jelzéseken alapul; érdemes a forrásokat kézzel ellenőrizni."
     else:
         top_text = "Legerősebb góc: jelenleg nincs elég geokódolt jelzés a térképes kiemeléshez."
@@ -540,7 +592,6 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
 def main() -> int:
     ensure_dirs()
 
-    # borders (weekly)
     try:
         ensure_balkan_borders()
     except Exception as e:
@@ -575,9 +626,10 @@ def main() -> int:
     save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt.geojson"), gdelt)
 
     all_feats = gdelt + gdacs + usgs
-    hotspot_geo, top_hotspots = build_hotspots(all_feats, cell_deg=0.5, top_n=10)
 
-    # add "place" to top hotspots using reverse geocode + cache
+    hotspot_geo, top_hotspots = build_hotspots_with_trend(all_feats, cell_deg=0.5, top_n=10)
+
+    # place names for top list
     cache = load_cache()
     for h in top_hotspots:
         h["place"] = reverse_geocode_osm(float(h["lat"]), float(h["lon"]), cache)
