@@ -10,14 +10,15 @@ jobs:
   token:
     runs-on: ubuntu-latest
     steps:
-      - name: Exchange code for refresh_token (no log)
+      - name: Exchange code and save WP_REFRESH_TOKEN secret (no token in logs)
         env:
           WP_CLIENT_SECRET: ${{ secrets.WP_CLIENT_SECRET }}
-          CODE: PRQWzJZad3
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
 
-          # 1) token exchange
+          CODE="PRQWzJZad3"
+
           RESP="$(curl -sS -X POST "https://public-api.wordpress.com/oauth2/token" \
             --data-urlencode "client_id=133140" \
             --data-urlencode "client_secret=${WP_CLIENT_SECRET}" \
@@ -25,10 +26,9 @@ jobs:
             --data-urlencode "code=${CODE}" \
             --data-urlencode "grant_type=authorization_code")"
 
-          # 2) extract refresh_token safely
-          REFRESH="$(python3 - <<'PY'
-import json, os, sys
-resp = json.loads(os.environ["RESP"])
+          REFRESH="$(python3 - <<PY
+import json, sys
+resp = json.loads("""$RESP""")
 rt = resp.get("refresh_token")
 if not rt:
     print("NO_REFRESH_TOKEN")
@@ -37,12 +37,7 @@ print(rt)
 PY
           )"
 
-        shell: bash
-      - name: Save refresh token to GitHub Secret (requires gh)
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # If you don't have gh installed, GitHub runner does.
-          # Save WP_REFRESH_TOKEN repository secret
+          # Save as repo secret without printing it
           gh secret set WP_REFRESH_TOKEN --body "$REFRESH"
           echo "OK: WP_REFRESH_TOKEN saved"
+
