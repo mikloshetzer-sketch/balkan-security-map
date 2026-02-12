@@ -1,0 +1,18 @@
+name: Get WordPress refresh token
+
+on:
+  workflow_dispatch:
+
+jobs:
+  token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Request refresh token
+        run: |
+          curl -X POST https://public-api.wordpress.com/oauth2/token \
+          -d client_id=133140 \
+          -d client_secret=${{ secrets.WP_CLIENT_SECRET }} \
+          -d redirect_uri=https://mikloshetzer-sketch.github.io/balkan-security-map/ \
+          -d code=OI0dx5rTru \
+          -d grant_type=authorization_code
