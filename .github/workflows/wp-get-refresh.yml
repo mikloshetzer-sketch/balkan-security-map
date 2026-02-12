@@ -6,23 +6,13 @@ on:
 jobs:
   token:
     runs-on: ubuntu-latest
+
     steps:
       - name: Request refresh token
-        env:
-          WP_CLIENT_SECRET: ${{ secrets.WP_CLIENT_SECRET }}
         run: |
-          set -euo pipefail
-
-          curl -sS -X POST "https://public-api.wordpress.com/oauth2/token" \
-            --data-urlencode "client_id=133140" \
-            --data-urlencode "client_secret=${WP_CLIENT_SECRET}" \
-            --data-urlencode "redirect_uri=https://mikloshetzer-sketch.github.io/balkan-security-map/" \
-            --data-urlencode "code=PRQWzJZad3" \
-            --data-urlencode "grant_type=authorization_code" \
-          | python3 - <<'PY'
-import json, sys
-resp = json.load(sys.stdin)
-print(json.dumps(resp, indent=2, ensure_ascii=False))
-if "refresh_token" not in resp:
-    raise SystemExit("ERROR: no refresh_token in response (see output above)")
-PY
+          curl -X POST https://public-api.wordpress.com/oauth2/token \
+            -d client_id=133140 \
+            -d client_secret=${{ secrets.WP_CLIENT_SECRET }} \
+            -d grant_type=authorization_code \
+            -d code=${{ secrets.WP_AUTH_CODE }} \
+            -d redirect_uri=https://mikloshetzer-sketch.github.io/balkan-security-map/
