@@ -14,7 +14,6 @@
       --shadow: 0 8px 28px rgba(0,0,0,0.14);
       --border: 1px solid rgba(0,0,0,0.08);
       --radius: 14px;
-      --pad: 10px;
       --font: system-ui, -apple-system, Segoe UI, Roboto, Arial;
     }
     body { margin:0; font-family: var(--font); }
@@ -49,7 +48,7 @@
     .alert-banner.medium { background: rgba(255,249,242,0.96); }
     .alert-banner.high   { background: rgba(255,243,243,0.96); }
 
-    /* ===== Floating controls (WP-friendly, minimal overlay) ===== */
+    /* ===== Floating docks ===== */
     .dock{
       position:absolute;
       z-index: 1200;
@@ -60,12 +59,10 @@
       backdrop-filter: blur(6px);
       overflow: hidden;
     }
-    /* do not collide with banner */
     .dock.top-left { top: 58px; left: 12px; }
     .dock.top-right { top: 58px; right: 12px; }
     .dock.bottom-right { right: 12px; bottom: 12px; }
 
-    /* headers */
     .dock .hd{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
       padding: 10px 10px;
@@ -95,7 +92,7 @@
       background:#f2f2f2; font-size:12px; margin-right:6px;
     }
 
-    /* Situation dock content */
+    /* Content blocks */
     .small { font-size:12px; color:#444; line-height:1.3; }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; }
     .section{ margin: 10px 0; padding: 10px; background:#fafafa; border: 1px solid #eee; border-radius: 12px; }
@@ -122,17 +119,61 @@
     .place{ font-size:12px; font-weight:700; color:#111; }
     .sub{ font-size:12px; color:#555; }
 
-    /* Sizes */
+    /* Desktop sizes */
     .situation{ width: min(520px, calc(100vw - 24px)); }
     .layers{ width: 260px; }
     .hotspots{ width: 320px; }
 
-    /* Mobile: keep overlays small */
+    /* ===== MOBILE: B mód (helyzetkép csak gomb), rétegek bal alsó ===== */
     @media (max-width: 720px){
-      .dock.top-left{ left: 10px; right: 10px; top: 58px; }
-      .dock.top-right{ right: 10px; top: auto; bottom: 12px; }
-      .dock.bottom-right{ right: 10px; left: 10px; bottom: 12px; }
+      /* Situation becomes a small button-only dock when collapsed */
+      .dock.top-left{
+        top: 58px;
+        left: 10px;
+        right: auto;                 /* important: do NOT stretch full width */
+      }
+      .situation{ width: auto; }     /* shrink to content */
+      #dockSituation .hd{ padding: 8px 8px; border-bottom: 0; }
+      #dockSituation .hd .meta{ display:none; } /* meta ne zsúfoljon mobilon */
+      #dockSituation.collapsed .hd .title{ display:none; } /* csak gomb marad */
+      #dockSituation.collapsed .hd{
+        background: var(--card-bg);
+      }
+      #dockSituation.collapsed{
+        overflow: visible;
+      }
+      #dockSituation.collapsed .btn{
+        padding: 8px 10px;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+      }
+
+      /* When opened on mobile: take most of width (still not full screen), but readable */
+      #dockSituation:not(.collapsed){
+        left: 10px;
+        right: 10px;
+        width: auto;
+      }
+      #dockSituation:not(.collapsed) .hd .title{ display:flex; }
+      #dockSituation:not(.collapsed) .hd .meta{ display:block; }
+
+      /* Layers -> bottom-left on mobile */
+      .dock.top-right{
+        top: auto;
+        right: auto;
+        left: 10px;
+        bottom: 12px;
+        width: auto;
+      }
       .layers{ width: auto; }
+
+      /* Hotspots -> bottom-right on mobile */
+      .dock.bottom-right{
+        right: 10px;
+        left: auto;
+        bottom: 12px;
+        width: auto;
+      }
       .hotspots{ width: auto; }
       .hotlist{ max-height: 160px; }
     }
@@ -185,12 +226,12 @@
       </details>
 
       <div class="small">
-        Tipp: WordPressben ez a panel alapból csukott, így nem takarja a térképet.
+        Tipp: mobilon a „Helyzetkép” alapból csak gomb, hogy ne takarja a térképet.
       </div>
     </div>
   </div>
 
-  <!-- LAYERS (top-right) -->
+  <!-- LAYERS (top-right desktop, bottom-left mobile) -->
   <div class="dock top-right layers collapsed" id="dockLayers">
     <div class="hd">
       <div class="title">Rétegek</div>
@@ -403,7 +444,6 @@
       });
       setBtn();
     }
-
     setupDock("dockSituation", "btnSituation");
     setupDock("dockLayers", "btnLayers");
     setupDock("dockHotspots", "btnHotspots");
@@ -508,7 +548,7 @@
     function renderHotList(items) {
       const ol = document.getElementById('hotList');
       ol.innerHTML = '';
-      const top = (items || []).slice(0, 8); // WP-ben jobb a rövidebb lista
+      const top = (items || []).slice(0, 8);
       if (!top.length) {
         ol.innerHTML = '<li class="small">Nincs elég adat.</li>';
         return;
@@ -584,10 +624,6 @@
       } catch {
         renderHotList([]);
       }
-
-      // WordPress-friendly: keep overlays collapsed by default (already collapsed)
-      // Optional: open situation automatically on desktop if you want:
-      // if (window.innerWidth > 1000) document.getElementById('btnSituation').click();
     }
 
     init();
