@@ -4,32 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: "Publish immediately? (true/false)"
-        required: false
+        description: "Publish post?"
+        required: true
         default: "true"
+
   schedule:
-    # Hétfő 07:30 Budapest ≈ 06:30 UTC (téli időszámítás). Nyáron 05:30 UTC lenne.
-    # Ha fixen budapesti 07:30-at akarsz egész évben, szólok és adok DST-kompatibilis megoldást is.
-    - cron: "30 6 * * 1"
-
-permissions:
-  contents: read
-
-concurrency:
-  group: wp-weekly-post
-  cancel-in-progress: false
+    - cron: "30 5 * * 1"   # hétfő 07:30 Budapest
 
 jobs:
   post:
     runs-on: ubuntu-latest
-    env:
-      WP_SITE: ${{ secrets.WP_SITE }}               # pl. "toresvonalak.blog"
-      WP_ACCESS_TOKEN: ${{ secrets.WP_ACCESS_TOKEN }} # OAuth bearer token
-      MAP_URL: ${{ secrets.MAP_URL }}               # pl. "https://mikloshetzer-sketch.github.io/balkan-security-map/"
-      PUBLISH: ${{ github.event.inputs.publish || 'true' }}
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -38,71 +25,19 @@ jobs:
           python-version: "3.11"
 
       - name: Install deps
-        run: |
-          python -m pip install --upgrade pip
-          pip install python-dateutil
+        run: pip install requests
 
-      - name: Build weekly post HTML from generated data
+      - name: Build weekly content
         run: |
           python scripts/build_weekly_post.py \
-            --weekly docs/data/weekly.json \
-            --meta docs/data/meta.json \
-            --out out_post.html \
-            --map-url "${MAP_URL}"
+            docs/data/weekly.json \
+            docs/data/meta.json > post.html
 
-      - name: Create WordPress post
-        shell: bash
+      - name: Publish to WordPress
+        if: ${{ github.event.inputs.publish == 'true' }}
+        env:
+          WP_SITE: ${{ secrets.WP_SITE }}
+          WP_ACCESS_TOKEN: ${{ secrets.WP_ACCESS_TOKEN }}
+          MAP_URL: ${{ secrets.MAP_URL }}
         run: |
-          set -euo pipefail
-
-          if [[ -z "${WP_SITE}" ]]; then
-            echo "ERROR: WP_SITE secret is missing (e.g. toresvonalak.blog)."
-            exit 1
-          fi
-          if [[ -z "${WP_ACCESS_TOKEN}" ]]; then
-            echo "ERROR: WP_ACCESS_TOKEN secret is missing."
-            exit 1
-          fi
-
-          STATUS="draft"
-          if [[ "${PUBLISH}" == "true" ]]; then
-            STATUS="publish"
-          fi
-
-          TITLE="Balkán biztonsági monitor – heti jelentés"
-          CONTENT="$(cat out_post.html)"
-
-          # WordPress.com REST API endpoint (OAuth Bearer)
-          API="https://public-api.wordpress.com/rest/v1.1/sites/${WP_SITE}/posts/new"
-
-          # JSON escape (minimál, de elég): Python csinálja biztonságosan
-          python - <<'PY'
-import json, os
-title=os.environ["TITLE"]
-status=os.environ["STATUS"]
-content=open("out_post.html","r",encoding="utf-8").read()
-payload={"title":title,"content":content,"status":status}
-open("wp_payload.json","w",encoding="utf-8").write(json.dumps(payload,ensure_ascii=False))
-PY
-
-          echo "Posting to: ${API}"
-          HTTP_CODE=$(curl -sS -o wp_response.json -w "%{http_code}" \
-            -X POST "${API}" \
-            -H "Authorization: Bearer ${WP_ACCESS_TOKEN}" \
-            -H "Content-Type: application/json; charset=utf-8" \
-            --data-binary @wp_payload.json)
-
-          echo "HTTP: ${HTTP_CODE}"
-          cat wp_response.json
-
-          if [[ "${HTTP_CODE}" != "200" && "${HTTP_CODE}" != "201" ]]; then
-            echo "ERROR: WordPress post creation failed."
-            exit 1
-          fi
-
-      - name: Upload built post artifact (debug)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: wp-weekly-post-html
-          path: out_post.html
+          python scripts/post_to_wordpress.py post.html "$WP_SITE" "$WP_ACCESS_TOKEN" "$MAP_URL"
