@@ -1,0 +1,35 @@
+name: WordPress - list my sites (get blog_id)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list_sites:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call /me/sites
+        env:
+          WP_ACCESS_TOKEN: ${{ secrets.WP_ACCESS_TOKEN }}
+        run: |
+          set -euo pipefail
+          curl -sS "https://public-api.wordpress.com/rest/v1.1/me/sites" \
+            -H "Authorization: Bearer ${WP_ACCESS_TOKEN}" \
+            -H "User-Agent: balkan-security-map/2.0" \
+            -o me_sites.json
+
+          echo "Saved me_sites.json"
+          python3 - <<'PY'
+          import json
+          with open("me_sites.json","r",encoding="utf-8") as f:
+              j=json.load(f)
+          sites=j.get("sites",[])
+          print(f"sites: {len(sites)}")
+          for s in sites[:20]:
+              print("-", s.get("ID"), s.get("URL"), s.get("name"))
+          PY
+
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: wp-me-sites
+          path: me_sites.json
