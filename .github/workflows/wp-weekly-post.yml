@@ -9,7 +9,7 @@ on:
         default: "true"
 
   schedule:
-    - cron: "30 5 * * 1"   # hétfő 07:30 Budapest
+    - cron: "30 6 * * 1"   # hétfő 07:30 Budapest téli időben (nyáron 08:30 lesz)
 
 jobs:
   post:
@@ -25,14 +25,20 @@ jobs:
           python-version: "3.11"
 
       - name: Install deps
-        run: pip install requests
+        run: pip install requests python-dateutil
 
+      # 1) frissítse a térkép adatokat (weekly.json/meta.json is itt készül)
+      - name: Update map data (build geojson + summaries)
+        run: python scripts/update_data.py
+
+      # 2) generálja a heti poszt HTML-t
       - name: Build weekly content
         run: |
           python scripts/build_weekly_post.py \
             docs/data/weekly.json \
             docs/data/meta.json > post.html
 
+      # 3) posztolja WP-re
       - name: Publish to WordPress
         if: ${{ github.event.inputs.publish == 'true' }}
         env:
