@@ -1,0 +1,42 @@
+name: WordPress OAuth exchange (get refresh token)
+
+on:
+  workflow_dispatch:
+    inputs:
+      wp_code:
+        description: "WordPress OAuth code (from ?code=...)"
+        required: true
+        type: string
+
+jobs:
+  token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dateutil
+
+      - name: Exchange code for tokens (writes artifact)
+        env:
+          WP_CLIENT_ID: ${{ secrets.WP_CLIENT_ID }}
+          WP_CLIENT_SECRET: ${{ secrets.WP_CLIENT_SECRET }}
+          WP_REDIRECT_URI: ${{ secrets.WP_REDIRECT_URI }}
+          WP_CODE: ${{ inputs.wp_code }}
+        run: |
+          python scripts/wp_oauth_exchange.py
+
+      - name: Upload token bundle as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wp-token-bundle
+          path: wp_token_bundle.json
+          if-no-files-found: error
