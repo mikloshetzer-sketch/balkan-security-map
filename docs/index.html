@@ -92,7 +92,6 @@
       background:#f2f2f2; font-size:12px; margin-right:6px;
     }
 
-    /* Content blocks */
     .small { font-size:12px; color:#444; line-height:1.3; }
     .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; }
     .section{ margin: 10px 0; padding: 10px; background:#fafafa; border: 1px solid #eee; border-radius: 12px; }
@@ -104,12 +103,10 @@
     details summary{ cursor:pointer; font-size:12px; color:#111; font-weight: 800; }
     details .muted{ color:#666; font-size:12px; margin-top:6px; }
 
-    /* Layers dock */
     .layers .rowCk{ display:flex; gap:8px; align-items:center; margin:8px 0; }
     .layers label{ font-size: 12px; color:#222; }
     .layers input{ transform: translateY(1px); }
 
-    /* Hotspots dock */
     .hotlist{ list-style:none; padding:0; margin:0; max-height: 240px; overflow:auto; }
     .hotitem{
       display:flex; justify-content:space-between; gap:10px;
@@ -119,45 +116,29 @@
     .place{ font-size:12px; font-weight:700; color:#111; }
     .sub{ font-size:12px; color:#555; }
 
-    /* Desktop sizes */
     .situation{ width: min(520px, calc(100vw - 24px)); }
     .layers{ width: 260px; }
     .hotspots{ width: 320px; }
 
     /* ===== MOBILE: B mód (helyzetkép csak gomb), rétegek bal alsó ===== */
     @media (max-width: 720px){
-      /* Situation becomes a small button-only dock when collapsed */
-      .dock.top-left{
-        top: 58px;
-        left: 10px;
-        right: auto;                 /* important: do NOT stretch full width */
-      }
-      .situation{ width: auto; }     /* shrink to content */
+      .dock.top-left{ top: 58px; left: 10px; right: auto; }
+      .situation{ width: auto; }
+
       #dockSituation .hd{ padding: 8px 8px; border-bottom: 0; }
-      #dockSituation .hd .meta{ display:none; } /* meta ne zsúfoljon mobilon */
-      #dockSituation.collapsed .hd .title{ display:none; } /* csak gomb marad */
-      #dockSituation.collapsed .hd{
-        background: var(--card-bg);
-      }
-      #dockSituation.collapsed{
-        overflow: visible;
-      }
+      #dockSituation .hd .meta{ display:none; }
+      #dockSituation.collapsed .hd .title{ display:none; }
+      #dockSituation.collapsed .hd{ background: var(--card-bg); }
       #dockSituation.collapsed .btn{
         padding: 8px 10px;
         border-radius: 12px;
         box-shadow: var(--shadow);
       }
 
-      /* When opened on mobile: take most of width (still not full screen), but readable */
-      #dockSituation:not(.collapsed){
-        left: 10px;
-        right: 10px;
-        width: auto;
-      }
+      #dockSituation:not(.collapsed){ left: 10px; right: 10px; width: auto; }
       #dockSituation:not(.collapsed) .hd .title{ display:flex; }
       #dockSituation:not(.collapsed) .hd .meta{ display:block; }
 
-      /* Layers -> bottom-left on mobile */
       .dock.top-right{
         top: auto;
         right: auto;
@@ -167,7 +148,6 @@
       }
       .layers{ width: auto; }
 
-      /* Hotspots -> bottom-right on mobile */
       .dock.bottom-right{
         right: 10px;
         left: auto;
@@ -181,7 +161,6 @@
 </head>
 
 <body>
-  <!-- ALERT BANNER -->
   <div class="alert-banner" id="alertBanner" role="status" aria-live="polite">
     <div class="row">
       <div class="left">
@@ -195,7 +174,6 @@
 
   <div id="map"></div>
 
-  <!-- SITUATION (top-left) -->
   <div class="dock top-left situation collapsed" id="dockSituation">
     <div class="hd">
       <div>
@@ -226,12 +204,11 @@
       </details>
 
       <div class="small">
-        Tipp: mobilon a „Helyzetkép” alapból csak gomb, hogy ne takarja a térképet.
+        Mobilon a „Helyzetkép” alapból csak gomb, hogy ne takarja a térképet.
       </div>
     </div>
   </div>
 
-  <!-- LAYERS (top-right desktop, bottom-left mobile) -->
   <div class="dock top-right layers collapsed" id="dockLayers">
     <div class="hd">
       <div class="title">Rétegek</div>
@@ -262,13 +239,13 @@
         <input type="checkbox" id="layerGdacs">
         <label for="layerGdacs"><span class="badge">GDACS</span>riasztás</label>
       </div>
+
       <div class="small" style="margin-top:8px;">
-        HOTSPOT: súlyozott aktivitás. EARLY: 48h gyorsulás + terjedés.
+        <b>Esemény színek:</b> 0–24h (friss), 1–3 nap, 3–7 nap, 7+ nap (halvány).
       </div>
     </div>
   </div>
 
-  <!-- HOTSPOTS (bottom-right) -->
   <div class="dock bottom-right hotspots collapsed" id="dockHotspots">
     <div class="hd">
       <div class="title">Top hotspotok</div>
@@ -281,7 +258,6 @@
   </div>
 
   <script>
-    // ===== Map =====
     const map = L.map('map', { zoomControl: true }).setView([44.2, 20.6], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
@@ -309,20 +285,77 @@
       return { bud, utc };
     }
 
+    function parseEventTime(props) {
+      // elfogad ISO-t vagy bármilyen Date által értelmezhető stringet
+      const t = props?.time || props?.datetime || props?.date;
+      if (!t) return null;
+      const d = new Date(t);
+      return isNaN(d.getTime()) ? null : d;
+    }
+
+    function eventRecencyStyle(sourceName, props) {
+      // 4 sáv: 0-24h, 1-3 nap, 3-7 nap, 7+ nap
+      const d = parseEventTime(props);
+      const now = new Date();
+      let ageDays = null;
+      if (d) ageDays = (now.getTime() - d.getTime()) / (1000*60*60*24);
+
+      // alap (fallback)
+      let color = "#3b82f6";
+      let fillColor = "#3b82f6";
+      let opacity = 0.35;
+      let fillOpacity = 0.22;
+      let radius = 6;
+      let weight = 1;
+
+      // forrás szerinti finomhangolás (radius)
+      if (sourceName === "USGS") radius = 7;
+      if (sourceName === "GDACS") radius = 8;
+      if (sourceName === "GDELT") radius = 6;
+
+      if (ageDays !== null) {
+        if (ageDays <= 1) {
+          // friss
+          color = "#b91c1c";
+          fillColor = "#ef4444";
+          opacity = 0.75;
+          fillOpacity = 0.45;
+          weight = 2;
+          radius += 2;
+        } else if (ageDays <= 3) {
+          color = "#c2410c";
+          fillColor = "#f97316";
+          opacity = 0.65;
+          fillOpacity = 0.35;
+          weight = 2;
+          radius += 1;
+        } else if (ageDays <= 7) {
+          color = "#a16207";
+          fillColor = "#f59e0b";
+          opacity = 0.55;
+          fillOpacity = 0.28;
+          weight = 1.5;
+        } else {
+          color = "#6b7280";
+          fillColor = "#9ca3af";
+          opacity = 0.30;
+          fillOpacity = 0.16;
+          weight = 1;
+        }
+      }
+
+      return { radius, weight, color, fillColor, opacity, fillOpacity };
+    }
+
     function makePopup(props) {
       const t = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
       const title = props.title ? `<div style="margin-bottom:6px;"><b>${esc(props.title)}</b></div>` : '';
       const place = props.place ? `<div><b>Hely:</b> ${esc(props.place)}</div>` : '';
       const mag = (props.mag !== undefined && props.mag !== null) ? `<div><b>Magnitúdó:</b> ${esc(props.mag)}</div>` : '';
-      const domain = props.domain ? `<div><b>Domain:</b> ${esc(props.domain)}</div>` : '';
-      const url = props.url ? `<div style="margin-top:6px;"><a href="${esc(props.url)}" target="_blank" rel="noopener">Forrás</a></div>` : '';
-      return `${title}${t}${place}${mag}${domain}${url}`;
-    }
-
-    function circleStyle(source) {
-      if (source === 'USGS') return { radius: 7, weight: 1, fillOpacity: 0.5 };
-      if (source === 'GDACS') return { radius: 8, weight: 1, fillOpacity: 0.5 };
-      return { radius: 6, weight: 1, fillOpacity: 0.5 };
+      const domain = props.domain ? `<div><b>Forrás:</b> ${esc(props.domain)}</div>` : '';
+      const url = props.url ? `<div style="margin-top:6px;"><a href="${esc(props.url)}" target="_blank" rel="noopener">Eredeti hír / riasztás</a></div>` : '';
+      const typ = props.type ? `<div><b>Típus:</b> ${esc(props.type)}</div>` : '';
+      return `${title}${t}${place}${typ}${mag}${domain}${url}`;
     }
 
     // Hotspot heat-like
@@ -333,7 +366,7 @@
       const radius = 6 + t * 16;
       const fillOpacity = 0.08 + t * 0.37;
       const opacity = 0.18 + t * 0.52;
-      return { radius, weight: 1, fillOpacity, opacity };
+      return { radius, weight: 1, fillOpacity, opacity, color:"#2563eb", fillColor:"#60a5fa" };
     }
 
     function earlyStyle(escalation) {
@@ -342,14 +375,18 @@
       const radius = 5 + t * 10;
       const fillOpacity = 0.06 + t * 0.22;
       const opacity = 0.25 + t * 0.35;
-      return { radius, weight: 1, fillOpacity, opacity };
+      return { radius, weight: 1, fillOpacity, opacity, color:"#7c3aed", fillColor:"#a78bfa" };
     }
 
     async function loadGeoJson(url, sourceName) {
       const r = await fetch(url, { cache: "no-store" });
       const gj = await r.json();
       return L.geoJSON(gj, {
-        pointToLayer: (feature, latlng) => L.circleMarker(latlng, circleStyle(sourceName)),
+        pointToLayer: (feature, latlng) => {
+          const props = feature.properties || {};
+          const style = eventRecencyStyle(sourceName, props);
+          return L.circleMarker(latlng, style);
+        },
         onEachFeature: (feature, layer) => layer.bindPopup(makePopup(feature.properties || {}))
       });
     }
@@ -410,11 +447,10 @@
       const r = await fetch(url, { cache: "no-store" });
       const gj = await r.json();
       return L.geoJSON(gj, {
-        style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0 })
+        style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0, color:"#2563eb" })
       });
     }
 
-    // ===== Banner =====
     function renderAlertBanner(alert) {
       const banner = document.getElementById('alertBanner');
       if (!alert) {
@@ -433,7 +469,6 @@
       document.getElementById('alertBanner').style.display = 'none';
     });
 
-    // ===== Dock toggles =====
     function setupDock(dockId, btnId, openText="Bezár", closedText="Kinyit") {
       const dock = document.getElementById(dockId);
       const btn = document.getElementById(btnId);
@@ -448,7 +483,6 @@
     setupDock("dockLayers", "btnLayers");
     setupDock("dockHotspots", "btnHotspots");
 
-    // ===== Renderers =====
     function renderMeta(meta) {
       const t = fmtBudapest(meta?.generated_utc);
       const timeText = t ? `Frissítés (Budapest): ${t.bud}` : `Frissítés: —`;
@@ -574,11 +608,9 @@
       }
     }
 
-    // ===== Layers =====
     const layers = { borders: null, hot: null, early: null, gdelt: null, usgs: null, gdacs: null };
 
     async function init() {
-      // meta
       try {
         const meta = await (await fetch('./data/meta.json', { cache: "no-store" })).json();
         renderMeta(meta);
@@ -586,7 +618,6 @@
         document.getElementById('metaLine').textContent = 'Meta betöltése nem sikerült.';
       }
 
-      // summary + weekly + early list
       try { renderSummary(await (await fetch('./data/summary.json', { cache: "no-store" })).json()); }
       catch { renderSummary({ headline: 'Napi kivonat', bullets: [], alert: null }); }
 
@@ -596,7 +627,6 @@
       try { renderEarlyList(await (await fetch('./data/early.json', { cache: "no-store" })).json()); }
       catch { renderEarlyList({ top: [] }); }
 
-      // layer data
       layers.borders = await loadBorders('./data/balkan_borders.geojson');
       layers.hot     = await loadHotspotsHeat('./data/hotspots.geojson');
       layers.early   = await loadEarly('./data/early.geojson');
@@ -604,12 +634,10 @@
       layers.usgs    = await loadGeoJson('./data/usgs.geojson', 'USGS');
       layers.gdacs   = await loadGeoJson('./data/gdacs.geojson', 'GDACS');
 
-      // defaults
       layers.borders.addTo(map);
       layers.hot.addTo(map);
       layers.gdelt.addTo(map);
 
-      // toggles
       document.getElementById('layerBorders').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.borders) : map.removeLayer(layers.borders));
       document.getElementById('layerHot').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.hot) : map.removeLayer(layers.hot));
       document.getElementById('layerEarly').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.early) : map.removeLayer(layers.early));
@@ -617,7 +645,6 @@
       document.getElementById('layerUsgs').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.usgs) : map.removeLayer(layers.usgs));
       document.getElementById('layerGdacs').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.gdacs) : map.removeLayer(layers.gdacs));
 
-      // hotspots list
       try {
         const top = await (await fetch('./data/hotspots.json', { cache: "no-store" })).json();
         renderHotList(top.top || []);
