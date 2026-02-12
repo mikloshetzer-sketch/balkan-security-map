@@ -34,12 +34,11 @@ BALKAN_COUNTRIES = [
     "Hungary",
 ]
 
-USER_AGENT = "balkan-security-map/2.0 (github actions; public blog)"
+USER_AGENT = "balkan-security-map/2.1 (github actions; public blog)"
 TIMEOUT = 30
 CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
 
 # --- HIBRID EARLY WARNING zónák (egyszerű bbox alapú közelítés) ---
-# Ezek nem politikai állásfoglalások, csak "érzékenyebb" riasztási területek OSINT-ben.
 SENSITIVE_ZONES = [
     {"name": "Kosovo–Serbia", "bbox": (19.5, 42.0, 21.8, 43.6), "mult": 1.35},
     {"name": "Bosznia (entitásvonal tág)", "bbox": (16.0, 43.0, 19.8, 45.1), "mult": 1.20},
@@ -47,7 +46,15 @@ SENSITIVE_ZONES = [
     {"name": "Moldova–Transznisztria", "bbox": (28.0, 46.0, 30.3, 48.2), "mult": 1.30},
 ]
 
-# ------------------------------------------------------------
+# Rolling retention (days)
+ROLLING_DAYS = 7
+GDELT_DAYS = 7        # request window (plus rolling merge)
+USGS_DAYS = 7
+GDACS_DAYS = 14       # RSS is broader; rolling still trims to 7 for map layer if we want
+# NOTE: GDACS rolling will also trim to ROLLING_DAYS for "events on map".
+# If you want GDACS to show 14 days on map, set GDACS_KEEP_DAYS = 14.
+GDACS_KEEP_DAYS = 7
+
 
 def ensure_dirs() -> None:
     os.makedirs(DOCS_DATA_DIR, exist_ok=True)
@@ -97,6 +104,129 @@ def save_geojson(path: str, features: List[Dict[str, Any]]) -> None:
     fc = {"type": "FeatureCollection", "features": features}
     with open(path, "w", encoding="utf-8") as f:
         json.dump(fc, f, ensure_ascii=False, indent=2)
+
+
+def load_geojson_features(path: str) -> List[Dict[str, Any]]:
+    if not os.path.exists(path):
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f) or {}
+        feats = data.get("features") or []
+        if isinstance(feats, list):
+            return feats
+        return []
+    except Exception:
+        return []
+
+
+# -------------------------
+# Time helpers (stable UTC "Z")
+# -------------------------
+def to_utc_z(dt: datetime) -> str:
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    dt = dt.astimezone(timezone.utc)
+    # keep seconds; drop microseconds for stable output
+    dt = dt.replace(microsecond=0)
+    return dt.isoformat().replace("+00:00", "Z")
+
+
+def parse_time_iso(t: Optional[str]) -> Optional[datetime]:
+    if not t:
+        return None
+    try:
+        dt = dateparser.parse(t)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc)
+    except Exception:
+        return None
+
+
+def clamp_and_normalize_times(features: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Ensure props['time'] is UTC Z string if parseable."""
+    out = []
+    for f in features:
+        p = (f.get("properties") or {})
+        dt = parse_time_iso(p.get("time"))
+        if dt is not None:
+            p["time"] = to_utc_z(dt)
+            f["properties"] = p
+        out.append(f)
+    return out
+
+
+def trim_by_days(features: List[Dict[str, Any]], keep_days: int) -> List[Dict[str, Any]]:
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=keep_days)
+    kept = []
+    for f in features:
+        dt = parse_time_iso((f.get("properties") or {}).get("time"))
+        if dt is None:
+            # if no time, keep but it's rare
+            kept.append(f)
+            continue
+        if dt >= cutoff:
+            kept.append(f)
+    return kept
+
+
+# -------------------------
+# Dedup keys
+# -------------------------
+def dedup_key(feature: Dict[str, Any]) -> Optional[str]:
+    p = feature.get("properties") or {}
+    src = p.get("source") or ""
+    url = p.get("url")
+    title = p.get("title")
+    tm = p.get("time")
+    kind = p.get("kind") or ""
+
+    # Prefer strong IDs
+    if url:
+        return f"{src}|{url}"
+
+    # USGS sometimes has no url? (rare). Use title+time+mag
+    if src == "USGS":
+        mag = p.get("mag")
+        place = p.get("place")
+        return f"{src}|{kind}|{tm}|{mag}|{place}"
+
+    # GDACS: title+time usually enough
+    if src == "GDACS":
+        return f"{src}|{kind}|{tm}|{title}"
+
+    # fallback
+    if title and tm:
+        return f"{src}|{kind}|{tm}|{title}"
+
+    return None
+
+
+def merge_dedup(old_feats: List[Dict[str, Any]], new_feats: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    merged = []
+    seen = set()
+
+    for f in (new_feats + old_feats):
+        k = dedup_key(f)
+        if not k:
+            merged.append(f)
+            continue
+        if k in seen:
+            continue
+        seen.add(k)
+        merged.append(f)
+
+    # Sort by time desc (best-effort)
+    def sort_key(feat: Dict[str, Any]) -> float:
+        dt = parse_time_iso((feat.get("properties") or {}).get("time"))
+        if dt is None:
+            return 0.0
+        return dt.timestamp()
+
+    merged.sort(key=sort_key, reverse=True)
+    return merged
 
 
 # -------------------------
@@ -152,7 +282,9 @@ def fetch_usgs(days: int = 7, min_magnitude: float = 2.5) -> List[Dict[str, Any]
             continue
         p = f.get("properties") or {}
         t_ms = p.get("time")
-        dt = datetime.fromtimestamp(t_ms / 1000, tz=timezone.utc).isoformat() if isinstance(t_ms, (int, float)) else None
+        dt = None
+        if isinstance(t_ms, (int, float)):
+            dt = datetime.fromtimestamp(t_ms / 1000, tz=timezone.utc)
         out.append(
             to_feature(
                 lon, lat,
@@ -161,9 +293,10 @@ def fetch_usgs(days: int = 7, min_magnitude: float = 2.5) -> List[Dict[str, Any]
                     "kind": "earthquake",
                     "mag": p.get("mag"),
                     "place": p.get("place"),
-                    "time": dt,
+                    "time": to_utc_z(dt) if dt else None,
                     "url": p.get("url"),
                     "title": p.get("title"),
+                    "type": "Earthquake",
                 },
             )
         )
@@ -213,15 +346,16 @@ def fetch_gdacs(days: int = 14) -> List[Dict[str, Any]]:
                     "source": "GDACS",
                     "kind": "disaster_alert",
                     "title": title,
-                    "time": pub_dt.isoformat(),
+                    "time": to_utc_z(pub_dt),
                     "url": link,
+                    "type": "Alert",
                 },
             )
         )
     return out
 
 
-def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
+def fetch_gdelt(days: int = 7, max_records: int = 250) -> List[Dict[str, Any]]:
     url = "https://api.gdeltproject.org/api/v2/doc/doc"
     end = datetime.now(timezone.utc)
     start = end - timedelta(days=days)
@@ -256,7 +390,7 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
 
     for a in arts:
         loc = a.get("location") or {}
-        geo = loc.get("geo") or {}
+        geo = (loc.get("geo") or {})
         lat = geo.get("latitude")
         lon = geo.get("longitude")
         if lat is None or lon is None:
@@ -273,7 +407,8 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
         time_iso = None
         if seendate:
             try:
-                time_iso = dateparser.parse(seendate).astimezone(timezone.utc).isoformat()
+                dt = dateparser.parse(seendate).astimezone(timezone.utc)
+                time_iso = to_utc_z(dt)
             except Exception:
                 time_iso = None
 
@@ -288,36 +423,17 @@ def fetch_gdelt(days: int = 2, max_records: int = 250) -> List[Dict[str, Any]]:
                     "url": a.get("url"),
                     "domain": a.get("domain"),
                     "language": a.get("language"),
+                    "type": "News",
                 },
             )
         )
 
-    seen = set()
-    deduped = []
-    for f in out:
-        u = (f.get("properties") or {}).get("url")
-        if not u or u in seen:
-            continue
-        seen.add(u)
-        deduped.append(f)
-    return deduped
+    return out
 
 
 # -------------------------
-# Time + scoring
+# Scoring
 # -------------------------
-def parse_time_iso(t: Optional[str]) -> Optional[datetime]:
-    if not t:
-        return None
-    try:
-        dt = dateparser.parse(t)
-        if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=timezone.utc)
-        return dt.astimezone(timezone.utc)
-    except Exception:
-        return None
-
-
 def score_feature(props: Dict[str, Any]) -> float:
     src = props.get("source")
     kind = props.get("kind")
@@ -550,7 +666,7 @@ def build_weekly(all_features: List[Dict[str, Any]]) -> Dict[str, Any]:
     for dt, f in gdelt_items[:5]:
         p = f.get("properties") or {}
         examples.append({
-            "time_utc": dt.isoformat(),
+            "time_utc": to_utc_z(dt),
             "title": p.get("title"),
             "url": p.get("url"),
             "domain": p.get("domain"),
@@ -567,7 +683,7 @@ def build_weekly(all_features: List[Dict[str, Any]]) -> Dict[str, Any]:
     bullets.append("Megjegyzés: automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése javasolt.")
 
     return {
-        "generated_utc": now.isoformat(),
+        "generated_utc": to_utc_z(now),
         "headline": "Heti kivonat – elmúlt 7 nap",
         "bullets": bullets,
         "counts": counts,
@@ -689,7 +805,7 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
     ]
 
     return {
-        "generated_utc": now.isoformat(),
+        "generated_utc": to_utc_z(now),
         "headline": "Balkán biztonsági helyzet – napi kivonat",
         "bullets": bullets,
         "alert": alert_from_top(top),
@@ -703,7 +819,6 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
 
 # -------------------------
 # EARLY WARNING (hibrid)
-# Output: docs/data/early.geojson + docs/data/early.json
 # -------------------------
 def zone_multiplier(lon: float, lat: float) -> Tuple[float, Optional[str]]:
     mult = 1.0
@@ -728,12 +843,6 @@ def build_early_warning(
     recent_hours: int = 48,
     top_n: int = 10,
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
-    """
-    Early warning: a *gyorsulást* keresi.
-    - recent window: utolsó 48 óra
-    - baseline: 48 óra előtti időszak a 7 napos lookback-on belül
-    - forrásmix, szomszédos cellák aktiválódása, és érzékeny zónák szorzója
-    """
     now = datetime.now(timezone.utc)
     cutoff = now - timedelta(days=lookback_days)
     recent_cut = now - timedelta(hours=recent_hours)
@@ -753,7 +862,6 @@ def build_early_warning(
             acc[k] = b
         return b
 
-    # aggregate
     for f in all_features:
         coords = (f.get("geometry") or {}).get("coordinates") or []
         if len(coords) < 2:
@@ -766,7 +874,7 @@ def build_early_warning(
         if dt is None or dt < cutoff:
             continue
 
-        s = score_feature(props)  # itt NEM erős idődecay: a cél a gyorsulás
+        s = score_feature(props)  # no strong decay
         k = grid_key(lon, lat, cell_deg)
         b = get_bucket(k)
 
@@ -780,7 +888,6 @@ def build_early_warning(
             b["baseline"] += s
             b["baseline_cnt"] += 1
 
-    # compute raw escalation per cell
     raw: Dict[Tuple[int,int], float] = {}
     meta: Dict[Tuple[int,int], Dict[str, Any]] = {}
 
@@ -793,19 +900,15 @@ def build_early_warning(
         base = float(b["baseline"])
 
         if recent <= 0.75:
-            continue  # ne jelezzen 1 db apró jelzésre belsőben (szűrő)
+            continue
 
-        # ratio/acceleration: baseline kicsi → nagy ugrás, de óvatosan
         ratio = (recent + 0.5) / (base + 1.5)
 
-        # source-mix: ha többféle jel jön (pl. GDACS/USGS is), az növeli a bizalmat
         src_mix = sum(1 for v in b["src_recent"].values() if v > 0)
         mix_boost = 1.0 + 0.08 * (src_mix - 1) if src_mix >= 2 else 1.0
 
-        # sensitive zone multiplier (hibrid)
         z_mult, z_name = zone_multiplier(lon_c, lat_c)
 
-        # raw escalation
         esc = (recent * 10.0) * math.log1p(ratio) * mix_boost * z_mult
 
         raw[k] = esc
@@ -824,8 +927,6 @@ def build_early_warning(
     if not raw:
         return [], []
 
-    # neighbor reinforcement: ha több szomszéd is emelkedik, az "kialakuló öv"
-    # normalizálás: top raw alapján skálázunk 0..100-ra
     max_raw = max(raw.values()) or 1.0
 
     signals: List[Dict[str, Any]] = []
@@ -834,7 +935,7 @@ def build_early_warning(
     for k, esc_raw in raw.items():
         neigh = neighbor_keys(k)
         neigh_active = sum(1 for nk in neigh if nk in raw and raw[nk] >= 0.35 * max_raw)
-        spread_boost = 1.0 + 0.06 * neigh_active  # 0..~0.48
+        spread_boost = 1.0 + 0.06 * neigh_active
 
         score0_100 = min(100.0, (esc_raw * spread_boost) / max_raw * 100.0)
         lon_c, lat_c = cell_center(k[0], k[1], cell_deg)
@@ -851,8 +952,7 @@ def build_early_warning(
         rows.append({"lon": lon_c, "lat": lat_c, **props})
 
     rows_sorted = sorted(rows, key=lambda x: x["escalation"], reverse=True)
-    top = rows_sorted[:top_n]
-    return signals, top
+    return signals, rows_sorted[:top_n]
 
 
 # -------------------------
@@ -866,29 +966,47 @@ def main() -> int:
     except Exception as e:
         print(f"[borders] failed: {e}")
 
+    # Load previous layers for rolling merge
+    prev_usgs = load_geojson_features(os.path.join(DOCS_DATA_DIR, "usgs.geojson"))
+    prev_gdacs = load_geojson_features(os.path.join(DOCS_DATA_DIR, "gdacs.geojson"))
+    prev_gdelt = load_geojson_features(os.path.join(DOCS_DATA_DIR, "gdelt.geojson"))
+
     print("Fetching USGS...")
     try:
-        usgs = fetch_usgs(days=7, min_magnitude=2.5)
+        usgs_new = fetch_usgs(days=USGS_DAYS, min_magnitude=2.5)
     except Exception as e:
-        print(f"[USGS] fetch failed, continuing with empty layer: {e}")
-        usgs = []
-    print(f"USGS features: {len(usgs)}")
+        print(f"[USGS] fetch failed, continuing with rolling previous: {e}")
+        usgs_new = []
+    print(f"USGS fetched: {len(usgs_new)}")
 
     print("Fetching GDACS...")
     try:
-        gdacs = fetch_gdacs(days=14)
+        gdacs_new = fetch_gdacs(days=GDACS_DAYS)
     except Exception as e:
-        print(f"[GDACS] fetch failed, continuing with empty layer: {e}")
-        gdacs = []
-    print(f"GDACS features: {len(gdacs)}")
+        print(f"[GDACS] fetch failed, continuing with rolling previous: {e}")
+        gdacs_new = []
+    print(f"GDACS fetched: {len(gdacs_new)}")
 
     print("Fetching GDELT...")
     try:
-        gdelt = fetch_gdelt(days=2, max_records=250)
+        gdelt_new = fetch_gdelt(days=GDELT_DAYS, max_records=250)
     except Exception as e:
-        print(f"[GDELT] fetch failed, continuing with empty layer: {e}")
-        gdelt = []
-    print(f"GDELT features: {len(gdelt)}")
+        print(f"[GDELT] fetch failed, continuing with rolling previous: {e}")
+        gdelt_new = []
+    print(f"GDELT fetched: {len(gdelt_new)}")
+
+    # Normalize time fields + merge rolling + trim
+    usgs_merged = merge_dedup(clamp_and_normalize_times(prev_usgs), clamp_and_normalize_times(usgs_new))
+    gdacs_merged = merge_dedup(clamp_and_normalize_times(prev_gdacs), clamp_and_normalize_times(gdacs_new))
+    gdelt_merged = merge_dedup(clamp_and_normalize_times(prev_gdelt), clamp_and_normalize_times(gdelt_new))
+
+    usgs = trim_by_days(usgs_merged, keep_days=ROLLING_DAYS)
+    gdacs = trim_by_days(gdacs_merged, keep_days=GDACS_KEEP_DAYS)
+    gdelt = trim_by_days(gdelt_merged, keep_days=ROLLING_DAYS)
+
+    print(f"USGS kept(rolling {ROLLING_DAYS}d): {len(usgs)}")
+    print(f"GDACS kept({GDACS_KEEP_DAYS}d): {len(gdacs)}")
+    print(f"GDELT kept(rolling {ROLLING_DAYS}d): {len(gdelt)}")
 
     # Save source layers
     save_geojson(os.path.join(DOCS_DATA_DIR, "usgs.geojson"), usgs)
@@ -907,7 +1025,7 @@ def main() -> int:
 
     save_geojson(os.path.join(DOCS_DATA_DIR, "hotspots.geojson"), hotspot_geo)
     with open(os.path.join(DOCS_DATA_DIR, "hotspots.json"), "w", encoding="utf-8") as f:
-        json.dump({"generated_utc": datetime.now(timezone.utc).isoformat(), "top": top_hotspots}, f, ensure_ascii=False, indent=2)
+        json.dump({"generated_utc": to_utc_z(datetime.now(timezone.utc)), "top": top_hotspots}, f, ensure_ascii=False, indent=2)
 
     # Daily summary + weekly summary
     counts = {"usgs": len(usgs), "gdacs": len(gdacs), "gdelt": len(gdelt), "hotspot_cells": len(hotspot_geo)}
@@ -922,7 +1040,6 @@ def main() -> int:
     # EARLY WARNING output
     early_geo, early_top = build_early_warning(all_feats, cell_deg=0.5, lookback_days=7, recent_hours=48, top_n=10)
 
-    # geocode top early for readability
     cache = load_cache()
     for e in early_top:
         e["place"] = reverse_geocode_osm(float(e["lat"]), float(e["lon"]), cache)
@@ -930,13 +1047,15 @@ def main() -> int:
 
     save_geojson(os.path.join(DOCS_DATA_DIR, "early.geojson"), early_geo)
     with open(os.path.join(DOCS_DATA_DIR, "early.json"), "w", encoding="utf-8") as f:
-        json.dump({"generated_utc": datetime.now(timezone.utc).isoformat(), "top": early_top}, f, ensure_ascii=False, indent=2)
+        json.dump({"generated_utc": to_utc_z(datetime.now(timezone.utc)), "top": early_top}, f, ensure_ascii=False, indent=2)
 
     # meta
+    now = datetime.now(timezone.utc)
     meta = {
-        "generated_utc": datetime.now(timezone.utc).isoformat(),
+        "generated_utc": to_utc_z(now),
         "counts": counts,
         "bbox": {"lon_min": BALKAN_BBOX[0], "lat_min": BALKAN_BBOX[1], "lon_max": BALKAN_BBOX[2], "lat_max": BALKAN_BBOX[3]},
+        "rolling_days": ROLLING_DAYS,
         "early": {"cells": len(early_geo), "recent_hours": 48, "lookback_days": 7},
     }
     with open(os.path.join(DOCS_DATA_DIR, "meta.json"), "w", encoding="utf-8") as f:
@@ -948,3 +1067,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
