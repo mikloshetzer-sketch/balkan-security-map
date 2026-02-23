@@ -1,6 +1,6 @@
-name: WordPress weekly post (LIGHT: from prepared JSON)
+name: "WordPress weekly post (LIGHT: from prepared JSON)"
 
-on:
+"on":
   workflow_dispatch:
     inputs:
       post_status:
@@ -8,12 +8,12 @@ on:
         required: true
         default: "draft"
   schedule:
-    # Hétfő 07:10 UTC (Budapest nyáron 09:10, télen 08:10)
     - cron: "10 7 * * 1"
 
 jobs:
   post:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Sanity check prepared data files
+      - name: Check prepared JSON files
         run: |
           ls -la docs/data || true
           test -f docs/data/summary.json
@@ -40,13 +40,7 @@ jobs:
         env:
           WP_ACCESS_TOKEN: ${{ secrets.WP_ACCESS_TOKEN }}
           WP_BLOG_ID: ${{ secrets.WP_BLOG_ID }}
-          # Ha mindig ugyanazt a posztot akarod frissíteni, add meg secrets-ben vagy Variables-ben:
-          # WP_POST_ID: ${{ secrets.WP_POST_ID }}
-
-          # opcionális: térkép link a posztba
           MAP_URL: ${{ secrets.MAP_URL }}
-
-          # státusz: schedule-nél draft, manuálisnál az input
           POST_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.post_status || 'draft' }}
         run: |
           python scripts/publish_post_light.py
