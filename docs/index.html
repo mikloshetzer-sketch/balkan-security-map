@@ -2,8 +2,8 @@
 <html lang="hu">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Balkán Biztonsági Monitor – Feszültség</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Balkán Biztonsági Monitor – térkép</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -15,8 +15,12 @@
       --border: 1px solid rgba(0,0,0,0.08);
       --radius: 14px;
       --font: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      --safe-top: max(env(safe-area-inset-top), 8px);
+      --safe-right: max(env(safe-area-inset-right), 8px);
+      --safe-left: max(env(safe-area-inset-left), 8px);
+      --safe-bottom: max(env(safe-area-inset-bottom), 8px);
     }
-    body { margin:0; font-family: var(--font); }
+    html, body { height: 100%; margin:0; font-family: var(--font); }
     #map { height: 100vh; width: 100vw; }
 
     /* ===== Alert banner ===== */
@@ -59,9 +63,9 @@
       backdrop-filter: blur(6px);
       overflow: hidden;
     }
-    .dock.top-left { top: 58px; left: 12px; }
-    .dock.top-right { top: 58px; right: 12px; }
-    .dock.bottom-right { right: 12px; bottom: 12px; }
+    .dock.top-left { top: calc(var(--safe-top) + 50px); left: calc(var(--safe-left) + 12px); }
+    .dock.top-right { top: calc(var(--safe-top) + 50px); right: calc(var(--safe-right) + 12px); }
+    .dock.bottom-right { right: calc(var(--safe-right) + 12px); bottom: calc(var(--safe-bottom) + 12px); }
 
     .dock .hd{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -99,13 +103,39 @@
     .section .meta{ margin:0 0 8px; font-size:12px; color:#666; }
     .section ul{ margin:0; padding-left: 18px; }
     .section li{ font-size:12px; color:#333; margin:4px 0; }
-
     details summary{ cursor:pointer; font-size:12px; color:#111; font-weight: 800; }
     details .muted{ color:#666; font-size:12px; margin-top:6px; }
 
     .layers .rowCk{ display:flex; gap:8px; align-items:center; margin:8px 0; }
     .layers label{ font-size: 12px; color:#222; }
     .layers input{ transform: translateY(1px); }
+
+    .filters {
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px dashed rgba(0,0,0,0.18);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.72);
+    }
+    .filters .row {
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items:center;
+      margin-top: 8px;
+    }
+    .filters .btnSm {
+      cursor:pointer;
+      border: 1px solid rgba(0,0,0,0.15);
+      background: rgba(255,255,255,0.95);
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    .filters .btnSm.on {
+      border-color: rgba(0,0,0,0.35);
+      font-weight: 800;
+    }
 
     .hotlist{ list-style:none; padding:0; margin:0; max-height: 240px; overflow:auto; }
     .hotitem{
@@ -116,13 +146,34 @@
     .place{ font-size:12px; font-weight:700; color:#111; }
     .sub{ font-size:12px; color:#555; }
 
-    .situation{ width: min(520px, calc(100vw - 24px)); }
-    .layers{ width: 260px; }
-    .hotspots{ width: 320px; }
+    .situation{ width: min(560px, calc(100vw - 24px)); }
+    .layers{ width: 300px; }
+    .hotspots{ width: 340px; }
 
-    /* ===== MOBILE: B mód (helyzetkép csak gomb), rétegek bal alsó ===== */
+    /* ===== Legend ===== */
+    .legend{
+      background: rgba(255,255,255,0.92);
+      padding: 10px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      font-family: var(--font);
+      font-size: 12px;
+      line-height: 1.15;
+      width: 210px;
+      max-height: 240px;
+      overflow: auto;
+    }
+    .legend .row { display:flex; align-items:center; gap:8px; margin: 4px 0; }
+    .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.25);
+      display:inline-block;
+      flex: 0 0 10px;
+    }
+
+    /* ===== MOBILE ===== */
     @media (max-width: 720px){
-      .dock.top-left{ top: 58px; left: 10px; right: auto; }
+      .dock.top-left{ top: calc(var(--safe-top) + 50px); left: calc(var(--safe-left) + 10px); right: auto; }
       .situation{ width: auto; }
 
       #dockSituation .hd{ padding: 8px 8px; border-bottom: 0; }
@@ -142,20 +193,30 @@
       .dock.top-right{
         top: auto;
         right: auto;
-        left: 10px;
-        bottom: 12px;
+        left: calc(var(--safe-left) + 10px);
+        bottom: calc(var(--safe-bottom) + 12px);
         width: auto;
       }
       .layers{ width: auto; }
 
       .dock.bottom-right{
-        right: 10px;
+        right: calc(var(--safe-right) + 10px);
         left: auto;
-        bottom: 12px;
+        bottom: calc(var(--safe-bottom) + 12px);
         width: auto;
       }
       .hotspots{ width: auto; }
       .hotlist{ max-height: 160px; }
+
+      .legend{
+        width: 170px;
+        max-height: 160px;
+        padding: 8px;
+        margin-bottom: calc(var(--safe-bottom) + 4px);
+      }
+      .leaflet-control-zoom{
+        margin-top: calc(var(--safe-top) + 56px) !important;
+      }
     }
   </style>
 </head>
@@ -174,6 +235,7 @@
 
   <div id="map"></div>
 
+  <!-- Situation -->
   <div class="dock top-left situation collapsed" id="dockSituation">
     <div class="hd">
       <div>
@@ -203,12 +265,28 @@
         <div class="muted">Megjelenítéshez kapcsold be az EARLY réteget.</div>
       </details>
 
-      <div class="small">
+      <div class="filters">
+        <div class="small">
+          <b>Mai események</b> Budapest időzónával:
+          <span class="mono" id="todayBud">—</span>
+        </div>
+        <div class="row">
+          <button class="btnSm" id="btnTodayNews" type="button">Mai hírek</button>
+          <button class="btnSm" id="btnTodayAlerts" type="button">Mai riasztások</button>
+          <button class="btnSm on" id="btnReset7d" type="button">Vissza 7 napra</button>
+        </div>
+        <div class="small" style="margin-top:6px;">
+          Mai hírek = GDELT (GEO + LINKES) • Mai riasztások = USGS + GDACS
+        </div>
+      </div>
+
+      <div class="small" style="margin-top:10px;">
         Mobilon a „Helyzetkép” alapból csak gomb, hogy ne takarja a térképet.
       </div>
     </div>
   </div>
 
+  <!-- Layers -->
   <div class="dock top-right layers collapsed" id="dockLayers">
     <div class="hd">
       <div class="title">Rétegek</div>
@@ -227,10 +305,16 @@
         <input type="checkbox" id="layerEarly">
         <label for="layerEarly"><span class="badge">EARLY</span>elemző</label>
       </div>
+
       <div class="rowCk">
         <input type="checkbox" id="layerGdelt" checked>
         <label for="layerGdelt"><span class="badge">GDELT</span>hírek</label>
       </div>
+      <div class="rowCk">
+        <input type="checkbox" id="layerGdeltLinked">
+        <label for="layerGdeltLinked"><span class="badge">GDELT+</span>linkes</label>
+      </div>
+
       <div class="rowCk">
         <input type="checkbox" id="layerUsgs">
         <label for="layerUsgs"><span class="badge">USGS</span>rengések</label>
@@ -241,11 +325,12 @@
       </div>
 
       <div class="small" style="margin-top:8px;">
-        <b>Esemény színek:</b> 0–24h (friss), 1–3 nap, 3–7 nap, 7+ nap (halvány).
+        <b>Megjelenítés:</b> GDELT kategória-színezés • USGS/GDACS “frissesség” alapú.
       </div>
     </div>
   </div>
 
+  <!-- Hotspots -->
   <div class="dock bottom-right hotspots collapsed" id="dockHotspots">
     <div class="hd">
       <div class="title">Top hotspotok</div>
@@ -258,12 +343,64 @@
   </div>
 
   <script>
-    const map = L.map('map', { zoomControl: true }).setView([44.2, 20.6], 6);
+    // ===== PATH (ha máshol van, itt elég átírni) =====
+    const DATA = "./data";
+
+    // ===== CATEGORY styles (CEE-hez hasonló) =====
+    const CAT_STYLE = {
+      protest: { radius: 6, fillOpacity: 0.55 },
+      border: { radius: 6, fillOpacity: 0.55 },
+      police: { radius: 6, fillOpacity: 0.55 },
+      military: { radius: 6, fillOpacity: 0.55 },
+      drone: { radius: 6, fillOpacity: 0.55 },
+      cyber: { radius: 6, fillOpacity: 0.55 },
+      energy: { radius: 6, fillOpacity: 0.55 },
+      infrastructure: { radius: 6, fillOpacity: 0.55 },
+      security_politics: { radius: 6, fillOpacity: 0.55 },
+      violence: { radius: 7, fillOpacity: 0.60 },
+      natural: { radius: 6, fillOpacity: 0.50 },
+      other: { radius: 6, fillOpacity: 0.45 }
+    };
+
+    function humanCat(cat){
+      const m = {
+        protest: "tüntetés/erőszak",
+        border: "határ/migráció",
+        police: "rendőrség/jog",
+        military: "katonai",
+        drone: "drón/UAV",
+        cyber: "kiber/dezinformáció",
+        energy: "energia/ellátás",
+        infrastructure: "infrastruktúra",
+        security_politics: "security politics",
+        violence: "erőszak",
+        natural: "természeti",
+        other: "egyéb"
+      };
+      return m[cat] || cat || "egyéb";
+    }
+
+    function catColor(cat){
+      return (cat === "cyber") ? "#6f42c1" :
+             (cat === "energy") ? "#d39e00" :
+             (cat === "border") ? "#0c8599" :
+             (cat === "protest") ? "#c92a2a" :
+             (cat === "military") ? "#2f9e44" :
+             (cat === "drone") ? "#364fc7" :
+             (cat === "police") ? "#343a40" :
+             (cat === "security_politics") ? "#5c7cfa" :
+             (cat === "natural") ? "#099268" :
+             (cat === "violence") ? "#a61e4d" : "#868e96";
+    }
+
+    // ===== Map =====
+    const map = L.map('map', { zoomControl: true, preferCanvas: true }).setView([44.2, 20.6], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
+    // ===== Utils =====
     function esc(s) {
       return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
@@ -286,21 +423,34 @@
     }
 
     function parseEventTime(props) {
-      // elfogad ISO-t vagy bármilyen Date által értelmezhető stringet
       const t = props?.time || props?.datetime || props?.date;
       if (!t) return null;
       const d = new Date(t);
       return isNaN(d.getTime()) ? null : d;
     }
 
+    function ymdInTZ(dateObj, tz){
+      const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: tz, year:"numeric", month:"2-digit", day:"2-digit" });
+      return fmt.format(dateObj); // YYYY-MM-DD
+    }
+
+    function isTodayBudapest(timeOrDateString){
+      if(!timeOrDateString) return false;
+      let d;
+      try { d = new Date(timeOrDateString); } catch { return false; }
+      if(isNaN(d.getTime())) return false;
+      const todayBud = ymdInTZ(new Date(), "Europe/Budapest");
+      const evBud = ymdInTZ(d, "Europe/Budapest");
+      return evBud === todayBud;
+    }
+
+    // ===== Styles: USGS/GDACS recency =====
     function eventRecencyStyle(sourceName, props) {
-      // 4 sáv: 0-24h, 1-3 nap, 3-7 nap, 7+ nap
       const d = parseEventTime(props);
       const now = new Date();
       let ageDays = null;
       if (d) ageDays = (now.getTime() - d.getTime()) / (1000*60*60*24);
 
-      // alap (fallback)
       let color = "#3b82f6";
       let fillColor = "#3b82f6";
       let opacity = 0.35;
@@ -308,57 +458,58 @@
       let radius = 6;
       let weight = 1;
 
-      // forrás szerinti finomhangolás (radius)
       if (sourceName === "USGS") radius = 7;
       if (sourceName === "GDACS") radius = 8;
       if (sourceName === "GDELT") radius = 6;
 
       if (ageDays !== null) {
         if (ageDays <= 1) {
-          // friss
-          color = "#b91c1c";
-          fillColor = "#ef4444";
-          opacity = 0.75;
-          fillOpacity = 0.45;
-          weight = 2;
-          radius += 2;
+          color = "#b91c1c"; fillColor = "#ef4444";
+          opacity = 0.75; fillOpacity = 0.45; weight = 2; radius += 2;
         } else if (ageDays <= 3) {
-          color = "#c2410c";
-          fillColor = "#f97316";
-          opacity = 0.65;
-          fillOpacity = 0.35;
-          weight = 2;
-          radius += 1;
+          color = "#c2410c"; fillColor = "#f97316";
+          opacity = 0.65; fillOpacity = 0.35; weight = 2; radius += 1;
         } else if (ageDays <= 7) {
-          color = "#a16207";
-          fillColor = "#f59e0b";
-          opacity = 0.55;
-          fillOpacity = 0.28;
-          weight = 1.5;
+          color = "#a16207"; fillColor = "#f59e0b";
+          opacity = 0.55; fillOpacity = 0.28; weight = 1.5;
         } else {
-          color = "#6b7280";
-          fillColor = "#9ca3af";
-          opacity = 0.30;
-          fillOpacity = 0.16;
-          weight = 1;
+          color = "#6b7280"; fillColor = "#9ca3af";
+          opacity = 0.30; fillOpacity = 0.16; weight = 1;
         }
       }
-
-      return { radius, weight, color, fillColor, opacity, fillOpacity };
+      return { radius, weight, color, fillColor, opacity, fillOpacity, ageDays };
     }
 
+    // ===== Popup (CEE-szerű: category + search_url fallback + linked sources) =====
     function makePopup(props) {
-      const t = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
       const title = props.title ? `<div style="margin-bottom:6px;"><b>${esc(props.title)}</b></div>` : '';
+      const t = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
       const place = props.place ? `<div><b>Hely:</b> ${esc(props.place)}</div>` : '';
-      const mag = (props.mag !== undefined && props.mag !== null) ? `<div><b>Magnitúdó:</b> ${esc(props.mag)}</div>` : '';
-      const domain = props.domain ? `<div><b>Forrás:</b> ${esc(props.domain)}</div>` : '';
-      const url = props.url ? `<div style="margin-top:6px;"><a href="${esc(props.url)}" target="_blank" rel="noopener">Eredeti hír / riasztás</a></div>` : '';
       const typ = props.type ? `<div><b>Típus:</b> ${esc(props.type)}</div>` : '';
-      return `${title}${t}${place}${typ}${mag}${domain}${url}`;
+      const domain = props.domain ? `<div><b>Forrás:</b> ${esc(props.domain)}</div>` : '';
+
+      const catRaw = props.category || props.gdelt_bucket || null;
+      const cat = catRaw ? `<div><b>Kategória:</b> ${esc(humanCat(catRaw))}</div>` : '';
+
+      const mag = (props.mag !== undefined && props.mag !== null) ? `<div><b>Magnitúdó:</b> ${esc(props.mag)}</div>` : '';
+
+      const link = props.url || props.search_url;
+      const url = link ? `<div style="margin-top:6px;">🔗 <a href="${esc(link)}" target="_blank" rel="noopener">Forrás / keresés</a></div>` : '';
+
+      let sources = '';
+      if (Array.isArray(props.sources) && props.sources.length) {
+        const items = props.sources.slice(0, 8)
+          .map((u,i) => `<li><a href="${esc(u)}" target="_blank" rel="noopener">Forrás #${i+1}</a></li>`)
+          .join('');
+        sources = `<div style="margin-top:6px;"><b>Források:</b><ul style="margin:6px 0 0; padding-left:18px;">${items}</ul></div>`;
+      }
+
+      const kind = props.kind ? `<div class="small" style="margin-top:6px;color:#666;">kind: ${esc(props.kind)}</div>` : '';
+
+      return `${title}${cat}${t}${place}${typ}${mag}${domain}${url}${sources}${kind}`;
     }
 
-    // Hotspot heat-like
+    // ===== Hotspot heat-like =====
     function hotspotStyle(score, maxScore) {
       const s = Math.max(0, Number(score) || 0);
       const m = Math.max(0.001, Number(maxScore) || 0.001);
@@ -378,29 +529,104 @@
       return { radius, weight: 1, fillOpacity, opacity, color:"#7c3aed", fillColor:"#a78bfa" };
     }
 
-    async function loadGeoJson(url, sourceName) {
-      const r = await fetch(url, { cache: "no-store" });
-      const gj = await r.json();
-      return L.geoJSON(gj, {
-        pointToLayer: (feature, latlng) => {
-          const props = feature.properties || {};
-          const style = eventRecencyStyle(sourceName, props);
-          return L.circleMarker(latlng, style);
-        },
-        onEachFeature: (feature, layer) => layer.bindPopup(makePopup(feature.properties || {}))
+    // ===== Data containers for filtering (7d vs today) =====
+    const DATASETS = {
+      gdelt: null,
+      gdeltLinked: null,
+      gdacs: null,
+      usgs: null
+    };
+    const FILTERS = { newsToday: false, alertsToday: false };
+
+    function applyFilters(){
+      // GDELT (news)
+      if (DATASETS.gdelt && layers.gdelt){
+        const feats = DATASETS.gdelt.features || [];
+        const keep = FILTERS.newsToday
+          ? feats.filter(f => isTodayBudapest((f.properties||{}).time || (f.properties||{}).date))
+          : feats;
+        layers.gdelt.clearLayers();
+        layers.gdelt.addData({ type:"FeatureCollection", features: keep });
+      }
+      if (DATASETS.gdeltLinked && layers.gdeltLinked){
+        const feats = DATASETS.gdeltLinked.features || [];
+        const keep = FILTERS.newsToday
+          ? feats.filter(f => isTodayBudapest((f.properties||{}).time || (f.properties||{}).date))
+          : feats;
+        layers.gdeltLinked.clearLayers();
+        layers.gdeltLinked.addData({ type:"FeatureCollection", features: keep });
+      }
+
+      // Alerts (GDACS + USGS)
+      if (DATASETS.gdacs && layers.gdacs){
+        const feats = DATASETS.gdacs.features || [];
+        const keep = FILTERS.alertsToday
+          ? feats.filter(f => isTodayBudapest((f.properties||{}).time || (f.properties||{}).date))
+          : feats;
+        layers.gdacs.clearLayers();
+        layers.gdacs.addData({ type:"FeatureCollection", features: keep });
+      }
+      if (DATASETS.usgs && layers.usgs){
+        const feats = DATASETS.usgs.features || [];
+        const keep = FILTERS.alertsToday
+          ? feats.filter(f => isTodayBudapest((f.properties||{}).time || (f.properties||{}).date))
+          : feats;
+        layers.usgs.clearLayers();
+        layers.usgs.addData({ type:"FeatureCollection", features: keep });
+      }
+
+      // UI button states
+      document.getElementById("btnTodayNews").classList.toggle("on", FILTERS.newsToday);
+      document.getElementById("btnTodayAlerts").classList.toggle("on", FILTERS.alertsToday);
+      document.getElementById("btnReset7d").classList.toggle("on", (!FILTERS.newsToday && !FILTERS.alertsToday));
+    }
+
+    // ===== Leaflet layer constructors =====
+    function gdeltPointToLayer(feature, latlng){
+      const p = feature.properties || {};
+      const cat = p.category || p.gdelt_bucket || "other";
+      const st = CAT_STYLE[cat] || CAT_STYLE.other;
+
+      // frissesség csak kis rásegítés
+      const rec = eventRecencyStyle("GDELT", p);
+      const isFresh = (rec.ageDays !== null && rec.ageDays <= 3);
+
+      return L.circleMarker(latlng, {
+        radius: st.radius + (isFresh ? 2 : 0),
+        weight: isFresh ? 2 : 1,
+        color: isFresh ? "#111" : "#333",
+        opacity: isFresh ? 0.75 : 0.45,
+        fillColor: catColor(cat),
+        fillOpacity: st.fillOpacity
       });
     }
 
-    async function loadHotspotsHeat(url) {
-      const r = await fetch(url, { cache: "no-store" });
-      const gj = await r.json();
+    function genericRecencyPointToLayer(sourceName){
+      return (feature, latlng) => {
+        const p = feature.properties || {};
+        const style = eventRecencyStyle(sourceName, p);
+        return L.circleMarker(latlng, style);
+      };
+    }
 
+    async function loadJson(url){
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error(`Fetch failed: ${url} (${r.status})`);
+      return await r.json();
+    }
+
+    async function loadBorders(url) {
+      const gj = await loadJson(url);
+      return L.geoJSON(gj, { style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0, color:"#2563eb" }) });
+    }
+
+    async function loadHotspotsHeat(url) {
+      const gj = await loadJson(url);
       let maxScore = 0;
       for (const f of (gj.features || [])) {
         const s = Number((f.properties || {}).score) || 0;
         if (s > maxScore) maxScore = s;
       }
-
       return L.geoJSON(gj, {
         pointToLayer: (feature, latlng) => {
           const p = feature.properties || {};
@@ -423,8 +649,7 @@
     }
 
     async function loadEarly(url) {
-      const r = await fetch(url, { cache: "no-store" });
-      const gj = await r.json();
+      const gj = await loadJson(url);
       return L.geoJSON(gj, {
         pointToLayer: (feature, latlng) => {
           const p = feature.properties || {};
@@ -443,14 +668,7 @@
       });
     }
 
-    async function loadBorders(url) {
-      const r = await fetch(url, { cache: "no-store" });
-      const gj = await r.json();
-      return L.geoJSON(gj, {
-        style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0, color:"#2563eb" })
-      });
-    }
-
+    // ===== Alert banner =====
     function renderAlertBanner(alert) {
       const banner = document.getElementById('alertBanner');
       if (!alert) {
@@ -469,6 +687,7 @@
       document.getElementById('alertBanner').style.display = 'none';
     });
 
+    // ===== Docks =====
     function setupDock(dockId, btnId, openText="Bezár", closedText="Kinyit") {
       const dock = document.getElementById(dockId);
       const btn = document.getElementById(btnId);
@@ -483,12 +702,15 @@
     setupDock("dockLayers", "btnLayers");
     setupDock("dockHotspots", "btnHotspots");
 
+    // ===== UI renderers =====
     function renderMeta(meta) {
       const t = fmtBudapest(meta?.generated_utc);
       const timeText = t ? `Frissítés (Budapest): ${t.bud}` : `Frissítés: —`;
       const counts = meta?.counts || {};
+      const gl = counts.gdelt_linked ?? 0;
+
       document.getElementById('metaLine').textContent =
-        `${timeText} | hotspot cellák: ${counts.hotspot_cells ?? 0} | GDELT: ${counts.gdelt ?? 0}, USGS: ${counts.usgs ?? 0}, GDACS: ${counts.gdacs ?? 0}`;
+        `${timeText} | hotspot cellák: ${counts.hotspot_cells ?? 0} | GDELT: ${counts.gdelt ?? 0} + linkes: ${gl}, USGS: ${counts.usgs ?? 0}, GDACS: ${counts.gdacs ?? 0}`;
     }
 
     function renderSummary(sum) {
@@ -608,52 +830,144 @@
       }
     }
 
-    const layers = { borders: null, hot: null, early: null, gdelt: null, usgs: null, gdacs: null };
+    // ===== Layers (Leaflet objects) =====
+    const layers = {
+      borders: null,
+      hot: null,
+      early: null,
+      gdelt: L.geoJSON(null, { pointToLayer: gdeltPointToLayer, onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
+      gdeltLinked: L.geoJSON(null, { pointToLayer: gdeltPointToLayer, onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
+      usgs: L.geoJSON(null, { pointToLayer: genericRecencyPointToLayer("USGS"), onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
+      gdacs: L.geoJSON(null, { pointToLayer: genericRecencyPointToLayer("GDACS"), onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) })
+    };
 
+    // ===== Legend control =====
+    const legend = L.control({ position: "bottomright" });
+    legend.onAdd = function(){
+      const div = L.DomUtil.create("div", "legend");
+      div.innerHTML = `
+        <div style="font-weight:800;margin-bottom:6px;">Jelmagyarázat (GDELT kategóriák)</div>
+        ${[
+          ["protest","Tüntetés/erőszak", catColor("protest")],
+          ["border","Határ/migráció", catColor("border")],
+          ["police","Rendőrség/jog", catColor("police")],
+          ["military","Katonai", catColor("military")],
+          ["drone","Drón/UAV", catColor("drone")],
+          ["cyber","Kiber/dezinformáció", catColor("cyber")],
+          ["energy","Energia/ellátás", catColor("energy")],
+          ["infrastructure","Infrastruktúra", catColor("infrastructure")],
+          ["security_politics","Security politics", catColor("security_politics")],
+          ["natural","Természeti", catColor("natural")],
+          ["other","Egyéb", catColor("other")]
+        ].map(([k,label,color]) =>
+          `<div class="row"><span class="dot" style="background:${color}"></span><span>${esc(label)}</span></div>`
+        ).join("")}
+        <div style="margin-top:8px;" class="small">USGS/GDACS szín: frissesség (0–24h → piros).</div>
+      `;
+      L.DomEvent.disableClickPropagation(div);
+      L.DomEvent.disableScrollPropagation(div);
+      return div;
+    };
+    legend.addTo(map);
+
+    // ===== Init =====
     async function init() {
-      try {
-        const meta = await (await fetch('./data/meta.json', { cache: "no-store" })).json();
-        renderMeta(meta);
-      } catch {
-        document.getElementById('metaLine').textContent = 'Meta betöltése nem sikerült.';
-      }
+      // today label
+      document.getElementById("todayBud").textContent = ymdInTZ(new Date(), "Europe/Budapest");
 
-      try { renderSummary(await (await fetch('./data/summary.json', { cache: "no-store" })).json()); }
+      // Load meta/summaries
+      try { renderMeta(await loadJson(`${DATA}/meta.json`)); }
+      catch { document.getElementById('metaLine').textContent = 'Meta betöltése nem sikerült.'; }
+
+      try { renderSummary(await loadJson(`${DATA}/summary.json`)); }
       catch { renderSummary({ headline: 'Napi kivonat', bullets: [], alert: null }); }
 
-      try { renderWeekly(await (await fetch('./data/weekly.json', { cache: "no-store" })).json()); }
+      try { renderWeekly(await loadJson(`${DATA}/weekly.json`)); }
       catch { renderWeekly({ bullets: [], examples: [] }); }
 
-      try { renderEarlyList(await (await fetch('./data/early.json', { cache: "no-store" })).json()); }
+      try { renderEarlyList(await loadJson(`${DATA}/early.json`)); }
       catch { renderEarlyList({ top: [] }); }
 
-      layers.borders = await loadBorders('./data/balkan_borders.geojson');
-      layers.hot     = await loadHotspotsHeat('./data/hotspots.geojson');
-      layers.early   = await loadEarly('./data/early.geojson');
-      layers.gdelt   = await loadGeoJson('./data/gdelt.geojson', 'GDELT');
-      layers.usgs    = await loadGeoJson('./data/usgs.geojson', 'USGS');
-      layers.gdacs   = await loadGeoJson('./data/gdacs.geojson', 'GDACS');
+      // Load borders/hot/early as real layers
+      try { layers.borders = await loadBorders(`${DATA}/balkan_borders.geojson`); } catch {}
+      try { layers.hot = await loadHotspotsHeat(`${DATA}/hotspots.geojson`); } catch {}
+      try { layers.early = await loadEarly(`${DATA}/early.geojson`); } catch {}
 
-      layers.borders.addTo(map);
-      layers.hot.addTo(map);
-      layers.gdelt.addTo(map);
+      // Load datasets (for filtering) and set into Leaflet layers
+      const [gdelt, gdeltLinked, usgs, gdacs] = await Promise.all([
+        loadJson(`${DATA}/gdelt.geojson`).catch(()=>null),
+        loadJson(`${DATA}/gdelt_linked.geojson`).catch(()=>null),
+        loadJson(`${DATA}/usgs.geojson`).catch(()=>null),
+        loadJson(`${DATA}/gdacs.geojson`).catch(()=>null),
+      ]);
 
-      document.getElementById('layerBorders').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.borders) : map.removeLayer(layers.borders));
-      document.getElementById('layerHot').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.hot) : map.removeLayer(layers.hot));
-      document.getElementById('layerEarly').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.early) : map.removeLayer(layers.early));
-      document.getElementById('layerGdelt').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.gdelt) : map.removeLayer(layers.gdelt));
-      document.getElementById('layerUsgs').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.usgs) : map.removeLayer(layers.usgs));
-      document.getElementById('layerGdacs').addEventListener('change', (e) => e.target.checked ? map.addLayer(layers.gdacs) : map.removeLayer(layers.gdacs));
+      if (gdelt) DATASETS.gdelt = gdelt;
+      if (gdeltLinked) DATASETS.gdeltLinked = gdeltLinked;
+      if (usgs) DATASETS.usgs = usgs;
+      if (gdacs) DATASETS.gdacs = gdacs;
 
+      // initial render of filterable layers
+      applyFilters();
+
+      // add non-filter layers data
+      if (layers.borders) layers.borders.addTo(map);
+      if (layers.hot) layers.hot.addTo(map);
+      layers.gdelt.addTo(map); // default on
+
+      // Hook layer checkboxes
+      document.getElementById('layerBorders').addEventListener('change', (e) => {
+        if (!layers.borders) return;
+        e.target.checked ? map.addLayer(layers.borders) : map.removeLayer(layers.borders);
+      });
+      document.getElementById('layerHot').addEventListener('change', (e) => {
+        if (!layers.hot) return;
+        e.target.checked ? map.addLayer(layers.hot) : map.removeLayer(layers.hot);
+      });
+      document.getElementById('layerEarly').addEventListener('change', (e) => {
+        if (!layers.early) return;
+        e.target.checked ? map.addLayer(layers.early) : map.removeLayer(layers.early);
+      });
+      document.getElementById('layerGdelt').addEventListener('change', (e) => {
+        e.target.checked ? map.addLayer(layers.gdelt) : map.removeLayer(layers.gdelt);
+      });
+      document.getElementById('layerGdeltLinked').addEventListener('change', (e) => {
+        e.target.checked ? map.addLayer(layers.gdeltLinked) : map.removeLayer(layers.gdeltLinked);
+      });
+      document.getElementById('layerUsgs').addEventListener('change', (e) => {
+        e.target.checked ? map.addLayer(layers.usgs) : map.removeLayer(layers.usgs);
+      });
+      document.getElementById('layerGdacs').addEventListener('change', (e) => {
+        e.target.checked ? map.addLayer(layers.gdacs) : map.removeLayer(layers.gdacs);
+      });
+
+      // Filters
+      document.getElementById("btnTodayNews").addEventListener("click", () => {
+        FILTERS.newsToday = !FILTERS.newsToday;
+        applyFilters();
+      });
+      document.getElementById("btnTodayAlerts").addEventListener("click", () => {
+        FILTERS.alertsToday = !FILTERS.alertsToday;
+        applyFilters();
+      });
+      document.getElementById("btnReset7d").addEventListener("click", () => {
+        FILTERS.newsToday = false;
+        FILTERS.alertsToday = false;
+        applyFilters();
+      });
+
+      // Top hotspots list
       try {
-        const top = await (await fetch('./data/hotspots.json', { cache: "no-store" })).json();
+        const top = await loadJson(`${DATA}/hotspots.json`);
         renderHotList(top.top || []);
       } catch {
         renderHotList([]);
       }
     }
 
-    init();
+    init().catch(err => {
+      console.error(err);
+      document.getElementById('metaLine').textContent = 'Hiba a betöltésben (lásd konzol).';
+    });
   </script>
 </body>
 </html>
