@@ -6,7 +6,7 @@ name: "WordPress weekly post (LIGHT: from prepared JSON)"
       post_status:
         description: "WordPress post status (draft | publish | private)"
         required: true
-        default: "draft"
+        default: "publish"
   schedule:
     - cron: "10 7 * * 1"
 
