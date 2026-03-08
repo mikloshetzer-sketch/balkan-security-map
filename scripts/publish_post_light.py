@@ -9,7 +9,6 @@ from typing import Any, Dict, Optional, List
 
 import requests
 
-
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS_DATA_DIR = os.path.join(ROOT, "docs", "data")
 
@@ -22,7 +21,6 @@ def load_json(path: str) -> Dict[str, Any]:
 
 
 def esc(s: Any) -> str:
-    # minimal HTML escaping
     txt = "" if s is None else str(s)
     return (
         txt.replace("&", "&amp;")
@@ -44,6 +42,62 @@ def fmt_dt(iso: Optional[str]) -> str:
         return str(iso)
 
 
+def li_list(items: List[Any]) -> str:
+    if not items:
+        return '<li style="margin:0 0 10px 0;text-align:justify;">—</li>'
+    return "\n".join(
+        [f'<li style="margin:0 0 12px 0;text-align:justify;">{esc(x)}</li>' for x in items[:12]]
+    )
+
+
+def build_hotspot_rows(top: List[Dict[str, Any]]) -> str:
+    if not top:
+        return """
+        <p style="margin:0;font-size:16px;line-height:1.8;color:#f1f5f9;text-align:justify;">
+          — nincs elég adat
+        </p>
+        """
+
+    rows = []
+    for h in top[:8]:
+        place = esc(h.get("place") or "ismeretlen térség")
+        score = esc(h.get("score"))
+        lat = esc(round(float(h.get("lat", 0)), 2))
+        lon = esc(round(float(h.get("lon", 0)), 2))
+        trend = esc(h.get("trend_arrow") or "")
+
+        trend_html = ""
+        if trend:
+            trend_html = f"""
+            <div style="font-size:14px;color:#475569;margin-top:6px;">
+              Trend: {trend}
+            </div>
+            """
+
+        rows.append(
+            f"""
+            <div style="
+                background:#f8fafc;
+                color:#1e293b;
+                border-radius:16px;
+                padding:18px 20px;
+                box-shadow:0 8px 20px rgba(0,0,0,0.14);
+                margin:0 0 14px 0;
+            ">
+              <div style="font-size:18px;font-weight:700;line-height:1.35;color:#0f172a;">
+                {place}
+              </div>
+              <div style="font-size:15px;line-height:1.7;color:#334155;margin-top:8px;">
+                <strong>Score:</strong> {score}<br/>
+                <strong>Koordináták:</strong> ({lat}, {lon})
+              </div>
+              {trend_html}
+            </div>
+            """
+        )
+    return "\n".join(rows)
+
+
 def build_html(summary: Dict[str, Any], weekly: Dict[str, Any], hotspots: Dict[str, Any], meta: Dict[str, Any]) -> str:
     gen = meta.get("generated_utc") or summary.get("generated_utc") or weekly.get("generated_utc")
     counts = (meta.get("counts") or {}) if isinstance(meta, dict) else {}
@@ -52,69 +106,181 @@ def build_html(summary: Dict[str, Any], weekly: Dict[str, Any], hotspots: Dict[s
     map_block = ""
     if map_url:
         map_block = f"""
-        <p><b>Térkép:</b> <a href="{esc(map_url)}" target="_blank" rel="noopener">Balkán Biztonsági Monitor</a></p>
+        <p style="margin:0 0 16px 0;font-size:16px;line-height:1.8;color:#f1f5f9;text-align:justify;">
+          <strong>Térkép:</strong>
+          <a href="{esc(map_url)}" target="_blank" rel="noopener"
+             style="color:#bfdbfe;text-decoration:underline;">
+             Balkán Biztonsági Monitor
+          </a>
+        </p>
         """
 
-    # top hotspots
     top = (hotspots.get("top") or []) if isinstance(hotspots, dict) else []
-    top = top[:8]
-
-    def li_list(items: List[Any]) -> str:
-        if not items:
-            return "<li>—</li>"
-        return "\n".join([f"<li>{esc(x)}</li>" for x in items[:12]])
-
     daily_bullets = summary.get("bullets") or []
     weekly_bullets = weekly.get("bullets") or []
 
-    hs_rows = ""
-    if top:
-        hs_rows = "<ol>" + "\n".join(
-            [
-                "<li>"
-                f"<b>{esc(h.get('place') or 'ismeretlen térség')}</b>"
-                f" — score: {esc(h.get('score'))}"
-                f" — ({esc(round(float(h.get('lat',0)),2))}, {esc(round(float(h.get('lon',0)),2))})"
-                f"{' ' + esc(h.get('trend_arrow')) if h.get('trend_arrow') else ''}"
-                f")"
-                "</li>"
-                for h in top
-            ]
-        ) + "</ol>"
-    else:
-        hs_rows = "<p>— (nincs elég adat)</p>"
+    summary_headline = esc(summary.get("headline") or "Napi kivonat")
+    weekly_headline = esc(weekly.get("headline") or "Heti kivonat")
 
-    html = f"""
-    <div>
-      <p><b>Frissítés:</b> {esc(fmt_dt(gen))}</p>
-      <p>
-        <b>Források (7 nap):</b>
-        GDELT: {esc(counts.get("gdelt", 0))} + linked: {esc(counts.get("gdelt_linked", 0))},
-        USGS: {esc(counts.get("usgs", 0))},
-        GDACS: {esc(counts.get("gdacs", 0))}
-      </p>
-      {map_block}
+    generated_text = esc(fmt_dt(gen))
+    gdelt = esc(counts.get("gdelt", 0))
+    gdelt_linked = esc(counts.get("gdelt_linked", 0))
+    usgs = esc(counts.get("usgs", 0))
+    gdacs = esc(counts.get("gdacs", 0))
 
-      <h3>{esc(summary.get("headline") or "Napi kivonat")}</h3>
-      <ul>
-        {li_list(daily_bullets)}
-      </ul>
+    hotspot_html = build_hotspot_rows(top)
 
-      <h3>{esc(weekly.get("headline") or "Heti kivonat")}</h3>
-      <ul>
-        {li_list(weekly_bullets)}
-      </ul>
+    return f"""
+    <div style="background:#4b5563;padding:40px 20px;">
+      <div style="max-width:1000px;margin:0 auto;display:flex;flex-direction:column;gap:18px;">
 
-      <h3>Top hotspotok</h3>
-      {hs_rows}
+        <div style="
+            background:linear-gradient(135deg,#475569,#334155);
+            padding:26px 28px;
+            border-radius:22px;
+            color:#f8fafc;
+            box-shadow:0 12px 30px rgba(0,0,0,0.22);
+            margin-bottom:8px;
+        ">
+          <div style="font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:#cbd5e1;">
+            Balkan Security Monitor
+          </div>
+          <div style="font-size:30px;font-weight:700;line-height:1.2;margin-top:8px;">
+            Balkán biztonsági monitor – heti/napi kivonat
+          </div>
+        </div>
 
-      <hr/>
-      <p style="font-size:12px;color:#666;">
-        Megjegyzés: automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése javasolt.
-      </p>
+        <section style="margin:0 0 26px 0;">
+          <div style="
+              background:#e5e7eb;
+              color:#0f172a;
+              padding:18px 22px;
+              border-radius:16px;
+              box-shadow:0 6px 18px rgba(0,0,0,0.16);
+              margin:0 0 14px 0;
+          ">
+            <div style="font-size:22px;font-weight:700;line-height:1.3;">
+              Áttekintés
+            </div>
+          </div>
+
+          <div style="padding:2px 8px 0 8px;">
+            <p style="margin:0 0 16px 0;font-size:16px;line-height:1.8;color:#f1f5f9;text-align:justify;">
+              <strong>Frissítés:</strong> {generated_text}
+            </p>
+
+            <p style="margin:0 0 16px 0;font-size:16px;line-height:1.8;color:#f1f5f9;text-align:justify;">
+              <strong>Források (7 nap):</strong>
+              GDELT: {gdelt} + linked: {gdelt_linked},
+              USGS: {usgs},
+              GDACS: {gdacs}
+            </p>
+
+            {map_block}
+          </div>
+        </section>
+
+        <section style="margin:0 0 26px 0;">
+          <div style="
+              background:#e5e7eb;
+              color:#0f172a;
+              padding:18px 22px;
+              border-radius:16px;
+              box-shadow:0 6px 18px rgba(0,0,0,0.16);
+              margin:0 0 14px 0;
+          ">
+            <div style="font-size:22px;font-weight:700;line-height:1.3;">
+              {summary_headline}
+            </div>
+          </div>
+
+          <div style="padding:2px 8px 0 8px;">
+            <div style="
+                background:rgba(255,255,255,0.08);
+                border:1px solid rgba(255,255,255,0.12);
+                border-radius:16px;
+                padding:22px 24px;
+                box-shadow:0 8px 20px rgba(0,0,0,0.12);
+            ">
+              <ul style="margin:0 0 0 22px;padding:0;color:#f1f5f9;line-height:1.8;font-size:16px;">
+                {li_list(daily_bullets)}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section style="margin:0 0 26px 0;">
+          <div style="
+              background:#e5e7eb;
+              color:#0f172a;
+              padding:18px 22px;
+              border-radius:16px;
+              box-shadow:0 6px 18px rgba(0,0,0,0.16);
+              margin:0 0 14px 0;
+          ">
+            <div style="font-size:22px;font-weight:700;line-height:1.3;">
+              {weekly_headline}
+            </div>
+          </div>
+
+          <div style="padding:2px 8px 0 8px;">
+            <div style="
+                background:rgba(255,255,255,0.08);
+                border:1px solid rgba(255,255,255,0.12);
+                border-radius:16px;
+                padding:22px 24px;
+                box-shadow:0 8px 20px rgba(0,0,0,0.12);
+            ">
+              <ul style="margin:0 0 0 22px;padding:0;color:#f1f5f9;line-height:1.8;font-size:16px;">
+                {li_list(weekly_bullets)}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section style="margin:0 0 26px 0;">
+          <div style="
+              background:#e5e7eb;
+              color:#0f172a;
+              padding:18px 22px;
+              border-radius:16px;
+              box-shadow:0 6px 18px rgba(0,0,0,0.16);
+              margin:0 0 14px 0;
+          ">
+            <div style="font-size:22px;font-weight:700;line-height:1.3;">
+              Top hotspotok
+            </div>
+          </div>
+
+          <div style="padding:2px 8px 0 8px;">
+            {hotspot_html}
+          </div>
+        </section>
+
+        <section style="margin:0;">
+          <div style="
+              background:#e5e7eb;
+              color:#0f172a;
+              padding:18px 22px;
+              border-radius:16px;
+              box-shadow:0 6px 18px rgba(0,0,0,0.16);
+              margin:0 0 14px 0;
+          ">
+            <div style="font-size:22px;font-weight:700;line-height:1.3;">
+              Megjegyzés
+            </div>
+          </div>
+
+          <div style="padding:2px 8px 0 8px;">
+            <p style="margin:0;font-size:14px;line-height:1.8;color:#e2e8f0;text-align:justify;">
+              Automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése minden esetben javasolt.
+            </p>
+          </div>
+        </section>
+
+      </div>
     </div>
     """
-    return html
 
 
 def wp_request(method: str, url: str, token: str, payload: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
@@ -140,10 +306,9 @@ def main() -> int:
         print("Missing env: WP_ACCESS_TOKEN and/or WP_BLOG_ID", file=sys.stderr)
         return 2
 
-    post_status = os.getenv("POST_STATUS", "draft").strip()  # draft/publish/private
-    post_id = os.getenv("WP_POST_ID", "").strip()  # optional: update existing post
+    post_status = os.getenv("POST_STATUS", "draft").strip()
+    post_id = os.getenv("WP_POST_ID", "").strip()
 
-    # load prepared data (this is the key: NO GDELT calls here)
     summary = load_json(os.path.join(DOCS_DATA_DIR, "summary.json"))
     weekly = load_json(os.path.join(DOCS_DATA_DIR, "weekly.json"))
     hotspots = load_json(os.path.join(DOCS_DATA_DIR, "hotspots.json"))
