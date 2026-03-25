@@ -17,6 +17,14 @@ import requests
 from dateutil import parser as dateparser
 
 # ============================================================
+# Optional integration: risk snapshot builder
+# ============================================================
+try:
+    from build_risk_snapshot import main as build_risk_snapshot_main
+except Exception:
+    build_risk_snapshot_main = None
+
+# ============================================================
 # PATHS (BALKAN repo: docs/data)
 # ============================================================
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +32,7 @@ DOCS_DATA_DIR = os.path.join(ROOT, "docs", "data")
 CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
 COUNTRIES_CACHE_PATH = os.path.join(DOCS_DATA_DIR, "balkan_countries.geojson")
 
-USER_AGENT = "balkan-security-map/3.0 (github actions)"
+USER_AGENT = "balkan-security-map/3.1 (github actions)"
 TIMEOUT = 30
 
 # ============================================================
@@ -58,7 +66,7 @@ GDACS_KEEP_DAYS = 7
 
 # GDELT
 GDELT_GEO_DAYS = 7
-GDELT_EXPORT_DAYS = 14  # linked events window (keep longer if you want)
+GDELT_EXPORT_DAYS = 14  # linked events window
 MASTERFILELIST_URL = "http://data.gdeltproject.org/gdeltv2/masterfilelist.txt"
 MAX_SOURCES_PER_EVENT = 8
 
@@ -559,16 +567,27 @@ def gdelt_geo_query(country: str, kw: List[str], days: int, maxpoints: int) -> T
                     "type": "News",
                     "time": to_utc_z(dt),
                     "title": props.get("name") or props.get("title") or f"{country}",
-                    "url": url_guess,          # may be None
-                    "search_url": search_url,  # always exists
+                    "url": url_guess,
+                    "search_url": search_url,
                     "country_hint": country,
-                    "category": None,          # bucket later
+                    "category": None,
                     "gdelt_bucket": None,
                 },
             )
         )
 
-    dbg = {"ok": True, "status": resp.status_code, "query_len": len(q), "returned": len(out), "country": country, "kw": kw}
+    dbg = {
+        "generated_utc": to_utc_z(datetime.now(timezone.utc)),
+        "api": "geo",
+        "days": days,
+        "per_query_points": maxpoints,
+        "returned": len(out),
+        "country": country,
+        "kw": kw,
+        "query_len": len(q),
+        "status": resp.status_code,
+        "ok": True,
+    }
     return out, dbg
 
 def fetch_gdelt_geo(geoms: Dict[str, Dict[str, Any]], days: int = 7, maxpoints_per_query: int = 250) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
@@ -680,7 +699,6 @@ def fetch_gdelt_export_linked(geoms: Dict[str, Dict[str, Any]], lookback_days: i
         return []
 
     live_agg: Dict[str, Dict[str, Any]] = {}
-    rows = 0
 
     for ts, url in recent:
         try:
@@ -693,7 +711,6 @@ def fetch_gdelt_export_linked(geoms: Dict[str, Dict[str, Any]], lookback_days: i
 
         reader = csv.reader(io.StringIO(raw), delimiter="\t")
         for row in reader:
-            rows += 1
             if len(row) < 61:
                 continue
 
@@ -910,7 +927,16 @@ def zone_multiplier(lon: float, lat: float) -> Tuple[float, Optional[str]]:
 
 def neighbor_keys(k: Tuple[int, int]) -> List[Tuple[int, int]]:
     x, y = k
-    return [(x - 1, y - 1), (x, y - 1), (x + 1, y - 1), (x - 1, y), (x + 1, y), (x - 1, y + 1), (x, y + 1), (x + 1, y + 1)]
+    return [
+        (x - 1, y - 1),
+        (x, y - 1),
+        (x + 1, y - 1),
+        (x - 1, y),
+        (x + 1, y),
+        (x - 1, y + 1),
+        (x, y + 1),
+        (x + 1, y + 1),
+    ]
 
 def build_early_warning(all_features: List[Dict[str, Any]], cell_deg: float = 0.5, lookback_days: int = 7, recent_hours: int = 48, top_n: int = 10):
     now = datetime.now(timezone.utc)
@@ -965,7 +991,15 @@ def build_early_warning(all_features: List[Dict[str, Any]], cell_deg: float = 0.
         esc = (recent * 10.0) * math.log1p(ratio) * mix_boost * z_mult
 
         raw[k] = esc
-        meta[k] = {"recent": round(recent, 3), "baseline": round(base, 3), "ratio": round(ratio, 3), "src_mix": int(src_mix), "zone": z_name, "zone_mult": round(z_mult, 2), "src_recent": b["src_recent"]}
+        meta[k] = {
+            "recent": round(recent, 3),
+            "baseline": round(base, 3),
+            "ratio": round(ratio, 3),
+            "src_mix": int(src_mix),
+            "zone": z_name,
+            "zone_mult": round(z_mult, 2),
+            "src_recent": b["src_recent"],
+        }
 
     if not raw:
         return [], []
@@ -982,7 +1016,13 @@ def build_early_warning(all_features: List[Dict[str, Any]], cell_deg: float = 0.
         score0_100 = min(100.0, (esc_raw * spread_boost) / max_raw * 100.0)
 
         lon_c, lat_c = cell_center(k[0], k[1], cell_deg)
-        props = {"type": "early_warning", "escalation": round(score0_100, 1), "cell_deg": cell_deg, "neighbor_active": int(neigh_active), **meta[k]}
+        props = {
+            "type": "early_warning",
+            "escalation": round(score0_100, 1),
+            "cell_deg": cell_deg,
+            "neighbor_active": int(neigh_active),
+            **meta[k],
+        }
         signals.append(to_feature(lon_c, lat_c, props))
         rows.append({"lon": lon_c, "lat": lat_c, **props})
 
@@ -993,12 +1033,12 @@ def build_early_warning(all_features: List[Dict[str, Any]], cell_deg: float = 0.
 # Weekly topics (simple)
 # ============================================================
 STOP = {
-    "the","a","an","and","or","to","of","in","on","for","with","as","at","by","from",
-    "is","are","was","were","be","been","it","this","that","these","those",
-    "over","after","before","into","about","amid","during","near",
-    "says","say","new","up","down",
-    "serbia","kosovo","greece","turkey","romania","bulgaria","croatia","albania",
-    "bosnia","herzegovina","montenegro","slovenia","moldova","hungary","macedonia",
+    "the", "a", "an", "and", "or", "to", "of", "in", "on", "for", "with", "as", "at", "by", "from",
+    "is", "are", "was", "were", "be", "been", "it", "this", "that", "these", "those",
+    "over", "after", "before", "into", "about", "amid", "during", "near",
+    "says", "say", "new", "up", "down",
+    "serbia", "kosovo", "greece", "turkey", "romania", "bulgaria", "croatia", "albania",
+    "bosnia", "herzegovina", "montenegro", "slovenia", "moldova", "hungary", "macedonia",
 }
 WORD_RE = re.compile(r"[a-zA-Z]{3,}")
 
@@ -1042,7 +1082,12 @@ def build_weekly(all_features: List[Dict[str, Any]]) -> Dict[str, Any]:
         bullets.append("Gyakori témák a hírcímekben: " + ", ".join(topics) + ".")
     bullets.append("Megjegyzés: automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése javasolt.")
 
-    return {"generated_utc": to_utc_z(now), "headline": "Heti kivonat – elmúlt 7 nap", "bullets": bullets, "counts": counts}
+    return {
+        "generated_utc": to_utc_z(now),
+        "headline": "Heti kivonat – elmúlt 7 nap",
+        "bullets": bullets,
+        "counts": counts,
+    }
 
 # ============================================================
 # Daily summary + alert
@@ -1070,11 +1115,23 @@ def alert_from_top(top: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
     place = top.get("place") or "ismeretlen térség"
 
     if arrow == "🆕":
-        return {"level": "info", "title": "Új góc", "text": f"Új hotspot jelent meg: {place}. Érdemes követni 24–72 órában."}
+        return {
+            "level": "info",
+            "title": "Új góc",
+            "text": f"Új hotspot jelent meg: {place}. Érdemes követni 24–72 órában.",
+        }
     if arrow == "🔺":
         if ch is not None and ch >= 25:
-            return {"level": "high", "title": "Emelkedő feszültség", "text": f"Erősödő hotspot: {place} (+{ch:.0f}%)."}
-        return {"level": "medium", "title": "Emelkedő feszültség", "text": f"Felfutó jelzések: {place}."}
+            return {
+                "level": "high",
+                "title": "Emelkedő feszültség",
+                "text": f"Erősödő hotspot: {place} (+{ch:.0f}%).",
+            }
+        return {
+            "level": "medium",
+            "title": "Emelkedő feszültség",
+            "text": f"Felfutó jelzések: {place}.",
+        }
     return None
 
 def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str, Any]], counts: Dict[str, int]) -> Dict[str, Any]:
@@ -1122,7 +1179,7 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
     bullets = [
         top_text,
         trend_text,
-        f"Forráskép: GDELT {counts.get('gdelt',0)} + linked {counts.get('gdelt_linked',0)}, USGS {counts.get('usgs',0)}, GDACS {counts.get('gdacs',0)}.",
+        f"Forráskép: GDELT {counts.get('gdelt', 0)} + linked {counts.get('gdelt_linked', 0)}, USGS {counts.get('usgs', 0)}, GDACS {counts.get('gdacs', 0)}.",
         "Megjegyzés: automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése javasolt.",
     ]
 
@@ -1197,8 +1254,8 @@ def main() -> int:
     # Save source layers
     save_geojson(os.path.join(DOCS_DATA_DIR, "usgs.geojson"), usgs)
     save_geojson(os.path.join(DOCS_DATA_DIR, "gdacs.geojson"), gdacs)
-    save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt.geojson"), gdelt)  # GEO points
-    save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt_linked.geojson"), gdelt_linked)  # linked events
+    save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt.geojson"), gdelt)
+    save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt_linked.geojson"), gdelt_linked)
 
     # Save debug
     with open(os.path.join(DOCS_DATA_DIR, "gdelt_debug.json"), "w", encoding="utf-8") as f:
@@ -1250,12 +1307,28 @@ def main() -> int:
         "counts": counts,
         "rolling_days": ROLLING_DAYS,
         "countries": BALKAN_COUNTRIES,
-        "bbox": {"lon_min": BALKAN_BBOX[0], "lat_min": BALKAN_BBOX[1], "lon_max": BALKAN_BBOX[2], "lat_max": BALKAN_BBOX[3]},
+        "bbox": {
+            "lon_min": BALKAN_BBOX[0],
+            "lat_min": BALKAN_BBOX[1],
+            "lon_max": BALKAN_BBOX[2],
+            "lat_max": BALKAN_BBOX[3],
+        },
         "gdelt": {"geo_days": GDELT_GEO_DAYS, "export_days": GDELT_EXPORT_DAYS},
         "early": {"recent_hours": 48, "lookback_days": 7},
     }
     with open(os.path.join(DOCS_DATA_DIR, "meta.json"), "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
+
+    # Optional integrated build of risk_daily.json
+    if build_risk_snapshot_main is not None:
+        try:
+            print("[risk] building risk_daily.json ...")
+            build_risk_snapshot_main()
+            print("[risk] risk_daily.json created.")
+        except Exception as e:
+            print(f"[risk] build failed: {e}")
+    else:
+        print("[risk] build_risk_snapshot not available, skipping risk_daily.json generation.")
 
     print("Done.")
     return 0
