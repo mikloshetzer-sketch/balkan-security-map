@@ -490,7 +490,7 @@ def aggregate_country_risk(incidents: List[Dict[str, Any]]) -> List[Dict[str, An
 
         row["dimension_scores"] = normalized_dim_scores
 
-        normalized_overall = row["overall_score"] / (1.0 + 0.12 * row["overall_score"])
+        normalized_overall = row["overall_score"] / (2.0 + 0.35 * row["overall_score"])
         row["overall_score"] = round(normalized_overall, 3)
 
         row["dimensions"] = {
