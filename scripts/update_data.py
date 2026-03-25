@@ -25,18 +25,18 @@ except Exception:
     build_risk_snapshot_main = None
 
 # ============================================================
-# PATHS (BALKAN repo: docs/data)
+# PATHS
 # ============================================================
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS_DATA_DIR = os.path.join(ROOT, "docs", "data")
 CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
 COUNTRIES_CACHE_PATH = os.path.join(DOCS_DATA_DIR, "balkan_countries.geojson")
 
-USER_AGENT = "balkan-security-map/3.2 (github actions)"
+USER_AGENT = "balkan-security-map/3.3 (github actions)"
 TIMEOUT = 30
 
 # ============================================================
-# REGION: Balkans (+ HU/MD like your original list)
+# REGION
 # ============================================================
 BALKAN_COUNTRIES = [
     "Albania",
@@ -55,17 +55,13 @@ BALKAN_COUNTRIES = [
     "Hungary",
 ]
 
-# rough pre-filter (final filter is point-in-polygon)
 BALKAN_BBOX = (13.0, 37.0, 30.0, 47.5)
 
-# rolling retention
 ROLLING_DAYS = 7
 USGS_DAYS = 7
 GDACS_DAYS = 14
 GDACS_KEEP_DAYS = 7
 
-# GDELT
-GDELT_GEO_DAYS = 7
 GDELT_EXPORT_DAYS = 14
 MASTERFILELIST_URL = "http://data.gdeltproject.org/gdeltv2/masterfilelist.txt"
 MAX_SOURCES_PER_EVENT = 8
@@ -85,7 +81,6 @@ CATEGORY_BUCKETS = [
     ("security_politics", ["security", "intelligence", "sanctions", "terror", "extremism"]),
 ]
 
-# CAMEO root code rough mapping
 CAMEO_ROOT_TO_CAT = {
     "18": "violence",
     "19": "violence",
@@ -105,26 +100,6 @@ SENSITIVE_ZONES = [
     {"name": "Görög–török Égei", "bbox": (24.0, 35.6, 28.9, 41.5), "mult": 1.25},
     {"name": "Moldova–Transznisztria", "bbox": (28.0, 46.0, 30.3, 48.2), "mult": 1.30},
 ]
-
-# ============================================================
-# GDELT GEO country query terms
-# ============================================================
-GDELT_GEO_COUNTRY_TERMS = {
-    "Albania": ["Albania", "Tirana"],
-    "Bosnia and Herzegovina": ["Bosnia", "Sarajevo", "Banja Luka", "Republika Srpska"],
-    "Bulgaria": ["Bulgaria", "Sofia"],
-    "Croatia": ["Croatia", "Zagreb"],
-    "Greece": ["Greece", "Athens", "Aegean", "Evros"],
-    "Kosovo": ["Kosovo", "Pristina", "Mitrovica"],
-    "Montenegro": ["Montenegro", "Podgorica", "Bar"],
-    "North Macedonia": ["North Macedonia", "Skopje"],
-    "Romania": ["Romania", "Bucharest"],
-    "Serbia": ["Serbia", "Belgrade"],
-    "Slovenia": ["Slovenia", "Ljubljana"],
-    "Turkey": ["Turkey", "Ankara", "Istanbul"],
-    "Moldova": ["Moldova", "Chisinau", "Transnistria"],
-    "Hungary": ["Hungary", "Budapest"],
-}
 
 # ============================================================
 # Basics
@@ -526,166 +501,17 @@ def fetch_gdacs(geoms: Dict[str, Dict[str, Any]], days: int = 14) -> List[Dict[s
     return out
 
 # ============================================================
-# GDELT GEO
+# GDELT GEO disabled intentionally
 # ============================================================
-def gdelt_geo_query(country: str, kw: List[str], days: int, maxpoints: int) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
-    """
-    Robust GDELT GEO fetch.
-    If the endpoint fails or returns non-JSON / invalid content,
-    we return an empty list + debug instead of throwing.
-    """
-    url = "https://api.gdeltproject.org/api/v2/geo/geo"
-    end = datetime.now(timezone.utc)
-    start = end - timedelta(days=days)
-
-    kwq = " OR ".join([f'"{k}"' if " " in k else k for k in kw])
-
-    country_terms = GDELT_GEO_COUNTRY_TERMS.get(country, [country])
-    country_q = " OR ".join([f'"{t}"' if " " in t else t for t in country_terms])
-
-    q = f"({kwq}) AND ({country_q})"
-
-    params = {
-        "query": q,
-        "format": "json",
-        "mode": "GeoJSON",
-        "formatgeojson": "1",
-        "startdatetime": start.strftime("%Y%m%d%H%M%S"),
-        "enddatetime": end.strftime("%Y%m%d%H%M%S"),
-        "maxpoints": str(maxpoints),
-        "timelinesmooth": "0",
-    }
-
-    debug: Dict[str, Any] = {
+def fetch_gdelt_geo_disabled() -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+    return [], {
         "generated_utc": to_utc_z(datetime.now(timezone.utc)),
         "api": "geo",
-        "country": country,
-        "kw": kw,
-        "query": q,
-        "query_len": len(q),
-        "days": days,
-        "per_query_points": maxpoints,
-        "ok": False,
+        "enabled": False,
+        "reason": "disabled_for_stability",
+        "returned_total": 0,
+        "runs": [],
     }
-
-    try:
-        resp = http_get(url, params=params)
-    except Exception as e:
-        debug["error"] = str(e)
-        debug["returned"] = 0
-        return [], debug
-
-    debug["status"] = resp.status_code
-
-    txt = resp.text or ""
-    try:
-        data = resp.json()
-    except Exception:
-        debug["error"] = "non_json_response"
-        debug["head"] = txt[:240]
-        debug["returned"] = 0
-        return [], debug
-
-    feats = data.get("features")
-    if not isinstance(feats, list):
-        debug["error"] = "missing_features"
-        debug["returned"] = 0
-        debug["body_keys"] = list(data.keys())[:20] if isinstance(data, dict) else []
-        return [], debug
-
-    search_url = (
-        "https://api.gdeltproject.org/api/v2/doc/doc?"
-        + "mode=ArtList&format=html&query="
-        + requests.utils.quote(q)
-    )
-
-    out: List[Dict[str, Any]] = []
-    for f in feats:
-        geom = f.get("geometry") or {}
-        coords = geom.get("coordinates") or []
-        if len(coords) < 2:
-            continue
-        try:
-            lon, lat = float(coords[0]), float(coords[1])
-        except Exception:
-            continue
-
-        props = f.get("properties") or {}
-        t = props.get("date") or props.get("datetime") or props.get("time") or None
-        dt = parse_time_iso(t) if t else None
-        if dt is None:
-            dt = datetime.now(timezone.utc)
-
-        url_guess = props.get("url") or props.get("sourceUrl") or None
-
-        out.append(
-            to_feature(
-                lon,
-                lat,
-                {
-                    "source": "GDELT",
-                    "kind": "news_geo",
-                    "type": "News",
-                    "time": to_utc_z(dt),
-                    "title": props.get("name") or props.get("title") or country,
-                    "url": url_guess,
-                    "search_url": search_url,
-                    "country_hint": country,
-                    "category": None,
-                    "gdelt_bucket": None,
-                },
-            )
-        )
-
-    debug["ok"] = True
-    debug["returned"] = len(out)
-    return out, debug
-
-def fetch_gdelt_geo(geoms: Dict[str, Dict[str, Any]], days: int = 7, maxpoints_per_query: int = 250) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
-    all_out: List[Dict[str, Any]] = []
-    dbg_runs: List[Dict[str, Any]] = []
-    ok_runs = 0
-    failed_runs = 0
-
-    for country in BALKAN_COUNTRIES:
-        for bucket_name, kw in CATEGORY_BUCKETS:
-            feats, dbg = gdelt_geo_query(country=country, kw=kw, days=days, maxpoints=maxpoints_per_query)
-            dbg["bucket"] = bucket_name
-            dbg_runs.append(dbg)
-
-            if dbg.get("ok"):
-                ok_runs += 1
-            else:
-                failed_runs += 1
-                print(f"[GDELT GEO] skipped country={country} bucket={bucket_name}: {dbg.get('error', 'unknown')}")
-
-            for f in feats:
-                coords = (f.get("geometry") or {}).get("coordinates") or []
-                if len(coords) < 2:
-                    continue
-                lon, lat = float(coords[0]), float(coords[1])
-                if not in_balkan_countries(lon, lat, geoms):
-                    continue
-                p = f.get("properties") or {}
-                p["category"] = bucket_name
-                p["gdelt_bucket"] = bucket_name
-                f["properties"] = p
-                all_out.append(f)
-
-    all_out = merge_dedup([], clamp_times(all_out))
-    all_out = trim_by_days(all_out, keep_days=ROLLING_DAYS)
-
-    debug = {
-        "generated_utc": to_utc_z(datetime.now(timezone.utc)),
-        "api": "geo",
-        "days": days,
-        "per_query_points": maxpoints_per_query,
-        "ok_runs": ok_runs,
-        "failed_runs": failed_runs,
-        "returned_total": len(all_out),
-        "runs": dbg_runs,
-    }
-    return all_out, debug
 
 # ============================================================
 # GDELT EXPORT (linked events)
@@ -1256,7 +1082,6 @@ def main() -> int:
 
     prev_usgs = load_geojson_features(os.path.join(DOCS_DATA_DIR, "usgs.geojson"))
     prev_gdacs = load_geojson_features(os.path.join(DOCS_DATA_DIR, "gdacs.geojson"))
-    prev_gdelt = load_geojson_features(os.path.join(DOCS_DATA_DIR, "gdelt.geojson"))
     prev_gdelt_linked = load_geojson_features(os.path.join(DOCS_DATA_DIR, "gdelt_linked.geojson"))
 
     try:
@@ -1271,11 +1096,7 @@ def main() -> int:
         print(f"[GDACS] fetch failed: {e}")
         gdacs_new = []
 
-    try:
-        gdelt_geo_new, gdelt_debug = fetch_gdelt_geo(geoms, days=GDELT_GEO_DAYS, maxpoints_per_query=250)
-    except Exception as e:
-        print(f"[GDELT GEO] fetch failed: {e}")
-        gdelt_geo_new, gdelt_debug = [], {"ok": False, "error": str(e)}
+    gdelt_geo_new, gdelt_debug = fetch_gdelt_geo_disabled()
 
     try:
         gdelt_linked_new = fetch_gdelt_export_linked(geoms, lookback_days=GDELT_EXPORT_DAYS)
@@ -1285,12 +1106,11 @@ def main() -> int:
 
     usgs_merged = merge_dedup(clamp_times(prev_usgs), clamp_times(usgs_new))
     gdacs_merged = merge_dedup(clamp_times(prev_gdacs), clamp_times(gdacs_new))
-    gdelt_merged = merge_dedup(clamp_times(prev_gdelt), clamp_times(gdelt_geo_new))
     gdelt_linked_merged = merge_dedup(clamp_times(prev_gdelt_linked), clamp_times(gdelt_linked_new))
 
     usgs = trim_by_days(usgs_merged, keep_days=ROLLING_DAYS)
     gdacs = trim_by_days(gdacs_merged, keep_days=GDACS_KEEP_DAYS)
-    gdelt = trim_by_days(gdelt_merged, keep_days=ROLLING_DAYS)
+    gdelt = []  # intentionally disabled GEO layer
     gdelt_linked = trim_by_days(gdelt_linked_merged, keep_days=GDELT_EXPORT_DAYS)
 
     save_geojson(os.path.join(DOCS_DATA_DIR, "usgs.geojson"), usgs)
@@ -1350,7 +1170,10 @@ def main() -> int:
             "lon_max": BALKAN_BBOX[2],
             "lat_max": BALKAN_BBOX[3],
         },
-        "gdelt": {"geo_days": GDELT_GEO_DAYS, "export_days": GDELT_EXPORT_DAYS},
+        "gdelt": {
+            "geo_enabled": False,
+            "export_days": GDELT_EXPORT_DAYS,
+        },
         "early": {"recent_hours": 48, "lookback_days": 7},
     }
     with open(os.path.join(DOCS_DATA_DIR, "meta.json"), "w", encoding="utf-8") as f:
