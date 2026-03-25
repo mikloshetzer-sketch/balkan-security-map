@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import json
-import math
 import os
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple
@@ -15,7 +14,6 @@ from risk_taxonomy import (
     COUNTRIES,
     DIMENSIONS,
     classify_record,
-    score_to_level,
 )
 
 # ============================================================
@@ -119,43 +117,67 @@ def extract_coords(feature: Dict[str, Any]) -> Tuple[Optional[float], Optional[f
     return lon, lat
 
 
+def compact_location_text(props: Dict[str, Any]) -> str:
+    return str(
+        props.get("location")
+        or props.get("place")
+        or props.get("country_hint")
+        or ""
+    )
+
+
+# ============================================================
+# TIME / SOURCE WEIGHTS
+# ============================================================
+
 def time_weight(dt: Optional[datetime], now: datetime) -> float:
     """
-    Rövidtávú napi snapshothoz erősebb időbeli súly.
+    Rövidtávú snapshothoz:
+    - friss esemény számít a legtöbbet
+    - 3 nap után gyorsabban csökken
     """
     if dt is None:
-        return 0.55
+        return 0.45
 
     age_hours = (now - dt).total_seconds() / 3600.0
     if age_hours <= 6:
         return 1.00
     if age_hours <= 24:
-        return 0.90
+        return 0.85
     if age_hours <= 72:
-        return 0.70
+        return 0.60
     if age_hours <= 7 * 24:
-        return 0.45
-    return 0.25
+        return 0.30
+    return 0.12
 
 
 def source_modifier(source: str, kind: str) -> float:
     """
-    A risk_taxonomy-ben már van source_weight, de itt még finomhangoljuk
-    a mostani pipeline kimeneteire.
+    A pipeline jelenlegi forrásaira külön finomhangolás.
     """
     source = (source or "").strip()
     kind = (kind or "").strip()
 
     if source == "GDELT" and kind == "news_linked":
-        return 1.15
+        return 1.00
     if source == "GDELT" and kind == "news_geo":
-        return 0.95
+        return 0.85
     if source == "GDACS":
-        return 0.70
+        return 0.35
     if source == "USGS":
-        return 0.55
-    return 1.00
+        return 0.25
+    return 0.90
 
+
+def dimension_share(dimensions: List[str]) -> float:
+    if not dimensions:
+        return 1.0
+    return 1.0 / float(len(dimensions))
+
+
+# ============================================================
+# COUNTRY INFERENCE
+# ============================================================
 
 def infer_country_from_feature(props: Dict[str, Any], title: str, summary: str) -> Optional[str]:
     candidates = [
@@ -195,45 +217,72 @@ def infer_country_from_feature(props: Dict[str, Any], title: str, summary: str) 
     return None
 
 
+# ============================================================
+# LEVELS
+# ============================================================
+
 def dim_score_to_level(score: float) -> str:
     """
-    Napi aggregált dimenziós score -> státusz.
-    Ezek lazább küszöbök, mint az eseményszintű score.
+    Reálisabb dimenziós küszöbök.
     """
-    if score >= 9.0:
+    if score >= 4.5:
         return "critical"
-    if score >= 5.5:
+    if score >= 2.6:
         return "tense"
-    if score >= 2.8:
+    if score >= 1.1:
         return "elevated"
     return "normal"
 
 
-def overall_from_dimensions(dim_levels: Dict[str, str], dim_scores: Dict[str, float]) -> str:
-    """
-    Össz-szintet a legrosszabb dimenzió + szélesség alapján adjuk.
-    """
+def overall_from_dimensions(dim_levels: Dict[str, str], dim_scores: Dict[str, float], incident_count: int) -> str:
     values = list(dim_levels.values())
-    score_values = list(dim_scores.values())
+    total_score = sum(dim_scores.values())
 
     critical_count = sum(1 for v in values if v == "critical")
     tense_count = sum(1 for v in values if v == "tense")
     elevated_count = sum(1 for v in values if v == "elevated")
-    total_score = sum(score_values)
 
-    if critical_count >= 1:
+    if critical_count >= 2:
         return "critical"
+    if critical_count == 1 and tense_count >= 1:
+        return "critical"
+    if critical_count == 1:
+        return "tense"
     if tense_count >= 2:
-        return "critical"
-    if tense_count >= 1 and elevated_count >= 2:
         return "tense"
-    if tense_count >= 1:
+    if tense_count == 1 and elevated_count >= 1:
         return "tense"
+    if tense_count == 1:
+        return "elevated"
     if elevated_count >= 2:
         return "elevated"
-    if elevated_count >= 1:
+    if elevated_count == 1 and incident_count >= 3:
         return "elevated"
-    if total_score >= 8.0:
+    if total_score >= 6.0:
+        return "elevated"
+    return "normal"
+
+
+def regional_overall_from_countries(country_rows: List[Dict[str, Any]]) -> str:
+    critical_count = sum(1 for row in country_rows if row.get("overall") == "critical")
+    tense_count = sum(1 for row in country_rows if row.get("overall") == "tense")
+    elevated_count = sum(1 for row in country_rows if row.get("overall") == "elevated")
+
+    if critical_count >= 2:
+        return "critical"
+    if critical_count == 1 and tense_count >= 1:
+        return "critical"
+    if critical_count == 1:
+        return "tense"
+    if tense_count >= 2:
+        return "tense"
+    if tense_count == 1 and elevated_count >= 2:
+        return "tense"
+    if tense_count == 1:
+        return "elevated"
+    if elevated_count >= 3:
+        return "elevated"
+    if elevated_count >= 1:
         return "elevated"
     return "normal"
 
@@ -293,7 +342,7 @@ def feature_to_incident(feature: Dict[str, Any]) -> Optional[Dict[str, Any]]:
 
     source = props.get("source") or "unknown"
     kind = props.get("kind") or ""
-    location_text = props.get("location") or props.get("place") or props.get("country_hint") or ""
+    location_text = compact_location_text(props)
 
     classified = classify_record(
         title=title,
@@ -303,16 +352,22 @@ def feature_to_incident(feature: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         location_text=location_text,
     )
 
+    dims = classified.dimensions or ["political"]
+    share = dimension_share(dims)
+
     base_score = float(classified.base_score)
     score = base_score * source_modifier(source, kind)
-
-    # Természeti források esetén ne húzzák fel túl agresszíven a biztonsági képet.
-    if source == "USGS":
-        score *= 0.65
-    elif source == "GDACS":
-        score *= 0.80
-
     score *= time_weight(event_time, datetime.now(timezone.utc))
+
+    # További fék, hogy a teljes rendszer ne fusson el.
+    score *= 0.75
+
+    # Természeti és riasztási források ne vigyék el a biztonsági képet.
+    if source == "USGS":
+        score *= 0.40
+    elif source == "GDACS":
+        score *= 0.55
+
     score = round(score, 3)
 
     return {
@@ -326,13 +381,13 @@ def feature_to_incident(feature: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         "lon": lon,
         "lat": lat,
         "event_type": classified.event_type,
-        "dimensions": classified.dimensions,
+        "dimensions": dims,
+        "dimension_share": round(share, 4),
         "severity": int(classified.severity),
         "confidence": round(float(classified.confidence), 3),
         "source_type": classified.source_type,
         "geo_weight": round(float(classified.geo_weight), 3),
         "score": score,
-        "level_hint": score_to_level(score),
         "matched_keywords": classified.matched_keywords,
     }
 
@@ -398,14 +453,13 @@ def aggregate_country_risk(incidents: List[Dict[str, Any]]) -> List[Dict[str, An
             row["recent_incident_count"] += 1
 
         inc_score = float(inc.get("score") or 0.0)
-        dims = inc.get("dimensions") or []
-        if not dims:
-            dims = ["political"]
+        dims = inc.get("dimensions") or ["political"]
+        share = float(inc.get("dimension_share") or 1.0)
 
         for dim in dims:
             if dim not in row["dimension_scores"]:
                 continue
-            row["dimension_scores"][dim] += inc_score
+            row["dimension_scores"][dim] += inc_score * share
 
         row["overall_score"] += inc_score
         confidence_acc[country].append(float(inc.get("confidence") or 0.0))
@@ -417,7 +471,7 @@ def aggregate_country_risk(incidents: List[Dict[str, Any]]) -> List[Dict[str, An
             "time": inc.get("time"),
             "title": inc.get("title"),
             "event_type": inc.get("event_type"),
-            "score": inc_score,
+            "score": round(inc_score, 3),
             "source": inc.get("source"),
             "dimensions": inc.get("dimensions"),
         })
@@ -427,24 +481,37 @@ def aggregate_country_risk(incidents: List[Dict[str, Any]]) -> List[Dict[str, An
     for country in countries:
         row = rows[country]
 
-        row["dimension_scores"] = {
-            k: round(v, 3) for k, v in row["dimension_scores"].items()
-        }
+        # Cap / normalizálás országos szinten
+        normalized_dim_scores: Dict[str, float] = {}
+        for dim, raw_score in row["dimension_scores"].items():
+            # enyhe saturáció: sok eseménynél se menjen el kontroll nélkül
+            norm_score = raw_score / (1.0 + 0.18 * raw_score)
+            normalized_dim_scores[dim] = round(norm_score, 3)
+
+        row["dimension_scores"] = normalized_dim_scores
+
+        normalized_overall = row["overall_score"] / (1.0 + 0.12 * row["overall_score"])
+        row["overall_score"] = round(normalized_overall, 3)
 
         row["dimensions"] = {
             dim: dim_score_to_level(score)
             for dim, score in row["dimension_scores"].items()
         }
 
-        row["overall_score"] = round(float(row["overall_score"]), 3)
-        row["overall"] = overall_from_dimensions(row["dimensions"], row["dimension_scores"])
+        row["overall"] = overall_from_dimensions(
+            row["dimensions"],
+            row["dimension_scores"],
+            row["incident_count"],
+        )
 
         conf_vals = confidence_acc[country]
         conf_avg = sum(conf_vals) / len(conf_vals) if conf_vals else 0.0
-        if row["incident_count"] >= 4:
-            conf_avg += 0.08
-        if row["recent_incident_count"] >= 2:
+
+        # Enyhe boost csak akkor, ha tényleg van adat
+        if row["incident_count"] >= 3:
             conf_avg += 0.05
+        if row["recent_incident_count"] >= 2:
+            conf_avg += 0.04
 
         conf_avg = clamp(conf_avg, 0.0, 1.0)
         row["confidence_value"] = round(conf_avg, 3)
@@ -481,23 +548,12 @@ def aggregate_regional_risk(country_rows: List[Dict[str, Any]]) -> Dict[str, Any
 
     dim_totals = {dim: 0.0 for dim in DIMENSIONS}
     driver_scores: Dict[str, float] = {}
-    total_score = 0.0
-    critical_count = 0
-    tense_count = 0
-    elevated_count = 0
     conf_values: List[float] = []
 
-    for row in country_rows:
-        total_score += float(row.get("overall_score") or 0.0)
-        conf_values.append(float(row.get("confidence_value") or 0.0))
+    active_rows = [row for row in country_rows if row.get("incident_count", 0) > 0]
 
-        overall = row.get("overall")
-        if overall == "critical":
-            critical_count += 1
-        elif overall == "tense":
-            tense_count += 1
-        elif overall == "elevated":
-            elevated_count += 1
+    for row in active_rows:
+        conf_values.append(float(row.get("confidence_value") or 0.0))
 
         for dim, score in (row.get("dimension_scores") or {}).items():
             if dim in dim_totals:
@@ -506,23 +562,22 @@ def aggregate_regional_risk(country_rows: List[Dict[str, Any]]) -> Dict[str, Any
         for drv in row.get("drivers") or []:
             driver_scores[drv] = driver_scores.get(drv, 0.0) + 1.0
 
-    regional_dimensions = {
-        dim: round(score, 3) for dim, score in dim_totals.items()
-    }
+    # Régiós score ne összeg legyen, hanem átlagos aktív terhelés
+    if active_rows:
+        avg_overall = sum(float(r.get("overall_score") or 0.0) for r in active_rows) / len(active_rows)
+    else:
+        avg_overall = 0.0
+
+    regional_dimensions = {}
+    for dim, total in dim_totals.items():
+        regional_dimensions[dim] = round((total / max(1, len(active_rows))), 3)
 
     regional_dim_levels = {
-        dim: dim_score_to_level(score / 3.0)  # enyhe normalizálás régiós összegre
+        dim: dim_score_to_level(score)
         for dim, score in regional_dimensions.items()
     }
 
-    if critical_count >= 1:
-        overall = "critical"
-    elif tense_count >= 2:
-        overall = "tense"
-    elif tense_count >= 1 or elevated_count >= 3:
-        overall = "elevated"
-    else:
-        overall = "normal"
+    overall = regional_overall_from_countries(country_rows)
 
     conf_avg = sum(conf_values) / len(conf_values) if conf_values else 0.0
 
@@ -543,7 +598,7 @@ def aggregate_regional_risk(country_rows: List[Dict[str, Any]]) -> Dict[str, Any
 
     return {
         "overall": overall,
-        "overall_score": round(total_score, 3),
+        "overall_score": round(avg_overall, 3),
         "confidence": confidence_label(conf_avg),
         "confidence_value": round(conf_avg, 3),
         "dimensions": regional_dim_levels,
@@ -566,7 +621,7 @@ def main() -> int:
 
     output = {
         "generated_utc": to_utc_z(datetime.now(timezone.utc)),
-        "method_version": "risk_snapshot_v1",
+        "method_version": "risk_snapshot_v2",
         "sources": {
             "gdelt_geo": os.path.exists(GDELT_PATH),
             "gdelt_linked": os.path.exists(GDELT_LINKED_PATH),
@@ -578,6 +633,7 @@ def main() -> int:
         "stats": {
             "incident_count": len(incidents),
             "country_count": len(country_rows),
+            "active_country_count": sum(1 for row in country_rows if row.get("incident_count", 0) > 0),
         },
         "legend": {
             "levels": ["normal", "elevated", "tense", "critical"],
