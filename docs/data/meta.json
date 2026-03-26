@@ -1,11 +1,12 @@
 {
-  "generated_utc": "2026-03-26T08:40:27Z",
+  "generated_utc": "2026-03-26T12:49:18Z",
   "counts": {
     "usgs": 6,
     "gdacs": 0,
     "gdelt": 0,
-    "gdelt_linked": 1056,
-    "hotspot_cells": 192
+    "gdelt_linked": 1083,
+    "hotspot_cells": 195,
+    "rss_trusted": 134
   },
   "rolling_days": 7,
   "countries": [
@@ -37,5 +38,18 @@
   "early": {
     "recent_hours": 48,
     "lookback_days": 7
+  },
+  "rss": {
+    "enabled": true,
+    "feeds": [
+      "euronews_news",
+      "guardian_world",
+      "guardian_europe",
+      "dw_world",
+      "dw_europe",
+      "politico_eu",
+      "cnn_world"
+    ],
+    "output": "trusted_rss.json"
   }
 }
