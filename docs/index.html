@@ -3,48 +3,87 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Balkán Biztonsági Monitor – térkép</title>
+  <title>Balkán Biztonsági Monitor – dashboard</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <style>
     :root{
-      --card-bg: rgba(255,255,255,0.94);
-      --shadow: 0 8px 28px rgba(0,0,0,0.14);
+      --card-bg: rgba(255,255,255,0.95);
+      --card-bg-soft: rgba(255,255,255,0.88);
+      --shadow: 0 10px 32px rgba(0,0,0,0.16);
       --border: 1px solid rgba(0,0,0,0.08);
-      --radius: 14px;
+      --radius: 16px;
       --font: system-ui, -apple-system, Segoe UI, Roboto, Arial;
       --safe-top: max(env(safe-area-inset-top), 8px);
       --safe-right: max(env(safe-area-inset-right), 8px);
       --safe-left: max(env(safe-area-inset-left), 8px);
       --safe-bottom: max(env(safe-area-inset-bottom), 8px);
     }
-    html, body { height: 100%; margin:0; font-family: var(--font); }
-    #map { height: 100vh; width: 100vw; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: var(--font);
+      background: #f5f7fb;
+    }
+
+    #map {
+      height: 100vh;
+      width: 100vw;
+    }
 
     .alert-banner{
-      position:fixed; top:0; left:0; right:0; z-index:2000;
-      display:none; padding:10px 12px;
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:2000;
+      display:none;
+      padding:10px 12px;
       box-shadow: 0 6px 24px rgba(0,0,0,0.18);
       border-bottom: 1px solid rgba(0,0,0,0.08);
       background: rgba(255,255,255,0.96);
       backdrop-filter: blur(6px);
     }
     .alert-banner .row{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      max-width: 1200px; margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      max-width: 1400px;
+      margin:0 auto;
     }
-    .alert-banner .left{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+    .alert-banner .left{
+      display:flex;
+      align-items:baseline;
+      gap:10px;
+      flex-wrap:wrap;
+    }
     .alert-banner .tag{
-      display:inline-block; padding:2px 10px; border-radius:999px;
-      background:#f2f2f2; font-size:12px; font-weight:700;
+      display:inline-block;
+      padding:2px 10px;
+      border-radius:999px;
+      background:#f2f2f2;
+      font-size:12px;
+      font-weight:700;
     }
-    .alert-banner .title{ font-size:13px; font-weight:800; }
-    .alert-banner .text{ font-size:13px; color:#222; }
+    .alert-banner .title{
+      font-size:13px;
+      font-weight:800;
+    }
+    .alert-banner .text{
+      font-size:13px;
+      color:#222;
+    }
     .alert-banner button{
-      border:0; border-radius:10px; padding:6px 10px; cursor:pointer;
-      background:#f2f2f2; font-size:12px;
+      border:0;
+      border-radius:10px;
+      padding:6px 10px;
+      cursor:pointer;
+      background:#f2f2f2;
+      font-size:12px;
     }
     .alert-banner.info   { background: rgba(247,251,255,0.96); }
     .alert-banner.watch  { background: rgba(251,251,247,0.96); }
@@ -53,61 +92,125 @@
 
     .dock{
       position:absolute;
-      z-index: 1200;
+      z-index:1200;
       background: var(--card-bg);
       border: var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
       overflow: hidden;
     }
-    .dock.top-left { top: calc(var(--safe-top) + 50px); left: calc(var(--safe-left) + 12px); }
-    .dock.top-right { top: calc(var(--safe-top) + 50px); right: calc(var(--safe-right) + 12px); }
-    .dock.bottom-right { right: calc(var(--safe-right) + 12px); bottom: calc(var(--safe-bottom) + 12px); }
-    .dock.bottom-left { left: calc(var(--safe-left) + 12px); bottom: calc(var(--safe-bottom) + 12px); }
+
+    .dock.left-top {
+      top: calc(var(--safe-top) + 56px);
+      left: calc(var(--safe-left) + 12px);
+    }
+    .dock.right-top {
+      top: calc(var(--safe-top) + 56px);
+      right: calc(var(--safe-right) + 12px);
+    }
+    .dock.right-bottom {
+      right: calc(var(--safe-right) + 12px);
+      bottom: calc(var(--safe-bottom) + 12px);
+    }
 
     .dock .hd{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding: 10px 10px;
-      background: rgba(250,250,250,0.95);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px 12px;
+      background: rgba(250,250,250,0.96);
       border-bottom: 1px solid rgba(0,0,0,0.06);
     }
     .dock .hd .title{
-      font-size: 13px; font-weight: 800; color:#111;
-      display:flex; align-items:center; gap:8px;
+      font-size:13px;
+      font-weight:800;
+      color:#111;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
     .dock .hd .meta{
-      font-size: 12px; color:#555; font-weight: 500;
+      font-size:12px;
+      color:#555;
+      font-weight:500;
+      margin-top:2px;
     }
     .dock .btn{
-      border: 0;
-      background: #f2f2f2;
-      border-radius: 10px;
-      padding: 6px 9px;
-      cursor: pointer;
-      font-size: 12px;
-      white-space: nowrap;
+      border:0;
+      background:#f2f2f2;
+      border-radius:10px;
+      padding:6px 10px;
+      cursor:pointer;
+      font-size:12px;
+      white-space:nowrap;
     }
-    .dock .body{ padding: 10px 10px; }
-    .dock.collapsed .body{ display:none; }
-    .dock .badge{
-      display:inline-block; padding:2px 8px; border-radius:999px;
-      background:#f2f2f2; font-size:12px; margin-right:6px;
+    .dock .body{
+      padding:10px 12px;
+    }
+    .dock.collapsed .body{
+      display:none;
     }
 
-    .small { font-size:12px; color:#444; line-height:1.3; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; }
-    .section{ margin: 10px 0; padding: 10px; background:#fafafa; border: 1px solid #eee; border-radius: 12px; }
-    .section h3{ margin:0 0 6px; font-size:12px; font-weight:800; color:#111; }
-    .section .meta{ margin:0 0 8px; font-size:12px; color:#666; }
-    .section ul{ margin:0; padding-left: 18px; }
-    .section li{ font-size:12px; color:#333; margin:4px 0; }
-    details summary{ cursor:pointer; font-size:12px; color:#111; font-weight: 800; }
-    details .muted{ color:#666; font-size:12px; margin-top:6px; }
+    .badge{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      background:#f2f2f2;
+      font-size:12px;
+      margin-right:6px;
+    }
 
-    .layers .rowCk{ display:flex; gap:8px; align-items:center; margin:8px 0; }
-    .layers label{ font-size: 12px; color:#222; }
-    .layers input{ transform: translateY(1px); }
+    .small {
+      font-size:12px;
+      color:#444;
+      line-height:1.35;
+    }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+    }
+
+    .section{
+      margin: 10px 0;
+      padding: 10px;
+      background:#fafafa;
+      border: 1px solid #eee;
+      border-radius: 12px;
+    }
+    .section h3{
+      margin:0 0 6px;
+      font-size:12px;
+      font-weight:800;
+      color:#111;
+    }
+    .section .meta{
+      margin:0 0 8px;
+      font-size:12px;
+      color:#666;
+    }
+    .section ul{
+      margin:0;
+      padding-left: 18px;
+    }
+    .section li{
+      font-size:12px;
+      color:#333;
+      margin:4px 0;
+    }
+
+    details summary{
+      cursor:pointer;
+      font-size:12px;
+      color:#111;
+      font-weight:800;
+    }
+    details .muted{
+      color:#666;
+      font-size:12px;
+      margin-top:6px;
+    }
 
     .filters {
       margin-top: 10px;
@@ -136,19 +239,78 @@
       font-weight: 800;
     }
 
-    .hotlist{ list-style:none; padding:0; margin:0; max-height: 240px; overflow:auto; }
-    .hotitem{
-      display:flex; justify-content:space-between; gap:10px;
-      padding:7px 8px; border-radius: 10px; cursor:pointer;
+    .layers .rowCk{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      margin:8px 0;
     }
-    .hotitem:hover{ background:#f2f2f2; }
-    .place{ font-size:12px; font-weight:700; color:#111; }
-    .sub{ font-size:12px; color:#555; }
+    .layers label{
+      font-size:12px;
+      color:#222;
+    }
+    .layers input{
+      transform: translateY(1px);
+    }
 
-    .situation{ width: min(560px, calc(100vw - 24px)); }
-    .layers{ width: 300px; }
-    .hotspots{ width: 340px; }
-    .riskpanel{ width: 360px; }
+    .situation{
+      width: min(430px, calc(100vw - 24px));
+      max-height: 72vh;
+    }
+    .situation .body{
+      max-height: calc(72vh - 52px);
+      overflow-y: auto;
+    }
+
+    .layers{
+      width: 290px;
+    }
+
+    .hotspots{
+      width: 320px;
+      max-height: 48vh;
+    }
+    .hotspots .body{
+      max-height: calc(48vh - 52px);
+      overflow-y: auto;
+    }
+
+    .riskpanel{
+      width: 340px;
+      max-height: 62vh;
+    }
+    .riskpanel .body{
+      max-height: calc(62vh - 52px);
+      overflow-y: auto;
+    }
+
+    .hotlist{
+      list-style:none;
+      padding:0;
+      margin:0;
+      max-height: 220px;
+      overflow-y:auto;
+    }
+    .hotitem{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:6px 8px;
+      border-radius: 10px;
+      cursor:pointer;
+    }
+    .hotitem:hover{
+      background:#f2f2f2;
+    }
+    .place{
+      font-size:12px;
+      font-weight:700;
+      color:#111;
+    }
+    .sub{
+      font-size:12px;
+      color:#555;
+    }
 
     .risk-level{
       display:inline-flex;
@@ -190,12 +352,50 @@
       color:#555;
       text-align:right;
     }
+
+    .risk-toolbar{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .risk-toolbar input[type="text"]{
+      flex:1 1 170px;
+      min-width:0;
+      border:1px solid rgba(0,0,0,0.12);
+      border-radius:10px;
+      padding:7px 10px;
+      font-size:12px;
+      background:#fff;
+    }
+    .risk-toolbar label{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:12px;
+      color:#333;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    #riskWatchlist {
+      max-height: 260px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
     .risk-country{
-      padding:8px;
+      padding:6px 8px;
+      margin-top:6px;
       border-radius:10px;
       border:1px solid rgba(0,0,0,0.06);
       background:#fff;
-      margin-top:8px;
+      cursor:pointer;
+      transition: background 0.15s ease;
+    }
+    .risk-country:hover{
+      background:#f7f7f7;
     }
     .risk-country .name{
       font-size:12px;
@@ -229,58 +429,62 @@
       max-height: 300px;
       overflow: auto;
     }
-    .legend .row { display:flex; align-items:center; gap:8px; margin: 4px 0; }
+    .legend .row {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin: 4px 0;
+    }
     .dot {
-      width: 10px; height: 10px; border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
       border: 1px solid rgba(0,0,0,0.25);
       display:inline-block;
       flex: 0 0 10px;
     }
 
     @media (max-width: 720px){
-      .dock.top-left{ top: calc(var(--safe-top) + 50px); left: calc(var(--safe-left) + 10px); right: auto; }
-      .situation{ width: auto; }
-
-      #dockSituation .hd{ padding: 8px 8px; border-bottom: 0; }
-      #dockSituation .hd .meta{ display:none; }
-      #dockSituation.collapsed .hd .title{ display:none; }
-      #dockSituation.collapsed .hd{ background: var(--card-bg); }
-      #dockSituation.collapsed .btn{
-        padding: 8px 10px;
-        border-radius: 12px;
-        box-shadow: var(--shadow);
-      }
-
-      #dockSituation:not(.collapsed){ left: 10px; right: 10px; width: auto; }
-      #dockSituation:not(.collapsed) .hd .title{ display:flex; }
-      #dockSituation:not(.collapsed) .hd .meta{ display:block; }
-
-      .dock.top-right{
-        top: auto;
-        right: auto;
+      .dock.left-top{
+        top: calc(var(--safe-top) + 54px);
         left: calc(var(--safe-left) + 10px);
-        bottom: calc(var(--safe-bottom) + 12px);
+        right: calc(var(--safe-right) + 10px);
         width: auto;
       }
-      .layers{ width: auto; }
-
-      .dock.bottom-right{
+      .dock.right-top{
+        top: auto;
         right: calc(var(--safe-right) + 10px);
         left: auto;
-        bottom: calc(var(--safe-bottom) + 12px);
-        width: auto;
+        bottom: calc(var(--safe-bottom) + 10px);
       }
-      .hotspots{ width: auto; }
+      .dock.right-bottom{
+        right: calc(var(--safe-right) + 10px);
+        left: auto;
+        bottom: calc(var(--safe-bottom) + 10px);
+      }
 
-      .dock.bottom-left{
+      .situation, .riskpanel, .hotspots, .layers{
+        width:auto;
+        max-width:none;
+      }
+
+      .situation{
+        max-height: 58vh;
+      }
+      .situation .body{
+        max-height: calc(58vh - 52px);
+      }
+
+      .riskpanel{
         left: calc(var(--safe-left) + 10px);
         right: calc(var(--safe-right) + 10px);
-        bottom: calc(var(--safe-bottom) + 70px);
-        width: auto;
+        bottom: calc(var(--safe-bottom) + 68px);
+        width:auto;
+        max-height: 42vh;
       }
-      .riskpanel{ width: auto; }
-
-      .hotlist{ max-height: 160px; }
+      .riskpanel .body{
+        max-height: calc(42vh - 52px);
+      }
 
       .legend{
         width: 180px;
@@ -309,13 +513,13 @@
 
   <div id="map"></div>
 
-  <div class="dock top-left situation collapsed" id="dockSituation">
+  <div class="dock left-top situation" id="dockSituation">
     <div class="hd">
       <div>
         <div class="title">Balkán – helyzetkép</div>
         <div class="meta" id="metaLine">Betöltés...</div>
       </div>
-      <button class="btn" id="btnSituation">Kinyit</button>
+      <button class="btn" id="btnSituation">Bezár</button>
     </div>
     <div class="body">
       <div class="section">
@@ -352,14 +556,10 @@
           Mai hírek = GDELT (GEO + LINKES) • Mai riasztások = USGS + GDACS
         </div>
       </div>
-
-      <div class="small" style="margin-top:10px;">
-        Mobilon a „Helyzetkép” alapból csak gomb, hogy ne takarja a térképet.
-      </div>
     </div>
   </div>
 
-  <div class="dock top-right layers collapsed" id="dockLayers">
+  <div class="dock right-top layers collapsed" id="dockLayers">
     <div class="hd">
       <div class="title">Rétegek</div>
       <button class="btn" id="btnLayers">Kinyit</button>
@@ -381,7 +581,6 @@
         <input type="checkbox" id="layerEarly">
         <label for="layerEarly"><span class="badge">EARLY</span>elemző</label>
       </div>
-
       <div class="rowCk">
         <input type="checkbox" id="layerGdelt" checked>
         <label for="layerGdelt"><span class="badge">GDELT</span>hírek</label>
@@ -390,7 +589,6 @@
         <input type="checkbox" id="layerGdeltLinked">
         <label for="layerGdeltLinked"><span class="badge">GDELT+</span>linkes</label>
       </div>
-
       <div class="rowCk">
         <input type="checkbox" id="layerUsgs">
         <label for="layerUsgs"><span class="badge">USGS</span>rengések</label>
@@ -399,14 +597,13 @@
         <input type="checkbox" id="layerGdacs">
         <label for="layerGdacs"><span class="badge">GDACS</span>riasztás</label>
       </div>
-
       <div class="small" style="margin-top:8px;">
         <b>Megjelenítés:</b> országos risk + hotspot + eseményrétegek.
       </div>
     </div>
   </div>
 
-  <div class="dock bottom-right hotspots collapsed" id="dockHotspots">
+  <div class="dock right-bottom hotspots collapsed" id="dockHotspots">
     <div class="hd">
       <div class="title">Top hotspotok</div>
       <button class="btn" id="btnHotspots">Kinyit</button>
@@ -417,10 +614,10 @@
     </div>
   </div>
 
-  <div class="dock bottom-left riskpanel collapsed" id="dockRisk">
+  <div class="dock right-bottom riskpanel collapsed" id="dockRisk" style="bottom: calc(var(--safe-bottom) + 230px);">
     <div class="hd">
       <div>
-        <div class="title">Risk snapshot</div>
+        <div class="title" id="riskTitle">Risk snapshot</div>
         <div class="meta" id="riskMeta">Betöltés...</div>
       </div>
       <button class="btn" id="btnRisk">Kinyit</button>
@@ -445,7 +642,11 @@
       </div>
 
       <div class="section">
-        <h3>Watchlist</h3>
+        <h3>Országok</h3>
+        <div class="risk-toolbar">
+          <input type="text" id="riskSearch" placeholder="Keresés országra..." />
+          <label><input type="checkbox" id="riskOnlyElevated" /> csak elevated+</label>
+        </div>
         <div id="riskWatchlist" class="small">Betöltés...</div>
       </div>
     </div>
@@ -469,22 +670,15 @@
       other: { radius: 6, fillOpacity: 0.45 }
     };
 
-    const COUNTRY_NAME_ALIASES = {
-      "Bosnia and Herzegovina": "Bosnia and Herzegovina",
-      "North Macedonia": "North Macedonia",
-      "Kosovo": "Kosovo",
-      "Serbia": "Serbia",
-      "Albania": "Albania",
-      "Croatia": "Croatia",
-      "Slovenia": "Slovenia",
-      "Montenegro": "Montenegro",
-      "Greece": "Greece",
-      "Bulgaria": "Bulgaria",
-      "Romania": "Romania",
-      "Turkey": "Turkey",
-      "Moldova": "Moldova",
-      "Hungary": "Hungary"
+    const COUNTRY_FEATURES = new Map();
+    const DATASETS = {
+      gdelt: null,
+      gdeltLinked: null,
+      gdacs: null,
+      usgs: null,
+      riskDaily: null
     };
+    const FILTERS = { newsToday: false, alertsToday: false };
 
     function humanCat(cat){
       const m = {
@@ -664,14 +858,273 @@
       return { radius, weight: 1, fillOpacity, opacity, color:"#7c3aed", fillColor:"#a78bfa" };
     }
 
-    const DATASETS = {
-      gdelt: null,
-      gdeltLinked: null,
-      gdacs: null,
-      usgs: null,
-      riskDaily: null
-    };
-    const FILTERS = { newsToday: false, alertsToday: false };
+    function setupDock(dockId, btnId, openText="Bezár", closedText="Kinyit") {
+      const dock = document.getElementById(dockId);
+      const btn = document.getElementById(btnId);
+      const setBtn = () => btn.textContent = dock.classList.contains('collapsed') ? closedText : openText;
+      btn.addEventListener('click', () => {
+        dock.classList.toggle('collapsed');
+        setBtn();
+      });
+      setBtn();
+    }
+
+    setupDock("dockSituation", "btnSituation");
+    setupDock("dockLayers", "btnLayers");
+    setupDock("dockHotspots", "btnHotspots");
+    setupDock("dockRisk", "btnRisk");
+
+    function renderAlertBanner(alert) {
+      const banner = document.getElementById('alertBanner');
+      if (!alert) {
+        banner.style.display = 'none';
+        banner.className = 'alert-banner';
+        return;
+      }
+      const level = (alert.level || 'info').toLowerCase();
+      banner.className = `alert-banner ${level}`;
+      document.getElementById('alertTitle').textContent = alert.title || 'Riasztás';
+      document.getElementById('alertText').textContent = alert.text || '';
+      document.getElementById('alertTag').textContent = 'RIASZTÁS';
+      banner.style.display = 'block';
+    }
+
+    document.getElementById('alertClose').addEventListener('click', () => {
+      document.getElementById('alertBanner').style.display = 'none';
+    });
+
+    function renderMeta(meta) {
+      const t = fmtBudapest(meta?.generated_utc);
+      const timeText = t ? `Frissítés (Budapest): ${t.bud}` : `Frissítés: —`;
+      const counts = meta?.counts || {};
+      const gl = counts.gdelt_linked ?? 0;
+
+      document.getElementById('metaLine').textContent =
+        `${timeText} | hotspot cellák: ${counts.hotspot_cells ?? 0} | GDELT: ${counts.gdelt ?? 0} + linkes: ${gl}, USGS: ${counts.usgs ?? 0}, GDACS: ${counts.gdacs ?? 0}`;
+    }
+
+    function renderSummary(sum) {
+      document.getElementById('sumTitle').textContent = sum?.headline || 'Napi kivonat';
+      const t = fmtBudapest(sum?.generated_utc);
+      document.getElementById('sumTime').textContent = t ? `Kivonat frissítése (Budapest): ${t.bud}` : '—';
+      renderAlertBanner(sum?.alert || null);
+
+      const ul = document.getElementById('sumList');
+      ul.innerHTML = '';
+      const bullets = (sum?.bullets || []).slice(0, 10);
+      if (!bullets.length) {
+        ul.innerHTML = '<li>Nincs elérhető kivonat.</li>';
+        return;
+      }
+      for (const b of bullets) {
+        const li = document.createElement('li');
+        li.textContent = b;
+        ul.appendChild(li);
+      }
+    }
+
+    function renderWeekly(w) {
+      const t = fmtBudapest(w?.generated_utc);
+      document.getElementById('weekTime').textContent = t ? `Kivonat frissítése (Budapest): ${t.bud}` : '—';
+
+      const ul = document.getElementById('weekList');
+      ul.innerHTML = '';
+      const bullets = (w?.bullets || []).slice(0, 10);
+      if (!bullets.length) {
+        ul.innerHTML = '<li>A heti kivonat még gyűlik.</li>';
+      } else {
+        for (const b of bullets) {
+          const li = document.createElement('li');
+          li.textContent = b;
+          ul.appendChild(li);
+        }
+      }
+
+      const ex = document.getElementById('weekExamples');
+      ex.innerHTML = '';
+      const examples = (w?.examples || []).slice(0, 5);
+      if (!examples.length) {
+        ex.textContent = 'Példa események: még nincs elég heti hírcím a listához.';
+        return;
+      }
+
+      const wrap = document.createElement('div');
+      wrap.className = 'small';
+      wrap.textContent = 'Példa események:';
+      ex.appendChild(wrap);
+
+      const list = document.createElement('ul');
+      list.style.margin = '6px 0 0';
+      list.style.paddingLeft = '18px';
+      for (const e of examples) {
+        const li = document.createElement('li');
+        const title = e.title || '(nincs cím)';
+        const url = e.url || '#';
+        const dom = e.domain ? ` (${e.domain})` : '';
+        li.innerHTML = `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(title)}</a><span class="small" style="color:#666">${esc(dom)}</span>`;
+        list.appendChild(li);
+      }
+      ex.appendChild(list);
+    }
+
+    function renderEarlyList(payload) {
+      const t = fmtBudapest(payload?.generated_utc);
+      document.getElementById('earlyTime').textContent = t ? `Frissítés (Budapest): ${t.bud}` : '—';
+
+      const ul = document.getElementById('earlyList');
+      ul.innerHTML = '';
+      const top = (payload?.top || []).slice(0, 8);
+
+      if (!top.length) {
+        const li = document.createElement('li');
+        li.className = 'muted';
+        li.textContent = 'Még nincs elég gyorsulás/terjedés jellegű minta (ez normális az első napokban).';
+        ul.appendChild(li);
+        return;
+      }
+
+      for (const e of top) {
+        const li = document.createElement('li');
+        const place = e.place || 'ismeretlen térség';
+        const zone = e.zone ? ` | zóna: ${e.zone} ×${e.zone_mult}` : '';
+        li.textContent = `${place} — escalation ${e.escalation}/100 | terjedés: ${e.neighbor_active}${zone}`;
+        ul.appendChild(li);
+      }
+    }
+
+    function renderHotList(items) {
+      const ol = document.getElementById('hotList');
+      ol.innerHTML = '';
+      const top = (items || []).slice(0, 12);
+      if (!top.length) {
+        ol.innerHTML = '<li class="small">Nincs elég adat.</li>';
+        return;
+      }
+
+      for (const it of top) {
+        const li = document.createElement('li');
+        li.className = 'hotitem';
+
+        const place = it.place ? it.place : 'ismeretlen térség';
+        const arrow = it.trend_arrow ? it.trend_arrow : '·';
+        const ch = (it.change_pct === null || it.change_pct === undefined) ? 'n/a' : `${it.change_pct > 0 ? '+' : ''}${it.change_pct}%`;
+
+        li.innerHTML = `
+          <div>
+            <div class="place">${esc(place)} <span class="mono">${esc(arrow)}</span> <span class="mono">(${esc(ch)})</span></div>
+            <div class="sub">${esc(`(${it.lat.toFixed(2)}, ${it.lon.toFixed(2)}) • db: ${it.count}`)}</div>
+          </div>
+          <div class="mono">S=${Number(it.score).toFixed(2)}</div>
+        `;
+        li.addEventListener('click', () => map.setView([it.lat, it.lon], 9));
+        ol.appendChild(li);
+      }
+    }
+
+    function zoomToCountry(countryName){
+      const layer = COUNTRY_FEATURES.get(countryName);
+      if (!layer) return;
+      try {
+        map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+        layer.openPopup();
+      } catch {}
+    }
+
+    function renderRiskPanel(risk) {
+      const t = fmtBudapest(risk?.generated_utc);
+      document.getElementById("riskMeta").textContent = t ? `Frissítés (Budapest): ${t.bud}` : "—";
+
+      const count = (risk?.countries || []).length;
+      document.getElementById("riskTitle").textContent = `Risk snapshot (${count})`;
+
+      const region = risk?.region || {};
+      const overall = String(region.overall || "normal").toLowerCase();
+
+      const badge = document.getElementById("regionRiskBadge");
+      badge.className = `risk-level ${riskClass(overall)}`;
+      badge.textContent = overall.toUpperCase();
+
+      document.getElementById("regionRiskScore").textContent = `score: ${region.overall_score ?? "—"}`;
+      document.getElementById("regionRiskConfidence").textContent = `confidence: ${region.confidence ?? "—"} (${region.confidence_value ?? "—"})`;
+
+      const dimsWrap = document.getElementById("riskDims");
+      dimsWrap.innerHTML = `
+        <div class="hdr">Dimenzió</div>
+        <div class="hdr">Szint</div>
+        <div class="hdr" style="text-align:right;">Score</div>
+      `;
+
+      const dims = region.dimensions || {};
+      const scores = region.dimension_scores || {};
+      for (const dim of ["political", "military", "policing", "migration", "social", "infrastructure"]) {
+        const level = dims[dim] || "normal";
+        const score = scores[dim] ?? 0;
+
+        const d1 = document.createElement("div");
+        d1.className = "risk-dim";
+        d1.textContent = dim;
+
+        const d2 = document.createElement("div");
+        d2.innerHTML = `<span class="risk-level ${riskClass(level)}">${esc(level)}</span>`;
+
+        const d3 = document.createElement("div");
+        d3.className = "risk-score";
+        d3.textContent = Number(score).toFixed(3);
+
+        dimsWrap.appendChild(d1);
+        dimsWrap.appendChild(d2);
+        dimsWrap.appendChild(d3);
+      }
+
+      updateRiskCountryList();
+    }
+
+    function updateRiskCountryList(){
+      const risk = DATASETS.riskDaily;
+      const wl = document.getElementById("riskWatchlist");
+      if (!risk || !Array.isArray(risk.countries)) {
+        wl.textContent = "Nincs risk adat.";
+        return;
+      }
+
+      const q = (document.getElementById("riskSearch").value || "").trim().toLowerCase();
+      const onlyElevated = document.getElementById("riskOnlyElevated").checked;
+
+      let countries = [...risk.countries];
+
+      if (onlyElevated) {
+        countries = countries.filter(row => ["elevated", "tense", "critical"].includes(String(row.overall || "").toLowerCase()));
+      }
+
+      if (q) {
+        countries = countries.filter(row => String(row.country || "").toLowerCase().includes(q));
+      }
+
+      wl.innerHTML = "";
+
+      if (!countries.length) {
+        wl.textContent = "Nincs találat a szűrésre.";
+        return;
+      }
+
+      for (const item of countries) {
+        const div = document.createElement("div");
+        div.className = "risk-country";
+
+        const drivers = Array.isArray(item.drivers) && item.drivers.length ? item.drivers.join(", ") : "nincs";
+        div.innerHTML = `
+          <div class="name">
+            <span>${esc(item.country)}</span>
+            <span class="risk-level ${riskClass(item.overall)}">${esc(item.overall)}</span>
+          </div>
+          <div class="meta">score: ${esc(item.overall_score)} | confidence: ${esc(item.confidence)}</div>
+          <div class="drivers"><b>Drivers:</b> ${esc(drivers)}</div>
+        `;
+
+        div.addEventListener("click", () => zoomToCountry(item.country));
+        wl.appendChild(div);
+      }
+    }
 
     function applyFilters(){
       if (DATASETS.gdelt && layers.gdelt){
@@ -764,16 +1217,17 @@
           const level = row?.overall || "normal";
           return {
             weight: 2,
-            opacity: 0.85,
+            opacity: 0.88,
             color: riskColor(level),
             fillColor: riskFill(level),
-            fillOpacity: 0.20
+            fillOpacity: 0.28
           };
         },
         onEachFeature: (feature, layer) => {
           const name = feature?.properties?.name;
-          const row = countryMap.get(name);
+          COUNTRY_FEATURES.set(name, layer);
 
+          const row = countryMap.get(name);
           if (!row) {
             layer.bindPopup(`<div><b>${esc(name || "Ismeretlen ország")}</b></div><div class="small">Nincs risk adat.</div>`);
             return;
@@ -849,232 +1303,6 @@
       });
     }
 
-    function renderAlertBanner(alert) {
-      const banner = document.getElementById('alertBanner');
-      if (!alert) {
-        banner.style.display = 'none';
-        banner.className = 'alert-banner';
-        return;
-      }
-      const level = (alert.level || 'info').toLowerCase();
-      banner.className = `alert-banner ${level}`;
-      document.getElementById('alertTitle').textContent = alert.title || 'Riasztás';
-      document.getElementById('alertText').textContent = alert.text || '';
-      document.getElementById('alertTag').textContent = 'RIASZTÁS';
-      banner.style.display = 'block';
-    }
-    document.getElementById('alertClose').addEventListener('click', () => {
-      document.getElementById('alertBanner').style.display = 'none';
-    });
-
-    function setupDock(dockId, btnId, openText="Bezár", closedText="Kinyit") {
-      const dock = document.getElementById(dockId);
-      const btn = document.getElementById(btnId);
-      const setBtn = () => btn.textContent = dock.classList.contains('collapsed') ? closedText : openText;
-      btn.addEventListener('click', () => {
-        dock.classList.toggle('collapsed');
-        setBtn();
-      });
-      setBtn();
-    }
-    setupDock("dockSituation", "btnSituation");
-    setupDock("dockLayers", "btnLayers");
-    setupDock("dockHotspots", "btnHotspots");
-    setupDock("dockRisk", "btnRisk");
-
-    function renderMeta(meta) {
-      const t = fmtBudapest(meta?.generated_utc);
-      const timeText = t ? `Frissítés (Budapest): ${t.bud}` : `Frissítés: —`;
-      const counts = meta?.counts || {};
-      const gl = counts.gdelt_linked ?? 0;
-
-      document.getElementById('metaLine').textContent =
-        `${timeText} | hotspot cellák: ${counts.hotspot_cells ?? 0} | GDELT: ${counts.gdelt ?? 0} + linkes: ${gl}, USGS: ${counts.usgs ?? 0}, GDACS: ${counts.gdacs ?? 0}`;
-    }
-
-    function renderSummary(sum) {
-      document.getElementById('sumTitle').textContent = sum?.headline || 'Napi kivonat';
-      const t = fmtBudapest(sum?.generated_utc);
-      document.getElementById('sumTime').textContent = t ? `Kivonat frissítése (Budapest): ${t.bud}` : '—';
-      renderAlertBanner(sum?.alert || null);
-
-      const ul = document.getElementById('sumList');
-      ul.innerHTML = '';
-      const bullets = (sum?.bullets || []).slice(0, 10);
-      if (!bullets.length) {
-        ul.innerHTML = '<li>Nincs elérhető kivonat.</li>';
-        return;
-      }
-      for (const b of bullets) {
-        const li = document.createElement('li');
-        li.textContent = b;
-        ul.appendChild(li);
-      }
-    }
-
-    function renderWeekly(w) {
-      const t = fmtBudapest(w?.generated_utc);
-      document.getElementById('weekTime').textContent = t ? `Kivonat frissítése (Budapest): ${t.bud}` : '—';
-
-      const ul = document.getElementById('weekList');
-      ul.innerHTML = '';
-      const bullets = (w?.bullets || []).slice(0, 10);
-      if (!bullets.length) {
-        ul.innerHTML = '<li>A heti kivonat még gyűlik.</li>';
-      } else {
-        for (const b of bullets) {
-          const li = document.createElement('li');
-          li.textContent = b;
-          ul.appendChild(li);
-        }
-      }
-
-      const ex = document.getElementById('weekExamples');
-      ex.innerHTML = '';
-      const examples = (w?.examples || []).slice(0, 5);
-      if (!examples.length) {
-        ex.textContent = 'Példa események: még nincs elég heti hírcím a listához.';
-        return;
-      }
-      const wrap = document.createElement('div');
-      wrap.className = 'small';
-      wrap.textContent = 'Példa események:';
-      ex.appendChild(wrap);
-
-      const list = document.createElement('ul');
-      list.style.margin = '6px 0 0';
-      list.style.paddingLeft = '18px';
-      for (const e of examples) {
-        const li = document.createElement('li');
-        const title = e.title || '(nincs cím)';
-        const url = e.url || '#';
-        const dom = e.domain ? ` (${e.domain})` : '';
-        li.innerHTML = `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(title)}</a><span class="small" style="color:#666">${esc(dom)}</span>`;
-        list.appendChild(li);
-      }
-      ex.appendChild(list);
-    }
-
-    function renderEarlyList(payload) {
-      const t = fmtBudapest(payload?.generated_utc);
-      document.getElementById('earlyTime').textContent = t ? `Frissítés (Budapest): ${t.bud}` : '—';
-
-      const ul = document.getElementById('earlyList');
-      ul.innerHTML = '';
-      const top = (payload?.top || []).slice(0, 8);
-
-      if (!top.length) {
-        const li = document.createElement('li');
-        li.className = 'muted';
-        li.textContent = 'Még nincs elég gyorsulás/terjedés jellegű minta (ez normális az első napokban).';
-        ul.appendChild(li);
-        return;
-      }
-
-      for (const e of top) {
-        const li = document.createElement('li');
-        const place = e.place || 'ismeretlen térség';
-        const zone = e.zone ? ` | zóna: ${e.zone} ×${e.zone_mult}` : '';
-        li.textContent = `${place} — escalation ${e.escalation}/100 | terjedés: ${e.neighbor_active}${zone}`;
-        ul.appendChild(li);
-      }
-    }
-
-    function renderHotList(items) {
-      const ol = document.getElementById('hotList');
-      ol.innerHTML = '';
-      const top = (items || []).slice(0, 8);
-      if (!top.length) {
-        ol.innerHTML = '<li class="small">Nincs elég adat.</li>';
-        return;
-      }
-
-      for (const it of top) {
-        const li = document.createElement('li');
-        li.className = 'hotitem';
-
-        const place = it.place ? it.place : 'ismeretlen térség';
-        const arrow = it.trend_arrow ? it.trend_arrow : '·';
-        const ch = (it.change_pct === null || it.change_pct === undefined) ? 'n/a' : `${it.change_pct > 0 ? '+' : ''}${it.change_pct}%`;
-
-        li.innerHTML = `
-          <div>
-            <div class="place">${esc(place)} <span class="mono">${esc(arrow)}</span> <span class="mono">(${esc(ch)})</span></div>
-            <div class="sub">${esc(`(${it.lat.toFixed(2)}, ${it.lon.toFixed(2)}) • db: ${it.count}`)}</div>
-          </div>
-          <div class="mono">S=${Number(it.score).toFixed(2)}</div>
-        `;
-        li.addEventListener('click', () => map.setView([it.lat, it.lon], 9));
-        ol.appendChild(li);
-      }
-    }
-
-    function renderRiskPanel(risk) {
-      const t = fmtBudapest(risk?.generated_utc);
-      document.getElementById("riskMeta").textContent = t ? `Frissítés (Budapest): ${t.bud}` : "—";
-
-      const region = risk?.region || {};
-      const overall = String(region.overall || "normal").toLowerCase();
-
-      const badge = document.getElementById("regionRiskBadge");
-      badge.className = `risk-level ${riskClass(overall)}`;
-      badge.textContent = overall.toUpperCase();
-
-      document.getElementById("regionRiskScore").textContent = `score: ${region.overall_score ?? "—"}`;
-      document.getElementById("regionRiskConfidence").textContent = `confidence: ${region.confidence ?? "—"} (${region.confidence_value ?? "—"})`;
-
-      const dimsWrap = document.getElementById("riskDims");
-      dimsWrap.innerHTML = `
-        <div class="hdr">Dimenzió</div>
-        <div class="hdr">Szint</div>
-        <div class="hdr" style="text-align:right;">Score</div>
-      `;
-
-      const dims = region.dimensions || {};
-      const scores = region.dimension_scores || {};
-      for (const dim of ["political", "military", "policing", "migration", "social", "infrastructure"]) {
-        const level = dims[dim] || "normal";
-        const score = scores[dim] ?? 0;
-        const row1 = document.createElement("div");
-        row1.className = "risk-dim";
-        row1.textContent = dim;
-
-        const row2 = document.createElement("div");
-        row2.innerHTML = `<span class="risk-level ${riskClass(level)}">${esc(level)}</span>`;
-
-        const row3 = document.createElement("div");
-        row3.className = "risk-score";
-        row3.textContent = Number(score).toFixed(3);
-
-        dimsWrap.appendChild(row1);
-        dimsWrap.appendChild(row2);
-        dimsWrap.appendChild(row3);
-      }
-
-      const wl = document.getElementById("riskWatchlist");
-      wl.innerHTML = "";
-      const watch = (region.watchlist || []).slice(0, 5);
-      if (!watch.length) {
-        wl.textContent = "Nincs kiemelt ország a watchlisten.";
-        return;
-      }
-
-      for (const item of watch) {
-        const div = document.createElement("div");
-        div.className = "risk-country";
-        const drivers = Array.isArray(item.drivers) && item.drivers.length ? item.drivers.join(", ") : "nincs";
-        div.innerHTML = `
-          <div class="name">
-            <span>${esc(item.country)}</span>
-            <span class="risk-level ${riskClass(item.overall)}">${esc(item.overall)}</span>
-          </div>
-          <div class="meta">score: ${esc(item.overall_score)} </div>
-          <div class="drivers"><b>Drivers:</b> ${esc(drivers)}</div>
-        `;
-        wl.appendChild(div);
-      }
-    }
-
     const layers = {
       borders: null,
       countryRisk: null,
@@ -1144,7 +1372,7 @@
         DATASETS.riskDaily = riskDaily;
         renderRiskPanel(riskDaily);
       } catch {
-        renderRiskPanel({ region: { overall:"normal", overall_score:0, confidence:"low", confidence_value:0, dimensions:{}, dimension_scores:{}, watchlist:[] } });
+        renderRiskPanel({ countries: [], region: { overall:"normal", overall_score:0, confidence:"low", confidence_value:0, dimensions:{}, dimension_scores:{}, watchlist:[] } });
       }
 
       try { layers.borders = await loadBorders(`${DATA}/balkan_borders.geojson`); } catch {}
@@ -1216,12 +1444,18 @@
         applyFilters();
       });
 
+      document.getElementById("riskSearch").addEventListener("input", updateRiskCountryList);
+      document.getElementById("riskOnlyElevated").addEventListener("change", updateRiskCountryList);
+
       try {
         const top = await loadJson(`${DATA}/hotspots.json`);
         renderHotList(top.top || []);
       } catch {
         renderHotList([]);
       }
+
+      document.getElementById("dockRisk").classList.add("collapsed");
+      document.getElementById("btnRisk").textContent = "Kinyit";
     }
 
     init().catch(err => {
