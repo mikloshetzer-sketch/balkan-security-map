@@ -23,7 +23,6 @@
     html, body { height: 100%; margin:0; font-family: var(--font); }
     #map { height: 100vh; width: 100vw; }
 
-    /* ===== Alert banner ===== */
     .alert-banner{
       position:fixed; top:0; left:0; right:0; z-index:2000;
       display:none; padding:10px 12px;
@@ -52,7 +51,6 @@
     .alert-banner.medium { background: rgba(255,249,242,0.96); }
     .alert-banner.high   { background: rgba(255,243,243,0.96); }
 
-    /* ===== Floating docks ===== */
     .dock{
       position:absolute;
       z-index: 1200;
@@ -66,6 +64,7 @@
     .dock.top-left { top: calc(var(--safe-top) + 50px); left: calc(var(--safe-left) + 12px); }
     .dock.top-right { top: calc(var(--safe-top) + 50px); right: calc(var(--safe-right) + 12px); }
     .dock.bottom-right { right: calc(var(--safe-right) + 12px); bottom: calc(var(--safe-bottom) + 12px); }
+    .dock.bottom-left { left: calc(var(--safe-left) + 12px); bottom: calc(var(--safe-bottom) + 12px); }
 
     .dock .hd{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -149,8 +148,75 @@
     .situation{ width: min(560px, calc(100vw - 24px)); }
     .layers{ width: 300px; }
     .hotspots{ width: 340px; }
+    .riskpanel{ width: 360px; }
 
-    /* ===== Legend ===== */
+    .risk-level{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:0.02em;
+      border:1px solid rgba(0,0,0,0.08);
+      background:#f2f2f2;
+    }
+    .risk-normal{ background:#edf7ed; color:#1b5e20; }
+    .risk-elevated{ background:#fff8e1; color:#8d6e00; }
+    .risk-tense{ background:#fff3e0; color:#b34700; }
+    .risk-critical{ background:#ffebee; color:#b71c1c; }
+
+    .risk-grid{
+      display:grid;
+      grid-template-columns: 1fr auto auto;
+      gap:6px 8px;
+      align-items:center;
+      margin-top:8px;
+    }
+    .risk-grid .hdr{
+      font-size:11px;
+      font-weight:700;
+      color:#666;
+      text-transform:uppercase;
+    }
+    .risk-dim{
+      font-size:12px;
+      color:#222;
+    }
+    .risk-score{
+      font-size:12px;
+      color:#555;
+      text-align:right;
+    }
+    .risk-country{
+      padding:8px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.06);
+      background:#fff;
+      margin-top:8px;
+    }
+    .risk-country .name{
+      font-size:12px;
+      font-weight:800;
+      color:#111;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .risk-country .meta{
+      font-size:12px;
+      color:#666;
+      margin-top:4px;
+    }
+    .risk-country .drivers{
+      font-size:12px;
+      color:#333;
+      margin-top:4px;
+    }
+
     .legend{
       background: rgba(255,255,255,0.92);
       padding: 10px;
@@ -159,8 +225,8 @@
       font-family: var(--font);
       font-size: 12px;
       line-height: 1.15;
-      width: 210px;
-      max-height: 240px;
+      width: 220px;
+      max-height: 300px;
       overflow: auto;
     }
     .legend .row { display:flex; align-items:center; gap:8px; margin: 4px 0; }
@@ -171,7 +237,6 @@
       flex: 0 0 10px;
     }
 
-    /* ===== MOBILE ===== */
     @media (max-width: 720px){
       .dock.top-left{ top: calc(var(--safe-top) + 50px); left: calc(var(--safe-left) + 10px); right: auto; }
       .situation{ width: auto; }
@@ -206,11 +271,20 @@
         width: auto;
       }
       .hotspots{ width: auto; }
+
+      .dock.bottom-left{
+        left: calc(var(--safe-left) + 10px);
+        right: calc(var(--safe-right) + 10px);
+        bottom: calc(var(--safe-bottom) + 70px);
+        width: auto;
+      }
+      .riskpanel{ width: auto; }
+
       .hotlist{ max-height: 160px; }
 
       .legend{
-        width: 170px;
-        max-height: 160px;
+        width: 180px;
+        max-height: 180px;
         padding: 8px;
         margin-bottom: calc(var(--safe-bottom) + 4px);
       }
@@ -235,7 +309,6 @@
 
   <div id="map"></div>
 
-  <!-- Situation -->
   <div class="dock top-left situation collapsed" id="dockSituation">
     <div class="hd">
       <div>
@@ -286,7 +359,6 @@
     </div>
   </div>
 
-  <!-- Layers -->
   <div class="dock top-right layers collapsed" id="dockLayers">
     <div class="hd">
       <div class="title">Rétegek</div>
@@ -296,6 +368,10 @@
       <div class="rowCk">
         <input type="checkbox" id="layerBorders" checked>
         <label for="layerBorders"><span class="badge">HATÁR</span>kontúr</label>
+      </div>
+      <div class="rowCk">
+        <input type="checkbox" id="layerCountryRisk" checked>
+        <label for="layerCountryRisk"><span class="badge">RISK</span>ország-színezés</label>
       </div>
       <div class="rowCk">
         <input type="checkbox" id="layerHot" checked>
@@ -325,12 +401,11 @@
       </div>
 
       <div class="small" style="margin-top:8px;">
-        <b>Megjelenítés:</b> GDELT kategória-színezés • USGS/GDACS “frissesség” alapú.
+        <b>Megjelenítés:</b> országos risk + hotspot + eseményrétegek.
       </div>
     </div>
   </div>
 
-  <!-- Hotspots -->
   <div class="dock bottom-right hotspots collapsed" id="dockHotspots">
     <div class="hd">
       <div class="title">Top hotspotok</div>
@@ -342,11 +417,43 @@
     </div>
   </div>
 
+  <div class="dock bottom-left riskpanel collapsed" id="dockRisk">
+    <div class="hd">
+      <div>
+        <div class="title">Risk snapshot</div>
+        <div class="meta" id="riskMeta">Betöltés...</div>
+      </div>
+      <button class="btn" id="btnRisk">Kinyit</button>
+    </div>
+    <div class="body">
+      <div class="section">
+        <h3>Régiós állapot</h3>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <span class="risk-level risk-normal" id="regionRiskBadge">NORMAL</span>
+          <span class="small" id="regionRiskScore">score: —</span>
+          <span class="small" id="regionRiskConfidence">confidence: —</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Dimenziók</h3>
+        <div class="risk-grid" id="riskDims">
+          <div class="hdr">Dimenzió</div>
+          <div class="hdr">Szint</div>
+          <div class="hdr" style="text-align:right;">Score</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Watchlist</h3>
+        <div id="riskWatchlist" class="small">Betöltés...</div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // ===== PATH (ha máshol van, itt elég átírni) =====
     const DATA = "./data";
 
-    // ===== CATEGORY styles (CEE-hez hasonló) =====
     const CAT_STYLE = {
       protest: { radius: 6, fillOpacity: 0.55 },
       border: { radius: 6, fillOpacity: 0.55 },
@@ -362,6 +469,23 @@
       other: { radius: 6, fillOpacity: 0.45 }
     };
 
+    const COUNTRY_NAME_ALIASES = {
+      "Bosnia and Herzegovina": "Bosnia and Herzegovina",
+      "North Macedonia": "North Macedonia",
+      "Kosovo": "Kosovo",
+      "Serbia": "Serbia",
+      "Albania": "Albania",
+      "Croatia": "Croatia",
+      "Slovenia": "Slovenia",
+      "Montenegro": "Montenegro",
+      "Greece": "Greece",
+      "Bulgaria": "Bulgaria",
+      "Romania": "Romania",
+      "Turkey": "Turkey",
+      "Moldova": "Moldova",
+      "Hungary": "Hungary"
+    };
+
     function humanCat(cat){
       const m = {
         protest: "tüntetés/erőszak",
@@ -373,7 +497,6 @@
         energy: "energia/ellátás",
         infrastructure: "infrastruktúra",
         security_politics: "security politics",
-        violence: "erőszak",
         natural: "természeti",
         other: "egyéb"
       };
@@ -393,14 +516,33 @@
              (cat === "violence") ? "#a61e4d" : "#868e96";
     }
 
-    // ===== Map =====
+    function riskClass(level){
+      const x = String(level || "normal").toLowerCase();
+      return `risk-${x}`;
+    }
+
+    function riskColor(level){
+      const x = String(level || "normal").toLowerCase();
+      if (x === "critical") return "#d32f2f";
+      if (x === "tense") return "#ef6c00";
+      if (x === "elevated") return "#f9a825";
+      return "#43a047";
+    }
+
+    function riskFill(level){
+      const x = String(level || "normal").toLowerCase();
+      if (x === "critical") return "#ffcdd2";
+      if (x === "tense") return "#ffe0b2";
+      if (x === "elevated") return "#fff9c4";
+      return "#e8f5e9";
+    }
+
     const map = L.map('map', { zoomControl: true, preferCanvas: true }).setView([44.2, 20.6], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
-    // ===== Utils =====
     function esc(s) {
       return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     }
@@ -431,7 +573,7 @@
 
     function ymdInTZ(dateObj, tz){
       const fmt = new Intl.DateTimeFormat("en-CA", { timeZone: tz, year:"numeric", month:"2-digit", day:"2-digit" });
-      return fmt.format(dateObj); // YYYY-MM-DD
+      return fmt.format(dateObj);
     }
 
     function isTodayBudapest(timeOrDateString){
@@ -444,7 +586,6 @@
       return evBud === todayBud;
     }
 
-    // ===== Styles: USGS/GDACS recency =====
     function eventRecencyStyle(sourceName, props) {
       const d = parseEventTime(props);
       const now = new Date();
@@ -480,19 +621,15 @@
       return { radius, weight, color, fillColor, opacity, fillOpacity, ageDays };
     }
 
-    // ===== Popup (CEE-szerű: category + search_url fallback + linked sources) =====
     function makePopup(props) {
       const title = props.title ? `<div style="margin-bottom:6px;"><b>${esc(props.title)}</b></div>` : '';
       const t = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
       const place = props.place ? `<div><b>Hely:</b> ${esc(props.place)}</div>` : '';
       const typ = props.type ? `<div><b>Típus:</b> ${esc(props.type)}</div>` : '';
       const domain = props.domain ? `<div><b>Forrás:</b> ${esc(props.domain)}</div>` : '';
-
       const catRaw = props.category || props.gdelt_bucket || null;
       const cat = catRaw ? `<div><b>Kategória:</b> ${esc(humanCat(catRaw))}</div>` : '';
-
       const mag = (props.mag !== undefined && props.mag !== null) ? `<div><b>Magnitúdó:</b> ${esc(props.mag)}</div>` : '';
-
       const link = props.url || props.search_url;
       const url = link ? `<div style="margin-top:6px;">🔗 <a href="${esc(link)}" target="_blank" rel="noopener">Forrás / keresés</a></div>` : '';
 
@@ -505,11 +642,9 @@
       }
 
       const kind = props.kind ? `<div class="small" style="margin-top:6px;color:#666;">kind: ${esc(props.kind)}</div>` : '';
-
       return `${title}${cat}${t}${place}${typ}${mag}${domain}${url}${sources}${kind}`;
     }
 
-    // ===== Hotspot heat-like =====
     function hotspotStyle(score, maxScore) {
       const s = Math.max(0, Number(score) || 0);
       const m = Math.max(0.001, Number(maxScore) || 0.001);
@@ -529,17 +664,16 @@
       return { radius, weight: 1, fillOpacity, opacity, color:"#7c3aed", fillColor:"#a78bfa" };
     }
 
-    // ===== Data containers for filtering (7d vs today) =====
     const DATASETS = {
       gdelt: null,
       gdeltLinked: null,
       gdacs: null,
-      usgs: null
+      usgs: null,
+      riskDaily: null
     };
     const FILTERS = { newsToday: false, alertsToday: false };
 
     function applyFilters(){
-      // GDELT (news)
       if (DATASETS.gdelt && layers.gdelt){
         const feats = DATASETS.gdelt.features || [];
         const keep = FILTERS.newsToday
@@ -556,8 +690,6 @@
         layers.gdeltLinked.clearLayers();
         layers.gdeltLinked.addData({ type:"FeatureCollection", features: keep });
       }
-
-      // Alerts (GDACS + USGS)
       if (DATASETS.gdacs && layers.gdacs){
         const feats = DATASETS.gdacs.features || [];
         const keep = FILTERS.alertsToday
@@ -575,19 +707,15 @@
         layers.usgs.addData({ type:"FeatureCollection", features: keep });
       }
 
-      // UI button states
       document.getElementById("btnTodayNews").classList.toggle("on", FILTERS.newsToday);
       document.getElementById("btnTodayAlerts").classList.toggle("on", FILTERS.alertsToday);
       document.getElementById("btnReset7d").classList.toggle("on", (!FILTERS.newsToday && !FILTERS.alertsToday));
     }
 
-    // ===== Leaflet layer constructors =====
     function gdeltPointToLayer(feature, latlng){
       const p = feature.properties || {};
       const cat = p.category || p.gdelt_bucket || "other";
       const st = CAT_STYLE[cat] || CAT_STYLE.other;
-
-      // frissesség csak kis rásegítés
       const rec = eventRecencyStyle("GDELT", p);
       const isFresh = (rec.ageDays !== null && rec.ageDays <= 3);
 
@@ -617,7 +745,60 @@
 
     async function loadBorders(url) {
       const gj = await loadJson(url);
-      return L.geoJSON(gj, { style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0, color:"#2563eb" }) });
+      return L.geoJSON(gj, {
+        style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0, color:"#2563eb" })
+      });
+    }
+
+    async function loadCountryRiskBorders(url, riskDaily) {
+      const gj = await loadJson(url);
+      const countryMap = new Map();
+      for (const row of (riskDaily?.countries || [])) {
+        if (row?.country) countryMap.set(row.country, row);
+      }
+
+      return L.geoJSON(gj, {
+        style: (feature) => {
+          const name = feature?.properties?.name;
+          const row = countryMap.get(name);
+          const level = row?.overall || "normal";
+          return {
+            weight: 2,
+            opacity: 0.85,
+            color: riskColor(level),
+            fillColor: riskFill(level),
+            fillOpacity: 0.20
+          };
+        },
+        onEachFeature: (feature, layer) => {
+          const name = feature?.properties?.name;
+          const row = countryMap.get(name);
+
+          if (!row) {
+            layer.bindPopup(`<div><b>${esc(name || "Ismeretlen ország")}</b></div><div class="small">Nincs risk adat.</div>`);
+            return;
+          }
+
+          const dims = row.dimensions || {};
+          const dimHtml = Object.entries(dims)
+            .map(([k,v]) => `<li><b>${esc(k)}:</b> ${esc(v)}</li>`)
+            .join("");
+
+          const drivers = Array.isArray(row.drivers) && row.drivers.length
+            ? row.drivers.join(", ")
+            : "nincs";
+
+          layer.bindPopup(`
+            <div><b>${esc(row.country)}</b></div>
+            <div style="margin:6px 0;"><span class="risk-level ${riskClass(row.overall)}">${esc(row.overall)}</span></div>
+            <div><b>Overall score:</b> ${esc(row.overall_score)}</div>
+            <div><b>Confidence:</b> ${esc(row.confidence)} (${esc(row.confidence_value)})</div>
+            <div><b>Események:</b> ${esc(row.incident_count)} | <b>48h:</b> ${esc(row.recent_incident_count)}</div>
+            <div style="margin-top:6px;"><b>Drivers:</b> ${esc(drivers)}</div>
+            <div style="margin-top:6px;"><b>Dimenziók:</b><ul style="margin:6px 0 0; padding-left:18px;">${dimHtml}</ul></div>
+          `);
+        }
+      });
     }
 
     async function loadHotspotsHeat(url) {
@@ -668,7 +849,6 @@
       });
     }
 
-    // ===== Alert banner =====
     function renderAlertBanner(alert) {
       const banner = document.getElementById('alertBanner');
       if (!alert) {
@@ -687,7 +867,6 @@
       document.getElementById('alertBanner').style.display = 'none';
     });
 
-    // ===== Docks =====
     function setupDock(dockId, btnId, openText="Bezár", closedText="Kinyit") {
       const dock = document.getElementById(dockId);
       const btn = document.getElementById(btnId);
@@ -701,8 +880,8 @@
     setupDock("dockSituation", "btnSituation");
     setupDock("dockLayers", "btnLayers");
     setupDock("dockHotspots", "btnHotspots");
+    setupDock("dockRisk", "btnRisk");
 
-    // ===== UI renderers =====
     function renderMeta(meta) {
       const t = fmtBudapest(meta?.generated_utc);
       const timeText = t ? `Frissítés (Budapest): ${t.bud}` : `Frissítés: —`;
@@ -830,9 +1009,75 @@
       }
     }
 
-    // ===== Layers (Leaflet objects) =====
+    function renderRiskPanel(risk) {
+      const t = fmtBudapest(risk?.generated_utc);
+      document.getElementById("riskMeta").textContent = t ? `Frissítés (Budapest): ${t.bud}` : "—";
+
+      const region = risk?.region || {};
+      const overall = String(region.overall || "normal").toLowerCase();
+
+      const badge = document.getElementById("regionRiskBadge");
+      badge.className = `risk-level ${riskClass(overall)}`;
+      badge.textContent = overall.toUpperCase();
+
+      document.getElementById("regionRiskScore").textContent = `score: ${region.overall_score ?? "—"}`;
+      document.getElementById("regionRiskConfidence").textContent = `confidence: ${region.confidence ?? "—"} (${region.confidence_value ?? "—"})`;
+
+      const dimsWrap = document.getElementById("riskDims");
+      dimsWrap.innerHTML = `
+        <div class="hdr">Dimenzió</div>
+        <div class="hdr">Szint</div>
+        <div class="hdr" style="text-align:right;">Score</div>
+      `;
+
+      const dims = region.dimensions || {};
+      const scores = region.dimension_scores || {};
+      for (const dim of ["political", "military", "policing", "migration", "social", "infrastructure"]) {
+        const level = dims[dim] || "normal";
+        const score = scores[dim] ?? 0;
+        const row1 = document.createElement("div");
+        row1.className = "risk-dim";
+        row1.textContent = dim;
+
+        const row2 = document.createElement("div");
+        row2.innerHTML = `<span class="risk-level ${riskClass(level)}">${esc(level)}</span>`;
+
+        const row3 = document.createElement("div");
+        row3.className = "risk-score";
+        row3.textContent = Number(score).toFixed(3);
+
+        dimsWrap.appendChild(row1);
+        dimsWrap.appendChild(row2);
+        dimsWrap.appendChild(row3);
+      }
+
+      const wl = document.getElementById("riskWatchlist");
+      wl.innerHTML = "";
+      const watch = (region.watchlist || []).slice(0, 5);
+      if (!watch.length) {
+        wl.textContent = "Nincs kiemelt ország a watchlisten.";
+        return;
+      }
+
+      for (const item of watch) {
+        const div = document.createElement("div");
+        div.className = "risk-country";
+        const drivers = Array.isArray(item.drivers) && item.drivers.length ? item.drivers.join(", ") : "nincs";
+        div.innerHTML = `
+          <div class="name">
+            <span>${esc(item.country)}</span>
+            <span class="risk-level ${riskClass(item.overall)}">${esc(item.overall)}</span>
+          </div>
+          <div class="meta">score: ${esc(item.overall_score)} </div>
+          <div class="drivers"><b>Drivers:</b> ${esc(drivers)}</div>
+        `;
+        wl.appendChild(div);
+      }
+    }
+
     const layers = {
       borders: null,
+      countryRisk: null,
       hot: null,
       early: null,
       gdelt: L.geoJSON(null, { pointToLayer: gdeltPointToLayer, onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
@@ -841,12 +1086,21 @@
       gdacs: L.geoJSON(null, { pointToLayer: genericRecencyPointToLayer("GDACS"), onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) })
     };
 
-    // ===== Legend control =====
     const legend = L.control({ position: "bottomright" });
     legend.onAdd = function(){
       const div = L.DomUtil.create("div", "legend");
       div.innerHTML = `
-        <div style="font-weight:800;margin-bottom:6px;">Jelmagyarázat (GDELT kategóriák)</div>
+        <div style="font-weight:800;margin-bottom:6px;">Jelmagyarázat</div>
+        <div style="font-weight:700;margin:6px 0 4px;">Országos risk</div>
+        ${[
+          ["normal", "Normál", riskColor("normal")],
+          ["elevated", "Emelkedett", riskColor("elevated")],
+          ["tense", "Feszült", riskColor("tense")],
+          ["critical", "Kritikus", riskColor("critical")]
+        ].map(([k,label,color]) =>
+          `<div class="row"><span class="dot" style="background:${color}"></span><span>${esc(label)}</span></div>`
+        ).join("")}
+        <div style="font-weight:700;margin:10px 0 4px;">GDELT kategóriák</div>
         ${[
           ["protest","Tüntetés/erőszak", catColor("protest")],
           ["border","Határ/migráció", catColor("border")],
@@ -870,12 +1124,9 @@
     };
     legend.addTo(map);
 
-    // ===== Init =====
     async function init() {
-      // today label
       document.getElementById("todayBud").textContent = ymdInTZ(new Date(), "Europe/Budapest");
 
-      // Load meta/summaries
       try { renderMeta(await loadJson(`${DATA}/meta.json`)); }
       catch { document.getElementById('metaLine').textContent = 'Meta betöltése nem sikerült.'; }
 
@@ -888,12 +1139,21 @@
       try { renderEarlyList(await loadJson(`${DATA}/early.json`)); }
       catch { renderEarlyList({ top: [] }); }
 
-      // Load borders/hot/early as real layers
+      try {
+        const riskDaily = await loadJson(`${DATA}/risk_daily.json`);
+        DATASETS.riskDaily = riskDaily;
+        renderRiskPanel(riskDaily);
+      } catch {
+        renderRiskPanel({ region: { overall:"normal", overall_score:0, confidence:"low", confidence_value:0, dimensions:{}, dimension_scores:{}, watchlist:[] } });
+      }
+
       try { layers.borders = await loadBorders(`${DATA}/balkan_borders.geojson`); } catch {}
+      if (DATASETS.riskDaily) {
+        try { layers.countryRisk = await loadCountryRiskBorders(`${DATA}/balkan_borders.geojson`, DATASETS.riskDaily); } catch {}
+      }
       try { layers.hot = await loadHotspotsHeat(`${DATA}/hotspots.geojson`); } catch {}
       try { layers.early = await loadEarly(`${DATA}/early.geojson`); } catch {}
 
-      // Load datasets (for filtering) and set into Leaflet layers
       const [gdelt, gdeltLinked, usgs, gdacs] = await Promise.all([
         loadJson(`${DATA}/gdelt.geojson`).catch(()=>null),
         loadJson(`${DATA}/gdelt_linked.geojson`).catch(()=>null),
@@ -906,18 +1166,20 @@
       if (usgs) DATASETS.usgs = usgs;
       if (gdacs) DATASETS.gdacs = gdacs;
 
-      // initial render of filterable layers
       applyFilters();
 
-      // add non-filter layers data
+      if (layers.countryRisk) layers.countryRisk.addTo(map);
       if (layers.borders) layers.borders.addTo(map);
       if (layers.hot) layers.hot.addTo(map);
-      layers.gdelt.addTo(map); // default on
+      layers.gdelt.addTo(map);
 
-      // Hook layer checkboxes
       document.getElementById('layerBorders').addEventListener('change', (e) => {
         if (!layers.borders) return;
         e.target.checked ? map.addLayer(layers.borders) : map.removeLayer(layers.borders);
+      });
+      document.getElementById('layerCountryRisk').addEventListener('change', (e) => {
+        if (!layers.countryRisk) return;
+        e.target.checked ? map.addLayer(layers.countryRisk) : map.removeLayer(layers.countryRisk);
       });
       document.getElementById('layerHot').addEventListener('change', (e) => {
         if (!layers.hot) return;
@@ -940,7 +1202,6 @@
         e.target.checked ? map.addLayer(layers.gdacs) : map.removeLayer(layers.gdacs);
       });
 
-      // Filters
       document.getElementById("btnTodayNews").addEventListener("click", () => {
         FILTERS.newsToday = !FILTERS.newsToday;
         applyFilters();
@@ -955,7 +1216,6 @@
         applyFilters();
       });
 
-      // Top hotspots list
       try {
         const top = await loadJson(`${DATA}/hotspots.json`);
         renderHotList(top.top || []);
