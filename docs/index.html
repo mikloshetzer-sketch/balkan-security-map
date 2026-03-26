@@ -551,6 +551,16 @@
       overflow-y: auto;
     }
 
+    .stories{
+      width: 360px;
+      max-height: 46vh;
+    }
+
+    .stories .body{
+      max-height: calc(46vh - 60px);
+      overflow-y: auto;
+    }
+
     .hotlist{
       list-style:none;
       padding:0;
@@ -718,6 +728,102 @@
       line-height: 1.4;
     }
 
+    .story-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .story-card{
+      padding:10px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      transition: 0.15s ease;
+    }
+
+    .story-card:hover{
+      background: rgba(255,255,255,0.05);
+      border-color: var(--line-strong);
+    }
+
+    .story-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      margin-bottom:6px;
+    }
+
+    .story-source{
+      display:inline-flex;
+      align-items:center;
+      padding:3px 8px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      background: rgba(93,169,199,0.12);
+      border: 1px solid rgba(93,169,199,0.16);
+      color: #d8edf5;
+    }
+
+    .story-time{
+      font-size:11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .story-title{
+      font-size:13px;
+      font-weight:800;
+      line-height:1.4;
+      color:#f4f8fb;
+      margin-bottom:6px;
+    }
+
+    .story-title a{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .story-title a:hover{
+      color: #bfe8f5;
+      text-decoration: underline;
+    }
+
+    .story-summary{
+      font-size:12px;
+      color: var(--muted);
+      line-height:1.45;
+      margin-bottom:8px;
+    }
+
+    .story-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+    }
+
+    .story-tag{
+      display:inline-flex;
+      align-items:center;
+      padding:3px 8px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:700;
+      color:#dbe7f2;
+      background: rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .story-empty{
+      font-size:12px;
+      color: var(--muted);
+      padding: 8px 2px;
+    }
+
     .legend{
       background: rgba(11,18,27,0.92);
       color: var(--text);
@@ -844,7 +950,7 @@
         width: auto;
       }
 
-      .situation, .riskpanel, .hotspots, .layers{
+      .situation, .riskpanel, .hotspots, .layers, .stories{
         width:auto;
         max-width:none;
       }
@@ -871,6 +977,21 @@
 
       .hotspots .body{
         max-height: calc(28vh - 60px);
+      }
+
+      .stories{
+        max-height: 30vh;
+      }
+
+      .stories .body{
+        max-height: calc(30vh - 60px);
+      }
+
+      #dockStories{
+        right: calc(var(--safe-right) + 8px) !important;
+        left: calc(var(--safe-left) + 8px) !important;
+        bottom: calc(var(--safe-bottom) + 8px) !important;
+        width: auto !important;
       }
 
       .legend{
@@ -1017,6 +1138,10 @@
         <label for="layerGdeltLinked"><span class="badge">GDELT+</span>linkes</label>
       </div>
       <div class="rowCk">
+        <input type="checkbox" id="layerRssTrusted">
+        <label for="layerRssTrusted"><span class="badge">RSS</span>trusted stories</label>
+      </div>
+      <div class="rowCk">
         <input type="checkbox" id="layerUsgs">
         <label for="layerUsgs"><span class="badge">USGS</span>rengések</label>
       </div>
@@ -1038,6 +1163,21 @@
     <div class="body">
       <ol class="hotlist" id="hotList"></ol>
       <div class="small" style="margin-top:8px;">Kattints a sorra → zoom.</div>
+    </div>
+  </div>
+
+  <div class="dock bottom-right stories collapsed" id="dockStories" style="bottom: calc(var(--safe-bottom) + 220px);">
+    <div class="hd">
+      <div>
+        <div class="title">Top stories</div>
+        <div class="meta" id="storiesMeta">Betöltés...</div>
+      </div>
+      <button class="btn" id="btnStories">Kinyit</button>
+    </div>
+    <div class="body">
+      <div id="storiesList" class="story-list">
+        <div class="story-empty">Betöltés...</div>
+      </div>
     </div>
   </div>
 
@@ -1103,7 +1243,8 @@
       gdeltLinked: null,
       gdacs: null,
       usgs: null,
-      riskDaily: null
+      riskDaily: null,
+      trustedRss: null
     };
     const FILTERS = { newsToday: false, alertsToday: false };
 
@@ -1299,6 +1440,7 @@
     setupDock("dockSituation", "btnSituation");
     setupDock("dockLayers", "btnLayers");
     setupDock("dockHotspots", "btnHotspots");
+    setupDock("dockStories", "btnStories");
     setupDock("dockRisk", "btnRisk");
 
     function renderAlertBanner(alert) {
@@ -1327,9 +1469,10 @@
       const gl = counts.gdelt_linked ?? 0;
       const usgs = counts.usgs ?? 0;
       const gdacs = counts.gdacs ?? 0;
+      const rssCount = counts.rss_trusted ?? 0;
 
       document.getElementById('metaLine').textContent =
-        `${timeText} | hotspot cellák: ${counts.hotspot_cells ?? 0} | GDELT: ${counts.gdelt ?? 0} + linkes: ${gl}, USGS: ${usgs}, GDACS: ${gdacs}`;
+        `${timeText} | hotspot cellák: ${counts.hotspot_cells ?? 0} | GDELT: ${counts.gdelt ?? 0} + linkes: ${gl}, USGS: ${usgs}, GDACS: ${gdacs}, RSS: ${rssCount}`;
 
       document.getElementById('topbarUpdate').textContent = t ? `Frissítés: ${t.bud}` : 'Frissítés: —';
       document.getElementById('kpiHotspots').textContent = counts.hotspot_cells ?? '—';
@@ -1456,6 +1599,141 @@
       }
     }
 
+    function fmtStoryTime(isoString){
+      if (!isoString) return "—";
+      try{
+        const d = new Date(isoString);
+        if (isNaN(d.getTime())) return "—";
+        return new Intl.DateTimeFormat('hu-HU', {
+          timeZone: 'Europe/Budapest',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(d);
+      } catch {
+        return "—";
+      }
+    }
+
+    function storyMarkerStyle(story){
+      const score = Number(story?.signal_score || 0);
+      const radius = Math.max(5, Math.min(10, 4 + score * 3));
+      return {
+        radius,
+        weight: 1.5,
+        color: "#d9eef6",
+        opacity: 0.8,
+        fillColor: "#5da9c7",
+        fillOpacity: 0.65
+      };
+    }
+
+    function trustedStoryToFeature(story){
+      if (!story || !story.country_hint) return null;
+
+      const countryCenters = {
+        "Albania": [20.0, 41.2],
+        "Bosnia and Herzegovina": [17.9, 44.2],
+        "Bulgaria": [25.2, 42.7],
+        "Croatia": [16.4, 45.1],
+        "Greece": [22.9, 39.2],
+        "Kosovo": [20.9, 42.6],
+        "Montenegro": [19.3, 42.8],
+        "North Macedonia": [21.7, 41.6],
+        "Romania": [24.9, 45.9],
+        "Serbia": [20.8, 44.1],
+        "Slovenia": [14.9, 46.2],
+        "Turkey": [27.0, 41.1],
+        "Moldova": [28.6, 47.2],
+        "Hungary": [19.3, 47.1]
+      };
+
+      const center = countryCenters[story.country_hint];
+      if (!center) return null;
+
+      return {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: center
+        },
+        properties: {
+          source: "RSS",
+          kind: "trusted_rss",
+          type: "Trusted story",
+          title: story.title,
+          time: story.published_utc || story.fetched_utc,
+          url: story.url,
+          place: story.country_hint,
+          domain: story.source_name,
+          category: (story.dimensions || []).join(", "),
+          summary: story.summary,
+          signal_score: story.signal_score,
+          confidence_boost: story.confidence_boost
+        }
+      };
+    }
+
+    function makeStoryPopup(props) {
+      const title = props.title ? `<div style="margin-bottom:6px;"><b>${esc(props.title)}</b></div>` : '';
+      const source = props.domain ? `<div><b>Forrás:</b> ${esc(props.domain)}</div>` : '';
+      const time = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
+      const place = props.place ? `<div><b>Ország:</b> ${esc(props.place)}</div>` : '';
+      const dims = props.category ? `<div><b>Dimenzió:</b> ${esc(props.category)}</div>` : '';
+      const score = props.signal_score !== undefined ? `<div><b>Signal:</b> ${esc(props.signal_score)}</div>` : '';
+      const conf = props.confidence_boost !== undefined ? `<div><b>Confidence boost:</b> ${esc(props.confidence_boost)}</div>` : '';
+      const summary = props.summary ? `<div style="margin-top:6px;" class="small">${esc(props.summary)}</div>` : '';
+      const url = props.url ? `<div style="margin-top:6px;">🔗 <a href="${esc(props.url)}" target="_blank" rel="noopener">Cikk megnyitása</a></div>` : '';
+      return `${title}${source}${time}${place}${dims}${score}${conf}${summary}${url}`;
+    }
+
+    function renderStories(payload){
+      const metaEl = document.getElementById("storiesMeta");
+      const listEl = document.getElementById("storiesList");
+
+      const t = fmtBudapest(payload?.generated_utc);
+      metaEl.textContent = t ? `Frissítés (Budapest): ${t.bud} • ${payload?.count || 0} releváns cikk` : "—";
+
+      const stories = (payload?.stories || []).slice(0, 12);
+      listEl.innerHTML = "";
+
+      if (!stories.length){
+        listEl.innerHTML = `<div class="story-empty">Nincs releváns trusted RSS történet.</div>`;
+        return;
+      }
+
+      for (const s of stories){
+        const div = document.createElement("div");
+        div.className = "story-card";
+
+        const dims = Array.isArray(s.dimensions) ? s.dimensions.slice(0, 2) : [];
+        const country = s.country_hint ? [s.country_hint] : [];
+        const timeTxt = fmtStoryTime(s.published_utc || s.fetched_utc);
+
+        div.innerHTML = `
+          <div class="story-top">
+            <span class="story-source">${esc(s.source_name || "RSS")}</span>
+            <span class="story-time">${esc(timeTxt)}</span>
+          </div>
+          <div class="story-title">
+            <a href="${esc(s.url || "#")}" target="_blank" rel="noopener">${esc(s.title || "Nincs cím")}</a>
+          </div>
+          <div class="story-summary">${esc((s.summary || "").slice(0, 180))}</div>
+          <div class="story-tags">
+            ${country.map(x => `<span class="story-tag">${esc(x)}</span>`).join("")}
+            ${dims.map(x => `<span class="story-tag">${esc(x)}</span>`).join("")}
+          </div>
+        `;
+
+        if (s.country_hint){
+          div.addEventListener("click", () => zoomToCountry(s.country_hint));
+        }
+
+        listEl.appendChild(div);
+      }
+    }
+
     function zoomToCountry(countryName){
       const layer = COUNTRY_FEATURES.get(countryName);
       if (!layer) return;
@@ -1464,8 +1742,7 @@
         layer.openPopup();
       } catch {}
     }
-
-    function renderRiskPanel(risk) {
+        function renderRiskPanel(risk) {
       const t = fmtBudapest(risk?.generated_utc);
       document.getElementById("riskMeta").textContent = t ? `Frissítés (Budapest): ${t.bud}` : "—";
 
@@ -1749,7 +2026,11 @@
       gdelt: L.geoJSON(null, { pointToLayer: gdeltPointToLayer, onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
       gdeltLinked: L.geoJSON(null, { pointToLayer: gdeltPointToLayer, onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
       usgs: L.geoJSON(null, { pointToLayer: genericRecencyPointToLayer("USGS"), onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
-      gdacs: L.geoJSON(null, { pointToLayer: genericRecencyPointToLayer("GDACS"), onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) })
+      gdacs: L.geoJSON(null, { pointToLayer: genericRecencyPointToLayer("GDACS"), onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
+      rssTrusted: L.geoJSON(null, {
+        pointToLayer: (feature, latlng) => L.circleMarker(latlng, storyMarkerStyle(feature.properties || {})),
+        onEachFeature: (f, l) => l.bindPopup(makeStoryPopup(f.properties || {}))
+      })
     };
 
     const legend = L.control({ position: "bottomright" });
@@ -1782,6 +2063,8 @@
         ].map(([k,label,color]) =>
           `<div class="row"><span class="dot" style="background:${color}"></span><span>${esc(label)}</span></div>`
         ).join("")}
+        <div style="font-weight:800;margin:10px 0 4px;color:#eef5fb;">RSS trusted</div>
+        <div class="row"><span class="dot" style="background:#5da9c7"></span><span>Trusted story marker</span></div>
         <div style="margin-top:8px;" class="small">USGS/GDACS szín: frissesség (0–24h → piros).</div>
       `;
       L.DomEvent.disableClickPropagation(div);
@@ -1822,17 +2105,35 @@
       try { layers.hot = await loadHotspotsHeat(`${DATA}/hotspots.geojson`); } catch {}
       try { layers.early = await loadEarly(`${DATA}/early.geojson`); } catch {}
 
-      const [gdelt, gdeltLinked, usgs, gdacs] = await Promise.all([
+      const [gdelt, gdeltLinked, usgs, gdacs, trustedRss] = await Promise.all([
         loadJson(`${DATA}/gdelt.geojson`).catch(()=>null),
         loadJson(`${DATA}/gdelt_linked.geojson`).catch(()=>null),
         loadJson(`${DATA}/usgs.geojson`).catch(()=>null),
         loadJson(`${DATA}/gdacs.geojson`).catch(()=>null),
+        loadJson(`${DATA}/trusted_rss.json`).catch(()=>null),
       ]);
 
       if (gdelt) DATASETS.gdelt = gdelt;
       if (gdeltLinked) DATASETS.gdeltLinked = gdeltLinked;
       if (usgs) DATASETS.usgs = usgs;
       if (gdacs) DATASETS.gdacs = gdacs;
+
+      if (trustedRss) {
+        DATASETS.trustedRss = trustedRss;
+        renderStories(trustedRss);
+
+        const rssFeatures = (trustedRss.stories || [])
+          .map(trustedStoryToFeature)
+          .filter(Boolean);
+
+        layers.rssTrusted.clearLayers();
+        layers.rssTrusted.addData({
+          type: "FeatureCollection",
+          features: rssFeatures
+        });
+      } else {
+        renderStories({ count: 0, stories: [] });
+      }
 
       applyFilters();
 
@@ -1862,6 +2163,9 @@
       });
       document.getElementById('layerGdeltLinked').addEventListener('change', (e) => {
         e.target.checked ? map.addLayer(layers.gdeltLinked) : map.removeLayer(layers.gdeltLinked);
+      });
+      document.getElementById('layerRssTrusted').addEventListener('change', (e) => {
+        e.target.checked ? map.addLayer(layers.rssTrusted) : map.removeLayer(layers.rssTrusted);
       });
       document.getElementById('layerUsgs').addEventListener('change', (e) => {
         e.target.checked ? map.addLayer(layers.usgs) : map.removeLayer(layers.usgs);
@@ -1900,6 +2204,8 @@
       document.getElementById("btnLayers").textContent = "Kinyit";
       document.getElementById("dockHotspots").classList.add("collapsed");
       document.getElementById("btnHotspots").textContent = "Kinyit";
+      document.getElementById("dockStories").classList.add("collapsed");
+      document.getElementById("btnStories").textContent = "Kinyit";
     }
 
     init().catch(err => {
@@ -1909,3 +2215,4 @@
   </script>
 </body>
 </html>
+        
