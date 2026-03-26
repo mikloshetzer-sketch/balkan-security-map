@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import json
 import math
@@ -9,9 +10,12 @@ import os
 import re
 import time
 import zipfile
+from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
+from email.utils import parsedate_to_datetime
 from typing import Any, Dict, List, Optional, Tuple
 from urllib.request import Request, urlopen
+from xml.etree import ElementTree as ET
 
 import requests
 from dateutil import parser as dateparser
@@ -31,8 +35,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCS_DATA_DIR = os.path.join(ROOT, "docs", "data")
 CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
 COUNTRIES_CACHE_PATH = os.path.join(DOCS_DATA_DIR, "balkan_countries.geojson")
+TRUSTED_RSS_PATH = os.path.join(DOCS_DATA_DIR, "trusted_rss.json")
 
-USER_AGENT = "balkan-security-map/3.3 (github actions)"
+USER_AGENT = "balkan-security-map/3.4 (github actions)"
 TIMEOUT = 30
 
 # ============================================================
@@ -65,6 +70,130 @@ GDACS_KEEP_DAYS = 7
 GDELT_EXPORT_DAYS = 14
 MASTERFILELIST_URL = "http://data.gdeltproject.org/gdeltv2/masterfilelist.txt"
 MAX_SOURCES_PER_EVENT = 8
+
+# ============================================================
+# TRUSTED RSS
+# ============================================================
+MAX_RSS_ITEMS_PER_FEED = 50
+MAX_RSS_OUTPUT_ITEMS = 150
+
+# Ezek közül néhány feed idővel változhat, de a szerkezet készen áll.
+TRUSTED_RSS_FEEDS = [
+    {
+        "id": "euronews_news",
+        "name": "Euronews",
+        "url": "https://www.euronews.com/rss?level=theme&name=news",
+        "weight": 0.92,
+        "language": "en",
+        "scope": ["world", "europe", "balkans", "security", "politics"],
+        "trusted": True,
+    },
+    {
+        "id": "guardian_world",
+        "name": "The Guardian",
+        "url": "https://www.theguardian.com/world/rss",
+        "weight": 0.95,
+        "language": "en",
+        "scope": ["world", "europe", "security", "politics"],
+        "trusted": True,
+    },
+    {
+        "id": "guardian_europe",
+        "name": "The Guardian Europe",
+        "url": "https://www.theguardian.com/world/europe-news/rss",
+        "weight": 0.95,
+        "language": "en",
+        "scope": ["europe", "balkans", "security", "politics"],
+        "trusted": True,
+    },
+    {
+        "id": "dw_world",
+        "name": "DW",
+        "url": "https://rss.dw.com/rdf/rss-en-world",
+        "weight": 0.92,
+        "language": "en",
+        "scope": ["world", "europe", "security", "politics"],
+        "trusted": True,
+    },
+    {
+        "id": "dw_europe",
+        "name": "DW Europe",
+        "url": "https://rss.dw.com/rdf/rss-en-eu",
+        "weight": 0.93,
+        "language": "en",
+        "scope": ["europe", "balkans", "security", "politics"],
+        "trusted": True,
+    },
+    {
+        "id": "politico_eu",
+        "name": "Politico Europe",
+        "url": "https://www.politico.eu/feed/",
+        "weight": 0.88,
+        "language": "en",
+        "scope": ["eu", "nato", "policy", "politics"],
+        "trusted": True,
+    },
+    {
+        "id": "cnn_world",
+        "name": "CNN World",
+        "url": "http://rss.cnn.com/rss/edition_world.rss",
+        "weight": 0.80,
+        "language": "en",
+        "scope": ["world", "security", "politics"],
+        "trusted": True,
+    },
+]
+
+BALKAN_COUNTRY_KEYWORDS = {
+    "Albania": ["albania", "tirana", "albanian"],
+    "Bosnia and Herzegovina": ["bosnia", "sarajevo", "republika srpska", "bih", "bosnian"],
+    "Bulgaria": ["bulgaria", "sofia", "bulgarian"],
+    "Croatia": ["croatia", "zagreb", "croatian"],
+    "Greece": ["greece", "athens", "greek"],
+    "Kosovo": ["kosovo", "pristina", "priština", "kosovar"],
+    "Montenegro": ["montenegro", "podgorica", "montenegrin"],
+    "North Macedonia": ["north macedonia", "skopje", "macedonia", "macedonian"],
+    "Romania": ["romania", "bucharest", "romanian"],
+    "Serbia": ["serbia", "belgrade", "serbian"],
+    "Slovenia": ["slovenia", "ljubljana", "slovenian"],
+    "Turkey": ["turkey", "ankara", "istanbul", "turkish"],
+    "Moldova": ["moldova", "chisinau", "chișinău", "moldovan"],
+    "Hungary": ["hungary", "budapest", "hungarian"],
+}
+
+DIMENSION_KEYWORDS = {
+    "political": [
+        "election", "government", "parliament", "president", "prime minister",
+        "coalition", "opposition", "vote", "ballot", "minister", "resign",
+        "cabinet", "diplomacy", "sanction", "eu summit", "commission"
+    ],
+    "military": [
+        "military", "army", "troops", "defence", "defense", "nato", "exercise",
+        "drone", "airstrike", "weapon", "armed forces", "missile", "navy", "fighter jet"
+    ],
+    "policing": [
+        "police", "arrest", "raid", "investigation", "court", "prosecutor",
+        "corruption", "crime", "smuggling", "detention", "trial"
+    ],
+    "migration": [
+        "migrant", "migration", "refugee", "asylum", "border crossing",
+        "border", "smuggling route", "detention camp", "migrants"
+    ],
+    "social": [
+        "protest", "strike", "demonstration", "riot", "student", "union",
+        "teachers", "workers", "civil society", "rally"
+    ],
+    "infrastructure": [
+        "energy", "pipeline", "grid", "electricity", "gas", "oil",
+        "port", "rail", "bridge", "airport", "blackout", "infrastructure",
+        "terminal", "power plant"
+    ],
+}
+
+EXCLUDE_KEYWORDS = [
+    "sport", "football", "soccer", "tennis", "basketball", "celebrity", "fashion",
+    "movie", "music", "entertainment", "lifestyle", "travel tips", "horoscope"
+]
 
 # ============================================================
 # CATEGORY BUCKETS
@@ -396,6 +525,282 @@ def reverse_geocode_osm(lat: float, lon: float, cache: Dict[str, Any]) -> str:
     except Exception:
         cache[k] = "unknown"
         return "unknown"
+
+# ============================================================
+# TRUSTED RSS helpers
+# ============================================================
+@dataclass
+class TrustedStory:
+    story_id: str
+    source_id: str
+    source_name: str
+    source_weight: float
+    trusted: bool
+    title: str
+    summary: str
+    url: str
+    published_utc: Optional[str]
+    fetched_utc: str
+    country_hint: Optional[str]
+    dimensions: List[str]
+    scope: List[str]
+    signal_score: float
+    confidence_boost: float
+    match_terms: List[str]
+
+def strip_html(text: str) -> str:
+    text = re.sub(r"<[^>]+>", " ", text or "")
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+def rss_blob(title: str, summary: str) -> str:
+    return f"{title} {summary}".lower().strip()
+
+def parse_rss_datetime(value: Optional[str]) -> Optional[str]:
+    if not value:
+        return None
+    try:
+        dt = parsedate_to_datetime(value)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+        return dt.astimezone(timezone.utc).isoformat()
+    except Exception:
+        try:
+            dt = dateparser.parse(value)
+            if dt is None:
+                return None
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+            return dt.astimezone(timezone.utc).isoformat()
+        except Exception:
+            return None
+
+def rss_recency_score(published_utc: Optional[str]) -> float:
+    if not published_utc:
+        return 0.55
+    try:
+        dt = datetime.fromisoformat(published_utc.replace("Z", "+00:00"))
+        now = datetime.now(timezone.utc)
+        hours = max(0.0, (now - dt).total_seconds() / 3600.0)
+        if hours <= 12:
+            return 1.0
+        if hours <= 24:
+            return 0.92
+        if hours <= 48:
+            return 0.82
+        if hours <= 72:
+            return 0.72
+        if hours <= 168:
+            return 0.58
+        return 0.42
+    except Exception:
+        return 0.55
+
+def infer_country_from_text(blob: str) -> Tuple[Optional[str], List[str]]:
+    matches: List[Tuple[str, str]] = []
+    for country, keywords in BALKAN_COUNTRY_KEYWORDS.items():
+        for kw in keywords:
+            if kw in blob:
+                matches.append((country, kw))
+    if not matches:
+        return None, []
+    counts: Dict[str, int] = {}
+    used_terms: List[str] = []
+    for country, kw in matches:
+        counts[country] = counts.get(country, 0) + 1
+        used_terms.append(kw)
+    best = sorted(counts.items(), key=lambda x: x[1], reverse=True)[0][0]
+    return best, sorted(set(used_terms))
+
+def infer_dimensions_from_text(blob: str) -> Tuple[List[str], List[str]]:
+    dims: List[str] = []
+    terms: List[str] = []
+    for dim, keywords in DIMENSION_KEYWORDS.items():
+        hit = False
+        for kw in keywords:
+            if kw in blob:
+                hit = True
+                terms.append(kw)
+        if hit:
+            dims.append(dim)
+    if not dims:
+        dims = ["political"]
+    return dims, sorted(set(terms))
+
+def should_exclude_rss(blob: str) -> bool:
+    return any(kw in blob for kw in EXCLUDE_KEYWORDS)
+
+def make_story_id(url: str, title: str) -> str:
+    raw = f"{url}|{title}".encode("utf-8", errors="ignore")
+    return hashlib.sha256(raw).hexdigest()[:16]
+
+def parse_rss_xml(xml_bytes: bytes) -> List[Dict[str, Any]]:
+    root = ET.fromstring(xml_bytes)
+    items: List[Dict[str, Any]] = []
+
+    for elem in root.findall(".//item"):
+        items.append({
+            "title": elem.findtext("title"),
+            "link": elem.findtext("link"),
+            "description": elem.findtext("description"),
+            "summary": elem.findtext("{http://purl.org/rss/1.0/modules/content/}encoded"),
+            "pubDate": elem.findtext("pubDate"),
+        })
+
+    if items:
+        return items
+
+    ns = {"atom": "http://www.w3.org/2005/Atom"}
+    for entry in root.findall(".//atom:entry", ns):
+        link = ""
+        for link_el in entry.findall("atom:link", ns):
+            href = link_el.attrib.get("href")
+            if href:
+                link = href
+                break
+
+        summary = entry.findtext("atom:summary", default="", namespaces=ns)
+        content = entry.findtext("atom:content", default="", namespaces=ns)
+
+        items.append({
+            "title": entry.findtext("atom:title", default="", namespaces=ns),
+            "link": link,
+            "description": summary,
+            "summary": content,
+            "published": entry.findtext("atom:updated", default="", namespaces=ns),
+        })
+
+    return items
+
+def normalize_rss_item(feed: Dict[str, Any], item: Dict[str, Any]) -> Optional[TrustedStory]:
+    title = strip_html(item.get("title", ""))
+    summary = strip_html(item.get("summary", "") or item.get("description", ""))
+    url = (item.get("link") or "").strip()
+
+    if not title or not url:
+        return None
+
+    blob = rss_blob(title, summary)
+    if should_exclude_rss(blob):
+        return None
+
+    country_hint, country_terms = infer_country_from_text(blob)
+    dims, dim_terms = infer_dimensions_from_text(blob)
+
+    # Ha nincs országos találat, csak akkor tartjuk meg, ha legalább valamilyen
+    # releváns régiós/európai scope-ja van a feednek ÉS van biztonsági/politikai dimenzió.
+    if country_hint is None and not any(s in feed.get("scope", []) for s in ("balkans", "europe", "eu", "security", "politics")):
+        return None
+
+    published_utc = parse_rss_datetime(item.get("pubDate") or item.get("published"))
+    recency = rss_recency_score(published_utc)
+
+    source_weight = float(feed["weight"])
+    dimension_factor = min(1.15, 0.85 + 0.08 * len(dims))
+    country_factor = 1.10 if country_hint else 0.78
+
+    signal_score = round(source_weight * recency * dimension_factor * country_factor, 4)
+    confidence_boost = round(min(0.35, 0.14 + source_weight * 0.18 + (0.05 if country_hint else 0.0)), 4)
+
+    return TrustedStory(
+        story_id=make_story_id(url, title),
+        source_id=feed["id"],
+        source_name=feed["name"],
+        source_weight=source_weight,
+        trusted=bool(feed.get("trusted", True)),
+        title=title,
+        summary=summary[:500],
+        url=url,
+        published_utc=published_utc,
+        fetched_utc=datetime.now(timezone.utc).isoformat(),
+        country_hint=country_hint,
+        dimensions=dims,
+        scope=list(feed.get("scope", [])),
+        signal_score=signal_score,
+        confidence_boost=confidence_boost,
+        match_terms=sorted(set(country_terms + dim_terms)),
+    )
+
+def fetch_rss_feed(url: str) -> bytes:
+    req = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
+    with urlopen(req, timeout=TIMEOUT) as resp:
+        return resp.read()
+
+def dedupe_trusted_stories(stories: List[TrustedStory]) -> List[TrustedStory]:
+    seen_urls: set[str] = set()
+    seen_title_keys: set[str] = set()
+    out: List[TrustedStory] = []
+
+    for story in stories:
+        url_key = story.url.strip().lower()
+        title_key = re.sub(r"\W+", "", story.title.lower())
+
+        if url_key in seen_urls:
+            continue
+        if title_key in seen_title_keys:
+            continue
+
+        seen_urls.add(url_key)
+        seen_title_keys.add(title_key)
+        out.append(story)
+
+    return out
+
+def build_trusted_rss_output(stories: List[TrustedStory], errors: List[Dict[str, str]]) -> Dict[str, Any]:
+    now = datetime.now(timezone.utc).isoformat()
+    by_country: Dict[str, int] = {}
+    by_source: Dict[str, int] = {}
+
+    for s in stories:
+        if s.country_hint:
+            by_country[s.country_hint] = by_country.get(s.country_hint, 0) + 1
+        by_source[s.source_name] = by_source.get(s.source_name, 0) + 1
+
+    return {
+        "generated_utc": now,
+        "count": len(stories),
+        "stories": [asdict(s) for s in stories],
+        "summary": {
+            "top_countries": sorted(by_country.items(), key=lambda x: x[1], reverse=True)[:10],
+            "top_sources": sorted(by_source.items(), key=lambda x: x[1], reverse=True),
+        },
+        "errors": errors,
+    }
+
+def fetch_trusted_rss() -> Dict[str, Any]:
+    all_stories: List[TrustedStory] = []
+    errors: List[Dict[str, str]] = []
+
+    for feed in TRUSTED_RSS_FEEDS:
+        try:
+            xml_bytes = fetch_rss_feed(feed["url"])
+            items = parse_rss_xml(xml_bytes)[:MAX_RSS_ITEMS_PER_FEED]
+            for item in items:
+                story = normalize_rss_item(feed, item)
+                if story:
+                    all_stories.append(story)
+        except Exception as exc:
+            errors.append({
+                "feed_id": feed["id"],
+                "feed_name": feed["name"],
+                "error": str(exc),
+            })
+
+    all_stories = dedupe_trusted_stories(all_stories)
+    all_stories.sort(
+        key=lambda s: (
+            s.country_hint is None,
+            -(s.signal_score or 0.0),
+            s.published_utc or "",
+        )
+    )
+    all_stories = all_stories[:MAX_RSS_OUTPUT_ITEMS]
+
+    return build_trusted_rss_output(all_stories, errors)
+
+def save_trusted_rss(payload: Dict[str, Any]) -> None:
+    with open(TRUSTED_RSS_PATH, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
 
 # ============================================================
 # Sources: USGS / GDACS
@@ -939,7 +1344,7 @@ def extract_topics(titles: List[str], top_k: int = 6) -> List[str]:
             freq[w] = freq.get(w, 0) + 1
     return [w for w, _ in sorted(freq.items(), key=lambda x: x[1], reverse=True)[:top_k]]
 
-def build_weekly(all_features: List[Dict[str, Any]]) -> Dict[str, Any]:
+def build_weekly(all_features: List[Dict[str, Any]], trusted_rss_payload: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     now = datetime.now(timezone.utc)
     cutoff_7 = now - timedelta(days=7)
 
@@ -960,12 +1365,23 @@ def build_weekly(all_features: List[Dict[str, Any]]) -> Dict[str, Any]:
         if src == "GDELT":
             titles.append(((f.get("properties") or {}).get("title") or ""))
 
-    topics = extract_topics(titles[:120])
+    rss_count = 0
+    rss_examples: List[Dict[str, Any]] = []
+    if trusted_rss_payload:
+        stories = trusted_rss_payload.get("stories") or []
+        rss_count = len(stories)
+        rss_examples = stories[:5]
+        for s in stories[:40]:
+            titles.append((s.get("title") or ""))
+
+    topics = extract_topics(titles[:160])
 
     bullets = [
         f"Híralapú jelzések (GDELT): {counts['GDELT']} db az elmúlt 7 napban.",
         f"Természeti/ellátási stresszorok: USGS {counts['USGS']} esemény, GDACS {counts['GDACS']} riasztás (Balkán országok területén).",
     ]
+    if rss_count:
+        bullets.append(f"Trusted RSS sajtóforrásokból szűrt releváns hírek: {rss_count} db.")
     if topics:
         bullets.append("Gyakori témák a hírcímekben: " + ", ".join(topics) + ".")
     bullets.append("Megjegyzés: automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése javasolt.")
@@ -975,6 +1391,15 @@ def build_weekly(all_features: List[Dict[str, Any]]) -> Dict[str, Any]:
         "headline": "Heti kivonat – elmúlt 7 nap",
         "bullets": bullets,
         "counts": counts,
+        "rss_count": rss_count,
+        "examples": [
+            {
+                "title": x.get("title"),
+                "url": x.get("url"),
+                "domain": x.get("source_name"),
+            }
+            for x in rss_examples
+        ],
     }
 
 # ============================================================
@@ -1010,7 +1435,12 @@ def alert_from_top(top: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
         return {"level": "medium", "title": "Emelkedő feszültség", "text": f"Felfutó jelzések: {place}."}
     return None
 
-def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str, Any]], counts: Dict[str, int]) -> Dict[str, Any]:
+def make_summary(
+    all_features: List[Dict[str, Any]],
+    top_hotspots: List[Dict[str, Any]],
+    counts: Dict[str, int],
+    trusted_rss_payload: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
     now = datetime.now(timezone.utc)
     cutoff_7 = now - timedelta(days=7)
     cutoff_14 = now - timedelta(days=14)
@@ -1052,12 +1482,18 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
     else:
         top_text = "Legerősebb góc: jelenleg nincs elég geokódolt jelzés a térképes kiemeléshez."
 
+    rss_count = 0
+    if trusted_rss_payload:
+        rss_count = int(trusted_rss_payload.get("count") or 0)
+
     bullets = [
         top_text,
         trend_text,
         f"Forráskép: GDELT {counts.get('gdelt', 0)} + linked {counts.get('gdelt_linked', 0)}, USGS {counts.get('usgs', 0)}, GDACS {counts.get('gdacs', 0)}.",
-        "Megjegyzés: automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése javasolt.",
     ]
+    if rss_count:
+        bullets.append(f"Trusted RSS forrásokból releváns sajtóanyag: {rss_count} db.")
+    bullets.append("Megjegyzés: automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése javasolt.")
 
     return {
         "generated_utc": to_utc_z(now),
@@ -1069,6 +1505,7 @@ def make_summary(all_features: List[Dict[str, Any]], top_hotspots: List[Dict[str
             "score_prev7": round(score_prev7, 3),
             "change_pct": None if change is None else round(change, 2),
         },
+        "rss_count": rss_count,
     }
 
 # ============================================================
@@ -1103,6 +1540,22 @@ def main() -> int:
     except Exception as e:
         print(f"[GDELT EXPORT] fetch failed: {e}")
         gdelt_linked_new = []
+
+    # --- NEW: trusted RSS fetch ---
+    try:
+        trusted_rss_payload = fetch_trusted_rss()
+        save_trusted_rss(trusted_rss_payload)
+        print(f"[RSS] trusted_rss.json created with {trusted_rss_payload.get('count', 0)} stories.")
+    except Exception as e:
+        print(f"[RSS] fetch failed: {e}")
+        trusted_rss_payload = {
+            "generated_utc": to_utc_z(datetime.now(timezone.utc)),
+            "count": 0,
+            "stories": [],
+            "summary": {"top_countries": [], "top_sources": []},
+            "errors": [{"feed_id": "all", "feed_name": "trusted_rss", "error": str(e)}],
+        }
+        save_trusted_rss(trusted_rss_payload)
 
     usgs_merged = merge_dedup(clamp_times(prev_usgs), clamp_times(usgs_new))
     gdacs_merged = merge_dedup(clamp_times(prev_gdacs), clamp_times(gdacs_new))
@@ -1149,13 +1602,14 @@ def main() -> int:
         "gdelt": len(gdelt),
         "gdelt_linked": len(gdelt_linked),
         "hotspot_cells": len(hotspot_geo),
+        "rss_trusted": int(trusted_rss_payload.get("count") or 0),
     }
 
-    summary = make_summary(all_feats, top_hotspots, counts)
+    summary = make_summary(all_feats, top_hotspots, counts, trusted_rss_payload=trusted_rss_payload)
     with open(os.path.join(DOCS_DATA_DIR, "summary.json"), "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
 
-    weekly = build_weekly(all_feats)
+    weekly = build_weekly(all_feats, trusted_rss_payload=trusted_rss_payload)
     with open(os.path.join(DOCS_DATA_DIR, "weekly.json"), "w", encoding="utf-8") as f:
         json.dump(weekly, f, ensure_ascii=False, indent=2)
 
@@ -1175,6 +1629,11 @@ def main() -> int:
             "export_days": GDELT_EXPORT_DAYS,
         },
         "early": {"recent_hours": 48, "lookback_days": 7},
+        "rss": {
+            "enabled": True,
+            "feeds": [f["id"] for f in TRUSTED_RSS_FEEDS],
+            "output": "trusted_rss.json",
+        },
     }
     with open(os.path.join(DOCS_DATA_DIR, "meta.json"), "w", encoding="utf-8") as f:
         json.dump(meta, f, ensure_ascii=False, indent=2)
