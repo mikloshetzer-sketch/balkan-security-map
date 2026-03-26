@@ -11,7 +11,6 @@
   <style>
     :root{
       --card-bg: rgba(255,255,255,0.95);
-      --card-bg-soft: rgba(255,255,255,0.88);
       --shadow: 0 10px 32px rgba(0,0,0,0.16);
       --border: 1px solid rgba(0,0,0,0.08);
       --radius: 16px;
@@ -101,16 +100,20 @@
       overflow: hidden;
     }
 
-    .dock.left-top {
+    .dock.top-left {
       top: calc(var(--safe-top) + 56px);
       left: calc(var(--safe-left) + 12px);
     }
-    .dock.right-top {
+    .dock.top-right {
       top: calc(var(--safe-top) + 56px);
       right: calc(var(--safe-right) + 12px);
     }
-    .dock.right-bottom {
+    .dock.bottom-right {
       right: calc(var(--safe-right) + 12px);
+      bottom: calc(var(--safe-bottom) + 12px);
+    }
+    .dock.bottom-left {
+      left: calc(var(--safe-left) + 12px);
       bottom: calc(var(--safe-bottom) + 12px);
     }
 
@@ -268,19 +271,19 @@
 
     .hotspots{
       width: 320px;
-      max-height: 48vh;
+      max-height: 34vh;
     }
     .hotspots .body{
-      max-height: calc(48vh - 52px);
+      max-height: calc(34vh - 52px);
       overflow-y: auto;
     }
 
     .riskpanel{
       width: 340px;
-      max-height: 62vh;
+      max-height: 44vh;
     }
     .riskpanel .body{
-      max-height: calc(62vh - 52px);
+      max-height: calc(44vh - 52px);
       overflow-y: auto;
     }
 
@@ -444,23 +447,35 @@
       flex: 0 0 10px;
     }
 
+    .leaflet-bottom.leaflet-right {
+      bottom: calc(var(--safe-bottom) + 210px);
+    }
+
     @media (max-width: 720px){
-      .dock.left-top{
+      .dock.top-left{
         top: calc(var(--safe-top) + 54px);
         left: calc(var(--safe-left) + 10px);
         right: calc(var(--safe-right) + 10px);
         width: auto;
       }
-      .dock.right-top{
+
+      .dock.top-right{
         top: auto;
         right: calc(var(--safe-right) + 10px);
         left: auto;
         bottom: calc(var(--safe-bottom) + 10px);
       }
-      .dock.right-bottom{
+
+      .dock.bottom-right{
         right: calc(var(--safe-right) + 10px);
         left: auto;
         bottom: calc(var(--safe-bottom) + 10px);
+      }
+
+      .dock.bottom-left{
+        left: calc(var(--safe-left) + 10px);
+        right: calc(var(--safe-right) + 10px);
+        width: auto;
       }
 
       .situation, .riskpanel, .hotspots, .layers{
@@ -469,29 +484,39 @@
       }
 
       .situation{
-        max-height: 58vh;
+        max-height: 56vh;
       }
       .situation .body{
-        max-height: calc(58vh - 52px);
+        max-height: calc(56vh - 52px);
       }
 
       .riskpanel{
-        left: calc(var(--safe-left) + 10px);
-        right: calc(var(--safe-right) + 10px);
-        bottom: calc(var(--safe-bottom) + 68px);
-        width:auto;
-        max-height: 42vh;
+        bottom: calc(var(--safe-bottom) + 10px);
+        max-height: 34vh;
       }
       .riskpanel .body{
-        max-height: calc(42vh - 52px);
+        max-height: calc(34vh - 52px);
+      }
+
+      .hotspots{
+        bottom: calc(var(--safe-bottom) + 10px);
+        max-height: 28vh;
+      }
+      .hotspots .body{
+        max-height: calc(28vh - 52px);
       }
 
       .legend{
         width: 180px;
         max-height: 180px;
         padding: 8px;
-        margin-bottom: calc(var(--safe-bottom) + 4px);
+        margin-bottom: calc(var(--safe-bottom) + 2px);
       }
+
+      .leaflet-bottom.leaflet-right {
+        bottom: calc(var(--safe-bottom) + 150px);
+      }
+
       .leaflet-control-zoom{
         margin-top: calc(var(--safe-top) + 56px) !important;
       }
@@ -513,7 +538,7 @@
 
   <div id="map"></div>
 
-  <div class="dock left-top situation" id="dockSituation">
+  <div class="dock top-left situation" id="dockSituation">
     <div class="hd">
       <div>
         <div class="title">Balkán – helyzetkép</div>
@@ -559,7 +584,7 @@
     </div>
   </div>
 
-  <div class="dock right-top layers collapsed" id="dockLayers">
+  <div class="dock top-right layers collapsed" id="dockLayers">
     <div class="hd">
       <div class="title">Rétegek</div>
       <button class="btn" id="btnLayers">Kinyit</button>
@@ -603,7 +628,7 @@
     </div>
   </div>
 
-  <div class="dock right-bottom hotspots collapsed" id="dockHotspots">
+  <div class="dock bottom-right hotspots collapsed" id="dockHotspots">
     <div class="hd">
       <div class="title">Top hotspotok</div>
       <button class="btn" id="btnHotspots">Kinyit</button>
@@ -614,7 +639,7 @@
     </div>
   </div>
 
-  <div class="dock right-bottom riskpanel collapsed" id="dockRisk" style="bottom: calc(var(--safe-bottom) + 230px);">
+  <div class="dock bottom-left riskpanel collapsed" id="dockRisk">
     <div class="hd">
       <div>
         <div class="title" id="riskTitle">Risk snapshot</div>
@@ -1456,6 +1481,10 @@
 
       document.getElementById("dockRisk").classList.add("collapsed");
       document.getElementById("btnRisk").textContent = "Kinyit";
+      document.getElementById("dockLayers").classList.add("collapsed");
+      document.getElementById("btnLayers").textContent = "Kinyit";
+      document.getElementById("dockHotspots").classList.add("collapsed");
+      document.getElementById("btnHotspots").textContent = "Kinyit";
     }
 
     init().catch(err => {
