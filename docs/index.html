@@ -10,33 +10,34 @@
 
   <style>
     :root{
-      --bg: #0a1018;
-      --bg-2: #0d1520;
-      --bg-3: #111c29;
-      --panel: rgba(12, 19, 29, 0.88);
-      --panel-2: rgba(16, 26, 39, 0.92);
-      --panel-3: rgba(20, 32, 48, 0.96);
-      --line: rgba(157, 181, 210, 0.14);
-      --line-strong: rgba(157, 181, 210, 0.24);
-      --text: #e9eef5;
-      --muted: #9fb0c4;
-      --muted-2: #7f91a8;
-      --accent: #5da9c7;
-      --accent-2: #7dc4e0;
-      --accent-soft: rgba(93,169,199,0.14);
-      --warning: #d0a24a;
-      --tense: #d57a45;
-      --critical: #b74b4b;
-      --success: #5e9f72;
-      --shadow: 0 18px 50px rgba(0,0,0,0.36);
-      --shadow-soft: 0 10px 30px rgba(0,0,0,0.22);
+      --bg: #eef2f5;
+      --bg-soft: #f6f8fa;
+      --panel: rgba(255,255,255,0.92);
+      --panel-strong: rgba(255,255,255,0.97);
+      --line: rgba(34, 51, 68, 0.10);
+      --line-strong: rgba(34, 51, 68, 0.18);
+      --text: #1f2a36;
+      --muted: #607284;
+      --muted-2: #7a8b9b;
+      --accent: #3d6f8a;
+      --accent-2: #588ba7;
+      --accent-soft: rgba(61,111,138,0.10);
+      --success: #5c8b68;
+      --warning: #b78a38;
+      --tense: #c46d3f;
+      --critical: #b14c4c;
+      --shadow: 0 12px 30px rgba(25, 40, 55, 0.10);
+      --shadow-soft: 0 6px 18px rgba(25, 40, 55, 0.08);
       --radius: 18px;
       --radius-sm: 12px;
       --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      --safe-top: max(env(safe-area-inset-top), 8px);
-      --safe-right: max(env(safe-area-inset-right), 8px);
-      --safe-left: max(env(safe-area-inset-left), 8px);
-      --safe-bottom: max(env(safe-area-inset-bottom), 8px);
+      --header-h: 72px;
+      --left-w: 380px;
+      --right-w: 360px;
+      --safe-top: max(env(safe-area-inset-top), 0px);
+      --safe-right: max(env(safe-area-inset-right), 0px);
+      --safe-left: max(env(safe-area-inset-left), 0px);
+      --safe-bottom: max(env(safe-area-inset-bottom), 0px);
     }
 
     * { box-sizing: border-box; }
@@ -45,60 +46,59 @@
       height: 100%;
       margin: 0;
       font-family: var(--font);
-      background:
-        radial-gradient(circle at top left, rgba(93,169,199,0.08), transparent 26%),
-        radial-gradient(circle at top right, rgba(125,196,224,0.06), transparent 22%),
-        linear-gradient(180deg, #09111a 0%, #0b121b 38%, #0a1018 100%);
       color: var(--text);
-    }
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
-      z-index:0;
-    }
-
-    a { color: var(--accent-2); }
-    a:hover { color: #b7e5f5; }
-
-    #map {
-      height: 100vh;
-      width: 100vw;
-      background: #0b121a;
-      filter: saturate(0.9) contrast(1.02);
-    }
-
-    .shell-topbar{
-      position: fixed;
-      z-index: 2200;
-      top: calc(var(--safe-top) + 10px);
-      left: calc(var(--safe-left) + 12px);
-      right: calc(var(--safe-right) + 12px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
       background:
-        linear-gradient(180deg, rgba(15,24,36,0.95), rgba(11,18,27,0.92));
-      backdrop-filter: blur(14px);
+        radial-gradient(circle at top left, rgba(61,111,138,0.06), transparent 24%),
+        linear-gradient(180deg, #f4f7f9 0%, #edf2f5 100%);
+    }
+
+    body{
+      overflow: hidden;
+    }
+
+    a{
+      color: var(--accent);
+    }
+
+    a:hover{
+      color: #24485c;
+    }
+
+    .app{
+      height: 100vh;
+      display: grid;
+      grid-template-columns: var(--left-w) minmax(0,1fr) var(--right-w);
+      grid-template-rows: var(--header-h) minmax(0,1fr);
+      grid-template-areas:
+        "header header header"
+        "left main right";
+      gap: 14px;
+      padding:
+        calc(var(--safe-top) + 12px)
+        calc(var(--safe-right) + 12px)
+        calc(var(--safe-bottom) + 12px)
+        calc(var(--safe-left) + 12px);
+    }
+
+    .topbar{
+      grid-area: header;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 14px 18px;
+      border-radius: 20px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
       box-shadow: var(--shadow);
+      min-height: 0;
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:14px;
-      min-width: 0;
+      min-width:0;
     }
 
     .brand-mark{
@@ -107,13 +107,11 @@
       border-radius: 12px;
       display:grid;
       place-items:center;
-      background:
-        linear-gradient(135deg, rgba(93,169,199,0.16), rgba(183,75,75,0.12));
-      border: 1px solid rgba(125,196,224,0.18);
-      color: var(--accent-2);
+      background: linear-gradient(135deg, rgba(61,111,138,0.12), rgba(88,139,167,0.18));
+      color: var(--accent);
+      border: 1px solid rgba(61,111,138,0.16);
       font-weight: 900;
       letter-spacing: 0.08em;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
     .brand-copy{
@@ -122,268 +120,310 @@
 
     .brand-title{
       font-size: 15px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: #f4f8fc;
+      color: #1c2631;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .brand-sub{
+      margin-top: 2px;
       font-size: 12px;
       color: var(--muted);
-      margin-top: 2px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .topbar-right{
+    .top-metrics{
       display:flex;
-      gap:10px;
       align-items:center;
+      gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
 
-    .pill{
+    .metric-pill{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      min-height: 34px;
+      min-height: 36px;
       padding: 6px 12px;
       border-radius: 999px;
+      background: var(--bg-soft);
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
       color: var(--text);
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+      font-weight: 800;
       white-space: nowrap;
     }
 
-    .pill .dot{
+    .metric-pill .dot{
       width: 8px;
       height: 8px;
       border-radius: 999px;
       background: var(--accent);
-      border: 0;
       flex: 0 0 8px;
     }
 
-    .alert-banner{
-      position:fixed;
-      top: calc(var(--safe-top) + 82px);
-      left: calc(var(--safe-left) + 12px);
-      right: calc(var(--safe-right) + 12px);
-      z-index:2000;
-      display:none;
-      padding: 12px 14px;
-      border-radius: 16px;
+    .sidebar{
+      min-height: 0;
+      border-radius: 20px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .sidebar-left{
+      grid-area: left;
+    }
+
+    .sidebar-right{
+      grid-area: right;
+    }
+
+    .sidebar-header{
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95));
+    }
+
+    .sidebar-title{
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #24313d;
+    }
+
+    .sidebar-meta{
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .sidebar-body{
+      min-height: 0;
+      overflow-y: auto;
+      padding: 14px;
+    }
+
+    .main{
+      grid-area: main;
+      min-height: 0;
+      min-width: 0;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: #dfe8ee;
+    }
+
+    #map{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+    }
+
+    .map-overlay{
+      position:absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      pointer-events:none;
+      z-index: 1100;
+    }
+
+    .map-note,
+    .map-tools{
+      pointer-events:auto;
+      background: rgba(255,255,255,0.88);
       border: 1px solid var(--line);
       box-shadow: var(--shadow-soft);
-      background: rgba(17, 27, 39, 0.95);
-      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .map-note{
+      max-width: 360px;
+      padding: 10px 12px;
+    }
+
+    .map-note-title{
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #21303d;
+    }
+
+    .map-note-text{
+      margin-top: 5px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .map-tools{
+      padding: 8px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .tool-btn{
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .tool-btn:hover{
+      background: #f5f8fb;
+      border-color: var(--line-strong);
+    }
+
+    .tool-btn.on{
+      background: var(--accent-soft);
+      border-color: rgba(61,111,138,0.20);
+      color: #27495c;
+    }
+
+    .alert-banner{
+      display:none;
+      margin-bottom: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff8ef;
     }
 
     .alert-banner .row{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
       gap:12px;
     }
 
     .alert-banner .left{
       display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      min-width: 0;
+      flex-direction:column;
+      gap:6px;
+      min-width:0;
     }
 
     .alert-banner .tag{
       display:inline-flex;
       align-items:center;
-      padding:4px 10px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:900;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      color:#f5f8fb;
+      width: fit-content;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.04);
+      color: #324250;
     }
 
     .alert-banner .title{
-      font-size:13px;
-      font-weight:800;
-      color:#fff;
+      font-size: 13px;
+      font-weight: 900;
+      color: #24313d;
     }
 
     .alert-banner .text{
-      font-size:13px;
-      color:#d9e3ee;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
     }
 
     .alert-banner button{
-      border:1px solid var(--line);
-      border-radius:10px;
-      padding:7px 10px;
-      cursor:pointer;
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      font-size:12px;
-    }
-
-    .alert-banner.info   { background: rgba(17,27,39,0.95); }
-    .alert-banner.watch  { background: rgba(34,31,20,0.94); }
-    .alert-banner.medium { background: rgba(47,31,18,0.94); }
-    .alert-banner.high   { background: rgba(53,22,22,0.95); }
-
-    .dock{
-      position:absolute;
-      z-index:1200;
-      background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-      overflow: hidden;
+      background: white;
       color: var(--text);
-    }
-
-    .dock::before{
-      content:"";
-      position:absolute;
-      inset:0 0 auto 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-      pointer-events:none;
-    }
-
-    .dock.top-left {
-      top: calc(var(--safe-top) + 132px);
-      left: calc(var(--safe-left) + 12px);
-    }
-
-    .dock.top-right {
-      top: calc(var(--safe-top) + 132px);
-      right: calc(var(--safe-right) + 12px);
-    }
-
-    .dock.bottom-right {
-      right: calc(var(--safe-right) + 12px);
-      bottom: calc(var(--safe-bottom) + 12px);
-    }
-
-    .dock.bottom-left {
-      left: calc(var(--safe-left) + 12px);
-      bottom: calc(var(--safe-bottom) + 12px);
-    }
-
-    .dock .hd{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding:12px 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      border-bottom: 1px solid var(--line);
-    }
-
-    .dock .hd .title{
-      font-size:13px;
-      font-weight:900;
-      color:#f7fbff;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .dock .hd .meta{
-      font-size:12px;
-      color:var(--muted);
-      font-weight:500;
-      margin-top:4px;
-    }
-
-    .dock .btn{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      border-radius:10px;
-      padding:7px 10px;
+      border-radius: 10px;
+      padding: 7px 10px;
+      font-size: 12px;
       cursor:pointer;
-      font-size:12px;
-      white-space:nowrap;
-      transition: 0.18s ease;
+      flex: 0 0 auto;
     }
 
-    .dock .btn:hover,
-    .filters .btnSm:hover{
-      background: rgba(255,255,255,0.08);
-      border-color: var(--line-strong);
+    .alert-banner.info   { background: #f4f8fb; }
+    .alert-banner.watch  { background: #fff8ef; }
+    .alert-banner.medium { background: #fff3e7; }
+    .alert-banner.high   { background: #fff0f0; }
+
+    .kpi-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
-    .dock .body{
-      padding:12px 14px 14px;
+    .kpi{
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fbfcfd;
     }
 
-    .dock.collapsed .body{
-      display:none;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      padding:3px 8px;
-      border-radius:999px;
-      background: rgba(93,169,199,0.12);
-      color: #d8edf5;
-      border: 1px solid rgba(93,169,199,0.16);
-      font-size:11px;
-      margin-right:6px;
+    .kpi .label{
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
       font-weight: 800;
-      letter-spacing: 0.04em;
     }
 
-    .small {
-      font-size:12px;
-      color:var(--muted);
-      line-height:1.45;
-    }
-
-    .mono {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:12px;
+    .kpi .value{
+      margin-top: 8px;
+      font-size: 20px;
+      font-weight: 900;
+      color: #21303d;
     }
 
     .section{
-      margin: 10px 0;
+      margin-bottom: 12px;
       padding: 12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border: 1px solid var(--line);
       border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fbfcfd;
     }
 
     .section h3{
-      margin:0 0 8px;
-      font-size:12px;
-      font-weight:900;
-      color:#f2f7fc;
+      margin: 0 0 8px;
+      font-size: 12px;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      color: #22313d;
     }
 
     .section .meta{
-      margin:0 0 8px;
-      font-size:12px;
-      color:var(--muted);
+      margin: 0 0 8px;
+      font-size: 12px;
+      color: var(--muted);
     }
 
     .section ul{
@@ -392,20 +432,24 @@
     }
 
     .section li{
-      font-size:12px;
-      color:#dbe6f0;
-      margin:6px 0;
-      line-height: 1.42;
+      margin: 6px 0;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #334353;
+    }
+
+    details.section{
+      padding-bottom: 10px;
     }
 
     details summary{
       cursor:pointer;
-      font-size:12px;
-      color:#f2f7fc;
-      font-weight:900;
+      list-style:none;
+      font-size: 12px;
+      font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      list-style:none;
+      color: #22313d;
     }
 
     details summary::-webkit-details-marker{
@@ -413,188 +457,50 @@
     }
 
     details summary::after{
-      content:"▾";
+      content: "▾";
       float:right;
       color: var(--muted);
-      font-size: 12px;
     }
 
     details[open] summary::after{
-      content:"▴";
+      content: "▴";
     }
 
-    details .muted{
-      color:var(--muted);
-      font-size:12px;
-      margin-top:6px;
-      line-height:1.4;
-    }
-
-    .kpi-grid{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .kpi{
-      padding: 12px 10px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-    }
-
-    .kpi .label{
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+    .muted{
       color: var(--muted);
-      font-weight: 800;
+      font-size: 12px;
+      line-height: 1.4;
     }
 
-    .kpi .value{
-      margin-top: 8px;
-      font-size: 19px;
-      font-weight: 900;
-      color: #f6fbff;
-    }
-
-    .filters {
-      margin-top: 10px;
+    .filter-box{
       padding: 12px;
-      border: 1px solid var(--line);
       border-radius: 14px;
-      background: rgba(255,255,255,0.02);
+      border: 1px dashed var(--line-strong);
+      background: #f9fbfc;
     }
 
-    .filters .row {
+    .filter-row{
       display:flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items:center;
-      margin-top: 8px;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:8px;
     }
 
-    .filters .btnSm {
+    .btnSm{
       cursor:pointer;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
+      background: #fff;
       color: var(--text);
       border-radius: 10px;
       padding: 7px 10px;
       font-size: 12px;
       font-weight: 700;
-      transition: 0.18s ease;
     }
 
-    .filters .btnSm.on {
-      border-color: rgba(125,196,224,0.34);
-      background: rgba(93,169,199,0.14);
-      color: #eaf8ff;
-      box-shadow: inset 0 0 0 1px rgba(125,196,224,0.08);
-    }
-
-    .layers .rowCk{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      margin:10px 0;
-      padding: 8px 10px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.03);
-    }
-
-    .layers label{
-      font-size:12px;
-      color:#deebf6;
-      line-height:1.4;
-    }
-
-    .layers input{
-      transform: translateY(1px);
-      accent-color: var(--accent);
-    }
-
-    .situation{
-      width: min(470px, calc(100vw - 24px));
-      max-height: 76vh;
-    }
-
-    .situation .body{
-      max-height: calc(76vh - 60px);
-      overflow-y: auto;
-    }
-
-    .layers{
-      width: 310px;
-    }
-
-    .hotspots{
-      width: 340px;
-      max-height: 36vh;
-    }
-
-    .hotspots .body{
-      max-height: calc(36vh - 60px);
-      overflow-y: auto;
-    }
-
-    .riskpanel{
-      width: 390px;
-      max-height: 54vh;
-    }
-
-    .riskpanel .body{
-      max-height: calc(54vh - 60px);
-      overflow-y: auto;
-    }
-
-    .stories{
-      width: 360px;
-      max-height: 46vh;
-    }
-
-    .stories .body{
-      max-height: calc(46vh - 60px);
-      overflow-y: auto;
-    }
-
-    .hotlist{
-      list-style:none;
-      padding:0;
-      margin:0;
-      max-height: 240px;
-      overflow-y:auto;
-    }
-
-    .hotitem{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 10px;
-      border-radius: 12px;
-      cursor:pointer;
-      border: 1px solid transparent;
-      transition: 0.15s ease;
-    }
-
-    .hotitem:hover{
-      background: rgba(255,255,255,0.04);
-      border-color: var(--line);
-    }
-
-    .place{
-      font-size:12px;
-      font-weight:800;
-      color:#f3f8fc;
-    }
-
-    .sub{
-      font-size:12px;
-      color:var(--muted);
-      margin-top: 4px;
+    .btnSm.on{
+      background: var(--accent-soft);
+      border-color: rgba(61,111,138,0.18);
+      color: #294d61;
     }
 
     .risk-level{
@@ -607,15 +513,13 @@
       font-weight:900;
       text-transform:uppercase;
       letter-spacing:0.07em;
-      border:1px solid rgba(0,0,0,0.08);
-      background:#22303e;
-      color:#fff;
+      border:1px solid transparent;
     }
 
-    .risk-normal{ background:#183224; color:#d9f1df; border-color: rgba(94,159,114,0.24); }
-    .risk-elevated{ background:#3a3120; color:#f4e1b8; border-color: rgba(208,162,74,0.28); }
-    .risk-tense{ background:#42271d; color:#ffd8c2; border-color: rgba(213,122,69,0.28); }
-    .risk-critical{ background:#471f23; color:#ffd6d6; border-color: rgba(183,75,75,0.32); }
+    .risk-normal{ background:#edf7ef; color:#3e6d4b; border-color: rgba(92,139,104,0.18); }
+    .risk-elevated{ background:#fff8e7; color:#9a7324; border-color: rgba(183,138,56,0.20); }
+    .risk-tense{ background:#fff1ea; color:#a8562c; border-color: rgba(196,109,63,0.20); }
+    .risk-critical{ background:#fff0f0; color:#963d3d; border-color: rgba(177,76,76,0.20); }
 
     .risk-grid{
       display:grid;
@@ -628,22 +532,22 @@
     .risk-grid .hdr{
       font-size:11px;
       font-weight:800;
-      color:var(--muted);
+      color: var(--muted);
       text-transform:uppercase;
       letter-spacing: 0.05em;
     }
 
     .risk-dim{
       font-size:12px;
-      color:#e0ebf5;
-      text-transform: capitalize;
+      color:#30404f;
+      text-transform:capitalize;
     }
 
     .risk-score{
       font-size:12px;
-      color:#b6c7d9;
+      color: var(--muted);
       text-align:right;
-      font-weight: 700;
+      font-weight:700;
     }
 
     .risk-toolbar{
@@ -661,13 +565,13 @@
       border-radius:10px;
       padding:8px 10px;
       font-size:12px;
-      background: rgba(255,255,255,0.04);
+      background: white;
       color: var(--text);
       outline: none;
     }
 
     .risk-toolbar input[type="text"]::placeholder{
-      color: #8ea2b8;
+      color: #8595a4;
     }
 
     .risk-toolbar label{
@@ -675,7 +579,7 @@
       align-items:center;
       gap:6px;
       font-size:12px;
-      color:#cdd9e4;
+      color:#4f6171;
       cursor:pointer;
       user-select:none;
     }
@@ -684,31 +588,31 @@
       accent-color: var(--accent);
     }
 
-    #riskWatchlist {
-      max-height: 280px;
+    #riskWatchlist{
+      max-height: 260px;
       overflow-y: auto;
-      padding-right: 4px;
+      padding-right: 2px;
     }
 
     .risk-country{
-      padding:10px 10px;
+      padding:10px;
       margin-top:8px;
       border-radius:12px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,0.03);
+      background:white;
       cursor:pointer;
       transition: 0.15s ease;
     }
 
     .risk-country:hover{
-      background: rgba(255,255,255,0.05);
+      background:#f7fafc;
       border-color: var(--line-strong);
     }
 
     .risk-country .name{
       font-size:12px;
       font-weight:900;
-      color:#f4f8fb;
+      color:#22313d;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -723,9 +627,35 @@
 
     .risk-country .drivers{
       font-size:12px;
-      color:#dce6ef;
+      color:#3f5060;
       margin-top:6px;
-      line-height: 1.4;
+      line-height:1.4;
+    }
+
+    .layer-list{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .layer-item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .layer-item label{
+      font-size:12px;
+      color:#334353;
+      line-height:1.4;
+    }
+
+    .layer-item input{
+      accent-color: var(--accent);
     }
 
     .story-list{
@@ -738,12 +668,13 @@
       padding:10px;
       border-radius:12px;
       border:1px solid var(--line);
-      background: rgba(255,255,255,0.03);
+      background: white;
       transition: 0.15s ease;
+      cursor: pointer;
     }
 
     .story-card:hover{
-      background: rgba(255,255,255,0.05);
+      background:#f9fbfc;
       border-color: var(--line-strong);
     }
 
@@ -764,9 +695,9 @@
       font-weight:900;
       letter-spacing:.05em;
       text-transform:uppercase;
-      background: rgba(93,169,199,0.12);
-      border: 1px solid rgba(93,169,199,0.16);
-      color: #d8edf5;
+      background: var(--accent-soft);
+      border: 1px solid rgba(61,111,138,0.12);
+      color: #365e74;
     }
 
     .story-time{
@@ -778,8 +709,8 @@
     .story-title{
       font-size:13px;
       font-weight:800;
-      line-height:1.4;
-      color:#f4f8fb;
+      line-height:1.45;
+      color:#21303d;
       margin-bottom:6px;
     }
 
@@ -789,14 +720,14 @@
     }
 
     .story-title a:hover{
-      color: #bfe8f5;
+      color: #2a5369;
       text-decoration: underline;
     }
 
     .story-summary{
       font-size:12px;
       color: var(--muted);
-      line-height:1.45;
+      line-height:1.5;
       margin-bottom:8px;
     }
 
@@ -813,9 +744,9 @@
       border-radius:999px;
       font-size:11px;
       font-weight:700;
-      color:#dbe7f2;
-      background: rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.06);
+      color:#496071;
+      background: #f5f8fa;
+      border:1px solid var(--line);
     }
 
     .story-empty{
@@ -824,41 +755,77 @@
       padding: 8px 2px;
     }
 
+    .hotlist{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .hotitem{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:white;
+      cursor:pointer;
+      transition:0.15s ease;
+      margin-bottom:8px;
+    }
+
+    .hotitem:hover{
+      background:#f8fafc;
+      border-color: var(--line-strong);
+    }
+
+    .place{
+      font-size:12px;
+      font-weight:800;
+      color:#22313d;
+    }
+
+    .sub{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:4px;
+    }
+
     .legend{
-      background: rgba(11,18,27,0.92);
+      background: rgba(255,255,255,0.95);
       color: var(--text);
       padding: 12px;
-      border-radius: 16px;
+      border-radius: 14px;
       box-shadow: var(--shadow-soft);
       border: 1px solid var(--line);
       font-family: var(--font);
       font-size: 12px;
       line-height: 1.2;
-      width: 240px;
-      max-height: 340px;
+      width: 220px;
+      max-height: 320px;
       overflow: auto;
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(10px);
     }
 
-    .legend .row {
+    .legend .row{
       display:flex;
       align-items:center;
       gap:8px;
-      margin: 5px 0;
+      margin:5px 0;
     }
 
-    .dot {
+    .dot{
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.18);
+      border: 1px solid rgba(0,0,0,0.12);
       display:inline-block;
       flex: 0 0 10px;
     }
 
     .leaflet-control-zoom a{
-      background: rgba(11,18,27,0.92) !important;
-      color: #eef5fb !important;
+      background: rgba(255,255,255,0.95) !important;
+      color: #25313d !important;
       border-bottom: 1px solid var(--line) !important;
     }
 
@@ -871,43 +838,75 @@
 
     .leaflet-popup-content-wrapper,
     .leaflet-popup-tip{
-      background: #101a27;
-      color: #edf4fb;
+      background: #ffffff;
+      color: #20303c;
     }
 
     .leaflet-popup-content{
-      color: #edf4fb;
+      color: #20303c;
       line-height: 1.45;
     }
 
     .leaflet-popup-content .small{
-      color: #9eb0c5;
+      color: #647789;
     }
 
     .leaflet-container a.leaflet-popup-close-button{
-      color: #dfe9f2;
+      color: #516171;
     }
 
-    .leaflet-bottom.leaflet-right {
-      bottom: calc(var(--safe-bottom) + 230px);
+    @media (max-width: 1400px){
+      :root{
+        --left-w: 340px;
+        --right-w: 330px;
+      }
     }
 
-    @media (max-width: 960px){
-      .kpi-grid{
-        grid-template-columns: repeat(2, minmax(0,1fr));
+    @media (max-width: 1180px){
+      body{
+        overflow: auto;
       }
 
-      .topbar-right{
+      .app{
+        height: auto;
+        min-height: 100vh;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto minmax(420px, 60vh) auto;
+        grid-template-areas:
+          "header"
+          "left"
+          "main"
+          "right";
+      }
+
+      .top-metrics{
         display:none;
+      }
+
+      .sidebar,
+      .main{
+        min-height: 0;
+      }
+
+      .sidebar-left,
+      .sidebar-right{
+        max-height: none;
       }
     }
 
     @media (max-width: 720px){
-      .shell-topbar{
-        top: calc(var(--safe-top) + 8px);
-        left: calc(var(--safe-left) + 8px);
-        right: calc(var(--safe-right) + 8px);
-        padding: 12px 12px;
+      .app{
+        gap: 10px;
+        padding:
+          calc(var(--safe-top) + 8px)
+          calc(var(--safe-right) + 8px)
+          calc(var(--safe-bottom) + 8px)
+          calc(var(--safe-left) + 8px);
+      }
+
+      .topbar{
+        padding: 12px;
+        min-height: auto;
       }
 
       .brand-title{
@@ -918,306 +917,232 @@
         font-size: 11px;
       }
 
-      .alert-banner{
-        top: calc(var(--safe-top) + 74px);
-        left: calc(var(--safe-left) + 8px);
-        right: calc(var(--safe-right) + 8px);
+      .map-overlay{
+        flex-direction:column;
+        align-items:stretch;
       }
 
-      .dock.top-left{
-        top: calc(var(--safe-top) + 128px);
-        left: calc(var(--safe-left) + 8px);
-        right: calc(var(--safe-right) + 8px);
-        width: auto;
+      .map-tools{
+        justify-content:flex-start;
       }
 
-      .dock.top-right{
-        top: auto;
-        right: calc(var(--safe-right) + 8px);
-        left: auto;
-        bottom: calc(var(--safe-bottom) + 8px);
-      }
-
-      .dock.bottom-right{
-        right: calc(var(--safe-right) + 8px);
-        left: auto;
-        bottom: calc(var(--safe-bottom) + 8px);
-      }
-
-      .dock.bottom-left{
-        left: calc(var(--safe-left) + 8px);
-        right: calc(var(--safe-right) + 8px);
-        width: auto;
-      }
-
-      .situation, .riskpanel, .hotspots, .layers, .stories{
-        width:auto;
-        max-width:none;
-      }
-
-      .situation{
-        max-height: 56vh;
-      }
-
-      .situation .body{
-        max-height: calc(56vh - 60px);
-      }
-
-      .riskpanel{
-        max-height: 36vh;
-      }
-
-      .riskpanel .body{
-        max-height: calc(36vh - 60px);
-      }
-
-      .hotspots{
-        max-height: 28vh;
-      }
-
-      .hotspots .body{
-        max-height: calc(28vh - 60px);
-      }
-
-      .stories{
-        max-height: 30vh;
-      }
-
-      .stories .body{
-        max-height: calc(30vh - 60px);
-      }
-
-      #dockStories{
-        right: calc(var(--safe-right) + 8px) !important;
-        left: calc(var(--safe-left) + 8px) !important;
-        bottom: calc(var(--safe-bottom) + 8px) !important;
-        width: auto !important;
+      .kpi-grid{
+        grid-template-columns: 1fr 1fr;
       }
 
       .legend{
         width: 180px;
         max-height: 180px;
-        padding: 8px;
-        margin-bottom: calc(var(--safe-bottom) + 2px);
-      }
-
-      .leaflet-bottom.leaflet-right {
-        bottom: calc(var(--safe-bottom) + 150px);
-      }
-
-      .leaflet-control-zoom{
-        margin-top: calc(var(--safe-top) + 72px) !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="shell-topbar">
-    <div class="brand">
-      <div class="brand-mark">TB</div>
-      <div class="brand-copy">
-        <div class="brand-title">Balkán Biztonsági Monitor</div>
-        <div class="brand-sub">Törésvonalak – regionális helyzetkép, kockázat és esemény-monitoring</div>
-      </div>
-    </div>
-    <div class="topbar-right">
-      <div class="pill"><span class="dot"></span><span id="topbarUpdate">Frissítés: —</span></div>
-      <div class="pill"><span class="dot"></span><span id="topbarToday">Budapest: —</span></div>
-      <div class="pill"><span class="dot"></span><span id="headerRegionLevel">Régiós risk: —</span></div>
-      <div class="pill"><span class="dot"></span><span id="headerRegionConfidence">Confidence: —</span></div>
-    </div>
-  </div>
-
-  <div class="alert-banner" id="alertBanner" role="status" aria-live="polite">
-    <div class="row">
-      <div class="left">
-        <span class="tag" id="alertTag">RIASZTÁS</span>
-        <span class="title" id="alertTitle">—</span>
-        <span class="text" id="alertText">—</span>
-      </div>
-      <button id="alertClose" type="button">Bezár</button>
-    </div>
-  </div>
-
-  <div id="map"></div>
-
-  <div class="dock top-left situation" id="dockSituation">
-    <div class="hd">
-      <div>
-        <div class="title">Executive summary</div>
-        <div class="meta" id="metaLine">Betöltés...</div>
-      </div>
-      <button class="btn" id="btnSituation">Bezár</button>
-    </div>
-    <div class="body">
-      <div class="kpi-grid">
-        <div class="kpi">
-          <div class="label">Hotspot cellák</div>
-          <div class="value" id="kpiHotspots">—</div>
-        </div>
-        <div class="kpi">
-          <div class="label">GDELT</div>
-          <div class="value" id="kpiGdelt">—</div>
-        </div>
-        <div class="kpi">
-          <div class="label">Linkes GDELT</div>
-          <div class="value" id="kpiLinked">—</div>
-        </div>
-        <div class="kpi">
-          <div class="label">USGS + GDACS</div>
-          <div class="value" id="kpiAlerts">—</div>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">TB</div>
+        <div class="brand-copy">
+          <div class="brand-title">Balkán Biztonsági Monitor</div>
+          <div class="brand-sub">Törésvonalak – regionális helyzetkép, kockázat és esemény-monitoring</div>
         </div>
       </div>
 
-      <div class="section">
-        <h3 id="sumTitle">Napi kivonat</h3>
-        <div class="meta" id="sumTime">—</div>
-        <ul id="sumList"><li>Betöltés...</li></ul>
+      <div class="top-metrics">
+        <div class="metric-pill"><span class="dot"></span><span id="topbarUpdate">Frissítés: —</span></div>
+        <div class="metric-pill"><span class="dot"></span><span id="topbarToday">Budapest: —</span></div>
+        <div class="metric-pill"><span class="dot"></span><span id="headerRegionLevel">Régiós risk: —</span></div>
+        <div class="metric-pill"><span class="dot"></span><span id="headerRegionConfidence">Confidence: —</span></div>
+      </div>
+    </header>
+
+    <aside class="sidebar sidebar-left">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Executive summary</div>
+        <div class="sidebar-meta" id="metaLine">Betöltés...</div>
       </div>
 
-      <details class="section" open>
-        <summary>Heti kivonat (7 nap)</summary>
-        <div class="meta" id="weekTime" style="margin-top:6px;">—</div>
-        <ul id="weekList"><li>Betöltés...</li></ul>
-        <div id="weekExamples" class="muted"></div>
-      </details>
-
-      <details class="section">
-        <summary>Early signals</summary>
-        <div class="meta" id="earlyTime" style="margin-top:6px;">—</div>
-        <ul id="earlyList"><li class="muted">Még nincs elég minta.</li></ul>
-        <div class="muted">Megjelenítéshez kapcsold be az EARLY réteget.</div>
-      </details>
-
-      <div class="filters">
-        <div class="small">
-          <b>Mai események</b> Budapest időzónával:
-          <span class="mono" id="todayBud">—</span>
+      <div class="sidebar-body">
+        <div class="alert-banner" id="alertBanner" role="status" aria-live="polite">
+          <div class="row">
+            <div class="left">
+              <span class="tag" id="alertTag">RIASZTÁS</span>
+              <span class="title" id="alertTitle">—</span>
+              <span class="text" id="alertText">—</span>
+            </div>
+            <button id="alertClose" type="button">Bezár</button>
+          </div>
         </div>
-        <div class="row">
-          <button class="btnSm" id="btnTodayNews" type="button">Mai hírek</button>
-          <button class="btnSm" id="btnTodayAlerts" type="button">Mai riasztások</button>
-          <button class="btnSm on" id="btnReset7d" type="button">Vissza 7 napra</button>
+
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="label">Hotspot cellák</div>
+            <div class="value" id="kpiHotspots">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">GDELT</div>
+            <div class="value" id="kpiGdelt">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Linkes GDELT</div>
+            <div class="value" id="kpiLinked">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">USGS + GDACS</div>
+            <div class="value" id="kpiAlerts">—</div>
+          </div>
         </div>
-        <div class="small" style="margin-top:6px;">
-          Mai hírek = GDELT (GEO + LINKES) • Mai riasztások = USGS + GDACS
+
+        <div class="section">
+          <h3 id="sumTitle">Napi kivonat</h3>
+          <div class="meta" id="sumTime">—</div>
+          <ul id="sumList"><li>Betöltés...</li></ul>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="dock top-right layers collapsed" id="dockLayers">
-    <div class="hd">
-      <div class="title">Rétegek</div>
-      <button class="btn" id="btnLayers">Kinyit</button>
-    </div>
-    <div class="body">
-      <div class="rowCk">
-        <input type="checkbox" id="layerBorders" checked>
-        <label for="layerBorders"><span class="badge">HATÁR</span>kontúr</label>
-      </div>
-      <div class="rowCk">
-        <input type="checkbox" id="layerCountryRisk" checked>
-        <label for="layerCountryRisk"><span class="badge">RISK</span>ország-színezés</label>
-      </div>
-      <div class="rowCk">
-        <input type="checkbox" id="layerHot" checked>
-        <label for="layerHot"><span class="badge">HOTSPOT</span>heat</label>
-      </div>
-      <div class="rowCk">
-        <input type="checkbox" id="layerEarly">
-        <label for="layerEarly"><span class="badge">EARLY</span>elemző</label>
-      </div>
-      <div class="rowCk">
-        <input type="checkbox" id="layerGdelt" checked>
-        <label for="layerGdelt"><span class="badge">GDELT</span>hírek</label>
-      </div>
-      <div class="rowCk">
-        <input type="checkbox" id="layerGdeltLinked">
-        <label for="layerGdeltLinked"><span class="badge">GDELT+</span>linkes</label>
-      </div>
-      <div class="rowCk">
-        <input type="checkbox" id="layerRssTrusted">
-        <label for="layerRssTrusted"><span class="badge">RSS</span>trusted stories</label>
-      </div>
-      <div class="rowCk">
-        <input type="checkbox" id="layerUsgs">
-        <label for="layerUsgs"><span class="badge">USGS</span>rengések</label>
-      </div>
-      <div class="rowCk">
-        <input type="checkbox" id="layerGdacs">
-        <label for="layerGdacs"><span class="badge">GDACS</span>riasztás</label>
-      </div>
-      <div class="small" style="margin-top:8px;">
-        <b>Megjelenítés:</b> országos risk + hotspot + eseményrétegek.
-      </div>
-    </div>
-  </div>
+        <details class="section" open>
+          <summary>Heti kivonat (7 nap)</summary>
+          <div class="meta" id="weekTime" style="margin-top:6px;">—</div>
+          <ul id="weekList"><li>Betöltés...</li></ul>
+          <div id="weekExamples" class="muted"></div>
+        </details>
 
-  <div class="dock bottom-right hotspots collapsed" id="dockHotspots">
-    <div class="hd">
-      <div class="title">Top hotspotok</div>
-      <button class="btn" id="btnHotspots">Kinyit</button>
-    </div>
-    <div class="body">
-      <ol class="hotlist" id="hotList"></ol>
-      <div class="small" style="margin-top:8px;">Kattints a sorra → zoom.</div>
-    </div>
-  </div>
+        <details class="section">
+          <summary>Early signals</summary>
+          <div class="meta" id="earlyTime" style="margin-top:6px;">—</div>
+          <ul id="earlyList"><li class="muted">Még nincs elég minta.</li></ul>
+          <div class="muted">Megjelenítéshez kapcsold be az EARLY réteget.</div>
+        </details>
 
-  <div class="dock bottom-right stories collapsed" id="dockStories" style="bottom: calc(var(--safe-bottom) + 220px);">
-    <div class="hd">
-      <div>
-        <div class="title">Top stories</div>
-        <div class="meta" id="storiesMeta">Betöltés...</div>
-      </div>
-      <button class="btn" id="btnStories">Kinyit</button>
-    </div>
-    <div class="body">
-      <div id="storiesList" class="story-list">
-        <div class="story-empty">Betöltés...</div>
-      </div>
-    </div>
-  </div>
+        <div class="section">
+          <h3 id="riskTitle">Risk snapshot</h3>
+          <div class="meta" id="riskMeta">Betöltés...</div>
 
-  <div class="dock bottom-left riskpanel collapsed" id="dockRisk">
-    <div class="hd">
-      <div>
-        <div class="title" id="riskTitle">Risk snapshot</div>
-        <div class="meta" id="riskMeta">Betöltés...</div>
-      </div>
-      <button class="btn" id="btnRisk">Kinyit</button>
-    </div>
-    <div class="body">
-      <div class="section">
-        <h3>Régiós állapot</h3>
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <span class="risk-level risk-normal" id="regionRiskBadge">NORMAL</span>
-          <span class="small" id="regionRiskScore">score: —</span>
-          <span class="small" id="regionRiskConfidence">confidence: —</span>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;">
+            <span class="risk-level risk-normal" id="regionRiskBadge">NORMAL</span>
+            <span class="small" id="regionRiskScore">score: —</span>
+            <span class="small" id="regionRiskConfidence">confidence: —</span>
+          </div>
+
+          <div style="margin-top:12px;">
+            <h3 style="margin-bottom:8px;">Dimenziók</h3>
+            <div class="risk-grid" id="riskDims">
+              <div class="hdr">Dimenzió</div>
+              <div class="hdr">Szint</div>
+              <div class="hdr" style="text-align:right;">Score</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <h3 style="margin-bottom:8px;">Országok</h3>
+            <div class="risk-toolbar">
+              <input type="text" id="riskSearch" placeholder="Keresés országra..." />
+              <label><input type="checkbox" id="riskOnlyElevated" /> csak elevated+</label>
+            </div>
+            <div id="riskWatchlist" class="small">Betöltés...</div>
+          </div>
+        </div>
+
+        <div class="filter-box">
+          <div class="small">
+            <b>Mai események</b> Budapest időzónával:
+            <span class="mono" id="todayBud">—</span>
+          </div>
+          <div class="filter-row">
+            <button class="btnSm" id="btnTodayNews" type="button">Mai hírek</button>
+            <button class="btnSm" id="btnTodayAlerts" type="button">Mai riasztások</button>
+            <button class="btnSm on" id="btnReset7d" type="button">Vissza 7 napra</button>
+          </div>
+          <div class="small" style="margin-top:6px;">
+            Mai hírek = GDELT (GEO + LINKES) • Mai riasztások = USGS + GDACS
+          </div>
         </div>
       </div>
+    </aside>
 
-      <div class="section">
-        <h3>Dimenziók</h3>
-        <div class="risk-grid" id="riskDims">
-          <div class="hdr">Dimenzió</div>
-          <div class="hdr">Szint</div>
-          <div class="hdr" style="text-align:right;">Score</div>
+    <main class="main">
+      <div id="map"></div>
+
+      <div class="map-overlay">
+        <div class="map-note">
+          <div class="map-note-title">Regional operating picture</div>
+          <div class="map-note-text">
+            Országos risk, hotspotok, trusted stories és eseményrétegek egyesített térképe.
+          </div>
+        </div>
+
+        <div class="map-tools">
+          <button class="tool-btn" id="quickToggleRisk">Risk</button>
+          <button class="tool-btn" id="quickToggleHot">Hotspots</button>
+          <button class="tool-btn" id="quickToggleStories">Stories</button>
         </div>
       </div>
+    </main>
 
-      <div class="section">
-        <h3>Országok</h3>
-        <div class="risk-toolbar">
-          <input type="text" id="riskSearch" placeholder="Keresés országra..." />
-          <label><input type="checkbox" id="riskOnlyElevated" /> csak elevated+</label>
-        </div>
-        <div id="riskWatchlist" class="small">Betöltés...</div>
+    <aside class="sidebar sidebar-right">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Top stories & layers</div>
+        <div class="sidebar-meta">Trusted RSS, hotspotok és rétegkapcsolók</div>
       </div>
-    </div>
-  </div>
+
+      <div class="sidebar-body">
+        <div class="section">
+          <h3>Rétegek</h3>
+          <div class="layer-list">
+            <div class="layer-item">
+              <input type="checkbox" id="layerBorders" checked>
+              <label for="layerBorders"><span class="badge">HATÁR</span>kontúr</label>
+            </div>
+            <div class="layer-item">
+              <input type="checkbox" id="layerCountryRisk" checked>
+              <label for="layerCountryRisk"><span class="badge">RISK</span>ország-színezés</label>
+            </div>
+            <div class="layer-item">
+              <input type="checkbox" id="layerHot" checked>
+              <label for="layerHot"><span class="badge">HOTSPOT</span>heat</label>
+            </div>
+            <div class="layer-item">
+              <input type="checkbox" id="layerEarly">
+              <label for="layerEarly"><span class="badge">EARLY</span>elemző</label>
+            </div>
+            <div class="layer-item">
+              <input type="checkbox" id="layerGdelt" checked>
+              <label for="layerGdelt"><span class="badge">GDELT</span>hírek</label>
+            </div>
+            <div class="layer-item">
+              <input type="checkbox" id="layerGdeltLinked">
+              <label for="layerGdeltLinked"><span class="badge">GDELT+</span>linkes</label>
+            </div>
+            <div class="layer-item">
+              <input type="checkbox" id="layerRssTrusted">
+              <label for="layerRssTrusted"><span class="badge">RSS</span>trusted stories</label>
+            </div>
+            <div class="layer-item">
+              <input type="checkbox" id="layerUsgs">
+              <label for="layerUsgs"><span class="badge">USGS</span>rengések</label>
+            </div>
+            <div class="layer-item">
+              <input type="checkbox" id="layerGdacs">
+              <label for="layerGdacs"><span class="badge">GDACS</span>riasztás</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Top stories</h3>
+          <div class="meta" id="storiesMeta">Betöltés...</div>
+          <div id="storiesList" class="story-list">
+            <div class="story-empty">Betöltés...</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Top hotspotok</h3>
+          <ol class="hotlist" id="hotList"></ol>
+          <div class="small" style="margin-top:8px;">Kattints a sorra → zoom.</div>
+        </div>
+      </div>
+    </aside>
 
   <script>
     const DATA = "./data";
@@ -1266,16 +1191,16 @@
     }
 
     function catColor(cat){
-      return (cat === "cyber") ? "#7c5be4" :
-             (cat === "energy") ? "#d0a24a" :
-             (cat === "border") ? "#2f9bb1" :
-             (cat === "protest") ? "#ca5959" :
-             (cat === "military") ? "#5f9c73" :
-             (cat === "drone") ? "#4b6fd9" :
-             (cat === "police") ? "#708198" :
-             (cat === "security_politics") ? "#6e8cf2" :
-             (cat === "natural") ? "#2ba585" :
-             (cat === "violence") ? "#b24674" : "#7d8ea3";
+      return (cat === "cyber") ? "#6f62d7" :
+             (cat === "energy") ? "#c19a44" :
+             (cat === "border") ? "#3f8aa0" :
+             (cat === "protest") ? "#c26262" :
+             (cat === "military") ? "#638a70" :
+             (cat === "drone") ? "#5575d8" :
+             (cat === "police") ? "#6d7f90" :
+             (cat === "security_politics") ? "#6b89df" :
+             (cat === "natural") ? "#479276" :
+             (cat === "violence") ? "#b14f77" : "#8393a3";
     }
 
     function riskClass(level){
@@ -1285,18 +1210,18 @@
 
     function riskColor(level){
       const x = String(level || "normal").toLowerCase();
-      if (x === "critical") return "#b74b4b";
-      if (x === "tense") return "#d57a45";
-      if (x === "elevated") return "#d0a24a";
-      return "#5e9f72";
+      if (x === "critical") return "#b14c4c";
+      if (x === "tense") return "#c46d3f";
+      if (x === "elevated") return "#b78a38";
+      return "#5c8b68";
     }
 
     function riskFill(level){
       const x = String(level || "normal").toLowerCase();
-      if (x === "critical") return "rgba(183,75,75,0.26)";
-      if (x === "tense") return "rgba(213,122,69,0.22)";
-      if (x === "elevated") return "rgba(208,162,74,0.20)";
-      return "rgba(94,159,114,0.18)";
+      if (x === "critical") return "rgba(177,76,76,0.22)";
+      if (x === "tense") return "rgba(196,109,63,0.20)";
+      if (x === "elevated") return "rgba(183,138,56,0.20)";
+      return "rgba(92,139,104,0.18)";
     }
 
     const map = L.map('map', { zoomControl: true, preferCanvas: true }).setView([44.2, 20.6], 6);
@@ -1354,8 +1279,8 @@
       let ageDays = null;
       if (d) ageDays = (now.getTime() - d.getTime()) / (1000*60*60*24);
 
-      let color = "#5da9c7";
-      let fillColor = "#5da9c7";
+      let color = "#4f7f99";
+      let fillColor = "#4f7f99";
       let opacity = 0.35;
       let fillOpacity = 0.22;
       let radius = 6;
@@ -1367,16 +1292,16 @@
 
       if (ageDays !== null) {
         if (ageDays <= 1) {
-          color = "#b74b4b"; fillColor = "#da6666";
-          opacity = 0.78; fillOpacity = 0.48; weight = 2; radius += 2;
+          color = "#b14c4c"; fillColor = "#d36e6e";
+          opacity = 0.78; fillOpacity = 0.45; weight = 2; radius += 2;
         } else if (ageDays <= 3) {
-          color = "#d57a45"; fillColor = "#e38a59";
-          opacity = 0.66; fillOpacity = 0.36; weight = 2; radius += 1;
+          color = "#c46d3f"; fillColor = "#de8b61";
+          opacity = 0.66; fillOpacity = 0.34; weight = 2; radius += 1;
         } else if (ageDays <= 7) {
-          color = "#d0a24a"; fillColor = "#dfba71";
+          color = "#b78a38"; fillColor = "#d2ac63";
           opacity = 0.55; fillOpacity = 0.28; weight = 1.5;
         } else {
-          color = "#708198"; fillColor = "#90a0b5";
+          color = "#7d91a4"; fillColor = "#a8b6c3";
           opacity = 0.30; fillOpacity = 0.16; weight = 1;
         }
       }
@@ -1403,7 +1328,7 @@
         sources = `<div style="margin-top:6px;"><b>Források:</b><ul style="margin:6px 0 0; padding-left:18px;">${items}</ul></div>`;
       }
 
-      const kind = props.kind ? `<div class="small" style="margin-top:6px;color:#9fb0c4;">kind: ${esc(props.kind)}</div>` : '';
+      const kind = props.kind ? `<div class="small" style="margin-top:6px;color:#6f8192;">kind: ${esc(props.kind)}</div>` : '';
       return `${title}${cat}${t}${place}${typ}${mag}${domain}${url}${sources}${kind}`;
     }
 
@@ -1412,38 +1337,118 @@
       const m = Math.max(0.001, Number(maxScore) || 0.001);
       const t = Math.min(1, s / m);
       const radius = 6 + t * 16;
-      const fillOpacity = 0.08 + t * 0.37;
-      const opacity = 0.18 + t * 0.52;
-      return { radius, weight: 1, fillOpacity, opacity, color:"#5da9c7", fillColor:"#86d3eb" };
+      const fillOpacity = 0.08 + t * 0.30;
+      const opacity = 0.18 + t * 0.48;
+      return { radius, weight: 1, fillOpacity, opacity, color:"#4e7d97", fillColor:"#7fb2ca" };
     }
 
     function earlyStyle(escalation) {
       const e = Math.max(0, Math.min(100, Number(escalation) || 0));
       const t = e / 100;
       const radius = 5 + t * 10;
-      const fillOpacity = 0.06 + t * 0.22;
+      const fillOpacity = 0.06 + t * 0.20;
       const opacity = 0.25 + t * 0.35;
-      return { radius, weight: 1, fillOpacity, opacity, color:"#8a6ef0", fillColor:"#b59dff" };
+      return { radius, weight: 1, fillOpacity, opacity, color:"#7d69d6", fillColor:"#b4a3f5" };
     }
 
-    function setupDock(dockId, btnId, openText="Bezár", closedText="Kinyit") {
-      const dock = document.getElementById(dockId);
-      const btn = document.getElementById(btnId);
-      const setBtn = () => btn.textContent = dock.classList.contains('collapsed') ? closedText : openText;
-      btn.addEventListener('click', () => {
-        dock.classList.toggle('collapsed');
-        setBtn();
-      });
-      setBtn();
+    function fmtStoryTime(isoString){
+      if (!isoString) return "—";
+      try{
+        const d = new Date(isoString);
+        if (isNaN(d.getTime())) return "—";
+        return new Intl.DateTimeFormat('hu-HU', {
+          timeZone: 'Europe/Budapest',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(d);
+      } catch {
+        return "—";
+      }
     }
 
-    setupDock("dockSituation", "btnSituation");
-    setupDock("dockLayers", "btnLayers");
-    setupDock("dockHotspots", "btnHotspots");
-    setupDock("dockStories", "btnStories");
-    setupDock("dockRisk", "btnRisk");
+    function storyMarkerStyle(story){
+      const score = Number(story?.signal_score || 0);
+      const radius = Math.max(5, Math.min(10, 4 + score * 3));
+      return {
+        radius,
+        weight: 1.5,
+        color: "#f5fbfe",
+        opacity: 0.9,
+        fillColor: "#4f819b",
+        fillOpacity: 0.75
+      };
+    }
 
-    function renderAlertBanner(alert) {
+    function trustedStoryToFeature(story){
+      if (!story || !story.country_hint) return null;
+
+      const countryCenters = {
+        "Albania": [20.0, 41.2],
+        "Bosnia and Herzegovina": [17.9, 44.2],
+        "Bulgaria": [25.2, 42.7],
+        "Croatia": [16.4, 45.1],
+        "Greece": [22.9, 39.2],
+        "Kosovo": [20.9, 42.6],
+        "Montenegro": [19.3, 42.8],
+        "North Macedonia": [21.7, 41.6],
+        "Romania": [24.9, 45.9],
+        "Serbia": [20.8, 44.1],
+        "Slovenia": [14.9, 46.2],
+        "Turkey": [27.0, 41.1],
+        "Moldova": [28.6, 47.2],
+        "Hungary": [19.3, 47.1]
+      };
+
+      const center = countryCenters[story.country_hint];
+      if (!center) return null;
+
+      return {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: center
+        },
+        properties: {
+          source: "RSS",
+          kind: "trusted_rss",
+          type: "Trusted story",
+          title: story.title,
+          time: story.published_utc || story.fetched_utc,
+          url: story.url,
+          place: story.country_hint,
+          domain: story.source_name,
+          category: (story.dimensions || []).join(", "),
+          summary: story.summary,
+          signal_score: story.signal_score,
+          confidence_boost: story.confidence_boost
+        }
+      };
+    }
+
+    function makeStoryPopup(props) {
+      const title = props.title ? `<div style="margin-bottom:6px;"><b>${esc(props.title)}</b></div>` : '';
+      const source = props.domain ? `<div><b>Forrás:</b> ${esc(props.domain)}</div>` : '';
+      const time = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
+      const place = props.place ? `<div><b>Ország:</b> ${esc(props.place)}</div>` : '';
+      const dims = props.category ? `<div><b>Dimenzió:</b> ${esc(props.category)}</div>` : '';
+      const score = props.signal_score !== undefined ? `<div><b>Signal:</b> ${esc(props.signal_score)}</div>` : '';
+      const conf = props.confidence_boost !== undefined ? `<div><b>Confidence boost:</b> ${esc(props.confidence_boost)}</div>` : '';
+      const summary = props.summary ? `<div style="margin-top:6px;" class="small">${esc(props.summary)}</div>` : '';
+      const url = props.url ? `<div style="margin-top:6px;">🔗 <a href="${esc(props.url)}" target="_blank" rel="noopener">Cikk megnyitása</a></div>` : '';
+      return `${title}${source}${time}${place}${dims}${score}${conf}${summary}${url}`;
+    }
+
+    function zoomToCountry(countryName){
+      const layer = COUNTRY_FEATURES.get(countryName);
+      if (!layer) return;
+      try {
+        map.fitBounds(layer.getBounds(), { padding: [20, 20] });
+        layer.openPopup();
+      } catch {}
+    }
+        function renderAlertBanner(alert) {
       const banner = document.getElementById('alertBanner');
       if (!alert) {
         banner.style.display = 'none';
@@ -1454,13 +1459,9 @@
       banner.className = `alert-banner ${level}`;
       document.getElementById('alertTitle').textContent = alert.title || 'Riasztás';
       document.getElementById('alertText').textContent = alert.text || '';
-      document.getElementById('alertTag').textContent = 'RIASZTÁS';
+      document.getElementById('alertTag').textContent = 'Riasztás';
       banner.style.display = 'block';
     }
-
-    document.getElementById('alertClose').addEventListener('click', () => {
-      document.getElementById('alertBanner').style.display = 'none';
-    });
 
     function renderMeta(meta) {
       const t = fmtBudapest(meta?.generated_utc);
@@ -1539,7 +1540,7 @@
         const title = e.title || '(nincs cím)';
         const url = e.url || '#';
         const dom = e.domain ? ` (${e.domain})` : '';
-        li.innerHTML = `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(title)}</a><span class="small" style="color:#9fb0c4">${esc(dom)}</span>`;
+        li.innerHTML = `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(title)}</a><span class="small" style="color:#7a8b9b">${esc(dom)}</span>`;
         list.appendChild(li);
       }
       ex.appendChild(list);
@@ -1556,7 +1557,7 @@
       if (!top.length) {
         const li = document.createElement('li');
         li.className = 'muted';
-        li.textContent = 'Még nincs elég gyorsulás/terjedés jellegű minta (ez normális az első napokban).';
+        li.textContent = 'Még nincs elég gyorsulás/terjedés jellegű minta.';
         ul.appendChild(li);
         return;
       }
@@ -1599,95 +1600,6 @@
       }
     }
 
-    function fmtStoryTime(isoString){
-      if (!isoString) return "—";
-      try{
-        const d = new Date(isoString);
-        if (isNaN(d.getTime())) return "—";
-        return new Intl.DateTimeFormat('hu-HU', {
-          timeZone: 'Europe/Budapest',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit'
-        }).format(d);
-      } catch {
-        return "—";
-      }
-    }
-
-    function storyMarkerStyle(story){
-      const score = Number(story?.signal_score || 0);
-      const radius = Math.max(5, Math.min(10, 4 + score * 3));
-      return {
-        radius,
-        weight: 1.5,
-        color: "#d9eef6",
-        opacity: 0.8,
-        fillColor: "#5da9c7",
-        fillOpacity: 0.65
-      };
-    }
-
-    function trustedStoryToFeature(story){
-      if (!story || !story.country_hint) return null;
-
-      const countryCenters = {
-        "Albania": [20.0, 41.2],
-        "Bosnia and Herzegovina": [17.9, 44.2],
-        "Bulgaria": [25.2, 42.7],
-        "Croatia": [16.4, 45.1],
-        "Greece": [22.9, 39.2],
-        "Kosovo": [20.9, 42.6],
-        "Montenegro": [19.3, 42.8],
-        "North Macedonia": [21.7, 41.6],
-        "Romania": [24.9, 45.9],
-        "Serbia": [20.8, 44.1],
-        "Slovenia": [14.9, 46.2],
-        "Turkey": [27.0, 41.1],
-        "Moldova": [28.6, 47.2],
-        "Hungary": [19.3, 47.1]
-      };
-
-      const center = countryCenters[story.country_hint];
-      if (!center) return null;
-
-      return {
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: center
-        },
-        properties: {
-          source: "RSS",
-          kind: "trusted_rss",
-          type: "Trusted story",
-          title: story.title,
-          time: story.published_utc || story.fetched_utc,
-          url: story.url,
-          place: story.country_hint,
-          domain: story.source_name,
-          category: (story.dimensions || []).join(", "),
-          summary: story.summary,
-          signal_score: story.signal_score,
-          confidence_boost: story.confidence_boost
-        }
-      };
-    }
-
-    function makeStoryPopup(props) {
-      const title = props.title ? `<div style="margin-bottom:6px;"><b>${esc(props.title)}</b></div>` : '';
-      const source = props.domain ? `<div><b>Forrás:</b> ${esc(props.domain)}</div>` : '';
-      const time = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
-      const place = props.place ? `<div><b>Ország:</b> ${esc(props.place)}</div>` : '';
-      const dims = props.category ? `<div><b>Dimenzió:</b> ${esc(props.category)}</div>` : '';
-      const score = props.signal_score !== undefined ? `<div><b>Signal:</b> ${esc(props.signal_score)}</div>` : '';
-      const conf = props.confidence_boost !== undefined ? `<div><b>Confidence boost:</b> ${esc(props.confidence_boost)}</div>` : '';
-      const summary = props.summary ? `<div style="margin-top:6px;" class="small">${esc(props.summary)}</div>` : '';
-      const url = props.url ? `<div style="margin-top:6px;">🔗 <a href="${esc(props.url)}" target="_blank" rel="noopener">Cikk megnyitása</a></div>` : '';
-      return `${title}${source}${time}${place}${dims}${score}${conf}${summary}${url}`;
-    }
-
     function renderStories(payload){
       const metaEl = document.getElementById("storiesMeta");
       const listEl = document.getElementById("storiesList");
@@ -1726,28 +1638,18 @@
           </div>
         `;
 
-        if (s.country_hint){
-          div.addEventListener("click", () => zoomToCountry(s.country_hint));
-        }
+        div.addEventListener("click", (ev) => {
+          if (ev.target.closest("a")) return;
+          if (s.country_hint) zoomToCountry(s.country_hint);
+        });
 
         listEl.appendChild(div);
       }
     }
 
-    function zoomToCountry(countryName){
-      const layer = COUNTRY_FEATURES.get(countryName);
-      if (!layer) return;
-      try {
-        map.fitBounds(layer.getBounds(), { padding: [20, 20] });
-        layer.openPopup();
-      } catch {}
-    }
-        function renderRiskPanel(risk) {
+    function renderRiskPanel(risk) {
       const t = fmtBudapest(risk?.generated_utc);
       document.getElementById("riskMeta").textContent = t ? `Frissítés (Budapest): ${t.bud}` : "—";
-
-      const count = (risk?.countries || []).length;
-      document.getElementById("riskTitle").textContent = `Risk snapshot (${count})`;
 
       const region = risk?.region || {};
       const overall = String(region.overall || "normal").toLowerCase();
@@ -1890,7 +1792,7 @@
       return L.circleMarker(latlng, {
         radius: st.radius + (isFresh ? 2 : 0),
         weight: isFresh ? 2 : 1,
-        color: isFresh ? "#e7eef6" : "#8da3ba",
+        color: isFresh ? "#eef5f8" : "#8ea1b2",
         opacity: isFresh ? 0.72 : 0.42,
         fillColor: catColor(cat),
         fillOpacity: st.fillOpacity
@@ -1914,7 +1816,7 @@
     async function loadBorders(url) {
       const gj = await loadJson(url);
       return L.geoJSON(gj, {
-        style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0, color:"#5da9c7" })
+        style: () => ({ weight: 1.25, opacity: 0.6, fillOpacity: 0.0, color:"#4f819b" })
       });
     }
 
@@ -2038,7 +1940,7 @@
       const div = L.DomUtil.create("div", "legend");
       div.innerHTML = `
         <div style="font-weight:900;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;">Jelmagyarázat</div>
-        <div style="font-weight:800;margin:8px 0 4px;color:#eef5fb;">Országos risk</div>
+        <div style="font-weight:800;margin:8px 0 4px;color:#22313d;">Országos risk</div>
         ${[
           ["normal", "Normál", riskColor("normal")],
           ["elevated", "Emelkedett", riskColor("elevated")],
@@ -2047,7 +1949,7 @@
         ].map(([k,label,color]) =>
           `<div class="row"><span class="dot" style="background:${color}"></span><span>${esc(label)}</span></div>`
         ).join("")}
-        <div style="font-weight:800;margin:10px 0 4px;color:#eef5fb;">GDELT kategóriák</div>
+        <div style="font-weight:800;margin:10px 0 4px;color:#22313d;">GDELT kategóriák</div>
         ${[
           ["protest","Tüntetés/erőszak", catColor("protest")],
           ["border","Határ/migráció", catColor("border")],
@@ -2063,8 +1965,8 @@
         ].map(([k,label,color]) =>
           `<div class="row"><span class="dot" style="background:${color}"></span><span>${esc(label)}</span></div>`
         ).join("")}
-        <div style="font-weight:800;margin:10px 0 4px;color:#eef5fb;">RSS trusted</div>
-        <div class="row"><span class="dot" style="background:#5da9c7"></span><span>Trusted story marker</span></div>
+        <div style="font-weight:800;margin:10px 0 4px;color:#22313d;">RSS trusted</div>
+        <div class="row"><span class="dot" style="background:#4f819b"></span><span>Trusted story marker</span></div>
         <div style="margin-top:8px;" class="small">USGS/GDACS szín: frissesség (0–24h → piros).</div>
       `;
       L.DomEvent.disableClickPropagation(div);
@@ -2072,6 +1974,10 @@
       return div;
     };
     legend.addTo(map);
+
+    document.getElementById('alertClose').addEventListener('click', () => {
+      document.getElementById('alertBanner').style.display = 'none';
+    });
 
     async function init() {
       const today = ymdInTZ(new Date(), "Europe/Budapest");
@@ -2153,6 +2059,7 @@
       document.getElementById('layerHot').addEventListener('change', (e) => {
         if (!layers.hot) return;
         e.target.checked ? map.addLayer(layers.hot) : map.removeLayer(layers.hot);
+        document.getElementById('quickToggleHot').classList.toggle('on', e.target.checked);
       });
       document.getElementById('layerEarly').addEventListener('change', (e) => {
         if (!layers.early) return;
@@ -2166,6 +2073,7 @@
       });
       document.getElementById('layerRssTrusted').addEventListener('change', (e) => {
         e.target.checked ? map.addLayer(layers.rssTrusted) : map.removeLayer(layers.rssTrusted);
+        document.getElementById('quickToggleStories').classList.toggle('on', e.target.checked);
       });
       document.getElementById('layerUsgs').addEventListener('change', (e) => {
         e.target.checked ? map.addLayer(layers.usgs) : map.removeLayer(layers.usgs);
@@ -2191,21 +2099,34 @@
       document.getElementById("riskSearch").addEventListener("input", updateRiskCountryList);
       document.getElementById("riskOnlyElevated").addEventListener("change", updateRiskCountryList);
 
+      document.getElementById("quickToggleRisk").addEventListener("click", () => {
+        const cb = document.getElementById("layerCountryRisk");
+        cb.checked = !cb.checked;
+        cb.dispatchEvent(new Event("change"));
+        document.getElementById("quickToggleRisk").classList.toggle("on", cb.checked);
+      });
+
+      document.getElementById("quickToggleHot").addEventListener("click", () => {
+        const cb = document.getElementById("layerHot");
+        cb.checked = !cb.checked;
+        cb.dispatchEvent(new Event("change"));
+      });
+
+      document.getElementById("quickToggleStories").addEventListener("click", () => {
+        const cb = document.getElementById("layerRssTrusted");
+        cb.checked = !cb.checked;
+        cb.dispatchEvent(new Event("change"));
+      });
+
+      document.getElementById("quickToggleRisk").classList.add("on");
+      document.getElementById("quickToggleHot").classList.add("on");
+
       try {
         const top = await loadJson(`${DATA}/hotspots.json`);
         renderHotList(top.top || []);
       } catch {
         renderHotList([]);
       }
-
-      document.getElementById("dockRisk").classList.add("collapsed");
-      document.getElementById("btnRisk").textContent = "Kinyit";
-      document.getElementById("dockLayers").classList.add("collapsed");
-      document.getElementById("btnLayers").textContent = "Kinyit";
-      document.getElementById("dockHotspots").classList.add("collapsed");
-      document.getElementById("btnHotspots").textContent = "Kinyit";
-      document.getElementById("dockStories").classList.add("collapsed");
-      document.getElementById("btnStories").textContent = "Kinyit";
     }
 
     init().catch(err => {
@@ -2215,4 +2136,3 @@
   </script>
 </body>
 </html>
-        
