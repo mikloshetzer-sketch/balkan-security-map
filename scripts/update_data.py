@@ -1570,7 +1570,6 @@ def main_drivers_label(
         drivers.append("politikai instabilitás")
         drivers.append("külső befolyási kísérletek")
 
-    # egyediek, max 3
     uniq = []
     for d in drivers:
         if d not in uniq:
@@ -1614,7 +1613,6 @@ def serbia_section(country_scores: Dict[str, Dict[str, float]], trusted_rss_payl
     kos_score = country_scores.get("Kosovo", {}).get("total", 0.0)
     tone = "erősödő nacionalista hangvételt" if score >= 2.8 else "mérséklődő retorikát"
 
-    extra = ""
     if (score + kos_score) >= 5.0:
         extra = " A koszovói kérdés továbbra is a legfontosabb biztonságpolitikai tényezőként jelenik meg."
     else:
@@ -1708,11 +1706,15 @@ def external_actors_paragraph(trusted_rss_payload: Optional[Dict[str, Any]] = No
     stories = (trusted_rss_payload or {}).get("stories") or []
     blob = " ".join([(s.get("title") or "") + " " + (s.get("summary") or "") for s in stories]).lower()
 
-    russia = "oroszország" if ("russia" in blob or "moscow" in blob) else "Oroszország"
-    china = "kína" if ("china" in blob or "beijing" in blob) else "Kína"
+    russia = "Oroszország"
+    china = "Kína"
+    if "russia" in blob or "moscow" in blob:
+        russia = "Oroszország"
+    if "china" in blob or "beijing" in blob:
+        china = "Kína"
 
     return (
-        f"A térségben aktív külső szereplők közül {russia.capitalize()} és {china.capitalize()} befolyása továbbra is érzékelhető. "
+        f"A térségben aktív külső szereplők közül {russia} és {china} befolyása továbbra is érzékelhető. "
         "Az Európai Unió és a NATO stabilizáló szerepe fennmaradt. "
         "A geopolitikai versengés a Balkánon elsősorban politikai, gazdasági és információs eszközökön keresztül zajlik."
     )
@@ -1808,17 +1810,18 @@ def build_weekly(all_features: List[Dict[str, Any]], trusted_rss_payload: Option
     topics = extract_topics(titles[:160])
     country_scores = get_country_scores(week, trusted_rss_payload=trusted_rss_payload)
 
-    # Hotspot / early warning beolvasás a heti narratívához
     hotspots_path = os.path.join(DOCS_DATA_DIR, "hotspots.json")
     early_path = os.path.join(DOCS_DATA_DIR, "early.json")
     top_hotspots = []
     early_top = []
+
     try:
         if os.path.exists(hotspots_path):
             with open(hotspots_path, "r", encoding="utf-8") as f:
                 top_hotspots = (json.load(f) or {}).get("top") or []
     except Exception:
         top_hotspots = []
+
     try:
         if os.path.exists(early_path):
             with open(early_path, "r", encoding="utf-8") as f:
@@ -1843,7 +1846,6 @@ def build_weekly(all_features: List[Dict[str, Any]], trusted_rss_payload: Option
         closing,
     ]
 
-    # Kompatibilitási bullets - rövidebbek, de megmaradnak a régi rendererhez
     bullets = [
         intro,
         risks,
