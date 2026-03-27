@@ -10,6 +10,7 @@ import os
 import re
 import time
 import zipfile
+from collections import Counter
 from dataclasses import asdict, dataclass
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -37,7 +38,7 @@ CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
 COUNTRIES_CACHE_PATH = os.path.join(DOCS_DATA_DIR, "balkan_countries.geojson")
 TRUSTED_RSS_PATH = os.path.join(DOCS_DATA_DIR, "trusted_rss.json")
 
-USER_AGENT = "balkan-security-map/3.4 (github actions)"
+USER_AGENT = "balkan-security-map/4.0 (github actions)"
 TIMEOUT = 30
 
 # ============================================================
@@ -60,6 +61,15 @@ BALKAN_COUNTRIES = [
     "Hungary",
 ]
 
+WESTERN_BALKANS_COUNTRIES = [
+    "Serbia",
+    "Kosovo",
+    "Bosnia and Herzegovina",
+    "Montenegro",
+    "North Macedonia",
+    "Albania",
+]
+
 BALKAN_BBOX = (13.0, 37.0, 30.0, 47.5)
 
 ROLLING_DAYS = 7
@@ -77,7 +87,6 @@ MAX_SOURCES_PER_EVENT = 8
 MAX_RSS_ITEMS_PER_FEED = 50
 MAX_RSS_OUTPUT_ITEMS = 150
 
-# Ezek közül néhány feed idővel változhat, de a szerkezet készen áll.
 TRUSTED_RSS_FEEDS = [
     {
         "id": "euronews_news",
@@ -149,15 +158,15 @@ BALKAN_COUNTRY_KEYWORDS = {
     "Bosnia and Herzegovina": ["bosnia", "sarajevo", "republika srpska", "bih", "bosnian"],
     "Bulgaria": ["bulgaria", "sofia", "bulgarian"],
     "Croatia": ["croatia", "zagreb", "croatian"],
-    "Greece": ["greece", "athens", "greek"],
+    "Greece": ["greece", "athens", "greek", "aegean"],
     "Kosovo": ["kosovo", "pristina", "priština", "kosovar"],
     "Montenegro": ["montenegro", "podgorica", "montenegrin"],
     "North Macedonia": ["north macedonia", "skopje", "macedonia", "macedonian"],
     "Romania": ["romania", "bucharest", "romanian"],
-    "Serbia": ["serbia", "belgrade", "serbian"],
+    "Serbia": ["serbia", "belgrade", "serbian", "vučić", "vucic"],
     "Slovenia": ["slovenia", "ljubljana", "slovenian"],
     "Turkey": ["turkey", "ankara", "istanbul", "turkish"],
-    "Moldova": ["moldova", "chisinau", "chișinău", "moldovan"],
+    "Moldova": ["moldova", "chisinau", "chișinău", "moldovan", "transnistria"],
     "Hungary": ["hungary", "budapest", "hungarian"],
 }
 
@@ -687,8 +696,6 @@ def normalize_rss_item(feed: Dict[str, Any], item: Dict[str, Any]) -> Optional[T
     country_hint, country_terms = infer_country_from_text(blob)
     dims, dim_terms = infer_dimensions_from_text(blob)
 
-    # Ha nincs országos találat, csak akkor tartjuk meg, ha legalább valamilyen
-    # releváns régiós/európai scope-ja van a feednek ÉS van biztonsági/politikai dimenzió.
     if country_hint is None and not any(s in feed.get("scope", []) for s in ("balkans", "europe", "eu", "security", "politics")):
         return None
 
@@ -1344,67 +1351,6 @@ def extract_topics(titles: List[str], top_k: int = 6) -> List[str]:
             freq[w] = freq.get(w, 0) + 1
     return [w for w, _ in sorted(freq.items(), key=lambda x: x[1], reverse=True)[:top_k]]
 
-def build_weekly(all_features: List[Dict[str, Any]], trusted_rss_payload: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
-    now = datetime.now(timezone.utc)
-    cutoff_7 = now - timedelta(days=7)
-
-    week = []
-    for f in all_features:
-        p = f.get("properties") or {}
-        dt = parse_time_iso(p.get("time"))
-        if dt and dt >= cutoff_7:
-            week.append((dt, f))
-
-    counts = {"GDELT": 0, "USGS": 0, "GDACS": 0}
-    titles = []
-
-    for _, f in week:
-        src = (f.get("properties") or {}).get("source")
-        if src in counts:
-            counts[src] += 1
-        if src == "GDELT":
-            titles.append(((f.get("properties") or {}).get("title") or ""))
-
-    rss_count = 0
-    rss_examples: List[Dict[str, Any]] = []
-    if trusted_rss_payload:
-        stories = trusted_rss_payload.get("stories") or []
-        rss_count = len(stories)
-        rss_examples = stories[:5]
-        for s in stories[:40]:
-            titles.append((s.get("title") or ""))
-
-    topics = extract_topics(titles[:160])
-
-    bullets = [
-        f"Híralapú jelzések (GDELT): {counts['GDELT']} db az elmúlt 7 napban.",
-        f"Természeti/ellátási stresszorok: USGS {counts['USGS']} esemény, GDACS {counts['GDACS']} riasztás (Balkán országok területén).",
-    ]
-    if rss_count:
-        bullets.append(f"Trusted RSS sajtóforrásokból szűrt releváns hírek: {rss_count} db.")
-    if topics:
-        bullets.append("Gyakori témák a hírcímekben: " + ", ".join(topics) + ".")
-    bullets.append("Megjegyzés: automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése javasolt.")
-
-    return {
-        "generated_utc": to_utc_z(now),
-        "headline": "Heti kivonat – elmúlt 7 nap",
-        "bullets": bullets,
-        "counts": counts,
-        "rss_count": rss_count,
-        "examples": [
-            {
-                "title": x.get("title"),
-                "url": x.get("url"),
-                "domain": x.get("source_name"),
-            }
-            for x in rss_examples
-        ],
-    }
-
-# ============================================================
-# Daily summary + alert
-# ============================================================
 def pct_change(curr: float, prev: float) -> Optional[float]:
     if prev <= 0 and curr <= 0:
         return 0.0
@@ -1507,6 +1453,432 @@ def make_summary(
         },
         "rss_count": rss_count,
     }
+    # ============================================================
+# Weekly brief helpers - NEW
+# ============================================================
+def collect_week_window(all_features: List[Dict[str, Any]], days: int = 7) -> List[Tuple[datetime, Dict[str, Any]]]:
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=days)
+    out: List[Tuple[datetime, Dict[str, Any]]] = []
+    for f in all_features:
+        p = f.get("properties") or {}
+        dt = parse_time_iso(p.get("time"))
+        if dt and dt >= cutoff:
+            out.append((dt, f))
+    return out
+
+def country_signal_score_from_features(week_items: List[Tuple[datetime, Dict[str, Any]]], country: str) -> float:
+    keywords = [x.lower() for x in BALKAN_COUNTRY_KEYWORDS.get(country, [])]
+    score = 0.0
+    for _, f in week_items:
+        p = f.get("properties") or {}
+        text = " ".join([
+            str(p.get("title") or ""),
+            str(p.get("location") or ""),
+            str(p.get("place") or ""),
+        ]).lower()
+        if any(kw in text for kw in keywords):
+            score += score_feature(p)
+    return round(score, 2)
+
+def country_signal_score_from_rss(stories: List[Dict[str, Any]], country: str) -> float:
+    score = 0.0
+    for s in stories:
+        if (s.get("country_hint") or "") == country:
+            score += float(s.get("signal_score") or 0.0)
+    return round(score, 2)
+
+def get_country_scores(
+    week_items: List[Tuple[datetime, Dict[str, Any]]],
+    trusted_rss_payload: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Dict[str, float]]:
+    stories = (trusted_rss_payload or {}).get("stories") or []
+    out: Dict[str, Dict[str, float]] = {}
+    for country in WESTERN_BALKANS_COUNTRIES:
+        feat_score = country_signal_score_from_features(week_items, country)
+        rss_score = country_signal_score_from_rss(stories, country)
+        out[country] = {
+            "feature_score": feat_score,
+            "rss_score": rss_score,
+            "total": round(feat_score + rss_score, 2),
+        }
+    return out
+
+def dominant_dimensions(stories: List[Dict[str, Any]], country: Optional[str] = None) -> List[str]:
+    c = Counter()
+    for s in stories:
+        if country and (s.get("country_hint") or "") != country:
+            continue
+        for d in (s.get("dimensions") or []):
+            c[d] += 1
+    return [name for name, _ in c.most_common(3)]
+
+def overall_status_label(
+    counts_upper: Dict[str, int],
+    top_hotspots: List[Dict[str, Any]],
+    early_top: List[Dict[str, Any]],
+) -> str:
+    pressure = 0.0
+    pressure += counts_upper.get("GDELT", 0) * 0.01
+    pressure += counts_upper.get("USGS", 0) * 0.2
+    pressure += counts_upper.get("GDACS", 0) * 0.6
+
+    if top_hotspots:
+        pressure += float(top_hotspots[0].get("score") or 0.0)
+        if top_hotspots[0].get("trend_arrow") == "🔺":
+            pressure += 2.5
+        elif top_hotspots[0].get("trend_arrow") == "🆕":
+            pressure += 1.8
+
+    if early_top:
+        pressure += float(early_top[0].get("escalation") or 0.0) / 25.0
+
+    if pressure >= 12:
+        return "fokozódó feszültségekkel terhelt"
+    if pressure >= 7:
+        return "mérsékelten romló"
+    return "alapvetően stabil, de törékeny"
+
+def main_drivers_label(
+    country_scores: Dict[str, Dict[str, float]],
+    trusted_rss_payload: Optional[Dict[str, Any]] = None,
+) -> List[str]:
+    stories = (trusted_rss_payload or {}).get("stories") or []
+    dims = dominant_dimensions(stories)
+    drivers: List[str] = []
+
+    if "political" in dims:
+        drivers.append("politikai instabilitás")
+    if "social" in dims:
+        drivers.append("társadalmi feszültségek")
+    if "migration" in dims or "policing" in dims:
+        drivers.append("határbiztonsági és rendészeti nyomás")
+    if "military" in dims:
+        drivers.append("biztonságpolitikai és katonai érzékenységek")
+    if "infrastructure" in dims:
+        drivers.append("kritikus infrastruktúrához kapcsolódó sérülékenységek")
+
+    serbia = country_scores.get("Serbia", {}).get("total", 0.0)
+    kosovo = country_scores.get("Kosovo", {}).get("total", 0.0)
+    bosnia = country_scores.get("Bosnia and Herzegovina", {}).get("total", 0.0)
+
+    if (serbia + kosovo) >= 4.5:
+        drivers.append("a szerb–koszovói viszony tartós bizonytalansága")
+    if bosnia >= 2.5:
+        drivers.append("az etnopolitikai törésvonalak fennmaradása")
+    if not drivers:
+        drivers.append("politikai instabilitás")
+        drivers.append("külső befolyási kísérletek")
+
+    # egyediek, max 3
+    uniq = []
+    for d in drivers:
+        if d not in uniq:
+            uniq.append(d)
+    return uniq[:3]
+
+def determine_no_major_shift(top_hotspots: List[Dict[str, Any]], early_top: List[Dict[str, Any]]) -> str:
+    if early_top and float(early_top[0].get("escalation") or 0.0) >= 70:
+        return "ugyanakkor lokális incidensek és eszkalációs kockázatok megfigyelhetők voltak"
+    if top_hotspots and top_hotspots[0].get("trend_arrow") == "🔺":
+        return "ugyanakkor lokális incidensek és retorikai eszkaláció megfigyelhető volt"
+    return "ugyanakkor a feszültségek több ponton továbbra is fennmaradtak"
+
+def intro_paragraph(
+    counts_upper: Dict[str, int],
+    top_hotspots: List[Dict[str, Any]],
+    early_top: List[Dict[str, Any]],
+    country_scores: Dict[str, Dict[str, float]],
+    trusted_rss_payload: Optional[Dict[str, Any]] = None,
+) -> str:
+    status = overall_status_label(counts_upper, top_hotspots, early_top)
+    drivers = main_drivers_label(country_scores, trusted_rss_payload)
+    no_shift = determine_no_major_shift(top_hotspots, early_top)
+
+    return (
+        f"A Nyugat-Balkán biztonsági helyzete az elmúlt héten összességében {status} képet mutatott. "
+        f"A térségben zajló folyamatokat továbbra is {', '.join(drivers)} határozzák meg. "
+        f"A vizsgált időszakban nem történt olyan esemény, amely alapjaiban változtatta volna meg a régió biztonsági dinamikáját, "
+        f"{no_shift}."
+    )
+
+def country_tone_from_score(score: float) -> str:
+    if score >= 3.8:
+        return "romló"
+    if score >= 2.0:
+        return "stagnáló"
+    return "óvatosan javuló"
+
+def serbia_section(country_scores: Dict[str, Dict[str, float]], trusted_rss_payload: Optional[Dict[str, Any]] = None) -> str:
+    score = country_scores.get("Serbia", {}).get("total", 0.0)
+    kos_score = country_scores.get("Kosovo", {}).get("total", 0.0)
+    tone = "erősödő nacionalista hangvételt" if score >= 2.8 else "mérséklődő retorikát"
+
+    extra = ""
+    if (score + kos_score) >= 5.0:
+        extra = " A koszovói kérdés továbbra is a legfontosabb biztonságpolitikai tényezőként jelenik meg."
+    else:
+        extra = " A koszovói kérdés továbbra is meghatározó referencia-pont a szerb biztonságpolitikai diskurzusban."
+
+    return (
+        "Szerbia esetében a belpolitikai folyamatok továbbra is jelentős hatást gyakorolnak a biztonsági környezetre. "
+        f"A kormányzati kommunikációban megjelenő narratívák {tone} tükröznek."
+        f"{extra}"
+    )
+
+def kosovo_section(country_scores: Dict[str, Dict[str, float]], top_hotspots: List[Dict[str, Any]]) -> str:
+    serbia = country_scores.get("Serbia", {}).get("total", 0.0)
+    kosovo = country_scores.get("Kosovo", {}).get("total", 0.0)
+    trend = country_tone_from_score((serbia + kosovo) / 2.0)
+
+    north_risk = "Az északi régióban fennálló feszültségek továbbra is potenciális eszkalációs kockázatot hordoznak."
+    if top_hotspots and "Kosovo" in str(top_hotspots[0].get("place") or ""):
+        north_risk = "Az északi régióhoz kapcsolódó jelzések a héten is potenciális eszkalációs kockázatot jeleztek."
+
+    return (
+        f"Koszovó és Szerbia viszonya a héten {trend} tendenciát mutatott. "
+        f"{north_risk} "
+        "A nemzetközi jelenlét stabilizáló szerepe továbbra is meghatározó."
+    )
+
+def bosnia_section(country_scores: Dict[str, Dict[str, float]]) -> str:
+    score = country_scores.get("Bosnia and Herzegovina", {}).get("total", 0.0)
+    middle = (
+        "A Republika Srpska vezetésének lépései fokozzák a politikai bizonytalanságot."
+        if score >= 2.3
+        else "Az entitások közötti politikai bizalmatlanság továbbra is magas szinten maradt."
+    )
+    return (
+        "Bosznia-Hercegovina esetében az etnopolitikai törésvonalak változatlanul a biztonsági helyzet központi elemét képezik. "
+        f"{middle} "
+        "Az államszintű intézmények működése továbbra is korlátozott hatékonyságot mutat."
+    )
+
+def montenegro_section(country_scores: Dict[str, Dict[str, float]]) -> str:
+    score = country_scores.get("Montenegro", {}).get("total", 0.0)
+    tone = (
+        "A belpolitikai törésvonalak és az intézményi törékenység mérsékelten növelték a bizonytalanságot."
+        if score >= 1.6
+        else "A biztonsági helyzet alapvetően stabil maradt, ugyanakkor a belpolitikai polarizáció továbbra is jelen van."
+    )
+    return (
+        "Montenegróban a biztonsági környezetet elsősorban a belpolitikai stabilitás és az intézményi működés minősége befolyásolja. "
+        f"{tone}"
+    )
+
+def north_macedonia_section(country_scores: Dict[str, Dict[str, float]]) -> str:
+    score = country_scores.get("North Macedonia", {}).get("total", 0.0)
+    tone = (
+        "A politikai napirendet meghatározó kérdések a társadalmi polarizáció fenntartásához járultak hozzá."
+        if score >= 1.6
+        else "Jelentős biztonsági eszkaláció nem volt megfigyelhető, de a politikai érzékenységek fennmaradtak."
+    )
+    return (
+        "Észak-Macedónia esetében a belpolitikai stabilitás és az euroatlanti orientáció továbbra is meghatározó keret maradt. "
+        f"{tone}"
+    )
+
+def albania_section(country_scores: Dict[str, Dict[str, float]]) -> str:
+    score = country_scores.get("Albania", {}).get("total", 0.0)
+    tone = (
+        "A belpolitikai versengés és a kormányzati–ellenzéki dinamika mérsékelten növelte a politikai zajt."
+        if score >= 1.6
+        else "A biztonsági helyzet alapvetően kezelhető maradt, komolyabb destabilizáló incidens nélkül."
+    )
+    return (
+        "Albániában a biztonsági környezetet elsősorban a belpolitikai folyamatok és a regionális diplomáciai pozicionálás befolyásolta. "
+        f"{tone}"
+    )
+
+def build_country_assessments(
+    country_scores: Dict[str, Dict[str, float]],
+    top_hotspots: List[Dict[str, Any]],
+    trusted_rss_payload: Optional[Dict[str, Any]] = None,
+) -> List[Dict[str, str]]:
+    return [
+        {"country": "Szerbia", "code": "RS", "text": serbia_section(country_scores, trusted_rss_payload)},
+        {"country": "Koszovó", "code": "XK", "text": kosovo_section(country_scores, top_hotspots)},
+        {"country": "Bosznia-Hercegovina", "code": "BA", "text": bosnia_section(country_scores)},
+        {"country": "Montenegró", "code": "ME", "text": montenegro_section(country_scores)},
+        {"country": "Észak-Macedónia", "code": "MK", "text": north_macedonia_section(country_scores)},
+        {"country": "Albánia", "code": "AL", "text": albania_section(country_scores)},
+    ]
+
+def external_actors_paragraph(trusted_rss_payload: Optional[Dict[str, Any]] = None) -> str:
+    stories = (trusted_rss_payload or {}).get("stories") or []
+    blob = " ".join([(s.get("title") or "") + " " + (s.get("summary") or "") for s in stories]).lower()
+
+    russia = "oroszország" if ("russia" in blob or "moscow" in blob) else "Oroszország"
+    china = "kína" if ("china" in blob or "beijing" in blob) else "Kína"
+
+    return (
+        f"A térségben aktív külső szereplők közül {russia.capitalize()} és {china.capitalize()} befolyása továbbra is érzékelhető. "
+        "Az Európai Unió és a NATO stabilizáló szerepe fennmaradt. "
+        "A geopolitikai versengés a Balkánon elsősorban politikai, gazdasági és információs eszközökön keresztül zajlik."
+    )
+
+def risk_paragraph(
+    top_hotspots: List[Dict[str, Any]],
+    early_top: List[Dict[str, Any]],
+    trusted_rss_payload: Optional[Dict[str, Any]] = None,
+) -> str:
+    high_ew = bool(early_top and float(early_top[0].get("escalation") or 0.0) >= 70)
+    hotspot_up = bool(top_hotspots and top_hotspots[0].get("trend_arrow") == "🔺")
+
+    first = (
+        "A jelenlegi folyamatok rövid távon nem utalnak fegyveres konfliktus közvetlen kockázatára, ugyanakkor több ponton emelkedő eszkalációs nyomás érzékelhető."
+        if (high_ew or hotspot_up)
+        else "A jelenlegi folyamatok rövid távon nem utalnak fegyveres konfliktus közvetlen kockázatára, azonban a feszültségek fennmaradása strukturális instabilitást jelez."
+    )
+
+    return (
+        f"{first} "
+        "A legfőbb kockázatot továbbra is az alacsony intenzitású, de tartós politikai krízisek jelentik. "
+        "A dezinformációs tevékenység és a polarizált médiakörnyezet növeli a társadalmi feszültségeket."
+    )
+
+def forecast_paragraph(
+    country_scores: Dict[str, Dict[str, float]],
+    top_hotspots: List[Dict[str, Any]],
+    trusted_rss_payload: Optional[Dict[str, Any]] = None,
+) -> str:
+    serbia = country_scores.get("Serbia", {}).get("total", 0.0)
+    kosovo = country_scores.get("Kosovo", {}).get("total", 0.0)
+    bosnia = country_scores.get("Bosnia and Herzegovina", {}).get("total", 0.0)
+
+    if serbia + kosovo >= bosnia and serbia + kosovo >= 3.8:
+        key_issue = "szerb–koszovói párbeszéd"
+    elif bosnia >= 2.3:
+        key_issue = "boszniai belpolitikai stabilitás"
+    else:
+        key_issue = "EU-integrációs folyamat"
+
+    if top_hotspots and top_hotspots[0].get("trend_arrow") == "🔺":
+        start = "Rövid távon nem várható jelentős változás a biztonsági helyzetben, azonban a jelenlegi trendek fennmaradása esetén fokozatos romlás valószínűsíthető."
+    else:
+        start = "Rövid távon nem várható jelentős változás a biztonsági helyzetben, ugyanakkor több törékeny politikai és társadalmi dinamika továbbra is fennmarad."
+
+    return (
+        f"{start} "
+        f"A következő időszak kulcskérdése a {key_issue} alakulása lesz. "
+        "A nemzetközi közösség szerepvállalása továbbra is elengedhetetlen a status quo fenntartásához."
+    )
+
+def closing_paragraph() -> str:
+    return (
+        "Összességében a Nyugat-Balkán biztonsági helyzete továbbra is törékeny stabilitást mutat. "
+        "A térségben fennálló konfliktuspotenciál kezelhető, azonban hosszú távon csak strukturális politikai megoldásokkal mérsékelhető."
+    )
+
+def methodology_paragraph() -> str:
+    return (
+        "A heti brief nyílt forrású információk strukturált feldolgozásán alapul. "
+        "A rendszer GDELT eseményalapú híradatokat, trusted RSS sajtóforrásokat, valamint USGS és GDACS jelzéseket integrál. "
+        "Az események időbeli súlyozással, forrásalapú pontozással és térbeli hotspot-azonosítással kerülnek értékelésre. "
+        "Az országos helyzetértékelés automatizált, indikátor-alapú szöveggenerálással készül, ezért a kimenet tájékoztató jellegű; "
+        "a kiemelt állítások esetében minden esetben javasolt a források manuális ellenőrzése és elemzői validálása."
+    )
+
+def htmlify_paragraphs(paragraphs: List[str]) -> str:
+    return "\n".join([f"<p>{p}</p>" for p in paragraphs if p.strip()])
+
+def build_weekly(all_features: List[Dict[str, Any]], trusted_rss_payload: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    now = datetime.now(timezone.utc)
+    week = collect_week_window(all_features, days=7)
+
+    counts_upper = {"GDELT": 0, "USGS": 0, "GDACS": 0}
+    titles: List[str] = []
+
+    for _, f in week:
+        src = (f.get("properties") or {}).get("source")
+        if src in counts_upper:
+            counts_upper[src] += 1
+        if src == "GDELT":
+            titles.append(((f.get("properties") or {}).get("title") or ""))
+
+    rss_count = 0
+    rss_examples: List[Dict[str, Any]] = []
+    rss_stories = (trusted_rss_payload or {}).get("stories") or []
+    if trusted_rss_payload:
+        rss_count = len(rss_stories)
+        rss_examples = rss_stories[:5]
+        for s in rss_stories[:40]:
+            titles.append((s.get("title") or ""))
+
+    topics = extract_topics(titles[:160])
+    country_scores = get_country_scores(week, trusted_rss_payload=trusted_rss_payload)
+
+    # Hotspot / early warning beolvasás a heti narratívához
+    hotspots_path = os.path.join(DOCS_DATA_DIR, "hotspots.json")
+    early_path = os.path.join(DOCS_DATA_DIR, "early.json")
+    top_hotspots = []
+    early_top = []
+    try:
+        if os.path.exists(hotspots_path):
+            with open(hotspots_path, "r", encoding="utf-8") as f:
+                top_hotspots = (json.load(f) or {}).get("top") or []
+    except Exception:
+        top_hotspots = []
+    try:
+        if os.path.exists(early_path):
+            with open(early_path, "r", encoding="utf-8") as f:
+                early_top = (json.load(f) or {}).get("top") or []
+    except Exception:
+        early_top = []
+
+    intro = intro_paragraph(counts_upper, top_hotspots, early_top, country_scores, trusted_rss_payload)
+    countries = build_country_assessments(country_scores, top_hotspots, trusted_rss_payload)
+    external = external_actors_paragraph(trusted_rss_payload)
+    risks = risk_paragraph(top_hotspots, early_top, trusted_rss_payload)
+    forecast = forecast_paragraph(country_scores, top_hotspots, trusted_rss_payload)
+    closing = closing_paragraph()
+    methodology = methodology_paragraph()
+
+    weekly_assessment_paragraphs = [
+        intro,
+        *[f"{c['country']}: {c['text']}" for c in countries],
+        external,
+        risks,
+        forecast,
+        closing,
+    ]
+
+    # Kompatibilitási bullets - rövidebbek, de megmaradnak a régi rendererhez
+    bullets = [
+        intro,
+        risks,
+        forecast,
+        closing,
+    ]
+
+    return {
+        "generated_utc": to_utc_z(now),
+        "headline": "Nyugat-Balkán heti biztonsági brief",
+        "title": f"Weekly Balkan Security Brief – {now.strftime('%Y-%m-%d')}",
+        "region": "Western Balkans",
+        "weekly_assessment": htmlify_paragraphs(weekly_assessment_paragraphs),
+        "weekly_assessment_plain": weekly_assessment_paragraphs,
+        "country_assessments": countries,
+        "external_actors": external,
+        "risk_assessment": risks,
+        "forecast": forecast,
+        "closing": closing,
+        "methodology": methodology,
+        "methodology_html": htmlify_paragraphs([methodology]),
+        "bullets": bullets,
+        "counts": counts_upper,
+        "rss_count": rss_count,
+        "topics": topics,
+        "country_scores": country_scores,
+        "examples": [
+            {
+                "title": x.get("title"),
+                "url": x.get("url"),
+                "domain": x.get("source_name"),
+            }
+            for x in rss_examples
+        ],
+    }
 
 # ============================================================
 # MAIN
@@ -1541,7 +1913,6 @@ def main() -> int:
         print(f"[GDELT EXPORT] fetch failed: {e}")
         gdelt_linked_new = []
 
-    # --- NEW: trusted RSS fetch ---
     try:
         trusted_rss_payload = fetch_trusted_rss()
         save_trusted_rss(trusted_rss_payload)
@@ -1563,7 +1934,7 @@ def main() -> int:
 
     usgs = trim_by_days(usgs_merged, keep_days=ROLLING_DAYS)
     gdacs = trim_by_days(gdacs_merged, keep_days=GDACS_KEEP_DAYS)
-    gdelt = []  # intentionally disabled GEO layer
+    gdelt = []
     gdelt_linked = trim_by_days(gdelt_linked_merged, keep_days=GDELT_EXPORT_DAYS)
 
     save_geojson(os.path.join(DOCS_DATA_DIR, "usgs.geojson"), usgs)
@@ -1618,6 +1989,7 @@ def main() -> int:
         "counts": counts,
         "rolling_days": ROLLING_DAYS,
         "countries": BALKAN_COUNTRIES,
+        "western_balkans_core": WESTERN_BALKANS_COUNTRIES,
         "bbox": {
             "lon_min": BALKAN_BBOX[0],
             "lat_min": BALKAN_BBOX[1],
@@ -1633,6 +2005,18 @@ def main() -> int:
             "enabled": True,
             "feeds": [f["id"] for f in TRUSTED_RSS_FEEDS],
             "output": "trusted_rss.json",
+        },
+        "weekly_brief": {
+            "enabled": True,
+            "structure": [
+                "intro",
+                "country_assessments",
+                "external_actors",
+                "risk_assessment",
+                "forecast",
+                "closing",
+                "methodology",
+            ],
         },
     }
     with open(os.path.join(DOCS_DATA_DIR, "meta.json"), "w", encoding="utf-8") as f:
