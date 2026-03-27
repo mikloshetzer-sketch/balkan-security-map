@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-03-27T06:10:03Z",
+  "generated_utc": "2026-03-27T13:03:47Z",
   "counts": {
-    "usgs": 5,
+    "usgs": 2,
     "gdacs": 0,
     "gdelt": 0,
-    "gdelt_linked": 1057,
-    "hotspot_cells": 195,
+    "gdelt_linked": 1090,
+    "hotspot_cells": 194,
     "rss_trusted": 133
   },
   "rolling_days": 7,
@@ -24,6 +24,14 @@
     "Turkey",
     "Moldova",
     "Hungary"
+  ],
+  "western_balkans_core": [
+    "Serbia",
+    "Kosovo",
+    "Bosnia and Herzegovina",
+    "Montenegro",
+    "North Macedonia",
+    "Albania"
   ],
   "bbox": {
     "lon_min": 13.0,
@@ -51,5 +59,17 @@
       "cnn_world"
     ],
     "output": "trusted_rss.json"
+  },
+  "weekly_brief": {
+    "enabled": true,
+    "structure": [
+      "intro",
+      "country_assessments",
+      "external_actors",
+      "risk_assessment",
+      "forecast",
+      "closing",
+      "methodology"
+    ]
   }
 }
