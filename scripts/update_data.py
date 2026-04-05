@@ -37,8 +37,9 @@ DOCS_DATA_DIR = os.path.join(ROOT, "docs", "data")
 CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
 COUNTRIES_CACHE_PATH = os.path.join(DOCS_DATA_DIR, "balkan_countries.geojson")
 TRUSTED_RSS_PATH = os.path.join(DOCS_DATA_DIR, "trusted_rss.json")
+TRUSTED_RSS_SIGNALS_PATH = os.path.join(DOCS_DATA_DIR, "trusted_rss_signals.geojson")
 
-USER_AGENT = "balkan-security-map/4.0 (github actions)"
+USER_AGENT = "balkan-security-map/4.1 (github actions)"
 TIMEOUT = 30
 
 # ============================================================
@@ -86,6 +87,7 @@ MAX_SOURCES_PER_EVENT = 8
 # ============================================================
 MAX_RSS_ITEMS_PER_FEED = 50
 MAX_RSS_OUTPUT_ITEMS = 150
+RSS_SIGNAL_DAYS = 3
 
 TRUSTED_RSS_FEEDS = [
     {
@@ -151,6 +153,24 @@ TRUSTED_RSS_FEEDS = [
         "scope": ["world", "security", "politics"],
         "trusted": True,
     },
+    {
+        "id": "reuters_world",
+        "name": "Reuters World",
+        "url": "https://feeds.reuters.com/reuters/worldNews",
+        "weight": 0.98,
+        "language": "en",
+        "scope": ["world", "europe", "security", "politics", "energy"],
+        "trusted": True,
+    },
+    {
+        "id": "reuters_europe",
+        "name": "Reuters Europe",
+        "url": "https://feeds.reuters.com/Reuters/worldNews",
+        "weight": 0.96,
+        "language": "en",
+        "scope": ["europe", "security", "politics", "energy"],
+        "trusted": True,
+    },
 ]
 
 BALKAN_COUNTRY_KEYWORDS = {
@@ -163,11 +183,28 @@ BALKAN_COUNTRY_KEYWORDS = {
     "Montenegro": ["montenegro", "podgorica", "montenegrin"],
     "North Macedonia": ["north macedonia", "skopje", "macedonia", "macedonian"],
     "Romania": ["romania", "bucharest", "romanian"],
-    "Serbia": ["serbia", "belgrade", "serbian", "vučić", "vucic"],
+    "Serbia": ["serbia", "belgrade", "serbian", "vučić", "vucic", "kanjiza", "kanjiža"],
     "Slovenia": ["slovenia", "ljubljana", "slovenian"],
     "Turkey": ["turkey", "ankara", "istanbul", "turkish"],
     "Moldova": ["moldova", "chisinau", "chișinău", "moldovan", "transnistria"],
     "Hungary": ["hungary", "budapest", "hungarian"],
+}
+
+COUNTRY_SIGNAL_COORDS = {
+    "Albania": (19.82, 41.33),
+    "Bosnia and Herzegovina": (18.41, 43.86),
+    "Bulgaria": (23.32, 42.70),
+    "Croatia": (15.98, 45.81),
+    "Greece": (23.73, 37.98),
+    "Kosovo": (21.16, 42.67),
+    "Montenegro": (19.26, 42.43),
+    "North Macedonia": (21.43, 41.99),
+    "Romania": (26.10, 44.43),
+    "Serbia": (20.46, 44.82),
+    "Slovenia": (14.51, 46.05),
+    "Turkey": (32.85, 39.93),
+    "Moldova": (28.86, 47.01),
+    "Hungary": (19.04, 47.50),
 }
 
 DIMENSION_KEYWORDS = {
@@ -195,7 +232,7 @@ DIMENSION_KEYWORDS = {
     "infrastructure": [
         "energy", "pipeline", "grid", "electricity", "gas", "oil",
         "port", "rail", "bridge", "airport", "blackout", "infrastructure",
-        "terminal", "power plant"
+        "terminal", "power plant", "explosive", "sabotage"
     ],
 }
 
@@ -214,7 +251,7 @@ CATEGORY_BUCKETS = [
     ("military", ["military", "troops", "deployment", "exercise", "drill", "mobilization"]),
     ("drone", ["drone", "uav", "unmanned", "quadcop", "shahed"]),
     ("cyber", ["cyber", "ransomware", "ddos", "hack", "malware", "disinformation"]),
-    ("energy", ["energy", "pipeline", "power outage", "electricity", "grid", "gas"]),
+    ("energy", ["energy", "pipeline", "power outage", "electricity", "grid", "gas", "explosive", "sabotage"]),
     ("infrastructure", ["infrastructure", "rail", "bridge", "port", "airport"]),
     ("security_politics", ["security", "intelligence", "sanctions", "terror", "extremism"]),
 ]
@@ -591,6 +628,8 @@ def rss_recency_score(published_utc: Optional[str]) -> float:
         dt = datetime.fromisoformat(published_utc.replace("Z", "+00:00"))
         now = datetime.now(timezone.utc)
         hours = max(0.0, (now - dt).total_seconds() / 3600.0)
+        if hours <= 6:
+            return 1.15
         if hours <= 12:
             return 1.0
         if hours <= 24:
@@ -703,11 +742,11 @@ def normalize_rss_item(feed: Dict[str, Any], item: Dict[str, Any]) -> Optional[T
     recency = rss_recency_score(published_utc)
 
     source_weight = float(feed["weight"])
-    dimension_factor = min(1.15, 0.85 + 0.08 * len(dims))
-    country_factor = 1.10 if country_hint else 0.78
+    dimension_factor = min(1.18, 0.85 + 0.08 * len(dims))
+    country_factor = 1.15 if country_hint else 0.78
 
     signal_score = round(source_weight * recency * dimension_factor * country_factor, 4)
-    confidence_boost = round(min(0.35, 0.14 + source_weight * 0.18 + (0.05 if country_hint else 0.0)), 4)
+    confidence_boost = round(min(0.45, 0.14 + source_weight * 0.18 + (0.07 if country_hint else 0.0)), 4)
 
     return TrustedStory(
         story_id=make_story_id(url, title),
@@ -808,6 +847,64 @@ def fetch_trusted_rss() -> Dict[str, Any]:
 def save_trusted_rss(payload: Dict[str, Any]) -> None:
     with open(TRUSTED_RSS_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
+
+def rss_story_to_feature(story: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    country = story.get("country_hint")
+    if not country or country not in COUNTRY_SIGNAL_COORDS:
+        return None
+
+    dt = parse_time_iso(story.get("published_utc") or story.get("fetched_utc"))
+    if dt is None:
+        dt = datetime.now(timezone.utc)
+
+    lon, lat = COUNTRY_SIGNAL_COORDS[country]
+    dims = story.get("dimensions") or []
+    category = dims[0] if dims else "political"
+    title = (story.get("title") or "")[:220]
+
+    score = float(story.get("signal_score") or 0.0)
+    confidence = float(story.get("confidence_boost") or 0.0)
+
+    return to_feature(
+        lon,
+        lat,
+        {
+            "source": "RSS",
+            "kind": "trusted_rss_signal",
+            "type": "NewsSignal",
+            "time": to_utc_z(dt),
+            "date": to_utc_z(dt)[:10],
+            "title": title,
+            "location": country,
+            "country": country,
+            "category": category,
+            "dimensions": dims,
+            "signal_score": round(score, 4),
+            "confidence_boost": round(confidence, 4),
+            "sources_count": 1,
+            "sources": [story.get("url")] if story.get("url") else [],
+            "url": story.get("url"),
+            "source_name": story.get("source_name"),
+            "anchor": "country_capital",
+        },
+    )
+
+def build_trusted_rss_signal_features(payload: Optional[Dict[str, Any]], keep_days: int = RSS_SIGNAL_DAYS) -> List[Dict[str, Any]]:
+    stories = (payload or {}).get("stories") or []
+    now = datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=keep_days)
+
+    feats: List[Dict[str, Any]] = []
+    for story in stories:
+        dt = parse_time_iso(story.get("published_utc") or story.get("fetched_utc"))
+        if dt is not None and dt < cutoff:
+            continue
+        feat = rss_story_to_feature(story)
+        if feat:
+            feats.append(feat)
+
+    feats.sort(key=lambda f: parse_time_iso((f.get("properties") or {}).get("time")) or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
+    return feats
 
 # ============================================================
 # Sources: USGS / GDACS
@@ -1106,6 +1203,14 @@ def fetch_gdelt_export_linked(geoms: Dict[str, Dict[str, Any]], lookback_days: i
 def score_feature(props: Dict[str, Any]) -> float:
     src = props.get("source")
     kind = props.get("kind")
+    if src == "RSS" and kind == "trusted_rss_signal":
+        try:
+            signal = float(props.get("signal_score") or 0.0)
+            conf = float(props.get("confidence_boost") or 0.0)
+        except Exception:
+            signal = 0.0
+            conf = 0.0
+        return min(2.2, 0.9 + signal * 0.75 + conf)
     if src == "GDELT" and kind in ("news_linked",):
         return 1.3
     if src == "GDELT" and kind in ("news_geo", "news_event"):
@@ -1166,7 +1271,7 @@ def build_hotspots_with_trend(all_features: List[Dict[str, Any]], cell_deg: floa
             acc[k] = {
                 "score": 0.0,
                 "count": 0,
-                "sources": {"GDELT": 0, "USGS": 0, "GDACS": 0},
+                "sources": {"GDELT": 0, "USGS": 0, "GDACS": 0, "RSS": 0},
                 "last7_score": 0.0,
                 "prev7_score": 0.0,
             }
@@ -1248,7 +1353,7 @@ def build_early_warning(all_features: List[Dict[str, Any]], cell_deg: float = 0.
     def get_bucket(k: Tuple[int, int]) -> Dict[str, Any]:
         b = acc.get(k)
         if b is None:
-            b = {"recent": 0.0, "baseline": 0.0, "src_recent": {"GDELT": 0, "USGS": 0, "GDACS": 0}}
+            b = {"recent": 0.0, "baseline": 0.0, "src_recent": {"GDELT": 0, "USGS": 0, "GDACS": 0, "RSS": 0}}
             acc[k] = b
         return b
 
@@ -1435,7 +1540,7 @@ def make_summary(
     bullets = [
         top_text,
         trend_text,
-        f"Forráskép: GDELT {counts.get('gdelt', 0)} + linked {counts.get('gdelt_linked', 0)}, USGS {counts.get('usgs', 0)}, GDACS {counts.get('gdacs', 0)}.",
+        f"Forráskép: GDELT {counts.get('gdelt', 0)} + linked {counts.get('gdelt_linked', 0)}, USGS {counts.get('usgs', 0)}, GDACS {counts.get('gdacs', 0)}, RSS-jelek {counts.get('rss_signals', 0)}.",
     ]
     if rss_count:
         bullets.append(f"Trusted RSS forrásokból releváns sajtóanyag: {rss_count} db.")
@@ -1453,8 +1558,9 @@ def make_summary(
         },
         "rss_count": rss_count,
     }
-    # ============================================================
-# Weekly brief helpers - NEW
+
+# ============================================================
+# Weekly brief helpers
 # ============================================================
 def collect_week_window(all_features: List[Dict[str, Any]], days: int = 7) -> List[Tuple[datetime, Dict[str, Any]]]:
     now = datetime.now(timezone.utc)
@@ -1476,6 +1582,7 @@ def country_signal_score_from_features(week_items: List[Tuple[datetime, Dict[str
             str(p.get("title") or ""),
             str(p.get("location") or ""),
             str(p.get("place") or ""),
+            str(p.get("country") or ""),
         ]).lower()
         if any(kw in text for kw in keywords):
             score += score_feature(p)
@@ -1522,6 +1629,7 @@ def overall_status_label(
     pressure += counts_upper.get("GDELT", 0) * 0.01
     pressure += counts_upper.get("USGS", 0) * 0.2
     pressure += counts_upper.get("GDACS", 0) * 0.6
+    pressure += counts_upper.get("RSS", 0) * 0.08
 
     if top_hotspots:
         pressure += float(top_hotspots[0].get("score") or 0.0)
@@ -1788,15 +1896,16 @@ def build_weekly(all_features: List[Dict[str, Any]], trusted_rss_payload: Option
     now = datetime.now(timezone.utc)
     week = collect_week_window(all_features, days=7)
 
-    counts_upper = {"GDELT": 0, "USGS": 0, "GDACS": 0}
+    counts_upper = {"GDELT": 0, "USGS": 0, "GDACS": 0, "RSS": 0}
     titles: List[str] = []
 
     for _, f in week:
         src = (f.get("properties") or {}).get("source")
         if src in counts_upper:
             counts_upper[src] += 1
-        if src == "GDELT":
-            titles.append(((f.get("properties") or {}).get("title") or ""))
+        title = ((f.get("properties") or {}).get("title") or "")
+        if title:
+            titles.append(title)
 
     rss_count = 0
     rss_examples: List[Dict[str, Any]] = []
@@ -1894,6 +2003,7 @@ def main() -> int:
     prev_usgs = load_geojson_features(os.path.join(DOCS_DATA_DIR, "usgs.geojson"))
     prev_gdacs = load_geojson_features(os.path.join(DOCS_DATA_DIR, "gdacs.geojson"))
     prev_gdelt_linked = load_geojson_features(os.path.join(DOCS_DATA_DIR, "gdelt_linked.geojson"))
+    prev_rss_signals = load_geojson_features(TRUSTED_RSS_SIGNALS_PATH)
 
     try:
         usgs_new = fetch_usgs(geoms, days=USGS_DAYS, min_magnitude=2.5)
@@ -1930,24 +2040,29 @@ def main() -> int:
         }
         save_trusted_rss(trusted_rss_payload)
 
+    rss_signal_new = build_trusted_rss_signal_features(trusted_rss_payload, keep_days=RSS_SIGNAL_DAYS)
+
     usgs_merged = merge_dedup(clamp_times(prev_usgs), clamp_times(usgs_new))
     gdacs_merged = merge_dedup(clamp_times(prev_gdacs), clamp_times(gdacs_new))
     gdelt_linked_merged = merge_dedup(clamp_times(prev_gdelt_linked), clamp_times(gdelt_linked_new))
+    rss_signal_merged = merge_dedup(clamp_times(prev_rss_signals), clamp_times(rss_signal_new))
 
     usgs = trim_by_days(usgs_merged, keep_days=ROLLING_DAYS)
     gdacs = trim_by_days(gdacs_merged, keep_days=GDACS_KEEP_DAYS)
     gdelt = []
     gdelt_linked = trim_by_days(gdelt_linked_merged, keep_days=GDELT_EXPORT_DAYS)
+    rss_signals = trim_by_days(rss_signal_merged, keep_days=RSS_SIGNAL_DAYS)
 
     save_geojson(os.path.join(DOCS_DATA_DIR, "usgs.geojson"), usgs)
     save_geojson(os.path.join(DOCS_DATA_DIR, "gdacs.geojson"), gdacs)
     save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt.geojson"), gdelt)
     save_geojson(os.path.join(DOCS_DATA_DIR, "gdelt_linked.geojson"), gdelt_linked)
+    save_geojson(TRUSTED_RSS_SIGNALS_PATH, rss_signals)
 
     with open(os.path.join(DOCS_DATA_DIR, "gdelt_debug.json"), "w", encoding="utf-8") as f:
         json.dump(gdelt_debug, f, ensure_ascii=False, indent=2)
 
-    all_feats = gdelt + gdelt_linked + gdacs + usgs
+    all_feats = gdelt + gdelt_linked + gdacs + usgs + rss_signals
     hotspot_geo, top_hotspots = build_hotspots_with_trend(all_feats, cell_deg=0.5, top_n=10)
 
     cache = load_cache()
@@ -1974,6 +2089,7 @@ def main() -> int:
         "gdacs": len(gdacs),
         "gdelt": len(gdelt),
         "gdelt_linked": len(gdelt_linked),
+        "rss_signals": len(rss_signals),
         "hotspot_cells": len(hotspot_geo),
         "rss_trusted": int(trusted_rss_payload.get("count") or 0),
     }
@@ -2007,6 +2123,8 @@ def main() -> int:
             "enabled": True,
             "feeds": [f["id"] for f in TRUSTED_RSS_FEEDS],
             "output": "trusted_rss.json",
+            "signal_output": "trusted_rss_signals.geojson",
+            "signal_days": RSS_SIGNAL_DAYS,
         },
         "weekly_brief": {
             "enabled": True,
@@ -2039,3 +2157,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
