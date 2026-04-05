@@ -472,6 +472,31 @@
       line-height: 1.4;
     }
 
+    .small{
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding:3px 7px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      background: var(--accent-soft);
+      border:1px solid rgba(61,111,138,0.12);
+      color:#365e74;
+      margin-right:6px;
+    }
+
     .filter-box{
       padding: 12px;
       border-radius: 14px;
@@ -1067,7 +1092,7 @@
         <div class="map-note">
           <div class="map-note-title">Regional operating picture</div>
           <div class="map-note-text">
-            Országos risk, hotspotok, trusted stories és eseményrétegek egyesített térképe.
+            Országos risk, hotspotok, trusted stories, RSS signalok és eseményrétegek egyesített térképe.
           </div>
         </div>
 
@@ -1112,6 +1137,10 @@
             <div class="layer-item">
               <input type="checkbox" id="layerGdeltLinked">
               <label for="layerGdeltLinked"><span class="badge">GDELT+</span>linkes</label>
+            </div>
+            <div class="layer-item">
+              <input type="checkbox" id="layerRssSignals" checked>
+              <label for="layerRssSignals"><span class="badge">RSS SIG</span>térképes jel</label>
             </div>
             <div class="layer-item">
               <input type="checkbox" id="layerRssTrusted">
@@ -1169,7 +1198,8 @@
       gdacs: null,
       usgs: null,
       riskDaily: null,
-      trustedRss: null
+      trustedRss: null,
+      trustedRssSignals: null
     };
     const FILTERS = { newsToday: false, alertsToday: false };
 
@@ -1184,6 +1214,10 @@
         energy: "energia/ellátás",
         infrastructure: "infrastruktúra",
         security_politics: "security politics",
+        political: "politikai",
+        social: "társadalmi",
+        policing: "rendészeti",
+        migration: "migráció",
         natural: "természeti",
         other: "egyéb"
       };
@@ -1192,13 +1226,13 @@
 
     function catColor(cat){
       return (cat === "cyber") ? "#6f62d7" :
-             (cat === "energy") ? "#c19a44" :
-             (cat === "border") ? "#3f8aa0" :
-             (cat === "protest") ? "#c26262" :
+             (cat === "energy" || cat === "infrastructure") ? "#c19a44" :
+             (cat === "border" || cat === "migration") ? "#3f8aa0" :
+             (cat === "protest" || cat === "social") ? "#c26262" :
              (cat === "military") ? "#638a70" :
              (cat === "drone") ? "#5575d8" :
-             (cat === "police") ? "#6d7f90" :
-             (cat === "security_politics") ? "#6b89df" :
+             (cat === "police" || cat === "policing") ? "#6d7f90" :
+             (cat === "security_politics" || cat === "political") ? "#6b89df" :
              (cat === "natural") ? "#479276" :
              (cat === "violence") ? "#b14f77" : "#8393a3";
     }
@@ -1289,8 +1323,16 @@
       if (sourceName === "USGS") radius = 7;
       if (sourceName === "GDACS") radius = 8;
       if (sourceName === "GDELT") radius = 6;
+      if (sourceName === "RSS_SIGNAL") {
+        color = "#ffffff";
+        fillColor = "#7f61d7";
+        opacity = 0.95;
+        fillOpacity = 0.82;
+        radius = 8;
+        weight = 2;
+      }
 
-      if (ageDays !== null) {
+      if (ageDays !== null && sourceName !== "RSS_SIGNAL") {
         if (ageDays <= 1) {
           color = "#b14c4c"; fillColor = "#d36e6e";
           opacity = 0.78; fillOpacity = 0.45; weight = 2; radius += 2;
@@ -1311,12 +1353,14 @@
     function makePopup(props) {
       const title = props.title ? `<div style="margin-bottom:6px;"><b>${esc(props.title)}</b></div>` : '';
       const t = props.time ? `<div><b>Idő:</b> ${esc(props.time)}</div>` : '';
-      const place = props.place ? `<div><b>Hely:</b> ${esc(props.place)}</div>` : '';
+      const place = props.place || props.location || props.country ? `<div><b>Hely:</b> ${esc(props.place || props.location || props.country)}</div>` : '';
       const typ = props.type ? `<div><b>Típus:</b> ${esc(props.type)}</div>` : '';
-      const domain = props.domain ? `<div><b>Forrás:</b> ${esc(props.domain)}</div>` : '';
+      const domain = props.domain || props.source_name ? `<div><b>Forrás:</b> ${esc(props.domain || props.source_name)}</div>` : '';
       const catRaw = props.category || props.gdelt_bucket || null;
       const cat = catRaw ? `<div><b>Kategória:</b> ${esc(humanCat(catRaw))}</div>` : '';
       const mag = (props.mag !== undefined && props.mag !== null) ? `<div><b>Magnitúdó:</b> ${esc(props.mag)}</div>` : '';
+      const signal = (props.signal_score !== undefined && props.signal_score !== null) ? `<div><b>Signal:</b> ${esc(props.signal_score)}</div>` : '';
+      const conf = (props.confidence_boost !== undefined && props.confidence_boost !== null) ? `<div><b>Confidence boost:</b> ${esc(props.confidence_boost)}</div>` : '';
       const link = props.url || props.search_url;
       const url = link ? `<div style="margin-top:6px;">🔗 <a href="${esc(link)}" target="_blank" rel="noopener">Forrás / keresés</a></div>` : '';
 
@@ -1328,8 +1372,9 @@
         sources = `<div style="margin-top:6px;"><b>Források:</b><ul style="margin:6px 0 0; padding-left:18px;">${items}</ul></div>`;
       }
 
+      const summary = props.summary ? `<div style="margin-top:6px;" class="small">${esc(props.summary)}</div>` : '';
       const kind = props.kind ? `<div class="small" style="margin-top:6px;color:#6f8192;">kind: ${esc(props.kind)}</div>` : '';
-      return `${title}${cat}${t}${place}${typ}${mag}${domain}${url}${sources}${kind}`;
+      return `${title}${cat}${t}${place}${typ}${mag}${signal}${conf}${domain}${summary}${url}${sources}${kind}`;
     }
 
     function hotspotStyle(score, maxScore) {
@@ -1378,6 +1423,19 @@
         opacity: 0.9,
         fillColor: "#4f819b",
         fillOpacity: 0.75
+      };
+    }
+
+    function rssSignalMarkerStyle(props){
+      const score = Number(props?.signal_score || 0);
+      const radius = Math.max(6, Math.min(12, 5 + score * 4));
+      return {
+        radius,
+        weight: 2,
+        color: "#ffffff",
+        opacity: 0.95,
+        fillColor: "#7d69d6",
+        fillOpacity: 0.85
       };
     }
 
@@ -1448,7 +1506,8 @@
         layer.openPopup();
       } catch {}
     }
-        function renderAlertBanner(alert) {
+
+    function renderAlertBanner(alert) {
       const banner = document.getElementById('alertBanner');
       if (!alert) {
         banner.style.display = 'none';
@@ -1471,9 +1530,10 @@
       const usgs = counts.usgs ?? 0;
       const gdacs = counts.gdacs ?? 0;
       const rssCount = counts.rss_trusted ?? 0;
+      const rssSignals = counts.rss_signals ?? 0;
 
       document.getElementById('metaLine').textContent =
-        `${timeText} | hotspot cellák: ${counts.hotspot_cells ?? 0} | GDELT: ${counts.gdelt ?? 0} + linkes: ${gl}, USGS: ${usgs}, GDACS: ${gdacs}, RSS: ${rssCount}`;
+        `${timeText} | hotspot cellák: ${counts.hotspot_cells ?? 0} | GDELT: ${counts.gdelt ?? 0} + linkes: ${gl}, USGS: ${usgs}, GDACS: ${gdacs}, RSS: ${rssCount}, RSS signal: ${rssSignals}`;
 
       document.getElementById('topbarUpdate').textContent = t ? `Frissítés: ${t.bud}` : 'Frissítés: —';
       document.getElementById('kpiHotspots').textContent = counts.hotspot_cells ?? '—';
@@ -1776,6 +1836,14 @@
         layers.usgs.clearLayers();
         layers.usgs.addData({ type:"FeatureCollection", features: keep });
       }
+      if (DATASETS.trustedRssSignals && layers.rssSignals){
+        const feats = DATASETS.trustedRssSignals.features || [];
+        const keep = FILTERS.newsToday
+          ? feats.filter(f => isTodayBudapest((f.properties||{}).time || (f.properties||{}).date))
+          : feats;
+        layers.rssSignals.clearLayers();
+        layers.rssSignals.addData({ type:"FeatureCollection", features: keep });
+      }
 
       document.getElementById("btnTodayNews").classList.toggle("on", FILTERS.newsToday);
       document.getElementById("btnTodayAlerts").classList.toggle("on", FILTERS.alertsToday);
@@ -1886,7 +1954,7 @@
         },
         onEachFeature: (feature, layer) => {
           const p = feature.properties || {};
-          const src = p.sources ? `GDELT:${p.sources.GDELT||0}, USGS:${p.sources.USGS||0}, GDACS:${p.sources.GDACS||0}` : '';
+          const src = p.sources ? `GDELT:${p.sources.GDELT||0}, RSS:${p.sources.RSS||0}, USGS:${p.sources.USGS||0}, GDACS:${p.sources.GDACS||0}` : '';
           const tr = p.trend_arrow ? ` ${p.trend_arrow}` : '';
           const ch = (p.change_pct === null || p.change_pct === undefined) ? 'n/a' : `${p.change_pct > 0 ? '+' : ''}${p.change_pct}%`;
           layer.bindPopup(
@@ -1929,6 +1997,10 @@
       gdeltLinked: L.geoJSON(null, { pointToLayer: gdeltPointToLayer, onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
       usgs: L.geoJSON(null, { pointToLayer: genericRecencyPointToLayer("USGS"), onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
       gdacs: L.geoJSON(null, { pointToLayer: genericRecencyPointToLayer("GDACS"), onEachFeature: (f,l)=>l.bindPopup(makePopup(f.properties||{})) }),
+      rssSignals: L.geoJSON(null, {
+        pointToLayer: (feature, latlng) => L.circleMarker(latlng, rssSignalMarkerStyle(feature.properties || {})),
+        onEachFeature: (f, l) => l.bindPopup(makePopup(f.properties || {}))
+      }),
       rssTrusted: L.geoJSON(null, {
         pointToLayer: (feature, latlng) => L.circleMarker(latlng, storyMarkerStyle(feature.properties || {})),
         onEachFeature: (f, l) => l.bindPopup(makeStoryPopup(f.properties || {}))
@@ -1965,7 +2037,8 @@
         ].map(([k,label,color]) =>
           `<div class="row"><span class="dot" style="background:${color}"></span><span>${esc(label)}</span></div>`
         ).join("")}
-        <div style="font-weight:800;margin:10px 0 4px;color:#22313d;">RSS trusted</div>
+        <div style="font-weight:800;margin:10px 0 4px;color:#22313d;">RSS rétegek</div>
+        <div class="row"><span class="dot" style="background:#7d69d6"></span><span>RSS signal marker</span></div>
         <div class="row"><span class="dot" style="background:#4f819b"></span><span>Trusted story marker</span></div>
         <div style="margin-top:8px;" class="small">USGS/GDACS szín: frissesség (0–24h → piros).</div>
       `;
@@ -2011,18 +2084,20 @@
       try { layers.hot = await loadHotspotsHeat(`${DATA}/hotspots.geojson`); } catch {}
       try { layers.early = await loadEarly(`${DATA}/early.geojson`); } catch {}
 
-      const [gdelt, gdeltLinked, usgs, gdacs, trustedRss] = await Promise.all([
+      const [gdelt, gdeltLinked, usgs, gdacs, trustedRss, trustedRssSignals] = await Promise.all([
         loadJson(`${DATA}/gdelt.geojson`).catch(()=>null),
         loadJson(`${DATA}/gdelt_linked.geojson`).catch(()=>null),
         loadJson(`${DATA}/usgs.geojson`).catch(()=>null),
         loadJson(`${DATA}/gdacs.geojson`).catch(()=>null),
         loadJson(`${DATA}/trusted_rss.json`).catch(()=>null),
+        loadJson(`${DATA}/trusted_rss_signals.geojson`).catch(()=>null),
       ]);
 
       if (gdelt) DATASETS.gdelt = gdelt;
       if (gdeltLinked) DATASETS.gdeltLinked = gdeltLinked;
       if (usgs) DATASETS.usgs = usgs;
       if (gdacs) DATASETS.gdacs = gdacs;
+      if (trustedRssSignals) DATASETS.trustedRssSignals = trustedRssSignals;
 
       if (trustedRss) {
         DATASETS.trustedRss = trustedRss;
@@ -2041,11 +2116,17 @@
         renderStories({ count: 0, stories: [] });
       }
 
+      if (trustedRssSignals) {
+        layers.rssSignals.clearLayers();
+        layers.rssSignals.addData(trustedRssSignals);
+      }
+
       applyFilters();
 
       if (layers.countryRisk) layers.countryRisk.addTo(map);
       if (layers.borders) layers.borders.addTo(map);
       if (layers.hot) layers.hot.addTo(map);
+      if (layers.rssSignals) layers.rssSignals.addTo(map);
       layers.gdelt.addTo(map);
 
       document.getElementById('layerBorders').addEventListener('change', (e) => {
@@ -2070,6 +2151,9 @@
       });
       document.getElementById('layerGdeltLinked').addEventListener('change', (e) => {
         e.target.checked ? map.addLayer(layers.gdeltLinked) : map.removeLayer(layers.gdeltLinked);
+      });
+      document.getElementById('layerRssSignals').addEventListener('change', (e) => {
+        e.target.checked ? map.addLayer(layers.rssSignals) : map.removeLayer(layers.rssSignals);
       });
       document.getElementById('layerRssTrusted').addEventListener('change', (e) => {
         e.target.checked ? map.addLayer(layers.rssTrusted) : map.removeLayer(layers.rssTrusted);
