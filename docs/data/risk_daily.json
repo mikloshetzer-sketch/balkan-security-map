@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-06T13:51:02Z",
+  "generated_utc": "2026-04-06T15:09:47Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.027,
+    "overall_score": 1.036,
     "confidence": "medium",
-    "confidence_value": 0.583,
+    "confidence_value": 0.591,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,22 +22,14 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.828,
-      "military": 0.003,
+      "political": 1.84,
+      "military": 0.004,
       "policing": 0.004,
-      "migration": 0.001,
+      "migration": 0.002,
       "social": 0.004,
-      "infrastructure": 0.014
+      "infrastructure": 0.016
     },
     "watchlist": [
-      {
-        "country": "Hungary",
-        "overall": "elevated",
-        "overall_score": 1.46,
-        "drivers": [
-          "unknown"
-        ]
-      },
       {
         "country": "Bulgaria",
         "overall": "elevated",
@@ -49,7 +41,7 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.164,
+        "overall_score": 1.224,
         "drivers": [
           "unknown",
           "deescalation"
@@ -70,6 +62,14 @@
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Albania",
+        "overall": "elevated",
+        "overall_score": 0.929,
+        "drivers": [
+          "unknown"
+        ]
       }
     ],
     "top_drivers": [
@@ -84,7 +84,7 @@
       "overall": "normal",
       "overall_score": 2.152,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -94,7 +94,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.604,
+        "political": 3.603,
         "military": 0.0,
         "policing": 0.035,
         "migration": 0.0,
@@ -105,7 +105,7 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 300,
+      "incident_count": 299,
       "recent_incident_count": 36,
       "top_incidents": [
         {
@@ -242,12 +242,12 @@
     },
     {
       "country": "Hungary",
-      "overall": "elevated",
-      "overall_score": 1.46,
+      "overall": "normal",
+      "overall_score": 1.481,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -255,7 +255,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.573,
+        "political": 2.605,
         "military": 0.0,
         "policing": 0.012,
         "migration": 0.012,
@@ -265,8 +265,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 110,
-      "recent_incident_count": 12,
+      "incident_count": 111,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-04-06T00:00:00Z",
@@ -309,10 +309,10 @@
           ]
         },
         {
-          "time": "2026-04-05T00:00:00Z",
-          "title": "Hungary",
+          "time": "2026-04-06T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -360,7 +360,7 @@
         },
         {
           "time": "2026-04-06T00:00:00Z",
-          "title": "Vratsa, Vratsa, Bulgaria",
+          "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -370,7 +370,7 @@
         },
         {
           "time": "2026-04-06T00:00:00Z",
-          "title": "Sofia, Sofiya-Grad, Bulgaria",
+          "title": "Vratsa, Vratsa, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -403,7 +403,7 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.164,
+      "overall_score": 1.224,
       "confidence": "medium",
       "confidence_value": 0.596,
       "dimensions": {
@@ -415,7 +415,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.077,
+        "political": 2.178,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -426,9 +426,19 @@
         "unknown",
         "deescalation"
       ],
-      "incident_count": 71,
-      "recent_incident_count": 6,
+      "incident_count": 73,
+      "recent_incident_count": 8,
       "top_incidents": [
+        {
+          "time": "2026-04-06T00:00:00Z",
+          "title": "Kemal, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-04-06T00:00:00Z",
           "title": "Halicarnassus, Mugla, Turkey",
@@ -450,28 +460,18 @@
           ]
         },
         {
+          "time": "2026-04-06T00:00:00Z",
+          "title": "Iznik, Bursa, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-04-05T00:00:00Z",
           "title": "Smyrna, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-05T00:00:00Z",
-          "title": "Bursa, Bursa, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-05T00:00:00Z",
-          "title": "Isnik, Bursa, Turkey",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1044,9 +1044,9 @@
     {
       "country": "Serbia",
       "overall": "normal",
-      "overall_score": 0.012,
-      "confidence": "low",
-      "confidence_value": 0.5,
+      "overall_score": 0.048,
+      "confidence": "medium",
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -1056,19 +1056,32 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.025,
-        "military": 0.0,
+        "political": 0.043,
+        "military": 0.018,
         "policing": 0.0,
-        "migration": 0.0,
+        "migration": 0.018,
         "social": 0.0,
-        "infrastructure": 0.0
+        "infrastructure": 0.018
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 1,
-      "recent_incident_count": 0,
+      "incident_count": 2,
+      "recent_incident_count": 1,
       "top_incidents": [
+        {
+          "time": "2026-04-06T13:50:24Z",
+          "title": "Serbia looks for pipeline sabotage plot culprit as Vance's Hungary visit nears",
+          "event_type": "unknown",
+          "score": 0.073,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "migration",
+            "infrastructure"
+          ]
+        },
         {
           "time": "2026-03-30T00:00:00Z",
           "title": "Bajina Basta, , Serbia",
@@ -1110,10 +1123,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1080,
+    "incident_count": 1083,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 126
+    "rss_story_count_raw": 127
   },
   "legend": {
     "levels": [
