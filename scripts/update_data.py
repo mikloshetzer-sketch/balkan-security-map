@@ -38,8 +38,9 @@ CACHE_PATH = os.path.join(DOCS_DATA_DIR, "geocode_cache.json")
 COUNTRIES_CACHE_PATH = os.path.join(DOCS_DATA_DIR, "balkan_countries.geojson")
 TRUSTED_RSS_PATH = os.path.join(DOCS_DATA_DIR, "trusted_rss.json")
 TRUSTED_RSS_SIGNALS_PATH = os.path.join(DOCS_DATA_DIR, "trusted_rss_signals.geojson")
+SUMMARY_PATH = os.path.join(DOCS_DATA_DIR, "summary.json")
 
-USER_AGENT = "balkan-security-map/4.1 (github actions)"
+USER_AGENT = "balkan-security-map/4.2 (github actions)"
 TIMEOUT = 30
 
 # ============================================================
@@ -162,15 +163,6 @@ TRUSTED_RSS_FEEDS = [
         "scope": ["world", "europe", "security", "politics", "energy"],
         "trusted": True,
     },
-    {
-        "id": "reuters_europe",
-        "name": "Reuters Europe",
-        "url": "https://feeds.reuters.com/Reuters/worldNews",
-        "weight": 0.96,
-        "language": "en",
-        "scope": ["europe", "security", "politics", "energy"],
-        "trusted": True,
-    },
 ]
 
 BALKAN_COUNTRY_KEYWORDS = {
@@ -178,7 +170,7 @@ BALKAN_COUNTRY_KEYWORDS = {
     "Bosnia and Herzegovina": ["bosnia", "sarajevo", "republika srpska", "bih", "bosnian"],
     "Bulgaria": ["bulgaria", "sofia", "bulgarian"],
     "Croatia": ["croatia", "zagreb", "croatian"],
-    "Greece": ["greece", "athens", "greek", "aegean"],
+    "Greece": ["greece", "athens", "greek", "aegean", "attica", "athens region"],
     "Kosovo": ["kosovo", "pristina", "priština", "kosovar"],
     "Montenegro": ["montenegro", "podgorica", "montenegrin"],
     "North Macedonia": ["north macedonia", "skopje", "macedonia", "macedonian"],
@@ -886,6 +878,7 @@ def rss_story_to_feature(story: Dict[str, Any]) -> Optional[Dict[str, Any]]:
             "url": story.get("url"),
             "source_name": story.get("source_name"),
             "anchor": "country_capital",
+            "summary": story.get("summary"),
         },
     )
 
@@ -1486,17 +1479,119 @@ def alert_from_top(top: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
         return {"level": "medium", "title": "Emelkedő feszültség", "text": f"Felfutó jelzések: {place}."}
     return None
 
-def make_summary(
-    all_features: List[Dict[str, Any]],
-    top_hotspots: List[Dict[str, Any]],
-    counts: Dict[str, int],
-    trusted_rss_payload: Optional[Dict[str, Any]] = None,
-) -> Dict[str, Any]:
+# ===============================
+# SUMMARY + ALERT ENGINE (FULL)
+# ===============================
+def load_json_file(path):
+    if not os.path.exists(path):
+        return {}
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f) or {}
+    except Exception:
+        return {}
+
+def hours_since_iso(ts):
+    dt = parse_time_iso(ts)
+    if dt is None:
+        return None
+    return max(0.0, (datetime.now(timezone.utc) - dt).total_seconds() / 3600.0)
+
+def priority_dimension_weight(dimensions):
+    dims = set(dimensions or [])
+    bonus = 0.0
+    if "infrastructure" in dims: bonus += 1.4
+    if "military" in dims: bonus += 1.2
+    if "policing" in dims: bonus += 0.9
+    if "social" in dims: bonus += 0.8
+    if "political" in dims: bonus += 0.6
+    if "migration" in dims: bonus += 0.5
+    return bonus
+
+def select_priority_story(trusted_rss_payload):
+    stories = (trusted_rss_payload or {}).get("stories") or []
+    if not stories:
+        return None
+
+    best = None
+    best_score = -1.0
+
+    for s in stories:
+        country = s.get("country_hint")
+        if country not in WESTERN_BALKANS_COUNTRIES:
+            continue
+
+        age = hours_since_iso(s.get("published_utc") or s.get("fetched_utc"))
+        if age is None or age > 72:
+            continue
+
+        base = float(s.get("signal_score") or 0.0)
+        dims = s.get("dimensions") or []
+
+        if age <= 6:
+            rec = 2.2
+        elif age <= 12:
+            rec = 1.8
+        elif age <= 24:
+            rec = 1.3
+        elif age <= 48:
+            rec = 0.8
+        else:
+            rec = 0.3
+
+        if country == "Serbia":
+            country_bonus = 1.2
+        elif country in ("Kosovo", "Bosnia and Herzegovina"):
+            country_bonus = 0.9
+        else:
+            country_bonus = 0.5
+
+        score = base + rec + country_bonus + priority_dimension_weight(dims)
+
+        if score > best_score:
+            best_score = score
+            best = s
+
+    return best
+
+def story_to_alert(story):
+    country = story.get("country_hint") or "ismeretlen"
+    title = (story.get("title") or "").strip()
+    dims = story.get("dimensions") or []
+
+    level = "info"
+    if "infrastructure" in dims or "military" in dims:
+        level = "high"
+    elif "policing" in dims or "social" in dims:
+        level = "medium"
+
+    return {
+        "level": level,
+        "title": f"Napi kiemelt fejlemény – {country}",
+        "text": title[:220]
+    }
+
+def story_to_bullet(story):
+    src = story.get("source_name") or "RSS"
+    return f"Napi kiemelt fejlemény: {story.get('country_hint')} – {story.get('title')} ({src})"
+
+def choose_alert(trusted_rss, hotspots, prev_alert):
+    story = select_priority_story(trusted_rss)
+    if story:
+        return story_to_alert(story)
+    if hotspots:
+        hotspot_alert = alert_from_top(hotspots[0])
+        if hotspot_alert:
+            return hotspot_alert
+    return prev_alert
+
+def make_summary(all_features, top_hotspots, counts, trusted_rss_payload=None, previous_alert=None):
     now = datetime.now(timezone.utc)
     cutoff_7 = now - timedelta(days=7)
     cutoff_14 = now - timedelta(days=14)
 
     last7, prev7 = [], []
+
     for f in all_features:
         dt = parse_time_iso((f.get("properties") or {}).get("time"))
         if not dt:
@@ -1511,52 +1606,52 @@ def make_summary(
     change = pct_change(score_last7, score_prev7)
 
     if change is None:
-        trend_text = "Trend: nincs elég bázisadat az összehasonlításhoz."
+        trend_text = "Trend: nincs elég adat."
+    elif change > 12:
+        trend_text = f"Trend: emelkedő (+{change:.0f}%)."
+    elif change < -12:
+        trend_text = f"Trend: csökkenő ({change:.0f}%)."
     else:
-        if change > 12:
-            trend_text = f"Trend: emelkedő (+{change:.0f}%) az előző 7 naphoz képest."
-        elif change < -12:
-            trend_text = f"Trend: csökkenő ({change:.0f}%) az előző 7 naphoz képest."
-        else:
-            trend_text = f"Trend: nagyjából stagnáló ({change:+.0f}%) az előző 7 naphoz képest."
+        trend_text = f"Trend: stagnáló ({change:+.0f}%)."
 
-    top = top_hotspots[0] if top_hotspots else None
-    if top:
-        place = top.get("place") or "ismeretlen térség"
-        arrow = top.get("trend_arrow", "")
-        chv = top.get("change_pct")
-        ch_txt = "n/a" if chv is None else f"{chv:+.0f}%"
-        top_text = (
-            f"Legerősebb góc: {place} {arrow} "
-            f"(rácspont {top['lat']:.2f}, {top['lon']:.2f}; score {float(top['score']):.2f}; 7 napos változás: {ch_txt})."
-        )
+    bullets = []
+
+    story = select_priority_story(trusted_rss_payload)
+    if story:
+        bullets.append(story_to_bullet(story))
+
+    if top_hotspots:
+        h = top_hotspots[0]
+        place = h.get("place") or "ismeretlen térség"
+        bullets.append(f"Legerősebb góc: {place} (score {float(h['score']):.2f})")
     else:
-        top_text = "Legerősebb góc: jelenleg nincs elég geokódolt jelzés a térképes kiemeléshez."
+        bullets.append("Legerősebb góc: jelenleg nincs elég geokódolt jelzés a térképes kiemeléshez.")
 
-    rss_count = 0
+    bullets.append(trend_text)
+
+    bullets.append(
+        f"Forráskép: GDELT {counts.get('gdelt', 0)} + linked {counts.get('gdelt_linked', 0)}, "
+        f"USGS {counts.get('usgs', 0)}, GDACS {counts.get('gdacs', 0)}, RSS-jelek {counts.get('rss_signals', 0)}"
+    )
+
     if trusted_rss_payload:
-        rss_count = int(trusted_rss_payload.get("count") or 0)
+        bullets.append(f"Trusted RSS: {trusted_rss_payload.get('count', 0)} db")
 
-    bullets = [
-        top_text,
-        trend_text,
-        f"Forráskép: GDELT {counts.get('gdelt', 0)} + linked {counts.get('gdelt_linked', 0)}, USGS {counts.get('usgs', 0)}, GDACS {counts.get('gdacs', 0)}, RSS-jelek {counts.get('rss_signals', 0)}.",
-    ]
-    if rss_count:
-        bullets.append(f"Trusted RSS forrásokból releváns sajtóanyag: {rss_count} db.")
-    bullets.append("Megjegyzés: automatikus OSINT-kivonat; a linkelt források kézi ellenőrzése javasolt.")
+    bullets.append("Automatikus OSINT kivonat.")
+
+    alert = choose_alert(trusted_rss_payload, top_hotspots, previous_alert)
 
     return {
         "generated_utc": to_utc_z(now),
         "headline": "Balkán biztonsági helyzet – napi kivonat",
         "bullets": bullets,
-        "alert": alert_from_top(top),
+        "alert": alert,
         "stats": {
             "score_last7": round(score_last7, 3),
             "score_prev7": round(score_prev7, 3),
             "change_pct": None if change is None else round(change, 2),
         },
-        "rss_count": rss_count,
+        "rss_count": int((trusted_rss_payload or {}).get("count") or 0),
     }
 
 # ============================================================
@@ -2094,8 +2189,17 @@ def main() -> int:
         "rss_trusted": int(trusted_rss_payload.get("count") or 0),
     }
 
-    summary = make_summary(all_feats, top_hotspots, counts, trusted_rss_payload=trusted_rss_payload)
-    with open(os.path.join(DOCS_DATA_DIR, "summary.json"), "w", encoding="utf-8") as f:
+    prev_summary = load_json_file(SUMMARY_PATH)
+    prev_alert = prev_summary.get("alert")
+
+    summary = make_summary(
+        all_feats,
+        top_hotspots,
+        counts,
+        trusted_rss_payload=trusted_rss_payload,
+        previous_alert=prev_alert
+    )
+    with open(SUMMARY_PATH, "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
 
     weekly = build_weekly(all_feats, trusted_rss_payload=trusted_rss_payload)
@@ -2157,4 +2261,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
