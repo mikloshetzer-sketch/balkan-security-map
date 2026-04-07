@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-07T22:01:55Z",
+  "generated_utc": "2026-04-07T23:02:34Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.142,
+    "overall_score": 1.144,
     "confidence": "medium",
     "confidence_value": 0.602,
     "dimensions": {
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.011,
+      "political": 2.016,
       "military": 0.009,
       "policing": 0.02,
       "migration": 0.002,
@@ -47,17 +47,17 @@
         ]
       },
       {
-        "country": "Bosnia and Herzegovina",
+        "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 0.966,
+        "overall_score": 0.998,
         "drivers": [
           "unknown"
         ]
       },
       {
-        "country": "Kosovo",
+        "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 0.959,
+        "overall_score": 0.966,
         "drivers": [
           "unknown"
         ]
@@ -81,7 +81,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.232,
+      "overall_score": 2.236,
       "confidence": "medium",
       "confidence_value": 0.594,
       "dimensions": {
@@ -93,7 +93,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.714,
+        "political": 3.72,
         "military": 0.057,
         "policing": 0.02,
         "migration": 0.0,
@@ -104,8 +104,8 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 319,
-      "recent_incident_count": 60,
+      "incident_count": 320,
+      "recent_incident_count": 61,
       "top_incidents": [
         {
           "time": "2026-04-07T00:00:00Z",
@@ -242,7 +242,7 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.703,
+      "overall_score": 1.696,
       "confidence": "medium",
       "confidence_value": 0.606,
       "dimensions": {
@@ -254,12 +254,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.918,
+        "political": 2.909,
         "military": 0.039,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.038,
-        "infrastructure": 0.19
+        "infrastructure": 0.179
       },
       "drivers": [
         "unknown",
@@ -272,7 +272,7 @@
           "time": "2026-04-07T16:58:02Z",
           "title": "Vance accuses EU of ‘foreign interference’ in upcoming Hungarian election while endorsing Orbán – as it happened",
           "event_type": "explosion",
-          "score": 0.401,
+          "score": 0.332,
           "source": "RSS",
           "dimensions": [
             "political"
@@ -642,6 +642,86 @@
       ]
     },
     {
+      "country": "Kosovo",
+      "overall": "elevated",
+      "overall_score": 0.998,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.831,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 66,
+      "recent_incident_count": 3,
+      "top_incidents": [
+        {
+          "time": "2026-04-07T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-07T00:00:00Z",
+          "title": "Banjska, Vucitrn, Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-06T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-05T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-05T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
       "overall_score": 0.966,
@@ -714,86 +794,6 @@
           "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.182,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Kosovo",
-      "overall": "elevated",
-      "overall_score": 0.959,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.766,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 65,
-      "recent_incident_count": 2,
-      "top_incidents": [
-        {
-          "time": "2026-04-07T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-06T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-05T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-05T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-05T00:00:00Z",
-          "title": "Rezalla, Srbica, Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1136,7 +1136,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1130,
+    "incident_count": 1132,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 133
