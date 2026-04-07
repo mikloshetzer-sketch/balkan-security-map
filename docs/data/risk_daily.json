@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-07T21:06:46Z",
+  "generated_utc": "2026-04-07T22:01:55Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.135,
+    "overall_score": 1.142,
     "confidence": "medium",
-    "confidence_value": 0.592,
+    "confidence_value": 0.602,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.006,
-      "military": 0.004,
-      "policing": 0.0,
-      "migration": 0.001,
+      "political": 2.011,
+      "military": 0.009,
+      "policing": 0.02,
+      "migration": 0.002,
       "social": 0.003,
-      "infrastructure": 0.015
+      "infrastructure": 0.02
     },
     "watchlist": [
       {
@@ -73,16 +73,17 @@
     ],
     "top_drivers": [
       "unknown",
-      "explosion"
+      "explosion",
+      "shooting"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.228,
+      "overall_score": 2.232,
       "confidence": "medium",
-      "confidence_value": 0.593,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -92,9 +93,9 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.711,
-        "military": 0.0,
-        "policing": 0.0,
+        "political": 3.714,
+        "military": 0.057,
+        "policing": 0.02,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.0
@@ -103,8 +104,8 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 316,
-      "recent_incident_count": 57,
+      "incident_count": 319,
+      "recent_incident_count": 60,
       "top_incidents": [
         {
           "time": "2026-04-07T00:00:00Z",
@@ -161,7 +162,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.875,
+      "overall_score": 1.885,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -173,7 +174,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.208,
+        "political": 3.224,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -183,8 +184,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 184,
-      "recent_incident_count": 28,
+      "incident_count": 185,
+      "recent_incident_count": 29,
       "top_incidents": [
         {
           "time": "2026-04-07T00:00:00Z",
@@ -241,9 +242,9 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.677,
+      "overall_score": 1.703,
       "confidence": "medium",
-      "confidence_value": 0.603,
+      "confidence_value": 0.606,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -253,19 +254,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.888,
+        "political": 2.918,
         "military": 0.039,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.038,
-        "infrastructure": 0.125
+        "infrastructure": 0.19
       },
       "drivers": [
         "unknown",
         "explosion"
       ],
-      "incident_count": 121,
-      "recent_incident_count": 26,
+      "incident_count": 124,
+      "recent_incident_count": 29,
       "top_incidents": [
         {
           "time": "2026-04-07T16:58:02Z",
@@ -322,9 +323,9 @@
     {
       "country": "Turkey",
       "overall": "normal",
-      "overall_score": 1.592,
+      "overall_score": 1.616,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -336,17 +337,28 @@
       "dimension_scores": {
         "political": 2.786,
         "military": 0.0,
-        "policing": 0.0,
+        "policing": 0.234,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "shooting"
       ],
-      "incident_count": 90,
-      "recent_incident_count": 26,
+      "incident_count": 91,
+      "recent_incident_count": 27,
       "top_incidents": [
+        {
+          "time": "2026-04-07T12:29:27Z",
+          "title": "Three gunmen 'neutralised' in shooting incident near Israeli consulate in Istanbul",
+          "event_type": "shooting",
+          "score": 0.247,
+          "source": "RSS",
+          "dimensions": [
+            "policing"
+          ]
+        },
         {
           "time": "2026-04-07T00:00:00Z",
           "title": "Gurlek, Usak, Turkey",
@@ -380,16 +392,6 @@
         {
           "time": "2026-04-07T00:00:00Z",
           "title": "Yalova, Yalova, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-07T00:00:00Z",
-          "title": "Izmit, Kocaeli, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -449,7 +451,7 @@
         },
         {
           "time": "2026-04-07T00:00:00Z",
-          "title": "Agia Sofia, Perifereia Kentrikis Makedonias, Greece",
+          "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -459,7 +461,7 @@
         },
         {
           "time": "2026-04-07T00:00:00Z",
-          "title": "Sofia, Sofiya-Grad, Bulgaria",
+          "title": "Agia Sofia, Perifereia Kentrikis Makedonias, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -1042,9 +1044,9 @@
     {
       "country": "Serbia",
       "overall": "normal",
-      "overall_score": 0.042,
+      "overall_score": 0.062,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.716,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -1054,24 +1056,37 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.04,
-        "military": 0.015,
+        "political": 0.05,
+        "military": 0.025,
         "policing": 0.0,
-        "migration": 0.015,
+        "migration": 0.025,
         "social": 0.0,
-        "infrastructure": 0.015
+        "infrastructure": 0.025
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 2,
-      "recent_incident_count": 1,
+      "incident_count": 3,
+      "recent_incident_count": 2,
       "top_incidents": [
         {
           "time": "2026-04-07T03:56:37Z",
           "title": "Hungary pipeline false-flag claims swirl as JD Vance makes election intervention",
           "event_type": "unknown",
           "score": 0.06,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "migration",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-04-06T15:50:24Z",
+          "title": "Serbia looks for pipeline sabotage plot culprit as Vance's Hungary visit nears",
+          "event_type": "unknown",
+          "score": 0.041,
           "source": "RSS",
           "dimensions": [
             "political",
@@ -1121,10 +1136,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1121,
+    "incident_count": 1130,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 92
+    "rss_story_count_raw": 133
   },
   "legend": {
     "levels": [
