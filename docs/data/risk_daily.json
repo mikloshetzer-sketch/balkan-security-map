@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-08T22:04:36Z",
+  "generated_utc": "2026-04-08T23:04:08Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.157,
+    "overall_score": 1.163,
     "confidence": "medium",
     "confidence_value": 0.589,
     "dimensions": {
@@ -22,18 +22,26 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.033,
+      "political": 2.044,
       "military": 0.01,
       "policing": 0.022,
       "migration": 0.003,
-      "social": 0.008,
-      "infrastructure": 0.016
+      "social": 0.006,
+      "infrastructure": 0.017
     },
     "watchlist": [
       {
         "country": "Bulgaria",
         "overall": "elevated",
         "overall_score": 1.464,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
+        "country": "Kosovo",
+        "overall": "elevated",
+        "overall_score": 1.071,
         "drivers": [
           "unknown"
         ]
@@ -50,14 +58,6 @@
         "country": "Albania",
         "overall": "elevated",
         "overall_score": 1.024,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Kosovo",
-        "overall": "elevated",
-        "overall_score": 0.999,
         "drivers": [
           "unknown"
         ]
@@ -244,7 +244,7 @@
     {
       "country": "Turkey",
       "overall": "normal",
-      "overall_score": 1.69,
+      "overall_score": 1.705,
       "confidence": "medium",
       "confidence_value": 0.6,
       "dimensions": {
@@ -256,7 +256,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.885,
+        "political": 2.909,
         "military": 0.0,
         "policing": 0.227,
         "migration": 0.0,
@@ -268,8 +268,8 @@
         "protest",
         "shooting"
       ],
-      "incident_count": 100,
-      "recent_incident_count": 37,
+      "incident_count": 101,
+      "recent_incident_count": 38,
       "top_incidents": [
         {
           "time": "2026-04-08T20:03:39Z",
@@ -487,6 +487,86 @@
       ]
     },
     {
+      "country": "Kosovo",
+      "overall": "elevated",
+      "overall_score": 1.071,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.954,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 65,
+      "recent_incident_count": 8,
+      "top_incidents": [
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Mitrovica, Mitrovica, Kosovo",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Balkan, , Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Koshare, Komuna e Gjakoves, Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Croatia",
       "overall": "elevated",
       "overall_score": 1.05,
@@ -637,86 +717,6 @@
         {
           "time": "2026-04-07T00:00:00Z",
           "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Kosovo",
-      "overall": "elevated",
-      "overall_score": 0.999,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.833,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 63,
-      "recent_incident_count": 6,
-      "top_incidents": [
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Mitrovica, Mitrovica, Kosovo",
-          "event_type": "unknown",
-          "score": 0.21,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Balkan, , Kosovo",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-07T00:00:00Z",
-          "title": "Kosovo",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -969,9 +969,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.642,
+      "overall_score": 0.636,
       "confidence": "medium",
-      "confidence_value": 0.638,
+      "confidence_value": 0.635,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -981,12 +981,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.066,
-        "military": 0.091,
-        "policing": 0.065,
+        "political": 1.069,
+        "military": 0.096,
+        "policing": 0.054,
         "migration": 0.022,
-        "social": 0.026,
-        "infrastructure": 0.057
+        "social": 0.0,
+        "infrastructure": 0.063
       },
       "drivers": [
         "unknown",
@@ -1026,15 +1026,14 @@
           ]
         },
         {
-          "time": "2026-04-08T21:47:04Z",
-          "title": "Australia news live: ‘Deeply concerned’ Penny Wong says Lebanon should be included in ceasefire and calls for aid workers to be protected",
+          "time": "2026-04-08T22:49:51Z",
+          "title": "Australia news live: shadow defence minister claims Trump threatened to ‘escalate in order to de-escalate’ in Middle East",
           "event_type": "deescalation",
-          "score": 0.106,
+          "score": 0.096,
           "source": "RSS",
           "dimensions": [
             "political",
             "military",
-            "social",
             "infrastructure"
           ]
         },
@@ -1119,7 +1118,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1133,
+    "incident_count": 1136,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 140
