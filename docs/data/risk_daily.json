@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-08T23:04:08Z",
+  "generated_utc": "2026-04-08T23:55:55Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.163,
+    "overall_score": 1.17,
     "confidence": "medium",
-    "confidence_value": 0.589,
+    "confidence_value": 0.588,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,22 +22,14 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.044,
+      "political": 2.056,
       "military": 0.01,
       "policing": 0.022,
       "migration": 0.003,
       "social": 0.006,
-      "infrastructure": 0.017
+      "infrastructure": 0.016
     },
     "watchlist": [
-      {
-        "country": "Bulgaria",
-        "overall": "elevated",
-        "overall_score": 1.464,
-        "drivers": [
-          "unknown"
-        ]
-      },
       {
         "country": "Kosovo",
         "overall": "elevated",
@@ -69,6 +61,14 @@
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Moldova",
+        "overall": "elevated",
+        "overall_score": 0.727,
+        "drivers": [
+          "unknown"
+        ]
       }
     ],
     "top_drivers": [
@@ -83,7 +83,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.217,
+      "overall_score": 2.223,
       "confidence": "medium",
       "confidence_value": 0.594,
       "dimensions": {
@@ -95,7 +95,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.696,
+        "political": 3.703,
         "military": 0.04,
         "policing": 0.0,
         "migration": 0.0,
@@ -106,9 +106,19 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 319,
-      "recent_incident_count": 51,
+      "incident_count": 320,
+      "recent_incident_count": 52,
       "top_incidents": [
+        {
+          "time": "2026-04-09T00:00:00Z",
+          "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-04-08T00:00:00Z",
           "title": "Greece",
@@ -142,16 +152,6 @@
         {
           "time": "2026-04-08T00:00:00Z",
           "title": "Larissa, Perifereia Thessalias, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Neos Kosmos, Perifereia Peloponnisou, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -328,9 +328,9 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.671,
+      "overall_score": 1.705,
       "confidence": "medium",
-      "confidence_value": 0.602,
+      "confidence_value": 0.601,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -340,19 +340,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.889,
+        "political": 2.942,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.015,
         "social": 0.015,
-        "infrastructure": 0.089
+        "infrastructure": 0.083
       },
       "drivers": [
         "unknown",
         "explosion"
       ],
-      "incident_count": 117,
-      "recent_incident_count": 30,
+      "incident_count": 119,
+      "recent_incident_count": 32,
       "top_incidents": [
         {
           "time": "2026-04-08T13:26:41Z",
@@ -365,6 +365,26 @@
           ]
         },
         {
+          "time": "2026-04-09T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-09T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-04-08T00:00:00Z",
           "title": "Hungary",
           "event_type": "unknown",
@@ -377,26 +397,6 @@
         {
           "time": "2026-04-08T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -408,12 +408,12 @@
     },
     {
       "country": "Bulgaria",
-      "overall": "elevated",
-      "overall_score": 1.464,
+      "overall": "normal",
+      "overall_score": 1.512,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -421,7 +421,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.588,
+        "political": 2.662,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -431,9 +431,29 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 105,
-      "recent_incident_count": 12,
+      "incident_count": 107,
+      "recent_incident_count": 14,
       "top_incidents": [
+        {
+          "time": "2026-04-09T00:00:00Z",
+          "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-09T00:00:00Z",
+          "title": "Sofia, Sofiya-Grad, Bulgaria",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-04-08T00:00:00Z",
           "title": "Bulgaria",
@@ -457,26 +477,6 @@
         {
           "time": "2026-04-08T00:00:00Z",
           "title": "Sofia, Sofiya-Grad, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Plovdiv, Plovdiv, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -809,7 +809,7 @@
     {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.72,
+      "overall_score": 0.727,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -821,7 +821,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.352,
+        "political": 1.365,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -831,7 +831,7 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 28,
+      "incident_count": 29,
       "recent_incident_count": 6,
       "top_incidents": [
         {
@@ -1026,7 +1026,7 @@
           ]
         },
         {
-          "time": "2026-04-08T22:49:51Z",
+          "time": "2026-04-08T23:37:58Z",
           "title": "Australia news live: shadow defence minister claims Trump threatened to ‘escalate in order to de-escalate’ in Middle East",
           "event_type": "deescalation",
           "score": 0.096,
@@ -1118,10 +1118,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1136,
+    "incident_count": 1142,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 140
+    "rss_story_count_raw": 141
   },
   "legend": {
     "levels": [
