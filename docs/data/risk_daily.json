@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-08T17:35:22Z",
+  "generated_utc": "2026-04-08T19:45:12Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.142,
+    "overall_score": 1.145,
     "confidence": "medium",
     "confidence_value": 0.587,
     "dimensions": {
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.024,
-      "military": 0.001,
-      "policing": 0.0,
-      "migration": 0.001,
-      "social": 0.003,
-      "infrastructure": 0.011
+      "political": 2.018,
+      "military": 0.008,
+      "policing": 0.022,
+      "migration": 0.003,
+      "social": 0.001,
+      "infrastructure": 0.01
     },
     "watchlist": [
       {
@@ -55,17 +55,17 @@
         ]
       },
       {
-        "country": "Bosnia and Herzegovina",
+        "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 0.976,
+        "overall_score": 0.999,
         "drivers": [
           "unknown"
         ]
       },
       {
-        "country": "Kosovo",
+        "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 0.96,
+        "overall_score": 0.976,
         "drivers": [
           "unknown"
         ]
@@ -74,6 +74,7 @@
     "top_drivers": [
       "unknown",
       "explosion",
+      "shooting",
       "deescalation"
     ]
   },
@@ -81,7 +82,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.19,
+      "overall_score": 2.199,
       "confidence": "medium",
       "confidence_value": 0.594,
       "dimensions": {
@@ -93,19 +94,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.657,
-        "military": 0.0,
+        "political": 3.671,
+        "military": 0.04,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.035
+        "infrastructure": 0.0
       },
       "drivers": [
         "unknown",
         "explosion"
       ],
-      "incident_count": 312,
-      "recent_incident_count": 44,
+      "incident_count": 315,
+      "recent_incident_count": 47,
       "top_incidents": [
         {
           "time": "2026-04-08T00:00:00Z",
@@ -209,6 +210,16 @@
         },
         {
           "time": "2026-04-08T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
           "title": "Cetatea De Balta, Romania (general), Romania",
           "event_type": "unknown",
           "score": 0.178,
@@ -226,25 +237,15 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Borcea, Romania (general), Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.688,
+      "overall_score": 1.672,
       "confidence": "medium",
-      "confidence_value": 0.603,
+      "confidence_value": 0.602,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -254,25 +255,25 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.908,
-        "military": 0.018,
+        "political": 2.889,
+        "military": 0.0,
         "policing": 0.0,
         "migration": 0.018,
-        "social": 0.036,
-        "infrastructure": 0.105
+        "social": 0.018,
+        "infrastructure": 0.093
       },
       "drivers": [
         "unknown",
         "explosion"
       ],
-      "incident_count": 118,
-      "recent_incident_count": 31,
+      "incident_count": 117,
+      "recent_incident_count": 30,
       "top_incidents": [
         {
           "time": "2026-04-08T13:26:41Z",
           "title": "Carnival celebrations at a Hungarian retirement home: János Bődey’s best photograph",
           "event_type": "explosion",
-          "score": 0.401,
+          "score": 0.332,
           "source": "RSS",
           "dimensions": [
             "political"
@@ -323,9 +324,9 @@
     {
       "country": "Turkey",
       "overall": "normal",
-      "overall_score": 1.602,
+      "overall_score": 1.657,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -335,18 +336,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.801,
+        "political": 2.852,
         "military": 0.0,
-        "policing": 0.0,
+        "policing": 0.227,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "shooting"
       ],
-      "incident_count": 94,
-      "recent_incident_count": 31,
+      "incident_count": 98,
+      "recent_incident_count": 35,
       "top_incidents": [
         {
           "time": "2026-04-08T00:00:00Z",
@@ -370,7 +372,7 @@
         },
         {
           "time": "2026-04-08T00:00:00Z",
-          "title": "Kocaeli, Balikesir, Turkey",
+          "title": "Smyrna, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -380,7 +382,7 @@
         },
         {
           "time": "2026-04-08T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
+          "title": "Kocaeli, Balikesir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -510,27 +512,27 @@
       "top_incidents": [
         {
           "time": "2026-04-08T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
           "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -641,6 +643,86 @@
       ]
     },
     {
+      "country": "Kosovo",
+      "overall": "elevated",
+      "overall_score": 0.999,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.833,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 63,
+      "recent_incident_count": 6,
+      "top_incidents": [
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Mitrovica, Mitrovica, Kosovo",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Balkan, , Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-07T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
       "overall_score": 0.976,
@@ -713,86 +795,6 @@
           "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.149,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Kosovo",
-      "overall": "elevated",
-      "overall_score": 0.96,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.768,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 62,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Mitrovica, Mitrovica, Kosovo",
-          "event_type": "unknown",
-          "score": 0.21,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Balkan, , Kosovo",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-07T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-07T00:00:00Z",
-          "title": "Banjska, Vucitrn, Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -881,88 +883,6 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.663,
-      "confidence": "medium",
-      "confidence_value": 0.624,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.247,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.009
-      },
-      "drivers": [
-        "unknown",
-        "explosion",
-        "deescalation"
-      ],
-      "incident_count": 27,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-04-08T16:14:42Z",
-          "title": "Pastor charged over drowning of man at baptism ceremony in Birmingham",
-          "event_type": "explosion",
-          "score": 0.375,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-07T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-07T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T03:57:32Z",
-          "title": "Explainer: What is in Iran’s 10-point ceasefire plan and will the US agree to it?",
-          "event_type": "deescalation",
-          "score": 0.077,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Slovenia",
       "overall": "elevated",
       "overall_score": 0.644,
@@ -1043,6 +963,89 @@
       ]
     },
     {
+      "country": "Montenegro",
+      "overall": "normal",
+      "overall_score": 0.61,
+      "confidence": "medium",
+      "confidence_value": 0.624,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.05,
+        "military": 0.065,
+        "policing": 0.065,
+        "migration": 0.022,
+        "social": 0.0,
+        "infrastructure": 0.031
+      },
+      "drivers": [
+        "unknown",
+        "deescalation"
+      ],
+      "incident_count": 29,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-07T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-07T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T03:57:32Z",
+          "title": "Explainer: What is in Iran’s 10-point ceasefire plan and will the US agree to it?",
+          "event_type": "deescalation",
+          "score": 0.077,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T19:13:43Z",
+          "title": "Italy’s Giorgia Meloni attempts political reset after referendum defeat",
+          "event_type": "unknown",
+          "score": 0.066,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "migration",
+            "infrastructure"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Serbia",
       "overall": "normal",
       "overall_score": 0.012,
@@ -1111,10 +1114,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1115,
+    "incident_count": 1124,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 95
+    "rss_story_count_raw": 140
   },
   "legend": {
     "levels": [
