@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-08T19:45:12Z",
+  "generated_utc": "2026-04-08T21:05:31Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.145,
+    "overall_score": 1.149,
     "confidence": "medium",
-    "confidence_value": 0.587,
+    "confidence_value": 0.588,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.018,
+      "political": 2.023,
       "military": 0.008,
       "policing": 0.022,
       "migration": 0.003,
-      "social": 0.001,
-      "infrastructure": 0.01
+      "social": 0.007,
+      "infrastructure": 0.015
     },
     "watchlist": [
       {
         "country": "Bulgaria",
         "overall": "elevated",
-        "overall_score": 1.443,
+        "overall_score": 1.464,
         "drivers": [
           "unknown"
         ]
@@ -74,6 +74,7 @@
     "top_drivers": [
       "unknown",
       "explosion",
+      "protest",
       "shooting",
       "deescalation"
     ]
@@ -241,6 +242,90 @@
       ]
     },
     {
+      "country": "Turkey",
+      "overall": "normal",
+      "overall_score": 1.69,
+      "confidence": "medium",
+      "confidence_value": 0.6,
+      "dimensions": {
+        "political": "tense",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.885,
+        "military": 0.0,
+        "policing": 0.227,
+        "migration": 0.0,
+        "social": 0.067,
+        "infrastructure": 0.067
+      },
+      "drivers": [
+        "unknown",
+        "protest",
+        "shooting"
+      ],
+      "incident_count": 100,
+      "recent_incident_count": 37,
+      "top_incidents": [
+        {
+          "time": "2026-04-08T20:03:39Z",
+          "title": "‘I don’t see anyone accepting that’: Oil industry balks at Iran’s shipping toll",
+          "event_type": "protest",
+          "score": 0.203,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Gurlek, Usak, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Izmit, Kocaeli, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Kocaeli, Balikesir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Hungary",
       "overall": "normal",
       "overall_score": 1.672,
@@ -322,90 +407,9 @@
       ]
     },
     {
-      "country": "Turkey",
-      "overall": "normal",
-      "overall_score": 1.657,
-      "confidence": "medium",
-      "confidence_value": 0.596,
-      "dimensions": {
-        "political": "tense",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.852,
-        "military": 0.0,
-        "policing": 0.227,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown",
-        "shooting"
-      ],
-      "incident_count": 98,
-      "recent_incident_count": 35,
-      "top_incidents": [
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Izmit, Kocaeli, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Gurlek, Usak, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Kocaeli, Balikesir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Gurlek, Usak, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Bulgaria",
       "overall": "elevated",
-      "overall_score": 1.443,
+      "overall_score": 1.464,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -417,7 +421,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.554,
+        "political": 2.588,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -427,8 +431,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 104,
-      "recent_incident_count": 11,
+      "incident_count": 105,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-04-08T00:00:00Z",
@@ -1114,7 +1118,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1124,
+    "incident_count": 1127,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 140
