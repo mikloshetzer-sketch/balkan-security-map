@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-09T22:00:15Z",
+  "generated_utc": "2026-04-09T23:04:26Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.185,
+    "overall_score": 1.192,
     "confidence": "medium",
     "confidence_value": 0.589,
     "dimensions": {
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.078,
+      "political": 2.082,
       "military": 0.008,
       "policing": 0.013,
       "migration": 0.0,
-      "social": 0.01,
+      "social": 0.023,
       "infrastructure": 0.029
     },
     "watchlist": [
       {
         "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 1.148,
+        "overall_score": 1.179,
         "drivers": [
           "unknown"
         ]
@@ -75,6 +75,7 @@
     "top_drivers": [
       "unknown",
       "explosion",
+      "protest",
       "deescalation"
     ]
   },
@@ -243,7 +244,7 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.693,
+      "overall_score": 1.692,
       "confidence": "medium",
       "confidence_value": 0.595,
       "dimensions": {
@@ -255,7 +256,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.918,
+        "political": 2.916,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -485,7 +486,7 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 1.148,
+      "overall_score": 1.179,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -497,7 +498,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.081,
+        "political": 2.132,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -507,8 +508,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 65,
-      "recent_incident_count": 12,
+      "incident_count": 66,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-04-09T00:00:00Z",
@@ -970,9 +971,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.636,
+      "overall_score": 0.691,
       "confidence": "medium",
-      "confidence_value": 0.64,
+      "confidence_value": 0.651,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -986,16 +987,27 @@
         "military": 0.017,
         "policing": 0.038,
         "migration": 0.0,
-        "social": 0.04,
+        "social": 0.217,
         "infrastructure": 0.124
       },
       "drivers": [
         "unknown",
+        "protest",
         "deescalation"
       ],
-      "incident_count": 28,
-      "recent_incident_count": 8,
+      "incident_count": 29,
+      "recent_incident_count": 9,
       "top_incidents": [
+        {
+          "time": "2026-04-09T22:17:38Z",
+          "title": "Melania says her piece about Epstein – doth the lady protest too much?",
+          "event_type": "protest",
+          "score": 0.188,
+          "source": "RSS",
+          "dimensions": [
+            "social"
+          ]
+        },
         {
           "time": "2026-04-09T00:00:00Z",
           "title": "Montenegro",
@@ -1018,16 +1030,6 @@
         },
         {
           "time": "2026-04-08T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-07T00:00:00Z",
           "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.125,
@@ -1127,7 +1129,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1134,
+    "incident_count": 1136,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 135
