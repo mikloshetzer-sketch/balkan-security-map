@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-10T13:56:28Z",
+  "generated_utc": "2026-04-10T15:10:06Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.127,
+    "overall_score": 1.138,
     "confidence": "medium",
-    "confidence_value": 0.591,
+    "confidence_value": 0.59,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,22 +22,14 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.985,
+      "political": 2.005,
       "military": 0.008,
       "policing": 0.009,
       "migration": 0.0,
-      "social": 0.007,
-      "infrastructure": 0.016
+      "social": 0.016,
+      "infrastructure": 0.013
     },
     "watchlist": [
-      {
-        "country": "Bulgaria",
-        "overall": "elevated",
-        "overall_score": 1.465,
-        "drivers": [
-          "unknown"
-        ]
-      },
       {
         "country": "Kosovo",
         "overall": "elevated",
@@ -57,7 +49,7 @@
       {
         "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 0.924,
+        "overall_score": 0.961,
         "drivers": [
           "unknown",
           "deescalation"
@@ -70,19 +62,28 @@
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Moldova",
+        "overall": "elevated",
+        "overall_score": 0.741,
+        "drivers": [
+          "unknown"
+        ]
       }
     ],
     "top_drivers": [
       "unknown",
       "deescalation",
-      "explosion"
+      "explosion",
+      "protest"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.176,
+      "overall_score": 2.178,
       "confidence": "medium",
       "confidence_value": 0.593,
       "dimensions": {
@@ -94,19 +95,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.64,
+        "political": 3.641,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
+        "social": 0.024,
+        "infrastructure": 0.024
       },
       "drivers": [
         "unknown",
         "explosion"
       ],
-      "incident_count": 310,
-      "recent_incident_count": 42,
+      "incident_count": 311,
+      "recent_incident_count": 43,
       "top_incidents": [
         {
           "time": "2026-04-10T00:00:00Z",
@@ -163,7 +164,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.804,
+      "overall_score": 1.816,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -175,7 +176,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.104,
+        "political": 3.121,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -185,9 +186,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 172,
-      "recent_incident_count": 21,
+      "incident_count": 173,
+      "recent_incident_count": 22,
       "top_incidents": [
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-04-10T00:00:00Z",
           "title": "Romania",
@@ -227,23 +238,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.665,
+      "overall_score": 1.685,
       "confidence": "medium",
       "confidence_value": 0.598,
       "dimensions": {
@@ -255,37 +256,29 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.887,
+        "political": 2.91,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.065
+        "social": 0.1,
+        "infrastructure": 0.029
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "protest"
       ],
       "incident_count": 118,
       "recent_incident_count": 25,
       "top_incidents": [
         {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
+          "time": "2026-04-10T14:33:40Z",
+          "title": "Orbán and rival Magyar hold rallies as Hungary election campaigns enter final stretch – Europe live",
+          "event_type": "protest",
+          "score": 0.204,
+          "source": "RSS",
           "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
+            "political",
+            "social"
           ]
         },
         {
@@ -311,6 +304,16 @@
         {
           "time": "2026-04-10T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -323,7 +326,7 @@
     {
       "country": "Turkey",
       "overall": "normal",
-      "overall_score": 1.491,
+      "overall_score": 1.511,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -335,7 +338,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.622,
+        "political": 2.654,
         "military": 0.0,
         "policing": 0.04,
         "migration": 0.0,
@@ -345,8 +348,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 97,
-      "recent_incident_count": 11,
+      "incident_count": 98,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-04-10T00:00:00Z",
@@ -361,6 +364,16 @@
         {
           "time": "2026-04-10T00:00:00Z",
           "title": "Alsancak, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Izmir, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -387,27 +400,17 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-04-09T00:00:00Z",
-          "title": "Izmir, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Bulgaria",
-      "overall": "elevated",
-      "overall_score": 1.465,
+      "overall": "normal",
+      "overall_score": 1.486,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -415,7 +418,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.589,
+        "political": 2.622,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -425,8 +428,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 108,
-      "recent_incident_count": 16,
+      "incident_count": 109,
+      "recent_incident_count": 17,
       "top_incidents": [
         {
           "time": "2026-04-10T00:00:00Z",
@@ -643,9 +646,9 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.924,
+      "overall_score": 0.961,
       "confidence": "medium",
-      "confidence_value": 0.601,
+      "confidence_value": 0.6,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -655,19 +658,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.674,
-        "military": 0.027,
+        "political": 1.743,
+        "military": 0.022,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.027,
-        "infrastructure": 0.027
+        "social": 0.022,
+        "infrastructure": 0.022
       },
       "drivers": [
         "unknown",
         "deescalation"
       ],
-      "incident_count": 38,
-      "recent_incident_count": 6,
+      "incident_count": 39,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-04-10T00:00:00Z",
@@ -690,6 +693,16 @@
           ]
         },
         {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-04-09T00:00:00Z",
           "title": "Balkan, Republika Srpska, Bosnia-Herzegovina",
           "event_type": "unknown",
@@ -702,16 +715,6 @@
         {
           "time": "2026-04-09T00:00:00Z",
           "title": "Energoinvest, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.149,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.149,
           "source": "GDELT",
@@ -804,7 +807,7 @@
     {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.691,
+      "overall_score": 0.741,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -816,7 +819,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.301,
+        "political": 1.389,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -826,8 +829,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 30,
-      "recent_incident_count": 4,
+      "incident_count": 31,
+      "recent_incident_count": 5,
       "top_incidents": [
         {
           "time": "2026-04-10T00:00:00Z",
@@ -850,10 +853,10 @@
           ]
         },
         {
-          "time": "2026-04-09T00:00:00Z",
-          "title": "Chisinau, Chisinau, Moldova",
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Transnistria, Moldova (general), Moldova",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -870,8 +873,8 @@
           ]
         },
         {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Moldova",
+          "time": "2026-04-09T00:00:00Z",
+          "title": "Chisinau, Chisinau, Moldova",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -964,7 +967,7 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.632,
+      "overall_score": 0.621,
       "confidence": "medium",
       "confidence_value": 0.663,
       "dimensions": {
@@ -976,12 +979,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.998,
-        "military": 0.077,
-        "policing": 0.075,
+        "political": 0.996,
+        "military": 0.076,
+        "policing": 0.072,
         "migration": 0.0,
         "social": 0.063,
-        "infrastructure": 0.122
+        "infrastructure": 0.096
       },
       "drivers": [
         "unknown",
@@ -1031,7 +1034,7 @@
           ]
         },
         {
-          "time": "2026-04-10T13:28:46Z",
+          "time": "2026-04-10T14:41:18Z",
           "title": "Middle East crisis live: Vance warns Iran not to ‘play’ US as he heads to Pakistan for talks",
           "event_type": "deescalation",
           "score": 0.095,
@@ -1122,7 +1125,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1102,
+    "incident_count": 1108,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 136
