@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-10T20:58:58Z",
+  "generated_utc": "2026-04-10T21:59:29Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.176,
+    "overall_score": 1.183,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.064,
+      "political": 2.077,
       "military": 0.009,
       "policing": 0.008,
       "migration": 0.003,
@@ -63,11 +63,13 @@
         ]
       },
       {
-        "country": "Moldova",
+        "country": "Montenegro",
         "overall": "elevated",
-        "overall_score": 0.741,
+        "overall_score": 0.781,
         "drivers": [
-          "unknown"
+          "unknown",
+          "explosion",
+          "protest"
         ]
       }
     ],
@@ -139,7 +141,7 @@
         },
         {
           "time": "2026-04-10T00:00:00Z",
-          "title": "Artemis, Perifereia Attikis, Greece",
+          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -149,7 +151,7 @@
         },
         {
           "time": "2026-04-10T00:00:00Z",
-          "title": "Lefkada, Perifereia Ionion Nison, Greece",
+          "title": "Artemis, Perifereia Attikis, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -681,7 +683,7 @@
         },
         {
           "time": "2026-04-10T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -691,7 +693,7 @@
         },
         {
           "time": "2026-04-10T00:00:00Z",
-          "title": "Albania",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -794,6 +796,94 @@
           "title": "Balkan, Republika Srpska, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.149,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "overall": "elevated",
+      "overall_score": 0.781,
+      "confidence": "medium",
+      "confidence_value": 0.668,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.208,
+        "military": 0.112,
+        "policing": 0.102,
+        "migration": 0.038,
+        "social": 0.139,
+        "infrastructure": 0.099
+      },
+      "drivers": [
+        "unknown",
+        "explosion",
+        "protest"
+      ],
+      "incident_count": 30,
+      "recent_incident_count": 10,
+      "top_incidents": [
+        {
+          "time": "2026-04-10T14:57:42Z",
+          "title": "EU industry chief says Europe won’t follow the US on China",
+          "event_type": "explosion",
+          "score": 0.314,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-04-10T17:28:26Z",
+          "title": "After clashing with Trump and Israel, Sánchez casts Spain as moral model for EU",
+          "event_type": "protest",
+          "score": 0.191,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "migration",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-09T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -962,94 +1052,6 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "normal",
-      "overall_score": 0.695,
-      "confidence": "medium",
-      "confidence_value": 0.665,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.032,
-        "military": 0.112,
-        "policing": 0.102,
-        "migration": 0.038,
-        "social": 0.139,
-        "infrastructure": 0.099
-      },
-      "drivers": [
-        "unknown",
-        "explosion",
-        "protest"
-      ],
-      "incident_count": 27,
-      "recent_incident_count": 7,
-      "top_incidents": [
-        {
-          "time": "2026-04-10T14:57:42Z",
-          "title": "EU industry chief says Europe won’t follow the US on China",
-          "event_type": "explosion",
-          "score": 0.314,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social"
-          ]
-        },
-        {
-          "time": "2026-04-10T17:28:26Z",
-          "title": "After clashing with Trump and Israel, Sánchez casts Spain as moral model for EU",
-          "event_type": "protest",
-          "score": 0.191,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "migration",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-09T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-09T00:00:00Z",
-          "title": "Bijelo Polje, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Serbia",
       "overall": "normal",
       "overall_score": 0.073,
@@ -1128,7 +1130,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1121,
+    "incident_count": 1124,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 134
