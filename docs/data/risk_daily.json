@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-11T07:22:30Z",
+  "generated_utc": "2026-04-11T09:04:36Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.11,
+    "overall_score": 1.111,
     "confidence": "medium",
-    "confidence_value": 0.59,
+    "confidence_value": 0.589,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,11 +22,11 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.952,
+      "political": 1.96,
       "military": 0.009,
-      "policing": 0.011,
+      "policing": 0.003,
       "migration": 0.01,
-      "social": 0.017,
+      "social": 0.02,
       "infrastructure": 0.013
     },
     "watchlist": [
@@ -55,17 +55,17 @@
         ]
       },
       {
-        "country": "Albania",
+        "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.035,
+        "overall_score": 1.079,
         "drivers": [
           "unknown"
         ]
       },
       {
-        "country": "Croatia",
+        "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.007,
+        "overall_score": 1.035,
         "drivers": [
           "unknown"
         ]
@@ -74,14 +74,16 @@
     "top_drivers": [
       "unknown",
       "protest",
-      "explosion"
+      "explosion",
+      "riot",
+      "deescalation"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.136,
+      "overall_score": 2.141,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -93,7 +95,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.583,
+        "political": 3.591,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -104,8 +106,8 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 305,
-      "recent_incident_count": 30,
+      "incident_count": 306,
+      "recent_incident_count": 31,
       "top_incidents": [
         {
           "time": "2026-04-11T00:00:00Z",
@@ -242,9 +244,9 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.633,
+      "overall_score": 1.672,
       "confidence": "medium",
-      "confidence_value": 0.6,
+      "confidence_value": 0.606,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -254,20 +256,32 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.819,
+        "political": 2.86,
         "military": 0.036,
         "policing": 0.036,
         "migration": 0.0,
-        "social": 0.093,
+        "social": 0.234,
         "infrastructure": 0.032
       },
       "drivers": [
         "unknown",
+        "riot",
         "protest"
       ],
-      "incident_count": 117,
-      "recent_incident_count": 22,
+      "incident_count": 120,
+      "recent_incident_count": 25,
       "top_incidents": [
+        {
+          "time": "2026-04-11T06:30:57Z",
+          "title": "Hungary Election: An Orbán victory would be good news for Europe",
+          "event_type": "riot",
+          "score": 0.303,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social"
+          ]
+        },
         {
           "time": "2026-04-11T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
@@ -300,17 +314,7 @@
         },
         {
           "time": "2026-04-11T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Zalaegerszeg, Zala, Hungary",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -561,6 +565,86 @@
       ]
     },
     {
+      "country": "Croatia",
+      "overall": "elevated",
+      "overall_score": 1.079,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.967,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 59,
+      "recent_incident_count": 9,
+      "top_incidents": [
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Vrbovec, Zagrebacka, Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Albania",
       "overall": "elevated",
       "overall_score": 1.035,
@@ -631,86 +715,6 @@
         {
           "time": "2026-04-10T00:00:00Z",
           "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Croatia",
-      "overall": "elevated",
-      "overall_score": 1.007,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.847,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 57,
-      "recent_incident_count": 7,
-      "top_incidents": [
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Vrbovec, Zagrebacka, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Dubravka, Dubrovacko-Neretvanska, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -883,94 +887,6 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "normal",
-      "overall_score": 0.627,
-      "confidence": "medium",
-      "confidence_value": 0.656,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 0.96,
-        "military": 0.084,
-        "policing": 0.101,
-        "migration": 0.031,
-        "social": 0.131,
-        "infrastructure": 0.035
-      },
-      "drivers": [
-        "unknown",
-        "explosion",
-        "protest"
-      ],
-      "incident_count": 25,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-04-10T14:57:42Z",
-          "title": "EU industry chief says Europe won’t follow the US on China",
-          "event_type": "explosion",
-          "score": 0.311,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social"
-          ]
-        },
-        {
-          "time": "2026-04-10T17:28:26Z",
-          "title": "After clashing with Trump and Israel, Sánchez casts Spain as moral model for EU",
-          "event_type": "protest",
-          "score": 0.157,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "migration",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-09T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Slovenia",
       "overall": "elevated",
       "overall_score": 0.583,
@@ -1041,6 +957,92 @@
         {
           "time": "2026-04-09T00:00:00Z",
           "title": "Celje, Celje, Slovenia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "overall": "normal",
+      "overall_score": 0.528,
+      "confidence": "medium",
+      "confidence_value": 0.643,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 0.894,
+        "military": 0.084,
+        "policing": 0.0,
+        "migration": 0.031,
+        "social": 0.031,
+        "infrastructure": 0.035
+      },
+      "drivers": [
+        "unknown",
+        "protest",
+        "deescalation"
+      ],
+      "incident_count": 24,
+      "recent_incident_count": 4,
+      "top_incidents": [
+        {
+          "time": "2026-04-10T17:28:26Z",
+          "title": "After clashing with Trump and Israel, Sánchez casts Spain as moral model for EU",
+          "event_type": "protest",
+          "score": 0.157,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "migration",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-09T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-09T00:00:00Z",
+          "title": "Bijelo Polje, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1129,10 +1131,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1098,
+    "incident_count": 1103,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 90
+    "rss_story_count_raw": 131
   },
   "legend": {
     "levels": [
