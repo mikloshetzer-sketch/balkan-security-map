@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-11T03:23:16Z",
+  "generated_utc": "2026-04-11T05:42:13Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.104,
+    "overall_score": 1.113,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -22,26 +22,26 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.949,
-      "military": 0.006,
-      "policing": 0.008,
-      "migration": 0.002,
-      "social": 0.018,
-      "infrastructure": 0.01
+      "political": 1.957,
+      "military": 0.009,
+      "policing": 0.011,
+      "migration": 0.01,
+      "social": 0.019,
+      "infrastructure": 0.014
     },
     "watchlist": [
       {
-        "country": "Bulgaria",
+        "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.443,
+        "overall_score": 1.464,
         "drivers": [
           "unknown"
         ]
       },
       {
-        "country": "Turkey",
+        "country": "Bulgaria",
         "overall": "elevated",
-        "overall_score": 1.438,
+        "overall_score": 1.443,
         "drivers": [
           "unknown"
         ]
@@ -73,16 +73,15 @@
     ],
     "top_drivers": [
       "unknown",
-      "explosion",
       "protest",
-      "deescalation"
+      "explosion"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.124,
+      "overall_score": 2.138,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -94,7 +93,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.565,
+        "political": 3.584,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -105,22 +104,12 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 303,
-      "recent_incident_count": 28,
+      "incident_count": 305,
+      "recent_incident_count": 30,
       "top_incidents": [
         {
           "time": "2026-04-11T00:00:00Z",
           "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Khoros, Perifereia Anatolikis Makedonias kai Thrakis, Greece",
           "event_type": "unknown",
           "score": 0.209,
           "source": "GDELT",
@@ -149,10 +138,20 @@
           ]
         },
         {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Greece",
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Khoros, Perifereia Anatolikis Makedonias kai Thrakis, Greece",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Artemis, Perifereia Attikis, Greece",
+          "event_type": "unknown",
+          "score": 0.209,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -163,7 +162,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.711,
+      "overall_score": 1.727,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -175,7 +174,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.965,
+        "political": 2.99,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -185,9 +184,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 169,
-      "recent_incident_count": 8,
+      "incident_count": 170,
+      "recent_incident_count": 9,
       "top_incidents": [
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-04-10T00:00:00Z",
           "title": "Romania",
@@ -227,25 +236,15 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.606,
+      "overall_score": 1.636,
       "confidence": "medium",
-      "confidence_value": 0.599,
+      "confidence_value": 0.602,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -255,19 +254,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.789,
-        "military": 0.0,
-        "policing": 0.0,
+        "political": 2.824,
+        "military": 0.036,
+        "policing": 0.036,
         "migration": 0.0,
-        "social": 0.083,
-        "infrastructure": 0.029
+        "social": 0.094,
+        "infrastructure": 0.032
       },
       "drivers": [
         "unknown",
         "protest"
       ],
-      "incident_count": 114,
-      "recent_incident_count": 19,
+      "incident_count": 117,
+      "recent_incident_count": 22,
       "top_incidents": [
         {
           "time": "2026-04-11T00:00:00Z",
@@ -310,14 +309,93 @@
           ]
         },
         {
-          "time": "2026-04-10T18:03:28Z",
-          "title": "Orbán and rival Magyar hold rallies as Hungary election campaigns enter final stretch – as it happened",
-          "event_type": "protest",
-          "score": 0.169,
-          "source": "RSS",
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Zalaegerszeg, Zala, Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
           "dimensions": [
-            "political",
-            "social"
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Turkey",
+      "overall": "elevated",
+      "overall_score": 1.464,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.587,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 100,
+      "recent_incident_count": 9,
+      "top_incidents": [
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Aphrodisias, Aydin, Turkey",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Kemal, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Izmir, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Alsancak, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
           ]
         }
       ]
@@ -393,86 +471,6 @@
         {
           "time": "2026-04-10T00:00:00Z",
           "title": "Sozopol, Burgas, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Turkey",
-      "overall": "elevated",
-      "overall_score": 1.438,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.547,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 99,
-      "recent_incident_count": 8,
-      "top_incidents": [
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Aphrodisias, Aydin, Turkey",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Izmir, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Alsancak, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -805,9 +803,9 @@
     {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.696,
+      "overall_score": 0.752,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.603,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -820,15 +818,16 @@
         "political": 1.309,
         "military": 0.0,
         "policing": 0.0,
-        "migration": 0.0,
+        "migration": 0.1,
         "social": 0.0,
-        "infrastructure": 0.0
+        "infrastructure": 0.1
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "protest"
       ],
-      "incident_count": 31,
-      "recent_incident_count": 4,
+      "incident_count": 32,
+      "recent_incident_count": 5,
       "top_incidents": [
         {
           "time": "2026-04-11T00:00:00Z",
@@ -838,6 +837,17 @@
           "source": "GDELT",
           "dimensions": [
             "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T04:00:37Z",
+          "title": "An environmental disaster in Moldova has Russia’s fingerprints all over it | Paula Erizanu",
+          "event_type": "protest",
+          "score": 0.204,
+          "source": "RSS",
+          "dimensions": [
+            "migration",
+            "infrastructure"
           ]
         },
         {
@@ -869,25 +879,15 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-04-09T00:00:00Z",
-          "title": "Chisinau, Chisinau, Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.652,
+      "overall_score": 0.627,
       "confidence": "medium",
-      "confidence_value": 0.668,
+      "confidence_value": 0.656,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -897,20 +897,20 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.977,
+        "political": 0.96,
         "military": 0.084,
         "policing": 0.101,
-        "migration": 0.032,
-        "social": 0.132,
-        "infrastructure": 0.088
+        "migration": 0.031,
+        "social": 0.131,
+        "infrastructure": 0.035
       },
       "drivers": [
         "unknown",
         "explosion",
-        "deescalation"
+        "protest"
       ],
-      "incident_count": 26,
-      "recent_incident_count": 6,
+      "incident_count": 25,
+      "recent_incident_count": 5,
       "top_incidents": [
         {
           "time": "2026-04-10T14:57:42Z",
@@ -928,7 +928,7 @@
           "time": "2026-04-10T17:28:26Z",
           "title": "After clashing with Trump and Israel, Sánchez casts Spain as moral model for EU",
           "event_type": "protest",
-          "score": 0.159,
+          "score": 0.157,
           "source": "RSS",
           "dimensions": [
             "political",
@@ -1129,10 +1129,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1090,
+    "incident_count": 1097,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 134
+    "rss_story_count_raw": 132
   },
   "legend": {
     "levels": [
