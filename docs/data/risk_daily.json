@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-11T11:00:12Z",
+  "generated_utc": "2026-04-11T11:48:19Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.112,
+    "overall_score": 1.116,
     "confidence": "medium",
     "confidence_value": 0.597,
     "dimensions": {
@@ -22,26 +22,26 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.966,
-      "military": 0.009,
-      "policing": 0.003,
+      "political": 1.972,
+      "military": 0.007,
+      "policing": 0.002,
       "migration": 0.006,
-      "social": 0.009,
-      "infrastructure": 0.013
+      "social": 0.019,
+      "infrastructure": 0.012
     },
     "watchlist": [
       {
-        "country": "Turkey",
+        "country": "Bulgaria",
         "overall": "elevated",
-        "overall_score": 1.456,
+        "overall_score": 1.457,
         "drivers": [
           "unknown"
         ]
       },
       {
-        "country": "Bulgaria",
+        "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.435,
+        "overall_score": 1.456,
         "drivers": [
           "unknown"
         ]
@@ -75,6 +75,7 @@
       "unknown",
       "protest",
       "explosion",
+      "riot",
       "deescalation"
     ]
   },
@@ -82,7 +83,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.141,
+      "overall_score": 2.147,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -94,7 +95,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.591,
+        "political": 3.598,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -105,8 +106,8 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 306,
-      "recent_incident_count": 31,
+      "incident_count": 307,
+      "recent_incident_count": 32,
       "top_incidents": [
         {
           "time": "2026-04-11T00:00:00Z",
@@ -243,9 +244,9 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.656,
+      "overall_score": 1.687,
       "confidence": "medium",
-      "confidence_value": 0.601,
+      "confidence_value": 0.606,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -255,23 +256,105 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.849,
-        "military": 0.036,
-        "policing": 0.036,
+        "political": 2.885,
+        "military": 0.02,
+        "policing": 0.02,
         "migration": 0.0,
-        "social": 0.115,
-        "infrastructure": 0.055
+        "social": 0.244,
+        "infrastructure": 0.043
       },
       "drivers": [
         "unknown",
+        "riot",
         "protest"
       ],
-      "incident_count": 119,
-      "recent_incident_count": 24,
+      "incident_count": 121,
+      "recent_incident_count": 26,
+      "top_incidents": [
+        {
+          "time": "2026-04-11T06:30:57Z",
+          "title": "Hungary Election: An Orbán victory would be good news for Europe",
+          "event_type": "riot",
+          "score": 0.303,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Bulgaria",
+      "overall": "elevated",
+      "overall_score": 1.457,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.576,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 111,
+      "recent_incident_count": 11,
       "top_incidents": [
         {
           "time": "2026-04-11T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -281,7 +364,7 @@
         },
         {
           "time": "2026-04-11T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "title": "Vratsa, Vratsa, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -291,7 +374,7 @@
         },
         {
           "time": "2026-04-11T00:00:00Z",
-          "title": "Hungary",
+          "title": "Balkan, Khaskovo, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -300,20 +383,20 @@
           ]
         },
         {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Bulgaria",
           "event_type": "unknown",
-          "score": 0.178,
+          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Hungary",
+          "time": "2026-04-10T00:00:00Z",
+          "title": "Rila, Kyustendil, Bulgaria",
           "event_type": "unknown",
-          "score": 0.178,
+          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -392,86 +475,6 @@
         {
           "time": "2026-04-10T00:00:00Z",
           "title": "Alsancak, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Bulgaria",
-      "overall": "elevated",
-      "overall_score": 1.435,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.542,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 110,
-      "recent_incident_count": 10,
-      "top_incidents": [
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Vratsa, Vratsa, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Rila, Kyustendil, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Sozopol, Burgas, Bulgaria",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1135,10 +1138,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1103,
+    "incident_count": 1107,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 89
+    "rss_story_count_raw": 130
   },
   "legend": {
     "levels": [
