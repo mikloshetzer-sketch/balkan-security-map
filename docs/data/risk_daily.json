@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-11T22:55:34Z",
+  "generated_utc": "2026-04-11T23:53:01Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.149,
+    "overall_score": 1.162,
     "confidence": "medium",
-    "confidence_value": 0.597,
+    "confidence_value": 0.598,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.025,
+      "political": 2.048,
       "military": 0.008,
       "policing": 0.002,
       "migration": 0.009,
@@ -162,6 +162,88 @@
       ]
     },
     {
+      "country": "Hungary",
+      "overall": "normal",
+      "overall_score": 1.792,
+      "confidence": "medium",
+      "confidence_value": 0.605,
+      "dimensions": {
+        "political": "tense",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 3.054,
+        "military": 0.02,
+        "policing": 0.02,
+        "migration": 0.024,
+        "social": 0.161,
+        "infrastructure": 0.068
+      },
+      "drivers": [
+        "unknown",
+        "riot"
+      ],
+      "incident_count": 130,
+      "recent_incident_count": 35,
+      "top_incidents": [
+        {
+          "time": "2026-04-11T06:30:57Z",
+          "title": "Hungary Election: An Orbán victory would be good news for Europe",
+          "event_type": "riot",
+          "score": 0.247,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-04-12T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-12T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-12T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Romania",
       "overall": "normal",
       "overall_score": 1.765,
@@ -234,88 +316,6 @@
           "title": "Romania",
           "event_type": "unknown",
           "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Hungary",
-      "overall": "normal",
-      "overall_score": 1.746,
-      "confidence": "medium",
-      "confidence_value": 0.605,
-      "dimensions": {
-        "political": "tense",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.984,
-        "military": 0.02,
-        "policing": 0.02,
-        "migration": 0.024,
-        "social": 0.161,
-        "infrastructure": 0.068
-      },
-      "drivers": [
-        "unknown",
-        "riot"
-      ],
-      "incident_count": 127,
-      "recent_incident_count": 32,
-      "top_incidents": [
-        {
-          "time": "2026-04-11T06:30:57Z",
-          "title": "Hungary Election: An Orbán victory would be good news for Europe",
-          "event_type": "riot",
-          "score": 0.247,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "social"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -967,12 +967,12 @@
     },
     {
       "country": "Montenegro",
-      "overall": "normal",
-      "overall_score": 0.492,
+      "overall": "elevated",
+      "overall_score": 0.614,
       "confidence": "medium",
-      "confidence_value": 0.629,
+      "confidence_value": 0.643,
       "dimensions": {
-        "political": "normal",
+        "political": "elevated",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -980,7 +980,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.88,
+        "political": 1.109,
         "military": 0.067,
         "policing": 0.0,
         "migration": 0.014,
@@ -989,11 +989,22 @@
       },
       "drivers": [
         "unknown",
+        "explosion",
         "deescalation"
       ],
-      "incident_count": 23,
-      "recent_incident_count": 4,
+      "incident_count": 24,
+      "recent_incident_count": 5,
       "top_incidents": [
+        {
+          "time": "2026-04-11T23:01:00Z",
+          "title": "Golden eagles could be reintroduced to England after more than 150 years",
+          "event_type": "explosion",
+          "score": 0.375,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-04-10T00:00:00Z",
           "title": "Montenegro",
@@ -1029,16 +1040,6 @@
           "title": "Bijelo Polje, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-08T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.063,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1137,10 +1138,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1131,
+    "incident_count": 1135,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 133
+    "rss_story_count_raw": 134
   },
   "legend": {
     "levels": [
