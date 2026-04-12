@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-12T22:59:24Z",
+  "generated_utc": "2026-04-12T23:55:53Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.136,
+    "overall_score": 1.143,
     "confidence": "medium",
     "confidence_value": 0.586,
     "dimensions": {
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.005,
-      "military": 0.005,
-      "policing": 0.001,
+      "political": 2.015,
+      "military": 0.007,
+      "policing": 0.003,
       "migration": 0.009,
-      "social": 0.014,
-      "infrastructure": 0.012
+      "social": 0.015,
+      "infrastructure": 0.011
     },
     "watchlist": [
       {
@@ -74,9 +74,9 @@
     ],
     "top_drivers": [
       "unknown",
+      "deescalation",
       "riot",
-      "protest",
-      "deescalation"
+      "protest"
     ]
   },
   "countries": [
@@ -163,9 +163,9 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.815,
+      "overall_score": 1.91,
       "confidence": "medium",
-      "confidence_value": 0.612,
+      "confidence_value": 0.613,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -175,65 +175,66 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.092,
-        "military": 0.012,
-        "policing": 0.012,
+        "political": 3.232,
+        "military": 0.033,
+        "policing": 0.033,
         "migration": 0.035,
-        "social": 0.118,
-        "infrastructure": 0.094
+        "social": 0.138,
+        "infrastructure": 0.087
       },
       "drivers": [
         "unknown",
-        "riot"
+        "riot",
+        "deescalation"
       ],
-      "incident_count": 141,
-      "recent_incident_count": 38,
+      "incident_count": 149,
+      "recent_incident_count": 46,
       "top_incidents": [
         {
-          "time": "2026-04-12T00:00:00Z",
+          "time": "2026-04-13T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
-          "score": 0.178,
+          "score": 0.209,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-04-12T00:00:00Z",
+          "time": "2026-04-13T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
-          "score": 0.178,
+          "score": 0.209,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-04-12T00:00:00Z",
+          "time": "2026-04-13T00:00:00Z",
           "title": "Hungary",
           "event_type": "unknown",
-          "score": 0.178,
+          "score": 0.209,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-04-12T00:00:00Z",
-          "title": "Hungary",
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
-          "score": 0.178,
+          "score": 0.209,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-04-12T00:00:00Z",
-          "title": "Hungary",
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Tolna, Tolna, Hungary",
           "event_type": "unknown",
-          "score": 0.178,
+          "score": 0.209,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -965,7 +966,7 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.43,
+      "overall_score": 0.426,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -977,11 +978,11 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.768,
+        "political": 0.764,
         "military": 0.052,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.033,
+        "social": 0.028,
         "infrastructure": 0.0
       },
       "drivers": [
@@ -1012,17 +1013,6 @@
           ]
         },
         {
-          "time": "2026-04-12T17:24:08Z",
-          "title": "US lawmakers split on party lines over negotiations’ failure to end Iran war",
-          "event_type": "unknown",
-          "score": 0.067,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "social"
-          ]
-        },
-        {
           "time": "2026-04-09T00:00:00Z",
           "title": "Montenegro",
           "event_type": "unknown",
@@ -1035,6 +1025,16 @@
         {
           "time": "2026-04-09T00:00:00Z",
           "title": "Bijelo Polje, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.063,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-08T00:00:00Z",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.063,
           "source": "GDELT",
@@ -1123,10 +1123,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1149,
+    "incident_count": 1157,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 132
+    "rss_story_count_raw": 131
   },
   "legend": {
     "levels": [
