@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-12T11:52:14Z",
+  "generated_utc": "2026-04-12T13:37:28Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.099,
+    "overall_score": 1.112,
     "confidence": "medium",
     "confidence_value": 0.592,
     "dimensions": {
@@ -22,14 +22,22 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.93,
+      "political": 1.949,
       "military": 0.005,
       "policing": 0.028,
-      "migration": 0.006,
-      "social": 0.009,
-      "infrastructure": 0.016
+      "migration": 0.009,
+      "social": 0.012,
+      "infrastructure": 0.015
     },
     "watchlist": [
+      {
+        "country": "Turkey",
+        "overall": "elevated",
+        "overall_score": 1.436,
+        "drivers": [
+          "unknown"
+        ]
+      },
       {
         "country": "Bulgaria",
         "overall": "elevated",
@@ -39,9 +47,9 @@
         ]
       },
       {
-        "country": "Turkey",
+        "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 1.414,
+        "overall_score": 1.152,
         "drivers": [
           "unknown"
         ]
@@ -55,17 +63,9 @@
         ]
       },
       {
-        "country": "Kosovo",
-        "overall": "elevated",
-        "overall_score": 1.051,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.031,
+        "overall_score": 1.045,
         "drivers": [
           "unknown"
         ]
@@ -164,7 +164,7 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.715,
+      "overall_score": 1.727,
       "confidence": "medium",
       "confidence_value": 0.606,
       "dimensions": {
@@ -176,18 +176,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.935,
+        "political": 2.955,
         "military": 0.0,
         "policing": 0.018,
         "migration": 0.02,
         "social": 0.12,
-        "infrastructure": 0.134
+        "infrastructure": 0.119
       },
       "drivers": [
         "unknown",
         "riot"
       ],
-      "incident_count": 130,
+      "incident_count": 131,
       "recent_incident_count": 28,
       "top_incidents": [
         {
@@ -245,7 +245,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.651,
+      "overall_score": 1.667,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -257,7 +257,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.875,
+        "political": 2.898,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -267,12 +267,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 166,
-      "recent_incident_count": 5,
+      "incident_count": 167,
+      "recent_incident_count": 6,
       "top_incidents": [
         {
           "time": "2026-04-12T00:00:00Z",
           "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-12T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -309,10 +319,80 @@
           "dimensions": [
             "political"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Turkey",
+      "overall": "elevated",
+      "overall_score": 1.436,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.543,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 102,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-04-12T00:00:00Z",
+          "title": "Koyun, Bilecik, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-12T00:00:00Z",
+          "title": "Azmir, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
         },
         {
           "time": "2026-04-11T00:00:00Z",
-          "title": "Poarta, Romania (general), Romania",
+          "title": "Aphrodisias, Aydin, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Kemal, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-11T00:00:00Z",
+          "title": "Kemal, Edirne, Turkey",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -403,9 +483,9 @@
       ]
     },
     {
-      "country": "Turkey",
+      "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 1.414,
+      "overall_score": 1.152,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -417,7 +497,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.508,
+        "political": 2.087,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -427,12 +507,32 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 101,
-      "recent_incident_count": 6,
+      "incident_count": 63,
+      "recent_incident_count": 9,
       "top_incidents": [
         {
           "time": "2026-04-12T00:00:00Z",
-          "title": "Koyun, Bilecik, Turkey",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-12T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-12T00:00:00Z",
+          "title": "Koshare, Komuna e Gjakoves, Kosovo",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -442,7 +542,7 @@
         },
         {
           "time": "2026-04-11T00:00:00Z",
-          "title": "Aphrodisias, Aydin, Turkey",
+          "title": "Kosovo",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -452,27 +552,7 @@
         },
         {
           "time": "2026-04-11T00:00:00Z",
-          "title": "Kemal, Edirne, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Kemal, Edirne, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Gurlek, Usak, Turkey",
+          "title": "Ferizaj, Opstina Urosevac, Kosovo",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -563,91 +643,11 @@
       ]
     },
     {
-      "country": "Kosovo",
-      "overall": "elevated",
-      "overall_score": 1.051,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.92,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 60,
-      "recent_incident_count": 6,
-      "top_incidents": [
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Ferizaj, Opstina Urosevac, Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Balkan, , Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Ferizaj, Opstina Urosevac, Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Koshare, Komuna e Gjakoves, Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.031,
+      "overall_score": 1.045,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -660,15 +660,15 @@
         "political": 1.887,
         "military": 0.0,
         "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
+        "migration": 0.036,
+        "social": 0.036,
         "infrastructure": 0.0
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 53,
-      "recent_incident_count": 7,
+      "incident_count": 54,
+      "recent_incident_count": 8,
       "top_incidents": [
         {
           "time": "2026-04-12T00:00:00Z",
@@ -994,8 +994,8 @@
       "recent_incident_count": 1,
       "top_incidents": [
         {
-          "time": "2026-04-12T09:00:13Z",
-          "title": "New documentary reveals boyband 98 Degrees had age-of-consent manual while touring in 90s",
+          "time": "2026-04-12T13:14:17Z",
+          "title": "Man charged with murder of Finbar Sullivan in London",
           "event_type": "explosion",
           "score": 0.375,
           "source": "RSS",
@@ -1136,7 +1136,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1115,
+    "incident_count": 1122,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 132
