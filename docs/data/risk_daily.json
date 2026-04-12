@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-12T17:55:51Z",
+  "generated_utc": "2026-04-12T19:11:04Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -26,8 +26,8 @@
       "military": 0.004,
       "policing": 0.006,
       "migration": 0.007,
-      "social": 0.013,
-      "infrastructure": 0.014
+      "social": 0.012,
+      "infrastructure": 0.017
     },
     "watchlist": [
       {
@@ -57,7 +57,7 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.045,
+        "overall_score": 1.043,
         "drivers": [
           "unknown"
         ]
@@ -73,7 +73,6 @@
     ],
     "top_drivers": [
       "unknown",
-      "explosion",
       "riot",
       "protest",
       "deescalation"
@@ -83,9 +82,9 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.152,
+      "overall_score": 2.151,
       "confidence": "medium",
-      "confidence_value": 0.591,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -95,7 +94,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.606,
+        "political": 3.604,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -103,15 +102,24 @@
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "explosion"
+        "unknown"
       ],
-      "incident_count": 312,
+      "incident_count": 311,
       "recent_incident_count": 29,
       "top_incidents": [
         {
           "time": "2026-04-12T00:00:00Z",
           "title": "Athens, AttikíR, Greece",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-12T00:00:00Z",
+          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -148,25 +156,15 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-04-12T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.738,
+      "overall_score": 1.742,
       "confidence": "medium",
-      "confidence_value": 0.609,
+      "confidence_value": 0.61,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -176,19 +174,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.978,
+        "political": 2.979,
         "military": 0.0,
         "policing": 0.015,
         "migration": 0.0,
         "social": 0.098,
-        "infrastructure": 0.126
+        "infrastructure": 0.164
       },
       "drivers": [
         "unknown",
         "riot"
       ],
-      "incident_count": 133,
-      "recent_incident_count": 30,
+      "incident_count": 134,
+      "recent_incident_count": 31,
       "top_incidents": [
         {
           "time": "2026-04-12T00:00:00Z",
@@ -645,7 +643,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.045,
+      "overall_score": 1.043,
       "confidence": "medium",
       "confidence_value": 0.594,
       "dimensions": {
@@ -660,8 +658,8 @@
         "political": 1.887,
         "military": 0.0,
         "policing": 0.0,
-        "migration": 0.036,
-        "social": 0.036,
+        "migration": 0.029,
+        "social": 0.029,
         "infrastructure": 0.0
       },
       "drivers": [
@@ -1127,7 +1125,7 @@
     "incident_count": 1135,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 135
+    "rss_story_count_raw": 134
   },
   "legend": {
     "levels": [
