@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-13T09:16:50Z",
+  "generated_utc": "2026-04-13T10:59:15Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.067,
+    "overall_score": 1.086,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -22,22 +22,14 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.891,
+      "political": 1.921,
       "military": 0.009,
       "policing": 0.003,
       "migration": 0.006,
-      "social": 0.009,
-      "infrastructure": 0.019
+      "social": 0.019,
+      "infrastructure": 0.028
     },
     "watchlist": [
-      {
-        "country": "Turkey",
-        "overall": "elevated",
-        "overall_score": 1.471,
-        "drivers": [
-          "unknown"
-        ]
-      },
       {
         "country": "Bulgaria",
         "overall": "elevated",
@@ -49,7 +41,7 @@
       {
         "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 1.044,
+        "overall_score": 1.079,
         "drivers": [
           "unknown"
         ]
@@ -69,20 +61,29 @@
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Bosnia and Herzegovina",
+        "overall": "elevated",
+        "overall_score": 0.881,
+        "drivers": [
+          "unknown"
+        ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "deescalation",
+      "explosion",
       "riot",
-      "protest"
+      "protest",
+      "deescalation"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.07,
+      "overall_score": 2.077,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -94,7 +95,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.49,
+        "political": 3.499,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -104,8 +105,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 294,
-      "recent_incident_count": 21,
+      "incident_count": 295,
+      "recent_incident_count": 22,
       "top_incidents": [
         {
           "time": "2026-04-13T00:00:00Z",
@@ -129,16 +130,6 @@
         },
         {
           "time": "2026-04-13T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-13T00:00:00Z",
           "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
@@ -149,7 +140,17 @@
         },
         {
           "time": "2026-04-13T00:00:00Z",
-          "title": "Neos Kosmos, Perifereia Peloponnisou, Greece",
+          "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -162,9 +163,9 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.843,
+      "overall_score": 1.88,
       "confidence": "medium",
-      "confidence_value": 0.619,
+      "confidence_value": 0.622,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -174,39 +175,31 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.123,
+        "political": 3.157,
         "military": 0.041,
         "policing": 0.036,
         "migration": 0.018,
-        "social": 0.117,
-        "infrastructure": 0.173
+        "social": 0.241,
+        "infrastructure": 0.284
       },
       "drivers": [
         "unknown",
-        "riot",
-        "deescalation"
+        "explosion",
+        "riot"
       ],
-      "incident_count": 152,
-      "recent_incident_count": 39,
+      "incident_count": 155,
+      "recent_incident_count": 42,
       "top_incidents": [
         {
-          "time": "2026-04-13T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
+          "time": "2026-04-13T10:07:12Z",
+          "title": "Merz’s coalition agrees on joint measures to tackle Iran war fallout",
+          "event_type": "explosion",
+          "score": 0.405,
+          "source": "RSS",
           "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-13T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
+            "political",
+            "social",
+            "infrastructure"
           ]
         },
         {
@@ -232,6 +225,16 @@
         {
           "time": "2026-04-13T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -244,7 +247,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.553,
+      "overall_score": 1.589,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -256,7 +259,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.725,
+        "political": 2.781,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -266,12 +269,32 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 156,
-      "recent_incident_count": 4,
+      "incident_count": 158,
+      "recent_incident_count": 6,
       "top_incidents": [
         {
           "time": "2026-04-13T00:00:00Z",
           "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -298,37 +321,17 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-04-12T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Turkey",
-      "overall": "elevated",
-      "overall_score": 1.471,
+      "overall": "normal",
+      "overall_score": 1.512,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -336,7 +339,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.598,
+        "political": 2.662,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -346,12 +349,32 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 105,
-      "recent_incident_count": 12,
+      "incident_count": 107,
+      "recent_incident_count": 14,
       "top_incidents": [
         {
           "time": "2026-04-13T00:00:00Z",
           "title": "Izmir, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Bursa, Bursa, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Bursa, Bursa, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -372,26 +395,6 @@
         {
           "time": "2026-04-12T00:00:00Z",
           "title": "Koyun, Bilecik, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-12T00:00:00Z",
-          "title": "Azmir, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-12T00:00:00Z",
-          "title": "Kemal, Edirne, Turkey",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -484,7 +487,7 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 1.044,
+      "overall_score": 1.079,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -496,7 +499,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.909,
+        "political": 1.968,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -506,9 +509,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 57,
-      "recent_incident_count": 4,
+      "incident_count": 58,
+      "recent_incident_count": 5,
       "top_incidents": [
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-04-13T00:00:00Z",
           "title": "Kosovo",
@@ -542,16 +555,6 @@
         {
           "time": "2026-04-12T00:00:00Z",
           "title": "Koshare, Komuna e Gjakoves, Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Kosovo",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -724,7 +727,7 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.837,
+      "overall_score": 0.881,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -736,7 +739,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.556,
+        "political": 1.633,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -746,8 +749,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 38,
-      "recent_incident_count": 4,
+      "incident_count": 39,
+      "recent_incident_count": 5,
       "top_incidents": [
         {
           "time": "2026-04-13T00:00:00Z",
@@ -762,6 +765,16 @@
         {
           "time": "2026-04-13T00:00:00Z",
           "title": "Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.182,
           "source": "GDELT",
@@ -788,23 +801,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-04-10T00:00:00Z",
-          "title": "Srpska, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.074,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.708,
+      "overall_score": 0.758,
       "confidence": "medium",
       "confidence_value": 0.602,
       "dimensions": {
@@ -816,7 +819,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.274,
+        "political": 1.364,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.056,
@@ -827,12 +830,22 @@
         "unknown",
         "protest"
       ],
-      "incident_count": 33,
-      "recent_incident_count": 3,
+      "incident_count": 34,
+      "recent_incident_count": 4,
       "top_incidents": [
         {
           "time": "2026-04-13T00:00:00Z",
           "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Chisinau, Chisinau, Moldova",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -863,16 +876,6 @@
         {
           "time": "2026-04-11T00:00:00Z",
           "title": "Colibasi, Cahul, Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-11T00:00:00Z",
-          "title": "Moldova",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1115,10 +1118,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1095,
+    "incident_count": 1106,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 130
+    "rss_story_count_raw": 132
   },
   "legend": {
     "levels": [
