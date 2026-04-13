@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-13T22:08:15Z",
+  "generated_utc": "2026-04-13T23:08:23Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.149,
+    "overall_score": 1.154,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -22,24 +22,14 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.025,
-      "military": 0.008,
+      "political": 2.035,
+      "military": 0.007,
       "policing": 0.002,
       "migration": 0.009,
       "social": 0.007,
-      "infrastructure": 0.034
+      "infrastructure": 0.033
     },
     "watchlist": [
-      {
-        "country": "Hungary",
-        "overall": "elevated",
-        "overall_score": 1.952,
-        "drivers": [
-          "unknown",
-          "explosion",
-          "riot"
-        ]
-      },
       {
         "country": "Bulgaria",
         "overall": "elevated",
@@ -71,6 +61,14 @@
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Bosnia and Herzegovina",
+        "overall": "elevated",
+        "overall_score": 0.837,
+        "drivers": [
+          "unknown"
+        ]
       }
     ],
     "top_drivers": [
@@ -85,7 +83,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.145,
+      "overall_score": 2.151,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -97,7 +95,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.596,
+        "political": 3.604,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -107,8 +105,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 307,
-      "recent_incident_count": 34,
+      "incident_count": 308,
+      "recent_incident_count": 35,
       "top_incidents": [
         {
           "time": "2026-04-13T00:00:00Z",
@@ -164,8 +162,8 @@
     },
     {
       "country": "Hungary",
-      "overall": "elevated",
-      "overall_score": 1.952,
+      "overall": "normal",
+      "overall_score": 1.95,
       "confidence": "medium",
       "confidence_value": 0.62,
       "dimensions": {
@@ -177,12 +175,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.279,
-        "military": 0.073,
+        "political": 3.278,
+        "military": 0.067,
         "policing": 0.02,
-        "migration": 0.06,
+        "migration": 0.055,
         "social": 0.097,
-        "infrastructure": 0.28
+        "infrastructure": 0.27
       },
       "drivers": [
         "unknown",
@@ -968,9 +966,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.418,
+      "overall_score": 0.481,
       "confidence": "medium",
-      "confidence_value": 0.641,
+      "confidence_value": 0.639,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -980,7 +978,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.766,
+        "political": 0.885,
         "military": 0.026,
         "policing": 0.0,
         "migration": 0.0,
@@ -991,9 +989,19 @@
         "unknown",
         "deescalation"
       ],
-      "incident_count": 24,
-      "recent_incident_count": 3,
+      "incident_count": 25,
+      "recent_incident_count": 4,
       "top_incidents": [
+        {
+          "time": "2026-04-13T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-04-13T18:39:36Z",
           "title": "Judge dimisses Trump's lawsuit against WSJ over reporting on ties to Epstein",
@@ -1027,16 +1035,6 @@
         },
         {
           "time": "2026-04-10T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.063,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-09T00:00:00Z",
           "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.063,
@@ -1116,7 +1114,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1150,
+    "incident_count": 1152,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 131
