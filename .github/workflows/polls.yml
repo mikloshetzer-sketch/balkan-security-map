@@ -1,0 +1,38 @@
+name: Update Party Polls
+
+on:
+  schedule:
+    - cron: '0 6 */14 * *'   # 2 hetente
+  workflow_dispatch:         # manuális indítás
+
+jobs:
+  update-polls:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Run poll pipeline
+        run: |
+          python scripts/fetch_and_aggregate_party_polls.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "poll-bot"
+          git config user.email "poll-bot@users.noreply.github.com"
+
+          git add docs/data/processed/polls/*.json || true
+
+          git commit -m "auto: update party polls" || echo "No changes"
+
+          git push
