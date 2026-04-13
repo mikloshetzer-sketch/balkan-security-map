@@ -1,32 +1,143 @@
 {
-  "generated_utc": "2026-04-13T18:00:00Z",
+  "generated_utc": "2026-04-13T19:00:43Z",
+  "config": {
+    "min_sources_per_country": 3,
+    "max_poll_age_days": 180,
+    "recency_half_life_days": 45,
+    "trend_lookback_polls": 2,
+    "flat_threshold": 1.0
+  },
+  "summary": {
+    "country_count": 1,
+    "countries_ready_for_display": 1,
+    "countries_not_ready_for_display": 0,
+    "total_poll_entries": 3
+  },
   "countries": [
     {
-      "country": "Hungary",
-      "status": { "ready_for_display": true },
-      "leader": {
-        "party": "Fidesz",
-        "weighted_average": 45.2,
-        "trend_direction": "flat"
-      }
-    },
-    {
       "country": "Serbia",
-      "status": { "ready_for_display": true },
+      "status": {
+        "ready_for_display": true,
+        "readiness_reason": "3 distinct source(s) within 180 days; minimum required: 3",
+        "distinct_source_count": 3,
+        "distinct_sources": [
+          "cesid",
+          "faktor_plus",
+          "ipsos"
+        ],
+        "fresh_poll_count": 3,
+        "max_poll_age_days": 180,
+        "latest_poll_date": "2026-04-12"
+      },
       "leader": {
         "party": "SNS",
-        "weighted_average": 51.3,
-        "trend_direction": "up"
-      }
-    },
-    {
-      "country": "Romania",
-      "status": { "ready_for_display": true },
-      "leader": {
-        "party": "PSD",
-        "weighted_average": 32.1,
-        "trend_direction": "down"
-      }
+        "weighted_average": 47.51,
+        "simple_average": 47.53,
+        "trend_direction": "unknown"
+      },
+      "parties": [
+        {
+          "party": "SNS",
+          "simple_average": 47.53,
+          "weighted_average": 47.51,
+          "poll_count": 3,
+          "source_count": 3,
+          "sources": [
+            "cesid",
+            "faktor_plus",
+            "ipsos"
+          ],
+          "trend": {
+            "direction": "unknown",
+            "delta": null,
+            "recent_average": null,
+            "older_average": null
+          }
+        },
+        {
+          "party": "SPN",
+          "simple_average": 23.47,
+          "weighted_average": 23.49,
+          "poll_count": 3,
+          "source_count": 3,
+          "sources": [
+            "cesid",
+            "faktor_plus",
+            "ipsos"
+          ],
+          "trend": {
+            "direction": "unknown",
+            "delta": null,
+            "recent_average": null,
+            "older_average": null
+          }
+        },
+        {
+          "party": "SPS",
+          "simple_average": 6.77,
+          "weighted_average": 6.75,
+          "poll_count": 3,
+          "source_count": 3,
+          "sources": [
+            "cesid",
+            "faktor_plus",
+            "ipsos"
+          ],
+          "trend": {
+            "direction": "unknown",
+            "delta": null,
+            "recent_average": null,
+            "older_average": null
+          }
+        }
+      ],
+      "polls_used": [
+        {
+          "date": "2026-04-12",
+          "source": "CeSID",
+          "source_id": "cesid",
+          "sample_size": 1100,
+          "fieldwork_start": "2026-04-09",
+          "fieldwork_end": "2026-04-11",
+          "import_method": "manual_csv",
+          "raw_file": "docs/data/manual_polls/serbia.csv",
+          "parties": {
+            "SNS": 46.9,
+            "SPS": 6.4,
+            "SPN": 24.2
+          }
+        },
+        {
+          "date": "2026-04-08",
+          "source": "Faktor Plus",
+          "source_id": "faktor_plus",
+          "sample_size": 1000,
+          "fieldwork_start": "2026-04-04",
+          "fieldwork_end": "2026-04-06",
+          "import_method": "manual_csv",
+          "raw_file": "docs/data/manual_polls/serbia.csv",
+          "parties": {
+            "SNS": 48.5,
+            "SPS": 7.1,
+            "SPN": 22.8
+          }
+        },
+        {
+          "date": "2026-04-01",
+          "source": "Ipsos",
+          "source_id": "ipsos",
+          "sample_size": 1200,
+          "fieldwork_start": "2026-03-26",
+          "fieldwork_end": "2026-03-30",
+          "import_method": "manual_csv",
+          "raw_file": "docs/data/manual_polls/serbia.csv",
+          "parties": {
+            "SNS": 47.2,
+            "SPS": 6.8,
+            "SPN": 23.4
+          }
+        }
+      ]
     }
   ]
 }
