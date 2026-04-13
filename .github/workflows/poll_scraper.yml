@@ -2,46 +2,43 @@ name: Poll Scraper Pipeline
 
 on:
   schedule:
-    # kéthetente vasárnap 04:00 UTC (06:00 Budapest)
     - cron: "0 4 */14 * *"
+  workflow_dispatch:
 
-  workflow_dispatch:  # manuális futtatás is lehessen
+permissions:
+  contents: write
 
 jobs:
   scrape-and-aggregate:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Repo letöltése
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
-      # 2. Python környezet
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # 3. Függőségek
       - name: Install dependencies
         run: |
           pip install requests beautifulsoup4
 
-      # 4. Poll scraping (KÖZÖS RENDSZER)
       - name: Run poll scraper
         run: |
           python scripts/scrape_polls.py
 
-      # 5. Aggregáció (már meglévő scripted)
       - name: Aggregate polls
         run: |
           python scripts/fetch_and_aggregate_party_polls.py
 
-      # 6. Git commit csak ha van változás
       - name: Commit changes
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add docs/data/
 
