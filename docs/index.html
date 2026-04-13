@@ -38,6 +38,9 @@
       --safe-right: max(env(safe-area-inset-right), 0px);
       --safe-left: max(env(safe-area-inset-left), 0px);
       --safe-bottom: max(env(safe-area-inset-bottom), 0px);
+      --map-chart-h: 110px;
+      --map-chart-gap: 16px;
+      --map-chart-total: calc(var(--map-chart-h) + var(--map-chart-gap));
     }
 
     * { box-sizing: border-box; }
@@ -229,14 +232,126 @@
 
     #map{
       position:absolute;
-      inset:0;
+      top: var(--map-chart-total);
+      left: 0;
+      right: 0;
+      bottom: 0;
       width:100%;
-      height:100%;
+      height:auto;
+    }
+
+    .map-chart{
+      position:absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      height: var(--map-chart-h);
+      z-index: 1200;
+      display:flex;
+      align-items:stretch;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 12px;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-soft);
+      pointer-events:auto;
+    }
+
+    .map-chart-head{
+      flex: 0 0 180px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-width:0;
+    }
+
+    .map-chart-title{
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #21303d;
+    }
+
+    .map-chart-sub{
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 1.35;
+      color: var(--muted);
+    }
+
+    .map-chart-meta{
+      font-size: 11px;
+      color: var(--muted-2);
+      line-height: 1.35;
+    }
+
+    .map-chart-bars{
+      flex: 1 1 auto;
+      min-width: 0;
+      display:flex;
+      align-items:flex-end;
+      gap:8px;
+      padding-top: 8px;
+      overflow:hidden;
+    }
+
+    .chart-bar{
+      flex: 1 1 0;
+      min-width: 0;
+      height: 100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-end;
+      gap:6px;
+    }
+
+    .chart-bar-rail{
+      width: 100%;
+      flex: 1 1 auto;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, rgba(61,111,138,0.04), rgba(61,111,138,0.10));
+      padding: 0 2px;
+      overflow:hidden;
+    }
+
+    .chart-bar-inner{
+      width: 100%;
+      min-height: 6px;
+      border-radius: 8px 8px 0 0;
+      transition: height 0.3s ease;
+      box-shadow: inset 0 -1px 0 rgba(255,255,255,0.25);
+    }
+
+    .chart-value{
+      font-size: 10px;
+      font-weight: 800;
+      color: #2c4150;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .chart-label{
+      width: 100%;
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .map-overlay{
       position:absolute;
-      top: 14px;
+      top: calc(14px + var(--map-chart-total));
       left: 14px;
       right: 14px;
       display:flex;
@@ -896,7 +1011,7 @@
         height: auto;
         min-height: 100vh;
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto minmax(420px, 60vh) auto;
+        grid-template-rows: auto auto minmax(520px, 65vh) auto;
         grid-template-areas:
           "header"
           "left"
@@ -916,6 +1031,31 @@
       .sidebar-left,
       .sidebar-right{
         max-height: none;
+      }
+    }
+
+    @media (max-width: 900px){
+      .map-chart{
+        height: 132px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .map-chart-head{
+        flex: 0 0 auto;
+      }
+
+      .map-chart-bars{
+        min-height: 0;
+      }
+
+      .map-overlay{
+        top: calc(14px + 132px + 16px);
+      }
+
+      #map{
+        top: calc(132px + 16px);
       }
     }
 
@@ -958,6 +1098,16 @@
       .legend{
         width: 180px;
         max-height: 180px;
+      }
+
+      .map-chart{
+        left: 10px;
+        right: 10px;
+        top: 10px;
+      }
+
+      .map-chart-head{
+        flex: 0 0 auto;
       }
     }
   </style>
@@ -1086,6 +1236,17 @@
     </aside>
 
     <main class="main">
+      <div class="map-chart" id="partyChart">
+        <div class="map-chart-head">
+          <div>
+            <div class="map-chart-title">Politikai trendek</div>
+            <div class="map-chart-sub">Vezető pártok súlyozott támogatottsága a megjeleníthető országokban.</div>
+          </div>
+          <div class="map-chart-meta" id="partyChartMeta">Betöltés...</div>
+        </div>
+        <div class="map-chart-bars" id="partyChartBars"></div>
+      </div>
+
       <div id="map"></div>
 
       <div class="map-overlay">
@@ -1199,7 +1360,8 @@
       usgs: null,
       riskDaily: null,
       trustedRss: null,
-      trustedRssSignals: null
+      trustedRssSignals: null,
+      partyPolls: null
     };
     const FILTERS = { newsToday: false, alertsToday: false };
 
@@ -1988,6 +2150,95 @@
       });
     }
 
+    function shortCountryLabel(name){
+      const map = {
+        "Bosnia and Herzegovina": "Bosznia",
+        "North Macedonia": "É-Maced.",
+        "Montenegro": "MNE",
+        "Albania": "Albánia",
+        "Serbia": "Szerbia",
+        "Kosovo": "Koszovó",
+        "Croatia": "Horváto.",
+        "Romania": "Románia",
+        "Bulgaria": "Bulgária",
+        "Slovenia": "Szlovénia",
+        "Greece": "Görögo.",
+        "Hungary": "Magyaro.",
+        "Turkey": "Töröko.",
+        "Moldova": "Moldova"
+      };
+      return map[name] || name || "—";
+    }
+
+    function trendArrow(direction){
+      if (direction === "up") return "↑";
+      if (direction === "down") return "↓";
+      if (direction === "flat") return "→";
+      return "·";
+    }
+
+    function renderPartyPollChart(payload){
+      const barsEl = document.getElementById("partyChartBars");
+      const metaEl = document.getElementById("partyChartMeta");
+
+      if (!barsEl || !metaEl) return;
+
+      barsEl.innerHTML = "";
+
+      if (!payload || !Array.isArray(payload.countries)) {
+        metaEl.textContent = "Nincs poll adat.";
+        barsEl.innerHTML = `<div class="small">A poll aggregátum még nem érhető el.</div>`;
+        return;
+      }
+
+      const generated = fmtBudapest(payload.generated_utc);
+      const readyCountries = payload.countries
+        .filter(c => c && c.status && c.status.ready_for_display && c.leader && Number.isFinite(Number(c.leader.weighted_average)))
+        .sort((a, b) => Number(b.leader.weighted_average || 0) - Number(a.leader.weighted_average || 0))
+        .slice(0, 8);
+
+      if (!readyCountries.length) {
+        metaEl.textContent = generated ? `Frissítés (Budapest): ${generated.bud}` : "Nincs elég forrás a megjelenítéshez.";
+        barsEl.innerHTML = `<div class="small">Nincs elég ország, ahol már teljesül a minimum forrásszám.</div>`;
+        return;
+      }
+
+      metaEl.textContent = generated
+        ? `Frissítés (Budapest): ${generated.bud} • ${readyCountries.length} ország`
+        : `${readyCountries.length} ország`;
+
+      const maxVal = Math.max(...readyCountries.map(c => Number(c.leader.weighted_average || 0)), 1);
+
+      for (const item of readyCountries) {
+        const val = Number(item.leader.weighted_average || 0);
+        const pct = Math.max(8, Math.round((val / maxVal) * 100));
+        const dir = item.leader.trend_direction || "unknown";
+        const color =
+          dir === "up" ? "#5c8b68" :
+          dir === "down" ? "#b14c4c" :
+          dir === "flat" ? "#b78a38" :
+          "#4f819b";
+
+        const el = document.createElement("div");
+        el.className = "chart-bar";
+        el.title = `${item.country} • ${item.leader.party || "—"} • ${val.toFixed(1)}% • trend: ${dir}`;
+
+        el.innerHTML = `
+          <div class="chart-value">${val.toFixed(1)}% ${trendArrow(dir)}</div>
+          <div class="chart-bar-rail">
+            <div class="chart-bar-inner" style="height:${pct}%; background:${color};"></div>
+          </div>
+          <div class="chart-label">${esc(shortCountryLabel(item.country))}</div>
+        `;
+
+        el.addEventListener("click", () => {
+          if (item.country) zoomToCountry(item.country);
+        });
+
+        barsEl.appendChild(el);
+      }
+    }
+
     const layers = {
       borders: null,
       countryRisk: null,
@@ -2075,6 +2326,14 @@
         renderRiskPanel(riskDaily);
       } catch {
         renderRiskPanel({ countries: [], region: { overall:"normal", overall_score:0, confidence:"low", confidence_value:0, dimensions:{}, dimension_scores:{}, watchlist:[] } });
+      }
+
+      try {
+        const partyPolls = await loadJson(`${DATA}/processed/polls/party_poll_aggregates.json`);
+        DATASETS.partyPolls = partyPolls;
+        renderPartyPollChart(partyPolls);
+      } catch {
+        renderPartyPollChart(null);
       }
 
       try { layers.borders = await loadBorders(`${DATA}/balkan_borders.geojson`); } catch {}
@@ -2211,6 +2470,10 @@
       } catch {
         renderHotList([]);
       }
+
+      setTimeout(() => {
+        try { map.invalidateSize(); } catch {}
+      }, 80);
     }
 
     init().catch(err => {
