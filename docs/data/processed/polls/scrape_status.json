@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-14T16:24:30Z",
+  "generated_utc": "2026-04-14T16:42:18Z",
   "source_count": 8,
   "sources": [
     {
@@ -14,7 +14,7 @@
       "saved_raw_path": null,
       "saved_csv_path": null,
       "record_count": 0,
-      "error": "A feloldott oldalon nem sikerült használható poll rekordot kinyerni: Opinion polling for the next Serbian parliamentary election"
+      "error": "Nem sikerült azonosítani a fő oszlopokat (pollster/date/party)."
     },
     {
       "country": "Romania",
@@ -27,7 +27,7 @@
       "ok": true,
       "saved_raw_path": "docs/data/raw/polls/romania/romania_wikipedia_hinted_polling.html",
       "saved_csv_path": "docs/data/manual_polls/romania_auto.csv",
-      "record_count": 7,
+      "record_count": 6,
       "error": null
     },
     {
@@ -35,28 +35,28 @@
       "source_id": "bulgaria_wikipedia_hinted_polling",
       "source_name": "Wikipedia hinted polling resolver – Bulgaria",
       "parser": "wikipedia_hinted_polling",
-      "resolved_url": null,
+      "resolved_url": "https://en.wikipedia.org/wiki/Next_Bulgarian_parliamentary_election",
       "active": true,
       "fetched": true,
-      "ok": false,
-      "saved_raw_path": null,
-      "saved_csv_path": null,
-      "record_count": 0,
-      "error": "A feloldott oldalon nem sikerült használható poll rekordot kinyerni: Next Bulgarian parliamentary election"
+      "ok": true,
+      "saved_raw_path": "docs/data/raw/polls/bulgaria/bulgaria_wikipedia_hinted_polling.html",
+      "saved_csv_path": "docs/data/manual_polls/bulgaria_auto.csv",
+      "record_count": 329,
+      "error": null
     },
     {
       "country": "Croatia",
       "source_id": "croatia_wikipedia_hinted_polling",
       "source_name": "Wikipedia hinted polling resolver – Croatia",
       "parser": "wikipedia_hinted_polling",
-      "resolved_url": null,
+      "resolved_url": "https://en.wikipedia.org/wiki/Opinion_polling_for_the_next_Croatian_parliamentary_election",
       "active": true,
       "fetched": true,
-      "ok": false,
-      "saved_raw_path": null,
-      "saved_csv_path": null,
-      "record_count": 0,
-      "error": "A feloldott oldalon nem sikerült használható poll rekordot kinyerni: Opinion polling for the next Croatian parliamentary election"
+      "ok": true,
+      "saved_raw_path": "docs/data/raw/polls/croatia/croatia_wikipedia_hinted_polling.html",
+      "saved_csv_path": "docs/data/manual_polls/croatia_auto.csv",
+      "record_count": 406,
+      "error": null
     },
     {
       "country": "Albania",
@@ -84,7 +84,7 @@
       "saved_raw_path": null,
       "saved_csv_path": null,
       "record_count": 0,
-      "error": "Nem sikerült fejlécet kiolvasni a Wikipédia táblából."
+      "error": "Nem sikerült azonosítani a fő oszlopokat (pollster/date/party)."
     },
     {
       "country": "North Macedonia",
