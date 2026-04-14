@@ -4,12 +4,12 @@
 """
 scrape_polls.py
 
-KÖZÖS POLL SCRAPER RENDSZER – TELJES ORSZÁGLISTA
+KÖZÖS POLL SCRAPER RENDSZER – ORSZÁG-HINTEKKEL
 
 Mit csinál:
 - végigmegy az összes figyelt országon
-- automatikusan próbál Wikipédia polling oldalt találni
-- ha talál használható wikitable poll táblát, abból rekordokat képez
+- országonként több ismert / valószínű Wikipédia oldalcímet próbál
+- ha talál használható wikitable poll táblát, rekordokat képez
 - országonként automatikus CSV-t ír:
     docs/data/manual_polls/<country_slug>_auto.csv
 - scrape státuszt ír:
@@ -44,7 +44,7 @@ except Exception as exc:
 
 
 # ============================================================
-# HELPERS (EZEK KELLENEK A CONFIG ELŐTT)
+# BASIC HELPERS
 # ============================================================
 
 def utc_now_iso() -> str:
@@ -71,22 +71,11 @@ def clean_text(text: str) -> str:
     return text
 
 
-def normalize_header(text: str) -> str:
-    t = clean_text(text).lower()
-    t = t.replace("–", "-").replace("—", "-")
-    t = re.sub(r"\(.*?\)", "", t).strip()
-    t = re.sub(r"\s+", " ", t)
-    return HEADER_ALIASES.get(t, clean_text(text))
-
-
 def parse_float(value: str) -> Optional[float]:
     if value is None:
         return None
     t = clean_text(value)
-    if not t:
-        return None
-
-    if t in {"—", "-", "–", "N/A", "n/a"}:
+    if not t or t in {"—", "-", "–", "N/A", "n/a"}:
         return None
 
     m = re.search(r"-?\d+(?:[.,]\d+)?", t)
@@ -150,13 +139,64 @@ COUNTRIES: List[str] = [
     "Bosnia and Herzegovina",
 ]
 
-# Általános Wikipedia resolver minden országra
+# Országonkénti hintelt címek.
+# Ezek nem külön scriptek, csak resolver-hintek ugyanahhoz a közös parserhez.
+COUNTRY_WIKIPEDIA_HINTS: Dict[str, List[str]] = {
+    "Serbia": [
+        "Opinion polling for the next Serbian parliamentary election",
+        "2027 Serbian parliamentary election",
+        "Next Serbian parliamentary election",
+    ],
+    "Romania": [
+        "Opinion polling for the next Romanian legislative election",
+        "Opinion polling for the next Romanian parliamentary election",
+        "2028 Romanian legislative election",
+        "Next Romanian legislative election",
+    ],
+    "Bulgaria": [
+        "Opinion polling for the next Bulgarian parliamentary election",
+        "2027 Bulgarian parliamentary election",
+        "Next Bulgarian parliamentary election",
+    ],
+    "Croatia": [
+        "Opinion polling for the next Croatian parliamentary election",
+        "2028 Croatian parliamentary election",
+        "Next Croatian parliamentary election",
+    ],
+    "Albania": [
+        "Opinion polling for the next Albanian parliamentary election",
+        "2029 Albanian parliamentary election",
+        "Next Albanian parliamentary election",
+    ],
+    "Kosovo": [
+        "Opinion polling for the next Kosovan parliamentary election",
+        "Opinion polling for the next Kosovo parliamentary election",
+        "2029 Kosovan parliamentary election",
+        "Next Kosovan parliamentary election",
+        "Next Kosovo parliamentary election",
+    ],
+    "North Macedonia": [
+        "Opinion polling for the next Macedonian parliamentary election",
+        "Opinion polling for the next North Macedonian parliamentary election",
+        "2028 Macedonian parliamentary election",
+        "2028 North Macedonian parliamentary election",
+        "Next Macedonian parliamentary election",
+        "Next North Macedonian parliamentary election",
+    ],
+    "Bosnia and Herzegovina": [
+        "Opinion polling for the next Bosnia and Herzegovina general election",
+        "Opinion polling for the next Bosnia and Herzegovina parliamentary election",
+        "2026 Bosnia and Herzegovina general election",
+        "Next Bosnia and Herzegovina general election",
+    ],
+}
+
 COUNTRY_PARSER_PLAN: Dict[str, List[Dict[str, str]]] = {
     country: [
         {
-            "source_id": f"{slugify_seed(country)}_wikipedia_auto_polling",
-            "source_name": f"Wikipedia auto polling resolver – {country}",
-            "parser": "wikipedia_auto_polling",
+            "source_id": f"{slugify_seed(country)}_wikipedia_hinted_polling",
+            "source_name": f"Wikipedia hinted polling resolver – {country}",
+            "parser": "wikipedia_hinted_polling",
         }
     ]
     for country in COUNTRIES
@@ -238,6 +278,14 @@ NON_PARTY_HEADERS = {
     "sample size",
     "notes",
 }
+
+
+def normalize_header(text: str) -> str:
+    t = clean_text(text).lower()
+    t = t.replace("–", "-").replace("—", "-")
+    t = re.sub(r"\(.*?\)", "", t).strip()
+    t = re.sub(r"\s+", " ", t)
+    return HEADER_ALIASES.get(t, clean_text(text))
 
 
 # ============================================================
@@ -403,45 +451,50 @@ def normalize_date_cell(text: str) -> Tuple[Optional[str], Optional[str], Option
 
 
 # ============================================================
-# WIKIPEDIA AUTO RESOLVER
+# WIKIPEDIA RESOLVER
 # ============================================================
 
-def wikipedia_title_candidates(country: str) -> List[str]:
-    c = country
+def wikipedia_url_from_title(title: str) -> str:
+    return f"https://en.wikipedia.org/wiki/{quote(title.replace(' ', '_'), safe=':_()%-')}"
 
-    candidates = [
-        f"Opinion polling for the next {c} parliamentary election",
-        f"Opinion polling for the next {c} legislative election",
-        f"Opinion polling for the next {c} general election",
-        f"Opinion polling for the {c} parliamentary election",
-        f"Opinion polling for the {c} legislative election",
-        f"Opinion polling for the {c} general election",
-        f"Next {c} parliamentary election",
-        f"Next {c} legislative election",
-        f"Next {c} general election",
+
+def wikipedia_title_candidates(country: str) -> List[str]:
+    """
+    Hintek + általános fallback jelöltek.
+    """
+    hinted = COUNTRY_WIKIPEDIA_HINTS.get(country, [])
+
+    generic = [
+        f"Opinion polling for the next {country} parliamentary election",
+        f"Opinion polling for the next {country} legislative election",
+        f"Opinion polling for the next {country} general election",
+        f"Opinion polling for the {country} parliamentary election",
+        f"Opinion polling for the {country} legislative election",
+        f"Opinion polling for the {country} general election",
+        f"Next {country} parliamentary election",
+        f"Next {country} legislative election",
+        f"Next {country} general election",
     ]
 
-    for year in ("2028", "2027", "2026", "2025", "2024"):
-        candidates.extend([
-            f"Opinion polling for the {year} {c} parliamentary election",
-            f"Opinion polling for the {year} {c} legislative election",
-            f"{year} {c} parliamentary election",
-            f"{year} {c} legislative election",
+    for year in ("2029", "2028", "2027", "2026", "2025", "2024"):
+        generic.extend([
+            f"Opinion polling for the {year} {country} parliamentary election",
+            f"Opinion polling for the {year} {country} legislative election",
+            f"Opinion polling for the {year} {country} general election",
+            f"{year} {country} parliamentary election",
+            f"{year} {country} legislative election",
+            f"{year} {country} general election",
         ])
 
     seen = set()
-    out = []
-    for item in candidates:
+    out: List[str] = []
+    for item in hinted + generic:
         item = re.sub(r"\s+", " ", item).strip()
-        if item not in seen:
+        if item and item not in seen:
             seen.add(item)
             out.append(item)
 
     return out
-
-
-def wikipedia_url_from_title(title: str) -> str:
-    return f"https://en.wikipedia.org/wiki/{quote(title.replace(' ', '_'), safe=':_()%-')}"
 
 
 def resolve_wikipedia_page(session: requests.Session, country: str) -> Optional[Tuple[str, str]]:
@@ -456,12 +509,12 @@ def resolve_wikipedia_page(session: requests.Session, country: str) -> Optional[
             continue
 
         final_url = resp.url or url
-        text = resp.text.lower()
+        html = resp.text.lower()
 
-        if "wikipedia does not have an article with this exact name" in text:
+        if "wikipedia does not have an article with this exact name" in html:
             continue
 
-        if "poll" not in text and "election" not in text:
+        if "election" not in html and "poll" not in html:
             continue
 
         return title, final_url
@@ -527,11 +580,12 @@ def wikipedia_find_best_poll_table(soup: BeautifulSoup):
             score += 2
         if "date of publication" in txt:
             score += 3
+        if "party" in txt:
+            score += 2
         score += min(len(table.find_all("tr")), 10)
         return score
 
-    tables_sorted = sorted(tables, key=table_score, reverse=True)
-    return tables_sorted[0]
+    return sorted(tables, key=table_score, reverse=True)[0]
 
 
 def wikipedia_extract_headers(table) -> List[str]:
@@ -540,7 +594,7 @@ def wikipedia_extract_headers(table) -> List[str]:
         return []
 
     header_cells: List[str] = []
-    for tr in rows[:5]:
+    for tr in rows[:6]:
         ths = tr.find_all("th")
         if not ths:
             continue
@@ -610,14 +664,14 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
                     sample_size=sample_size,
                     fieldwork_start=fieldwork_start,
                     fieldwork_end=fieldwork_end,
-                    notes="auto_scraped_from_wikipedia_auto_resolver",
+                    notes="auto_scraped_from_wikipedia_hinted_resolver",
                 )
             )
 
     return records
 
 
-def scrape_with_wikipedia_auto_polling(
+def scrape_with_wikipedia_hinted_polling(
     session: requests.Session,
     country: str,
     source_id: str,
@@ -625,7 +679,7 @@ def scrape_with_wikipedia_auto_polling(
 ) -> Tuple[List[PollRecord], Optional[str], Optional[str]]:
     resolved = resolve_wikipedia_page(session, country)
     if resolved is None:
-        raise RuntimeError("Nem találtam használható Wikipédia polling / election oldalt.")
+        raise RuntimeError("Nem találtam használható Wikipédia polling / election oldalt ország-hintekkel sem.")
 
     resolved_title, resolved_url = resolved
     resp = session.get(resolved_url, timeout=REQUEST_TIMEOUT)
@@ -659,8 +713,8 @@ def scrape_source(
 ) -> Tuple[List[PollRecord], Optional[str], Optional[str]]:
     parser = source_cfg.get("parser")
 
-    if parser == "wikipedia_auto_polling":
-        return scrape_with_wikipedia_auto_polling(
+    if parser == "wikipedia_hinted_polling":
+        return scrape_with_wikipedia_hinted_polling(
             session=session,
             country=country,
             source_id=str(source_cfg.get("source_id", "")),
@@ -679,7 +733,7 @@ def run() -> None:
     session = build_session()
     statuses: List[ScrapeStatus] = []
 
-    print("=== Common Poll Scraper – Full Country List ===")
+    print("=== Common Poll Scraper – Resolver v2 with Country Hints ===")
 
     for country in COUNTRIES:
         print(f"\n[COUNTRY] {country}")
