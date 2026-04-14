@@ -15,11 +15,6 @@ Mit csinál:
 - scrape státuszt ír:
     docs/data/processed/polls/scrape_status.json
 
-Miért ilyen:
-- nem országonként külön script
-- parser + resolver alapú közös rendszer
-- ha nincs adatforrás, nem omlik össze, hanem skipel
-
 Használat:
 1) pip install requests beautifulsoup4
 2) python scripts/scrape_polls.py
@@ -37,7 +32,7 @@ from datetime import datetime, timezone
 from html import unescape
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Tuple
-from urllib.parse import quote, urljoin
+from urllib.parse import quote
 
 try:
     import requests
@@ -46,6 +41,80 @@ except Exception as exc:
     print(f"[FATAL] Missing dependency: {exc}")
     print("Install with: pip install requests beautifulsoup4")
     sys.exit(1)
+
+
+# ============================================================
+# HELPERS (EZEK KELLENEK A CONFIG ELŐTT)
+# ============================================================
+
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def slugify_seed(value: str) -> str:
+    text = str(value or "").strip().lower()
+    text = text.replace("&", " and ")
+    text = re.sub(r"[^a-z0-9]+", "_", text)
+    text = re.sub(r"_+", "_", text).strip("_")
+    return text or "unknown"
+
+
+def slugify(value: str) -> str:
+    return slugify_seed(value)
+
+
+def clean_text(text: str) -> str:
+    text = unescape(text or "")
+    text = re.sub(r"\[[^\]]*\]", "", text)
+    text = text.replace("\xa0", " ")
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def normalize_header(text: str) -> str:
+    t = clean_text(text).lower()
+    t = t.replace("–", "-").replace("—", "-")
+    t = re.sub(r"\(.*?\)", "", t).strip()
+    t = re.sub(r"\s+", " ", t)
+    return HEADER_ALIASES.get(t, clean_text(text))
+
+
+def parse_float(value: str) -> Optional[float]:
+    if value is None:
+        return None
+    t = clean_text(value)
+    if not t:
+        return None
+
+    if t in {"—", "-", "–", "N/A", "n/a"}:
+        return None
+
+    m = re.search(r"-?\d+(?:[.,]\d+)?", t)
+    if not m:
+        return None
+
+    try:
+        return float(m.group(0).replace(",", "."))
+    except Exception:
+        return None
+
+
+def parse_int(value: str) -> Optional[int]:
+    if value is None:
+        return None
+    t = clean_text(value)
+    if not t:
+        return None
+    m = re.search(r"\d[\d,.\s]*", t)
+    if not m:
+        return None
+    raw = re.sub(r"[^\d]", "", m.group(0))
+    if not raw:
+        return None
+    try:
+        return int(raw)
+    except Exception:
+        return None
 
 
 # ============================================================
@@ -70,7 +139,6 @@ SCRAPE_STATUS_OUT = PROCESSED_POLLS_DIR / "scrape_status.json"
 USER_AGENT = "balkan-security-map/common-poll-scraper"
 REQUEST_TIMEOUT = 30
 
-# A repo-ban használt 8 ország
 COUNTRIES: List[str] = [
     "Serbia",
     "Romania",
@@ -82,9 +150,7 @@ COUNTRIES: List[str] = [
     "Bosnia and Herzegovina",
 ]
 
-# Parser stratégia minden országra ugyanaz:
-# 1) wikipedia_auto_polling
-# Később ide be lehet tenni más közös parser stratégiát is.
+# Általános Wikipedia resolver minden országra
 COUNTRY_PARSER_PLAN: Dict[str, List[Dict[str, str]]] = {
     country: [
         {
@@ -126,7 +192,6 @@ HEADER_ALIASES = {
     "nestorović": "MI-SN",
 }
 
-# Általános és balkáni pollster nevekre fókuszáló lista.
 KNOWN_POLLSTERS = {
     "ipsos",
     "faktor plus",
@@ -209,85 +274,13 @@ class ScrapeStatus:
 
 
 # ============================================================
-# BASIC HELPERS
+# FILE HELPERS
 # ============================================================
-
-def utc_now_iso() -> str:
-    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-
-
-def slugify_seed(value: str) -> str:
-    text = str(value or "").strip().lower()
-    text = text.replace("&", " and ")
-    text = re.sub(r"[^a-z0-9]+", "_", text)
-    text = re.sub(r"_+", "_", text).strip("_")
-    return text or "unknown"
-
-
-def slugify(value: str) -> str:
-    return slugify_seed(value)
-
 
 def ensure_dirs() -> None:
     MANUAL_POLLS_DIR.mkdir(parents=True, exist_ok=True)
     PROCESSED_POLLS_DIR.mkdir(parents=True, exist_ok=True)
     RAW_POLLS_DIR.mkdir(parents=True, exist_ok=True)
-
-
-def clean_text(text: str) -> str:
-    text = unescape(text or "")
-    text = re.sub(r"\[[^\]]*\]", "", text)  # wikipedia refs
-    text = text.replace("\xa0", " ")
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
-
-
-def normalize_header(text: str) -> str:
-    t = clean_text(text).lower()
-    t = t.replace("–", "-").replace("—", "-")
-    t = re.sub(r"\(.*?\)", "", t).strip()
-    t = re.sub(r"\s+", " ", t)
-    return HEADER_ALIASES.get(t, clean_text(text))
-
-
-def parse_float(value: str) -> Optional[float]:
-    if value is None:
-        return None
-    t = clean_text(value)
-    if not t:
-        return None
-
-    # Tiltott minták
-    if t in {"—", "-", "–", "N/A", "n/a"}:
-        return None
-
-    # az első számot vesszük
-    m = re.search(r"-?\d+(?:[.,]\d+)?", t)
-    if not m:
-        return None
-
-    try:
-        return float(m.group(0).replace(",", "."))
-    except Exception:
-        return None
-
-
-def parse_int(value: str) -> Optional[int]:
-    if value is None:
-        return None
-    t = clean_text(value)
-    if not t:
-        return None
-    m = re.search(r"\d[\d,.\s]*", t)
-    if not m:
-        return None
-    raw = re.sub(r"[^\d]", "", m.group(0))
-    if not raw:
-        return None
-    try:
-        return int(raw)
-    except Exception:
-        return None
 
 
 def write_status_json(statuses: List[ScrapeStatus]) -> None:
@@ -414,10 +407,6 @@ def normalize_date_cell(text: str) -> Tuple[Optional[str], Optional[str], Option
 # ============================================================
 
 def wikipedia_title_candidates(country: str) -> List[str]:
-    """
-    Több lehetséges Wikipédia címet próbálunk automatikusan.
-    Nem országonként külön scraper, hanem közös URL-feloldó logika.
-    """
     c = country
 
     candidates = [
@@ -432,8 +421,6 @@ def wikipedia_title_candidates(country: str) -> List[str]:
         f"Next {c} general election",
     ]
 
-    # bizonyos országoknál hasznos lehet a konkrét évre utaló fallback
-    # nem garantált, de közös rendszerként jó tartalék
     for year in ("2028", "2027", "2026", "2025", "2024"):
         candidates.extend([
             f"Opinion polling for the {year} {c} parliamentary election",
@@ -442,7 +429,6 @@ def wikipedia_title_candidates(country: str) -> List[str]:
             f"{year} {c} legislative election",
         ])
 
-    # whitespace normalizálás és duplikátum-szűrés
     seen = set()
     out = []
     for item in candidates:
@@ -459,13 +445,6 @@ def wikipedia_url_from_title(title: str) -> str:
 
 
 def resolve_wikipedia_page(session: requests.Session, country: str) -> Optional[Tuple[str, str]]:
-    """
-    Visszaadja:
-    - resolved_title
-    - resolved_url
-
-    A logika közös minden országra.
-    """
     for title in wikipedia_title_candidates(country):
         url = wikipedia_url_from_title(title)
         try:
@@ -479,11 +458,9 @@ def resolve_wikipedia_page(session: requests.Session, country: str) -> Optional[
         final_url = resp.url or url
         text = resp.text.lower()
 
-        # ha egy sima 404 / no article page jön
         if "wikipedia does not have an article with this exact name" in text:
             continue
 
-        # legalább a polling szó vagy election tartalom legyen benne
         if "poll" not in text and "election" not in text:
             continue
 
@@ -506,11 +483,6 @@ def is_probably_pollster(text: str) -> bool:
 
 
 def wikipedia_find_best_poll_table(soup: BeautifulSoup):
-    """
-    Közös logika:
-    - először tipikus szekciókat keresünk
-    - ha nincs, minden wikitable közül a legígéretesebbet választjuk
-    """
     preferred_section_ids = [
         "Poll_results",
         "Opinion_polls",
@@ -598,7 +570,6 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
 
         pollster = cells[0]
         if not is_probably_pollster(pollster):
-            # fallback: ha a sor első cellája nagyon rövid/üres vagy nem pollster-szerű, kihagyjuk
             continue
 
         date_cell = cells[1] if len(cells) > 1 else ""
@@ -614,8 +585,6 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
         party_values = cells[3:]
         max_len = min(len(party_headers), len(party_values))
 
-        row_records = 0
-
         for i in range(max_len):
             party = normalize_header(party_headers[i])
             raw_value = party_values[i]
@@ -628,8 +597,6 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
             value = parse_float(raw_value)
             if value is None:
                 continue
-
-            # 0-100 tartományon kívüli értéket dobjuk
             if value < 0 or value > 100:
                 continue
 
@@ -646,10 +613,6 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
                     notes="auto_scraped_from_wikipedia_auto_resolver",
                 )
             )
-            row_records += 1
-
-        # ha egy sorból nulla párt jött ki, az nem gond, csak nem használjuk
-        _ = row_records
 
     return records
 
