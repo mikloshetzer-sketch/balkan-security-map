@@ -38,9 +38,8 @@
       --safe-right: max(env(safe-area-inset-right), 0px);
       --safe-left: max(env(safe-area-inset-left), 0px);
       --safe-bottom: max(env(safe-area-inset-bottom), 0px);
-      --map-chart-h: 110px;
-      --map-chart-gap: 16px;
-      --map-chart-total: calc(var(--map-chart-h) + var(--map-chart-gap));
+      --country-chart-h: 160px;
+      --map-overlay-top: 190px;
     }
 
     * { box-sizing: border-box; }
@@ -232,43 +231,41 @@
 
     #map{
       position:absolute;
-      top: var(--map-chart-total);
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset:0;
       width:100%;
-      height:auto;
+      height:100%;
     }
 
-    .map-chart{
+    .country-chart-panel{
       position:absolute;
       top: 14px;
       left: 14px;
       right: 14px;
-      height: var(--map-chart-h);
+      min-height: var(--country-chart-h);
       z-index: 1200;
+      pointer-events: auto;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      border-radius: 18px;
+      backdrop-filter: blur(8px);
+      padding: 12px 14px 10px;
+    }
+
+    .country-chart-top{
       display:flex;
-      align-items:stretch;
+      align-items:flex-start;
       justify-content:space-between;
       gap:12px;
-      padding:10px 12px;
-      background: rgba(255,255,255,0.88);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      backdrop-filter: blur(8px);
-      box-shadow: var(--shadow-soft);
-      pointer-events:auto;
+      flex-wrap:wrap;
     }
 
-    .map-chart-head{
-      flex: 0 0 180px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      min-width:0;
+    .country-chart-title-wrap{
+      min-width: 220px;
+      flex: 1 1 260px;
     }
 
-    .map-chart-title{
+    .country-chart-title{
       font-size: 12px;
       font-weight: 900;
       text-transform: uppercase;
@@ -276,82 +273,88 @@
       color: #21303d;
     }
 
-    .map-chart-sub{
+    .country-chart-sub{
       margin-top: 4px;
       font-size: 12px;
-      line-height: 1.35;
       color: var(--muted);
+      line-height: 1.4;
     }
 
-    .map-chart-meta{
-      font-size: 11px;
-      color: var(--muted-2);
-      line-height: 1.35;
-    }
-
-    .map-chart-bars{
-      flex: 1 1 auto;
-      min-width: 0;
+    .country-chart-controls{
       display:flex;
-      align-items:flex-end;
-      gap:8px;
-      padding-top: 8px;
-      overflow:hidden;
-    }
-
-    .chart-bar{
-      flex: 1 1 0;
-      min-width: 0;
-      height: 100%;
-      display:flex;
-      flex-direction:column;
       align-items:center;
-      justify-content:flex-end;
-      gap:6px;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
-    .chart-bar-rail{
-      width: 100%;
-      flex: 1 1 auto;
+    .country-chart-controls label{
+      font-size: 12px;
+      font-weight: 700;
+      color: #314250;
+    }
+
+    .country-chart-controls select{
+      min-width: 190px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      outline: none;
+    }
+
+    .country-chart-stats{
       display:flex;
-      align-items:flex-end;
-      justify-content:center;
-      border-radius: 8px 8px 0 0;
-      background: linear-gradient(180deg, rgba(61,111,138,0.04), rgba(61,111,138,0.10));
-      padding: 0 2px;
-      overflow:hidden;
+      gap:8px;
+      flex-wrap:wrap;
     }
 
-    .chart-bar-inner{
-      width: 100%;
-      min-height: 6px;
-      border-radius: 8px 8px 0 0;
-      transition: height 0.3s ease;
-      box-shadow: inset 0 -1px 0 rgba(255,255,255,0.25);
-    }
-
-    .chart-value{
-      font-size: 10px;
+    .chart-stat{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      font-size: 11px;
       font-weight: 800;
-      color: #2c4150;
-      line-height: 1;
+      color: #334353;
       white-space: nowrap;
     }
 
-    .chart-label{
+    .country-chart-canvas{
+      margin-top: 10px;
+      height: 95px;
       width: 100%;
-      font-size: 10px;
+      position: relative;
+    }
+
+    #countryPartyChart{
+      width: 100%;
+      height: 100%;
+      display:block;
+    }
+
+    .chart-empty{
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-size:12px;
       color: var(--muted);
-      text-align: center;
-      line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      border: 1px dashed var(--line-strong);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.55);
     }
 
     .map-overlay{
       position:absolute;
-      top: calc(14px + var(--map-chart-total));
+      top: var(--map-overlay-top);
       left: 14px;
       right: 14px;
       display:flex;
@@ -1032,34 +1035,18 @@
       .sidebar-right{
         max-height: none;
       }
-    }
 
-    @media (max-width: 900px){
-      .map-chart{
-        height: 132px;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-      }
-
-      .map-chart-head{
-        flex: 0 0 auto;
-      }
-
-      .map-chart-bars{
-        min-height: 0;
-      }
-
-      .map-overlay{
-        top: calc(14px + 132px + 16px);
-      }
-
-      #map{
-        top: calc(132px + 16px);
+      .country-chart-panel{
+        position: absolute;
       }
     }
 
     @media (max-width: 720px){
+      :root{
+        --country-chart-h: 220px;
+        --map-overlay-top: 250px;
+      }
+
       .app{
         gap: 10px;
         padding:
@@ -1100,14 +1087,16 @@
         max-height: 180px;
       }
 
-      .map-chart{
-        left: 10px;
-        right: 10px;
-        top: 10px;
+      .country-chart-controls{
+        width: 100%;
       }
 
-      .map-chart-head{
-        flex: 0 0 auto;
+      .country-chart-controls select{
+        min-width: 100%;
+      }
+
+      .country-chart-canvas{
+        height: 120px;
       }
     }
   </style>
@@ -1236,18 +1225,34 @@
     </aside>
 
     <main class="main">
-      <div class="map-chart" id="partyChart">
-        <div class="map-chart-head">
-          <div>
-            <div class="map-chart-title">Politikai trendek</div>
-            <div class="map-chart-sub">Vezető pártok súlyozott támogatottsága a megjeleníthető országokban.</div>
-          </div>
-          <div class="map-chart-meta" id="partyChartMeta">Betöltés...</div>
-        </div>
-        <div class="map-chart-bars" id="partyChartBars"></div>
-      </div>
-
       <div id="map"></div>
+
+      <div class="country-chart-panel">
+        <div class="country-chart-top">
+          <div class="country-chart-title-wrap">
+            <div class="country-chart-title">Pártpreferencia – ország nézet</div>
+            <div class="country-chart-sub" id="countryChartSub">
+              Válassz országot. A diagram az adott ország összes elérhető pártját mutatja.
+            </div>
+          </div>
+
+          <div class="country-chart-controls">
+            <label for="countrySelect">Ország</label>
+            <select id="countrySelect">
+              <option value="">Betöltés...</option>
+            </select>
+            <div class="country-chart-stats">
+              <span class="chart-stat" id="chartSourceCount">Források: —</span>
+              <span class="chart-stat" id="chartLatestDate">Utolsó poll: —</span>
+              <span class="chart-stat" id="chartReady">Ready: —</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="country-chart-canvas" id="countryChartCanvasWrap">
+          <svg id="countryPartyChart" viewBox="0 0 900 95" preserveAspectRatio="none" aria-label="Pártpreferencia diagram"></svg>
+        </div>
+      </div>
 
       <div class="map-overlay">
         <div class="map-note">
@@ -1337,21 +1342,6 @@
   <script>
     const DATA = "./data";
 
-    const CAT_STYLE = {
-      protest: { radius: 6, fillOpacity: 0.55 },
-      border: { radius: 6, fillOpacity: 0.55 },
-      police: { radius: 6, fillOpacity: 0.55 },
-      military: { radius: 6, fillOpacity: 0.55 },
-      drone: { radius: 6, fillOpacity: 0.55 },
-      cyber: { radius: 6, fillOpacity: 0.55 },
-      energy: { radius: 6, fillOpacity: 0.55 },
-      infrastructure: { radius: 6, fillOpacity: 0.55 },
-      security_politics: { radius: 6, fillOpacity: 0.55 },
-      violence: { radius: 7, fillOpacity: 0.60 },
-      natural: { radius: 6, fillOpacity: 0.50 },
-      other: { radius: 6, fillOpacity: 0.45 }
-    };
-
     const COUNTRY_FEATURES = new Map();
     const DATASETS = {
       gdelt: null,
@@ -1361,7 +1351,7 @@
       riskDaily: null,
       trustedRss: null,
       trustedRssSignals: null,
-      partyPolls: null
+      pollAggregates: null
     };
     const FILTERS = { newsToday: false, alertsToday: false };
 
@@ -1418,6 +1408,14 @@
       if (x === "tense") return "rgba(196,109,63,0.20)";
       if (x === "elevated") return "rgba(183,138,56,0.20)";
       return "rgba(92,139,104,0.18)";
+    }
+
+    function trendArrow(direction){
+      const d = String(direction || "unknown").toLowerCase();
+      if (d === "up") return "↑";
+      if (d === "down") return "↓";
+      if (d === "flat") return "→";
+      return "·";
     }
 
     const map = L.map('map', { zoomControl: true, preferCanvas: true }).setView([44.2, 20.6], 6);
@@ -2015,17 +2013,16 @@
     function gdeltPointToLayer(feature, latlng){
       const p = feature.properties || {};
       const cat = p.category || p.gdelt_bucket || "other";
-      const st = CAT_STYLE[cat] || CAT_STYLE.other;
       const rec = eventRecencyStyle("GDELT", p);
       const isFresh = (rec.ageDays !== null && rec.ageDays <= 3);
 
       return L.circleMarker(latlng, {
-        radius: st.radius + (isFresh ? 2 : 0),
+        radius: 6 + (isFresh ? 2 : 0),
         weight: isFresh ? 2 : 1,
         color: isFresh ? "#eef5f8" : "#8ea1b2",
         opacity: isFresh ? 0.72 : 0.42,
         fillColor: catColor(cat),
-        fillOpacity: st.fillOpacity
+        fillOpacity: 0.55
       });
     }
 
@@ -2150,95 +2147,6 @@
       });
     }
 
-    function shortCountryLabel(name){
-      const map = {
-        "Bosnia and Herzegovina": "Bosznia",
-        "North Macedonia": "É-Maced.",
-        "Montenegro": "MNE",
-        "Albania": "Albánia",
-        "Serbia": "Szerbia",
-        "Kosovo": "Koszovó",
-        "Croatia": "Horváto.",
-        "Romania": "Románia",
-        "Bulgaria": "Bulgária",
-        "Slovenia": "Szlovénia",
-        "Greece": "Görögo.",
-        "Hungary": "Magyaro.",
-        "Turkey": "Töröko.",
-        "Moldova": "Moldova"
-      };
-      return map[name] || name || "—";
-    }
-
-    function trendArrow(direction){
-      if (direction === "up") return "↑";
-      if (direction === "down") return "↓";
-      if (direction === "flat") return "→";
-      return "·";
-    }
-
-    function renderPartyPollChart(payload){
-      const barsEl = document.getElementById("partyChartBars");
-      const metaEl = document.getElementById("partyChartMeta");
-
-      if (!barsEl || !metaEl) return;
-
-      barsEl.innerHTML = "";
-
-      if (!payload || !Array.isArray(payload.countries)) {
-        metaEl.textContent = "Nincs poll adat.";
-        barsEl.innerHTML = `<div class="small">A poll aggregátum még nem érhető el.</div>`;
-        return;
-      }
-
-      const generated = fmtBudapest(payload.generated_utc);
-      const readyCountries = payload.countries
-        .filter(c => c && c.status && c.status.ready_for_display && c.leader && Number.isFinite(Number(c.leader.weighted_average)))
-        .sort((a, b) => Number(b.leader.weighted_average || 0) - Number(a.leader.weighted_average || 0))
-        .slice(0, 8);
-
-      if (!readyCountries.length) {
-        metaEl.textContent = generated ? `Frissítés (Budapest): ${generated.bud}` : "Nincs elég forrás a megjelenítéshez.";
-        barsEl.innerHTML = `<div class="small">Nincs elég ország, ahol már teljesül a minimum forrásszám.</div>`;
-        return;
-      }
-
-      metaEl.textContent = generated
-        ? `Frissítés (Budapest): ${generated.bud} • ${readyCountries.length} ország`
-        : `${readyCountries.length} ország`;
-
-      const maxVal = Math.max(...readyCountries.map(c => Number(c.leader.weighted_average || 0)), 1);
-
-      for (const item of readyCountries) {
-        const val = Number(item.leader.weighted_average || 0);
-        const pct = Math.max(8, Math.round((val / maxVal) * 100));
-        const dir = item.leader.trend_direction || "unknown";
-        const color =
-          dir === "up" ? "#5c8b68" :
-          dir === "down" ? "#b14c4c" :
-          dir === "flat" ? "#b78a38" :
-          "#4f819b";
-
-        const el = document.createElement("div");
-        el.className = "chart-bar";
-        el.title = `${item.country} • ${item.leader.party || "—"} • ${val.toFixed(1)}% • trend: ${dir}`;
-
-        el.innerHTML = `
-          <div class="chart-value">${val.toFixed(1)}% ${trendArrow(dir)}</div>
-          <div class="chart-bar-rail">
-            <div class="chart-bar-inner" style="height:${pct}%; background:${color};"></div>
-          </div>
-          <div class="chart-label">${esc(shortCountryLabel(item.country))}</div>
-        `;
-
-        el.addEventListener("click", () => {
-          if (item.country) zoomToCountry(item.country);
-        });
-
-        barsEl.appendChild(el);
-      }
-    }
-
     const layers = {
       borders: null,
       countryRisk: null,
@@ -2303,6 +2211,145 @@
       document.getElementById('alertBanner').style.display = 'none';
     });
 
+    function renderCountrySelector(aggregates){
+      const select = document.getElementById("countrySelect");
+      const countries = (aggregates?.countries || []).filter(c => Array.isArray(c.parties) && c.parties.length);
+
+      select.innerHTML = "";
+
+      if (!countries.length) {
+        select.innerHTML = `<option value="">Nincs poll adat</option>`;
+        renderCountryChart(null);
+        return;
+      }
+
+      countries.forEach(c => {
+        const option = document.createElement("option");
+        option.value = c.country;
+        option.textContent = c.country;
+        select.appendChild(option);
+      });
+
+      const firstReady = countries.find(c => c.status?.ready_for_display) || countries[0];
+      select.value = firstReady.country;
+      renderCountryChart(firstReady);
+
+      select.onchange = () => {
+        const selected = countries.find(c => c.country === select.value) || null;
+        renderCountryChart(selected);
+      };
+    }
+
+    function renderCountryChart(countryData){
+      const wrap = document.getElementById("countryChartCanvasWrap");
+      const svg = document.getElementById("countryPartyChart");
+      const sub = document.getElementById("countryChartSub");
+      const sourceCountEl = document.getElementById("chartSourceCount");
+      const latestDateEl = document.getElementById("chartLatestDate");
+      const readyEl = document.getElementById("chartReady");
+
+      if (!countryData || !Array.isArray(countryData.parties) || !countryData.parties.length) {
+        wrap.innerHTML = `<div class="chart-empty">Nincs elérhető pártpreferencia-adat a kiválasztott országhoz.</div>`;
+        sub.textContent = "Nincs elérhető pártpreferencia-adat.";
+        sourceCountEl.textContent = "Források: —";
+        latestDateEl.textContent = "Utolsó poll: —";
+        readyEl.textContent = "Ready: —";
+        return;
+      }
+
+      wrap.innerHTML = `<svg id="countryPartyChart" viewBox="0 0 900 95" preserveAspectRatio="none" aria-label="Pártpreferencia diagram"></svg>`;
+      const freshSvg = document.getElementById("countryPartyChart");
+
+      const parties = [...countryData.parties]
+        .filter(p => Number.isFinite(Number(p.weighted_average)))
+        .sort((a,b) => Number(b.weighted_average) - Number(a.weighted_average));
+
+      const status = countryData.status || {};
+      sub.textContent = `${countryData.country} • ${parties.length} párt • vezető: ${countryData.leader?.party || "—"} • trend: ${trendArrow(countryData.leader?.trend_direction)} ${countryData.leader?.trend_direction || "unknown"}`;
+      sourceCountEl.textContent = `Források: ${status.distinct_source_count ?? 0}`;
+      latestDateEl.textContent = `Utolsó poll: ${status.latest_poll_date || "—"}`;
+      readyEl.textContent = `Ready: ${status.ready_for_display ? "igen" : "nem"}`;
+
+      const width = 900;
+      const height = 95;
+      const leftPad = 10;
+      const rightPad = 10;
+      const topPad = 8;
+      const bottomPad = 28;
+      const chartH = height - topPad - bottomPad;
+      const maxVal = Math.max(...parties.map(p => Number(p.weighted_average) || 0), 5);
+      const innerW = width - leftPad - rightPad;
+      const gap = 8;
+      const barW = Math.max(18, (innerW - gap * (parties.length - 1)) / parties.length);
+
+      const ns = "http://www.w3.org/2000/svg";
+
+      function addEl(name, attrs, text){
+        const el = document.createElementNS(ns, name);
+        Object.entries(attrs || {}).forEach(([k,v]) => el.setAttribute(k, String(v)));
+        if (text !== undefined) el.textContent = text;
+        freshSvg.appendChild(el);
+        return el;
+      }
+
+      [0.25, 0.5, 0.75, 1].forEach(fr => {
+        const y = topPad + chartH - (chartH * fr);
+        addEl("line", {
+          x1: leftPad,
+          y1: y,
+          x2: width - rightPad,
+          y2: y,
+          stroke: "rgba(60,80,95,0.12)",
+          "stroke-width": 1
+        });
+      });
+
+      parties.forEach((p, idx) => {
+        const val = Number(p.weighted_average) || 0;
+        const x = leftPad + idx * (barW + gap);
+        const h = maxVal > 0 ? (val / maxVal) * chartH : 0;
+        const y = topPad + chartH - h;
+        const direction = String(p.trend?.direction || "unknown").toLowerCase();
+        const label = p.party.length > 10 ? p.party.slice(0, 10) + "…" : p.party;
+
+        addEl("rect", {
+          x,
+          y,
+          width: barW,
+          height: h,
+          rx: 4,
+          fill: "rgba(61,111,138,0.78)"
+        });
+
+        addEl("text", {
+          x: x + barW / 2,
+          y: y - 3,
+          "text-anchor": "middle",
+          "font-size": "10",
+          "font-weight": "800",
+          fill: "#2a3b47"
+        }, `${val.toFixed(1)}%`);
+
+        addEl("text", {
+          x: x + barW / 2,
+          y: height - 14,
+          "text-anchor": "middle",
+          "font-size": "10",
+          "font-weight": "700",
+          fill: "#4d6071"
+        }, label);
+
+        addEl("text", {
+          x: x + barW / 2,
+          y: height - 3,
+          "text-anchor": "middle",
+          "font-size": "10",
+          "font-weight": "900",
+          fill: direction === "up" ? "#4d7a58" : direction === "down" ? "#a45a37" : "#627483"
+        }, trendArrow(direction));
+      });
+    }
+
     async function init() {
       const today = ymdInTZ(new Date(), "Europe/Budapest");
       document.getElementById("todayBud").textContent = today;
@@ -2329,11 +2376,11 @@
       }
 
       try {
-        const partyPolls = await loadJson(`${DATA}/processed/polls/party_poll_aggregates.json`);
-        DATASETS.partyPolls = partyPolls;
-        renderPartyPollChart(partyPolls);
+        const pollAggregates = await loadJson(`${DATA}/processed/polls/party_poll_aggregates.json`);
+        DATASETS.pollAggregates = pollAggregates;
+        renderCountrySelector(pollAggregates);
       } catch {
-        renderPartyPollChart(null);
+        renderCountryChart(null);
       }
 
       try { layers.borders = await loadBorders(`${DATA}/balkan_borders.geojson`); } catch {}
@@ -2470,10 +2517,6 @@
       } catch {
         renderHotList([]);
       }
-
-      setTimeout(() => {
-        try { map.invalidateSize(); } catch {}
-      }, 80);
     }
 
     init().catch(err => {
