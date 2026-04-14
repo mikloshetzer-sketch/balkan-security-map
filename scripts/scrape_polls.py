@@ -4,12 +4,17 @@
 """
 scrape_polls.py
 
-KÖZÖS POLL SCRAPER RENDSZER – ORSZÁG-HINTEKKEL
+KÖZÖS POLL SCRAPER RENDSZER – ORSZÁG-HINTEKKEL, RUGALMAS WIKIPÉDIA PARSERREL
 
 Mit csinál:
 - végigmegy az összes figyelt országon
 - országonként több ismert / valószínű Wikipédia oldalcímet próbál
 - ha talál használható wikitable poll táblát, rekordokat képez
+- fejléc alapján próbálja felismerni:
+    - pollster oszlop
+    - dátum oszlop
+    - mintanagyság oszlop
+    - pártoszlopok
 - országonként automatikus CSV-t ír:
     docs/data/manual_polls/<country_slug>_auto.csv
 - scrape státuszt ír:
@@ -78,6 +83,7 @@ def parse_float(value: str) -> Optional[float]:
     if not t or t in {"—", "-", "–", "N/A", "n/a"}:
         return None
 
+    # legyen toleráns: első számot vesszük
     m = re.search(r"-?\d+(?:[.,]\d+)?", t)
     if not m:
         return None
@@ -94,12 +100,15 @@ def parse_int(value: str) -> Optional[int]:
     t = clean_text(value)
     if not t:
         return None
+
     m = re.search(r"\d[\d,.\s]*", t)
     if not m:
         return None
+
     raw = re.sub(r"[^\d]", "", m.group(0))
     if not raw:
         return None
+
     try:
         return int(raw)
     except Exception:
@@ -139,8 +148,6 @@ COUNTRIES: List[str] = [
     "Bosnia and Herzegovina",
 ]
 
-# Országonkénti hintelt címek.
-# Ezek nem külön scriptek, csak resolver-hintek ugyanahhoz a közös parserhez.
 COUNTRY_WIKIPEDIA_HINTS: Dict[str, List[str]] = {
     "Serbia": [
         "Opinion polling for the next Serbian parliamentary election",
@@ -277,6 +284,45 @@ NON_PARTY_HEADERS = {
     "fieldwork",
     "sample size",
     "notes",
+    "lead ±",
+    "lead %",
+    "margin",
+    "change",
+    "swing",
+}
+
+DATE_HEADER_HINTS = {
+    "date",
+    "date of publication",
+    "fieldwork date",
+    "fieldwork",
+    "publication date",
+    "published",
+}
+
+POLLSTER_HEADER_HINTS = {
+    "polling firm",
+    "pollster",
+    "polling agency",
+    "agency",
+    "source",
+    "firm",
+}
+
+SAMPLE_HEADER_HINTS = {
+    "sample size",
+    "sample",
+    "n",
+}
+
+GENERIC_NON_PARTY_HINTS = {
+    "lead",
+    "margin",
+    "change",
+    "swing",
+    "others/undecided",
+    "undecided",
+    "turnout",
 }
 
 
@@ -444,6 +490,16 @@ def normalize_date_cell(text: str) -> Tuple[Optional[str], Optional[str], Option
         mon_txt, yr = m3.group(1).lower(), m3.group(2)
         return f"{yr}-{months[mon_txt]}", None, None
 
+    # numeric YYYY-MM-DD fallback
+    m4 = re.search(r"\b(20\d{2})[-/](\d{2})[-/](\d{2})\b", raw)
+    if m4:
+        return f"{m4.group(1)}-{m4.group(2)}-{m4.group(3)}", None, None
+
+    # YYYY-MM fallback
+    m5 = re.search(r"\b(20\d{2})[-/](\d{2})\b", raw)
+    if m5:
+        return f"{m5.group(1)}-{m5.group(2)}", None, None
+
     if year:
         return year, None, None
 
@@ -459,9 +515,6 @@ def wikipedia_url_from_title(title: str) -> str:
 
 
 def wikipedia_title_candidates(country: str) -> List[str]:
-    """
-    Hintek + általános fallback jelöltek.
-    """
     hinted = COUNTRY_WIKIPEDIA_HINTS.get(country, [])
 
     generic = [
@@ -526,13 +579,28 @@ def resolve_wikipedia_page(session: requests.Session, country: str) -> Optional[
 # WIKIPEDIA TABLE PARSER
 # ============================================================
 
-def is_probably_pollster(text: str) -> bool:
+def is_probably_pollster_value(text: str) -> bool:
     t = clean_text(text).lower()
     if not t:
         return False
     if t in KNOWN_POLLSTERS:
         return True
     return any(name in t for name in KNOWN_POLLSTERS)
+
+
+def header_kind(header_text: str) -> str:
+    h = normalize_header(header_text).lower()
+
+    if h in POLLSTER_HEADER_HINTS:
+        return "pollster"
+    if h in DATE_HEADER_HINTS:
+        return "date"
+    if h in SAMPLE_HEADER_HINTS:
+        return "sample"
+    if h in NON_PARTY_HEADERS or h in GENERIC_NON_PARTY_HINTS:
+        return "non_party"
+
+    return "party"
 
 
 def wikipedia_find_best_poll_table(soup: BeautifulSoup):
@@ -574,78 +642,199 @@ def wikipedia_find_best_poll_table(soup: BeautifulSoup):
             score += 5
         if "sample size" in txt:
             score += 4
-        if "lead" in txt:
-            score += 2
         if "poll" in txt:
             score += 2
         if "date of publication" in txt:
             score += 3
         if "party" in txt:
             score += 2
-        score += min(len(table.find_all("tr")), 10)
+        if "%" in txt:
+            score += 2
+        score += min(len(table.find_all("tr")), 12)
         return score
 
     return sorted(tables, key=table_score, reverse=True)[0]
 
 
-def wikipedia_extract_headers(table) -> List[str]:
+def extract_header_matrix(table) -> Tuple[List[str], int]:
+    """
+    Visszaad:
+    - flattened headers
+    - hány sorból állt a header blokk
+    """
     rows = table.find_all("tr")
     if not rows:
-        return []
+        return [], 0
 
-    header_cells: List[str] = []
+    header_rows: List[List[str]] = []
+    header_row_count = 0
+
     for tr in rows[:6]:
         ths = tr.find_all("th")
-        if not ths:
-            continue
-        current = [normalize_header(th.get_text(" ", strip=True)) for th in ths]
-        if len(current) >= 4:
-            header_cells = current
+        tds = tr.find_all("td")
+        # addig tekintjük header blokknak, amíg túlsúlyban vannak a th-k
+        if ths and (len(ths) >= len(tds)):
+            current = [normalize_header(th.get_text(" ", strip=True)) for th in ths]
+            if current:
+                header_rows.append(current)
+                header_row_count += 1
+        else:
+            break
 
-    return header_cells
+    if not header_rows:
+        return [], 0
+
+    # a legutolsó, legkonkrétabb header sort tekintjük elsődlegesnek
+    base = header_rows[-1][:]
+
+    # ha felső header is van, és több oszlopot ad kontextusnak, kombináljuk lazán
+    if len(header_rows) >= 2:
+        upper = header_rows[-2]
+        merged: List[str] = []
+        for idx, item in enumerate(base):
+            prefix = upper[idx] if idx < len(upper) else ""
+            prefix = normalize_header(prefix)
+            if prefix and prefix.lower() not in {"", item.lower()} and item.lower() not in NON_PARTY_HEADERS:
+                merged.append(f"{prefix} {item}".strip())
+            else:
+                merged.append(item)
+        base = merged
+
+    return base, header_row_count
+
+
+def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, object]:
+    roles: Dict[str, object] = {
+        "pollster_idx": None,
+        "date_idx": None,
+        "sample_idx": None,
+        "party_indices": [],
+        "non_party_indices": [],
+    }
+
+    # 1) fejlécalapú első kör
+    for idx, h in enumerate(headers):
+        kind = header_kind(h)
+        if kind == "pollster" and roles["pollster_idx"] is None:
+            roles["pollster_idx"] = idx
+        elif kind == "date" and roles["date_idx"] is None:
+            roles["date_idx"] = idx
+        elif kind == "sample" and roles["sample_idx"] is None:
+            roles["sample_idx"] = idx
+        elif kind == "party":
+            roles["party_indices"].append(idx)
+        else:
+            roles["non_party_indices"].append(idx)
+
+    # 2) fallback: ha nincs pollster oszlop, az első szöveges oszlop legyen
+    if roles["pollster_idx"] is None:
+        for idx, val in enumerate(sample_row):
+            txt = clean_text(val)
+            if txt and parse_float(txt) is None:
+                roles["pollster_idx"] = idx
+                break
+
+    # 3) fallback: dátumoszlop keresése minta sorból
+    if roles["date_idx"] is None:
+        for idx, val in enumerate(sample_row):
+            publication_date, _, _ = normalize_date_cell(val)
+            if publication_date:
+                roles["date_idx"] = idx
+                break
+
+    # 4) fallback: sample oszlop keresése
+    if roles["sample_idx"] is None:
+        for idx, val in enumerate(sample_row):
+            iv = parse_int(val)
+            if iv and iv >= 100:
+                roles["sample_idx"] = idx
+                break
+
+    # 5) ha nincs party index, akkor minden nem meta oszlop, amiben lehet %/szám
+    if not roles["party_indices"]:
+        reserved = {roles["pollster_idx"], roles["date_idx"], roles["sample_idx"]}
+        roles["party_indices"] = [i for i in range(len(headers)) if i not in reserved]
+
+    return roles
+
+
+def trim_cells_to_headers(cells: List[str], headers: List[str]) -> List[str]:
+    if len(cells) == len(headers):
+        return cells
+    if len(cells) > len(headers):
+        return cells[:len(headers)]
+    # ha rövidebb, kipótoljuk
+    return cells + [""] * (len(headers) - len(cells))
 
 
 def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRecord]:
-    headers = wikipedia_extract_headers(table)
+    headers, header_row_count = extract_header_matrix(table)
     if not headers:
         raise RuntimeError("Nem sikerült fejlécet kiolvasni a Wikipédia táblából.")
 
     rows = table.find_all("tr")
     records: List[PollRecord] = []
 
-    for tr in rows:
+    # első valódi adatsor keresése
+    sample_row_cells: Optional[List[str]] = None
+    for tr in rows[header_row_count:]:
+        tds = tr.find_all("td")
+        if not tds:
+            continue
+        sample_row_cells = [clean_text(td.get_text(" ", strip=True)) for td in tds]
+        sample_row_cells = trim_cells_to_headers(sample_row_cells, headers)
+        break
+
+    if sample_row_cells is None:
+        raise RuntimeError("Nincs feldolgozható adatsor a táblában.")
+
+    roles = infer_column_roles(headers, sample_row_cells)
+    pollster_idx = roles["pollster_idx"]
+    date_idx = roles["date_idx"]
+    sample_idx = roles["sample_idx"]
+    party_indices = roles["party_indices"]
+
+    if pollster_idx is None or date_idx is None or not party_indices:
+        raise RuntimeError("Nem sikerült azonosítani a fő oszlopokat (pollster/date/party).")
+
+    for tr in rows[header_row_count:]:
         tds = tr.find_all("td")
         if not tds:
             continue
 
         cells = [clean_text(td.get_text(" ", strip=True)) for td in tds]
-        if len(cells) < 4:
-            continue
+        cells = trim_cells_to_headers(cells, headers)
 
-        pollster = cells[0]
-        if not is_probably_pollster(pollster):
-            continue
+        pollster = cells[pollster_idx] if pollster_idx < len(cells) else ""
+        date_cell = cells[date_idx] if date_idx < len(cells) else ""
+        sample_size_cell = cells[sample_idx] if sample_idx is not None and sample_idx < len(cells) else ""
 
-        date_cell = cells[1] if len(cells) > 1 else ""
-        sample_size_cell = cells[2] if len(cells) > 2 else ""
+        # ha a pollster nem tűnik pollsternek, próbáljunk még mindig lenni toleránsak,
+        # de legalább legyen szöveges és ne puszta szám
+        if not pollster:
+            continue
+        if not is_probably_pollster_value(pollster):
+            if parse_float(pollster) is not None:
+                continue
 
         publication_date, fieldwork_start, fieldwork_end = normalize_date_cell(date_cell)
-        sample_size = parse_int(sample_size_cell)
-
         if not publication_date:
             continue
 
-        party_headers = headers[3:]
-        party_values = cells[3:]
-        max_len = min(len(party_headers), len(party_values))
+        sample_size = parse_int(sample_size_cell)
 
-        for i in range(max_len):
-            party = normalize_header(party_headers[i])
-            raw_value = party_values[i]
+        row_added = 0
+
+        for idx in party_indices:
+            if idx >= len(cells) or idx >= len(headers):
+                continue
+
+            party = normalize_header(headers[idx])
+            raw_value = cells[idx]
 
             if not party:
                 continue
-            if party.lower() in NON_PARTY_HEADERS:
+            if party.lower() in NON_PARTY_HEADERS or party.lower() in GENERIC_NON_PARTY_HINTS:
                 continue
 
             value = parse_float(raw_value)
@@ -664,9 +853,13 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
                     sample_size=sample_size,
                     fieldwork_start=fieldwork_start,
                     fieldwork_end=fieldwork_end,
-                    notes="auto_scraped_from_wikipedia_hinted_resolver",
+                    notes="auto_scraped_from_wikipedia_hinted_resolver_v3",
                 )
             )
+            row_added += 1
+
+        # teljesen üres sor ne számítson
+        _ = row_added
 
     return records
 
@@ -733,7 +926,7 @@ def run() -> None:
     session = build_session()
     statuses: List[ScrapeStatus] = []
 
-    print("=== Common Poll Scraper – Resolver v2 with Country Hints ===")
+    print("=== Common Poll Scraper – Resolver v3 with Flexible Table Parsing ===")
 
     for country in COUNTRIES:
         print(f"\n[COUNTRY] {country}")
