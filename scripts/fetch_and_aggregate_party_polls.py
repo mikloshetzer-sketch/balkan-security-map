@@ -5,7 +5,7 @@
 fetch_and_aggregate_party_polls.py
 
 Cél:
-- kézi CSV pollfájlok beolvasása
+- kézi és automatikusan előállított poll CSV-k beolvasása
 - opcionális közvetlen JSON/CSV URL források beolvasása
 - normalizálás
 - aggregálás országonként
@@ -15,22 +15,6 @@ Kimenetek:
 - docs/data/processed/polls/normalized_polls.json
 - docs/data/processed/polls/party_poll_aggregates.json
 - docs/data/processed/polls/source_fetch_status.json
-
-Ez a fájl NEM próbál még általános HTML scrapinget végezni minden oldalról.
-Azért nem, mert az ilyen oldalak országonként teljesen eltérnek és törékenyek.
-Ez a verzió stabil adatcsatornát ad a rendszerhez.
-
-Elvárt kézi CSV formátum:
-country,date,source,party,value,sample_size,fieldwork_start,fieldwork_end,notes
-Serbia,2026-04-01,Ipsos,SNS,47.2,1200,2026-03-26,2026-03-30,teszt
-Serbia,2026-04-01,Ipsos,SPS,6.8,1200,2026-03-26,2026-03-30,teszt
-
-Ajánlott mappák:
-- docs/data/manual_polls/
-- docs/data/processed/polls/
-
-Futtatás:
-python scripts/fetch_and_aggregate_party_polls.py
 """
 
 from __future__ import annotations
@@ -39,7 +23,6 @@ import csv
 import json
 import math
 import re
-import sys
 from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
@@ -73,9 +56,12 @@ FETCH_STATUS_OUT = PROCESSED_DIR / "source_fetch_status.json"
 # CONFIG
 # ============================================================
 
-DEFAULT_MAX_POLL_AGE_DAYS = 180
+# FONTOS JAVÍTÁS:
+# 180 nap helyett 365 nap, mert a régióban ritkábbak a publikus mérések.
+DEFAULT_MAX_POLL_AGE_DAYS = 365
+
 DEFAULT_MIN_SOURCES_PER_COUNTRY = 3
-DEFAULT_RECENCY_HALF_LIFE_DAYS = 45
+DEFAULT_RECENCY_HALF_LIFE_DAYS = 60
 DEFAULT_TREND_LOOKBACK_POLLS = 2
 DEFAULT_FLAT_THRESHOLD = 1.0
 DEFAULT_TIMEOUT_SECONDS = 25
@@ -84,43 +70,63 @@ USER_AGENT = "balkan-security-map/party-polls-pipeline"
 
 
 # ============================================================
+# NEM PÁRT JELLEGŰ MEZŐK SZŰRÉSE
+# ============================================================
+
+NON_PARTY_PATTERNS = [
+    r"^approval$",
+    r"^disapproval$",
+    r"^approve$",
+    r"^disapprove$",
+    r"^favorable$",
+    r"^unfavorable$",
+    r"^favourable$",
+    r"^unfavourable$",
+    r"^turnout$",
+    r"^likely turnout$",
+    r"^undecided$",
+    r"^don't know$",
+    r"^dont know$",
+    r"^no opinion$",
+    r"^other$",
+    r"^others$",
+    r"^none$",
+    r"^refused$",
+    r"^refusal$",
+    r"^invalid$",
+    r"^blank$",
+    r"^non-voters$",
+    r"^non voters$",
+    r"^votes$",
+    r"^vote$",
+    r"^lead$",
+    r"^margin$",
+    r"^swing$",
+    r"^change$",
+]
+
+def is_party_like(name: str) -> bool:
+    text = str(name or "").strip()
+    if not text:
+        return False
+
+    lowered = text.lower().strip()
+    for pat in NON_PARTY_PATTERNS:
+        if re.match(pat, lowered):
+            return False
+
+    # túl hosszú, mondatszerű mezőket se kezeljünk pártként
+    if len(lowered.split()) > 6:
+        return False
+
+    return True
+
+
+# ============================================================
 # OPTIONAL DIRECT SOURCES
 # ============================================================
-# Ezeket akkor használd, ha van közvetlen JSON vagy CSV URL-ed.
-# A manual CSV ettől függetlenül mindig működik.
-#
-# Támogatott source_type:
-# - "csv_url"
-# - "json_url"
-#
-# CSV elvárt mezők:
-# country,date,source,party,value,sample_size,fieldwork_start,fieldwork_end,notes
-#
-# JSON elvárt minta:
-# [
-#   {
-#     "country": "Serbia",
-#     "date": "2026-04-01",
-#     "source": "Ipsos",
-#     "parties": {"SNS": 47.2, "SPS": 6.8},
-#     "sample_size": 1200,
-#     "fieldwork_start": "2026-03-26",
-#     "fieldwork_end": "2026-03-30",
-#     "notes": "teszt"
-#   }
-# ]
 
-DIRECT_SOURCES: List[Dict[str, Any]] = [
-    # Példa:
-    # {
-    #     "source_id": "serbia_example_csv",
-    #     "source_name": "Serbia Example CSV",
-    #     "source_type": "csv_url",
-    #     "country": "Serbia",
-    #     "url": "https://example.com/serbia_polls.csv",
-    #     "active": False
-    # },
-]
+DIRECT_SOURCES: List[Dict[str, Any]] = []
 
 
 # ============================================================
@@ -233,11 +239,13 @@ def normalize_date(value: Optional[str]) -> Optional[str]:
     if not text:
         return None
 
-    for fmt in ("%Y-%m-%d", "%Y/%m/%d", "%d.%m.%Y", "%Y-%m", "%Y/%m"):
+    for fmt in ("%Y-%m-%d", "%Y/%m/%d", "%d.%m.%Y", "%Y-%m", "%Y/%m", "%Y"):
         try:
             dt = datetime.strptime(text, fmt)
             if fmt in ("%Y-%m", "%Y/%m"):
                 return dt.strftime("%Y-%m")
+            if fmt == "%Y":
+                return dt.strftime("%Y")
             return dt.strftime("%Y-%m-%d")
         except Exception:
             pass
@@ -249,11 +257,14 @@ def parse_date_flexible(value: Optional[str]) -> Optional[datetime]:
     if not value:
         return None
     text = str(value).strip()
-    for fmt in ("%Y-%m-%d", "%Y-%m"):
+
+    for fmt in ("%Y-%m-%d", "%Y-%m", "%Y"):
         try:
-            return datetime.strptime(text, fmt).replace(tzinfo=timezone.utc)
+            dt = datetime.strptime(text, fmt)
+            return dt.replace(tzinfo=timezone.utc)
         except Exception:
             pass
+
     return None
 
 
@@ -307,6 +318,9 @@ def rows_from_manual_csv(path: Path) -> List[NormalizedPollRow]:
             value = safe_float(raw.get("value"))
 
             if not country or not date or not source or not party or value is None:
+                continue
+
+            if not is_party_like(party):
                 continue
 
             source_id = slugify(raw.get("source_id") or source)
@@ -379,6 +393,9 @@ def rows_from_csv_text(text: str, raw_file: Optional[str], import_method: str) -
         if not country or not date or not source or not party or value is None:
             continue
 
+        if not is_party_like(party):
+            continue
+
         source_id = slugify(raw.get("source_id") or source)
 
         rows.append(
@@ -430,6 +447,9 @@ def rows_from_json_data(data: Any, raw_file: Optional[str], import_method: str, 
             if not party_name or value is None:
                 continue
 
+            if not is_party_like(str(party_name)):
+                continue
+
             rows.append(
                 NormalizedPollRow(
                     country=country,
@@ -455,7 +475,7 @@ def fetch_direct_sources() -> Tuple[List[NormalizedPollRow], List[FetchStatus]]:
     statuses: List[FetchStatus] = []
 
     if not DIRECT_SOURCES:
-      return rows, statuses
+        return rows, statuses
 
     session = build_session()
     if session is None:
@@ -568,8 +588,13 @@ def group_rows_to_polls(rows: List[NormalizedPollRow]) -> List[Dict[str, Any]]:
         country, date, source, import_method = key
         members = grouped[key]
         parties: Dict[str, float] = {}
+
         for m in members:
-            parties[m.party] = m.value
+            if is_party_like(m.party):
+                parties[m.party] = m.value
+
+        if not parties:
+            continue
 
         first = members[0]
         polls.append(
@@ -622,7 +647,7 @@ def parse_poll_entries(normalized_payload: Dict[str, Any]) -> List[PollEntry]:
         clean_parties: Dict[str, float] = {}
         for k, v in parties.items():
             fv = safe_float(v)
-            if k and fv is not None:
+            if k and fv is not None and is_party_like(str(k)):
                 clean_parties[str(k).strip()] = fv
 
         if not clean_parties:
@@ -770,6 +795,8 @@ def aggregate_country(
     for poll in fresh_polls_sorted_desc:
         weight = combined_weight(poll, now_dt, half_life_days)
         for party_name, value in poll.parties.items():
+            if not is_party_like(party_name):
+                continue
             party_values_simple[party_name].append(value)
             party_values_weighted[party_name].append((value, weight))
             party_poll_counts[party_name] += 1
