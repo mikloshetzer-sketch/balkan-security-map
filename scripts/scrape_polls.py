@@ -83,7 +83,6 @@ def parse_float(value: str) -> Optional[float]:
     if not t or t in {"—", "-", "–", "N/A", "n/a"}:
         return None
 
-    # legyen toleráns: első számot vesszük
     m = re.search(r"-?\d+(?:[.,]\d+)?", t)
     if not m:
         return None
@@ -146,6 +145,7 @@ COUNTRIES: List[str] = [
     "Kosovo",
     "North Macedonia",
     "Bosnia and Herzegovina",
+    "Montenegro",
 ]
 
 COUNTRY_WIKIPEDIA_HINTS: Dict[str, List[str]] = {
@@ -164,6 +164,7 @@ COUNTRY_WIKIPEDIA_HINTS: Dict[str, List[str]] = {
         "Opinion polling for the next Bulgarian parliamentary election",
         "2027 Bulgarian parliamentary election",
         "Next Bulgarian parliamentary election",
+        "Next Bulgarian parliamentary election opinion polls",
     ],
     "Croatia": [
         "Opinion polling for the next Croatian parliamentary election",
@@ -173,11 +174,15 @@ COUNTRY_WIKIPEDIA_HINTS: Dict[str, List[str]] = {
     "Albania": [
         "Opinion polling for the next Albanian parliamentary election",
         "2029 Albanian parliamentary election",
+        "2025 Albanian parliamentary election",
         "Next Albanian parliamentary election",
     ],
     "Kosovo": [
         "Opinion polling for the next Kosovan parliamentary election",
         "Opinion polling for the next Kosovo parliamentary election",
+        "December 2025 Kosovan parliamentary election",
+        "2025 Kosovan parliamentary election",
+        "2025 Kosovo parliamentary election",
         "2029 Kosovan parliamentary election",
         "Next Kosovan parliamentary election",
         "Next Kosovo parliamentary election",
@@ -195,6 +200,13 @@ COUNTRY_WIKIPEDIA_HINTS: Dict[str, List[str]] = {
         "Opinion polling for the next Bosnia and Herzegovina parliamentary election",
         "2026 Bosnia and Herzegovina general election",
         "Next Bosnia and Herzegovina general election",
+    ],
+    "Montenegro": [
+        "Next Montenegrin parliamentary election",
+        "Opinion polling for the next Montenegrin parliamentary election",
+        "2027 Montenegrin parliamentary election",
+        "2027 Montenegro parliamentary election",
+        "Next Montenegro parliamentary election",
     ],
 }
 
@@ -255,6 +267,7 @@ KNOWN_POLLSTERS = {
     "sova harris",
     "alpha research",
     "market links",
+    "marketlinks",
     "trend",
     "sociological agency",
     "median",
@@ -269,6 +282,15 @@ KNOWN_POLLSTERS = {
     "ubo consulting",
     "m-prospect",
     "m prospect",
+    "spektrum",
+    "stars up",
+    "borba",
+    "pipos",
+    "albanian post",
+    "koha",
+    "cam",
+    "myara",
+    "promocija plus",
 }
 
 NON_PARTY_HEADERS = {
@@ -307,6 +329,7 @@ POLLSTER_HEADER_HINTS = {
     "agency",
     "source",
     "firm",
+    "pollster/source",
 }
 
 SAMPLE_HEADER_HINTS = {
@@ -323,6 +346,9 @@ GENERIC_NON_PARTY_HINTS = {
     "others/undecided",
     "undecided",
     "turnout",
+    "approval",
+    "disapproval",
+    "vote share",
 }
 
 
@@ -490,12 +516,10 @@ def normalize_date_cell(text: str) -> Tuple[Optional[str], Optional[str], Option
         mon_txt, yr = m3.group(1).lower(), m3.group(2)
         return f"{yr}-{months[mon_txt]}", None, None
 
-    # numeric YYYY-MM-DD fallback
     m4 = re.search(r"\b(20\d{2})[-/](\d{2})[-/](\d{2})\b", raw)
     if m4:
         return f"{m4.group(1)}-{m4.group(2)}-{m4.group(3)}", None, None
 
-    # YYYY-MM fallback
     m5 = re.search(r"\b(20\d{2})[-/](\d{2})\b", raw)
     if m5:
         return f"{m5.group(1)}-{m5.group(2)}", None, None
@@ -605,10 +629,13 @@ def header_kind(header_text: str) -> str:
 
 def wikipedia_find_best_poll_table(soup: BeautifulSoup):
     preferred_section_ids = [
-        "Poll_results",
+        "Party_polling",
+        "Party_poll",
         "Opinion_polls",
-        "Polling",
+        "Opinion_polls",
         "Opinion_polling",
+        "Poll_results",
+        "Polling",
         "Polls",
     ]
 
@@ -642,10 +669,14 @@ def wikipedia_find_best_poll_table(soup: BeautifulSoup):
             score += 5
         if "sample size" in txt:
             score += 4
-        if "poll" in txt:
-            score += 2
         if "date of publication" in txt:
             score += 3
+        if "party polling" in txt:
+            score += 5
+        if "opinion polls" in txt:
+            score += 5
+        if "poll" in txt:
+            score += 2
         if "party" in txt:
             score += 2
         if "%" in txt:
@@ -657,11 +688,6 @@ def wikipedia_find_best_poll_table(soup: BeautifulSoup):
 
 
 def extract_header_matrix(table) -> Tuple[List[str], int]:
-    """
-    Visszaad:
-    - flattened headers
-    - hány sorból állt a header blokk
-    """
     rows = table.find_all("tr")
     if not rows:
         return [], 0
@@ -672,7 +698,6 @@ def extract_header_matrix(table) -> Tuple[List[str], int]:
     for tr in rows[:6]:
         ths = tr.find_all("th")
         tds = tr.find_all("td")
-        # addig tekintjük header blokknak, amíg túlsúlyban vannak a th-k
         if ths and (len(ths) >= len(tds)):
             current = [normalize_header(th.get_text(" ", strip=True)) for th in ths]
             if current:
@@ -684,10 +709,8 @@ def extract_header_matrix(table) -> Tuple[List[str], int]:
     if not header_rows:
         return [], 0
 
-    # a legutolsó, legkonkrétabb header sort tekintjük elsődlegesnek
     base = header_rows[-1][:]
 
-    # ha felső header is van, és több oszlopot ad kontextusnak, kombináljuk lazán
     if len(header_rows) >= 2:
         upper = header_rows[-2]
         merged: List[str] = []
@@ -712,7 +735,6 @@ def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, o
         "non_party_indices": [],
     }
 
-    # 1) fejlécalapú első kör
     for idx, h in enumerate(headers):
         kind = header_kind(h)
         if kind == "pollster" and roles["pollster_idx"] is None:
@@ -726,7 +748,6 @@ def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, o
         else:
             roles["non_party_indices"].append(idx)
 
-    # 2) fallback: ha nincs pollster oszlop, az első szöveges oszlop legyen
     if roles["pollster_idx"] is None:
         for idx, val in enumerate(sample_row):
             txt = clean_text(val)
@@ -734,7 +755,6 @@ def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, o
                 roles["pollster_idx"] = idx
                 break
 
-    # 3) fallback: dátumoszlop keresése minta sorból
     if roles["date_idx"] is None:
         for idx, val in enumerate(sample_row):
             publication_date, _, _ = normalize_date_cell(val)
@@ -742,7 +762,6 @@ def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, o
                 roles["date_idx"] = idx
                 break
 
-    # 4) fallback: sample oszlop keresése
     if roles["sample_idx"] is None:
         for idx, val in enumerate(sample_row):
             iv = parse_int(val)
@@ -750,7 +769,6 @@ def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, o
                 roles["sample_idx"] = idx
                 break
 
-    # 5) ha nincs party index, akkor minden nem meta oszlop, amiben lehet %/szám
     if not roles["party_indices"]:
         reserved = {roles["pollster_idx"], roles["date_idx"], roles["sample_idx"]}
         roles["party_indices"] = [i for i in range(len(headers)) if i not in reserved]
@@ -763,7 +781,6 @@ def trim_cells_to_headers(cells: List[str], headers: List[str]) -> List[str]:
         return cells
     if len(cells) > len(headers):
         return cells[:len(headers)]
-    # ha rövidebb, kipótoljuk
     return cells + [""] * (len(headers) - len(cells))
 
 
@@ -775,7 +792,6 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
     rows = table.find_all("tr")
     records: List[PollRecord] = []
 
-    # első valódi adatsor keresése
     sample_row_cells: Optional[List[str]] = None
     for tr in rows[header_row_count:]:
         tds = tr.find_all("td")
@@ -809,8 +825,6 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
         date_cell = cells[date_idx] if date_idx < len(cells) else ""
         sample_size_cell = cells[sample_idx] if sample_idx is not None and sample_idx < len(cells) else ""
 
-        # ha a pollster nem tűnik pollsternek, próbáljunk még mindig lenni toleránsak,
-        # de legalább legyen szöveges és ne puszta szám
         if not pollster:
             continue
         if not is_probably_pollster_value(pollster):
@@ -823,8 +837,6 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
 
         sample_size = parse_int(sample_size_cell)
 
-        row_added = 0
-
         for idx in party_indices:
             if idx >= len(cells) or idx >= len(headers):
                 continue
@@ -834,7 +846,11 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
 
             if not party:
                 continue
-            if party.lower() in NON_PARTY_HEADERS or party.lower() in GENERIC_NON_PARTY_HINTS:
+
+            party_l = party.lower()
+            if party_l in NON_PARTY_HEADERS or party_l in GENERIC_NON_PARTY_HINTS:
+                continue
+            if party_l in {"approval", "disapproval", "turnout", "votes", "vote"}:
                 continue
 
             value = parse_float(raw_value)
@@ -853,13 +869,9 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
                     sample_size=sample_size,
                     fieldwork_start=fieldwork_start,
                     fieldwork_end=fieldwork_end,
-                    notes="auto_scraped_from_wikipedia_hinted_resolver_v3",
+                    notes="auto_scraped_from_wikipedia_hinted_resolver_v4",
                 )
             )
-            row_added += 1
-
-        # teljesen üres sor ne számítson
-        _ = row_added
 
     return records
 
@@ -926,7 +938,7 @@ def run() -> None:
     session = build_session()
     statuses: List[ScrapeStatus] = []
 
-    print("=== Common Poll Scraper – Resolver v3 with Flexible Table Parsing ===")
+    print("=== Common Poll Scraper – Resolver v4 with Kosovo + Montenegro ===")
 
     for country in COUNTRIES:
         print(f"\n[COUNTRY] {country}")
