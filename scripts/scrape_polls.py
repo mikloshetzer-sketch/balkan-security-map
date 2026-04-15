@@ -1,31 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-scrape_polls.py
-
-KÖZÖS POLL SCRAPER RENDSZER – ORSZÁG-HINTEKKEL, RUGALMAS WIKIPÉDIA PARSERREL
-
-Mit csinál:
-- végigmegy az összes figyelt országon
-- országonként több ismert / valószínű Wikipédia oldalcímet próbál
-- ha talál használható wikitable poll táblát, rekordokat képez
-- fejléc alapján próbálja felismerni:
-    - pollster oszlop
-    - dátum oszlop
-    - mintanagyság oszlop
-    - pártoszlopok
-- országonként automatikus CSV-t ír:
-    docs/data/manual_polls/<country_slug>_auto.csv
-- scrape státuszt ír:
-    docs/data/processed/polls/scrape_status.json
-
-Használat:
-1) pip install requests beautifulsoup4
-2) python scripts/scrape_polls.py
-3) python scripts/fetch_and_aggregate_party_polls.py
-"""
-
 from __future__ import annotations
 
 import csv
@@ -47,10 +22,6 @@ except Exception as exc:
     print("Install with: pip install requests beautifulsoup4")
     sys.exit(1)
 
-
-# ============================================================
-# BASIC HELPERS
-# ============================================================
 
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
@@ -80,7 +51,7 @@ def parse_float(value: str) -> Optional[float]:
     if value is None:
         return None
     t = clean_text(value)
-    if not t or t in {"—", "-", "–", "N/A", "n/a"}:
+    if not t or t in {"—", "-", "–", "N/A", "n/a", "~"}:
         return None
 
     m = re.search(r"-?\d+(?:[.,]\d+)?", t)
@@ -114,10 +85,6 @@ def parse_int(value: str) -> Optional[int]:
         return None
 
 
-# ============================================================
-# PATHS
-# ============================================================
-
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent
 
@@ -127,11 +94,6 @@ PROCESSED_POLLS_DIR = DOCS_DIR / "data" / "processed" / "polls"
 RAW_POLLS_DIR = DOCS_DIR / "data" / "raw" / "polls"
 
 SCRAPE_STATUS_OUT = PROCESSED_POLLS_DIR / "scrape_status.json"
-
-
-# ============================================================
-# CONFIG
-# ============================================================
 
 USER_AGENT = "balkan-security-map/common-poll-scraper"
 REQUEST_TIMEOUT = 30
@@ -178,9 +140,10 @@ COUNTRY_WIKIPEDIA_HINTS: Dict[str, List[str]] = {
         "Next Albanian parliamentary election",
     ],
     "Kosovo": [
+        "December 2025 Kosovan parliamentary election",
+        "February 2025 Kosovan parliamentary election",
         "Opinion polling for the next Kosovan parliamentary election",
         "Opinion polling for the next Kosovo parliamentary election",
-        "December 2025 Kosovan parliamentary election",
         "2025 Kosovan parliamentary election",
         "2025 Kosovo parliamentary election",
         "2029 Kosovan parliamentary election",
@@ -207,6 +170,7 @@ COUNTRY_WIKIPEDIA_HINTS: Dict[str, List[str]] = {
         "2027 Montenegrin parliamentary election",
         "2027 Montenegro parliamentary election",
         "Next Montenegro parliamentary election",
+        "2023 Montenegrin parliamentary election",
     ],
 }
 
@@ -220,11 +184,6 @@ COUNTRY_PARSER_PLAN: Dict[str, List[Dict[str, str]]] = {
     ]
     for country in COUNTRIES
 }
-
-
-# ============================================================
-# NORMALIZATION / ALIASES
-# ============================================================
 
 HEADER_ALIASES = {
     "sns-led coalition": "SNS-led coalition",
@@ -249,6 +208,10 @@ HEADER_ALIASES = {
     "we - voice from the people": "MI-SN",
     "we – voice from the people": "MI-SN",
     "nestorović": "MI-SN",
+    "polling firm/source": "Pollster",
+    "polling firm / source": "Pollster",
+    "polling firm /source": "Pollster",
+    "firm/source": "Pollster",
 }
 
 KNOWN_POLLSTERS = {
@@ -291,6 +254,8 @@ KNOWN_POLLSTERS = {
     "cam",
     "myara",
     "promocija plus",
+    "rtv dukagjini",
+    "klan kosova",
 }
 
 NON_PARTY_HEADERS = {
@@ -311,6 +276,10 @@ NON_PARTY_HEADERS = {
     "margin",
     "change",
     "swing",
+    "abstention",
+    "others/don't know",
+    "others / don't know",
+    "others/dont know",
 }
 
 DATE_HEADER_HINTS = {
@@ -330,6 +299,8 @@ POLLSTER_HEADER_HINTS = {
     "source",
     "firm",
     "pollster/source",
+    "polling firm/source",
+    "polling firm / source",
 }
 
 SAMPLE_HEADER_HINTS = {
@@ -349,6 +320,8 @@ GENERIC_NON_PARTY_HINTS = {
     "approval",
     "disapproval",
     "vote share",
+    "abstention",
+    "others/don't know",
 }
 
 
@@ -359,10 +332,6 @@ def normalize_header(text: str) -> str:
     t = re.sub(r"\s+", " ", t)
     return HEADER_ALIASES.get(t, clean_text(text))
 
-
-# ============================================================
-# MODELS
-# ============================================================
 
 @dataclass
 class PollRecord:
@@ -392,10 +361,6 @@ class ScrapeStatus:
     record_count: int
     error: Optional[str]
 
-
-# ============================================================
-# FILE HELPERS
-# ============================================================
 
 def ensure_dirs() -> None:
     MANUAL_POLLS_DIR.mkdir(parents=True, exist_ok=True)
@@ -471,10 +436,6 @@ def build_session() -> requests.Session:
     return s
 
 
-# ============================================================
-# DATE PARSING
-# ============================================================
-
 def normalize_date_cell(text: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
     raw = clean_text(text)
     if not raw:
@@ -530,10 +491,6 @@ def normalize_date_cell(text: str) -> Tuple[Optional[str], Optional[str], Option
     return None, None, None
 
 
-# ============================================================
-# WIKIPEDIA RESOLVER
-# ============================================================
-
 def wikipedia_url_from_title(title: str) -> str:
     return f"https://en.wikipedia.org/wiki/{quote(title.replace(' ', '_'), safe=':_()%-')}"
 
@@ -553,7 +510,7 @@ def wikipedia_title_candidates(country: str) -> List[str]:
         f"Next {country} general election",
     ]
 
-    for year in ("2029", "2028", "2027", "2026", "2025", "2024"):
+    for year in ("2029", "2028", "2027", "2026", "2025", "2024", "2023"):
         generic.extend([
             f"Opinion polling for the {year} {country} parliamentary election",
             f"Opinion polling for the {year} {country} legislative election",
@@ -575,7 +532,9 @@ def wikipedia_title_candidates(country: str) -> List[str]:
 
 
 def resolve_wikipedia_page(session: requests.Session, country: str) -> Optional[Tuple[str, str]]:
-    for title in wikipedia_title_candidates(country):
+    candidates = wikipedia_title_candidates(country)
+
+    for title in candidates:
         url = wikipedia_url_from_title(title)
         try:
             resp = session.get(url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
@@ -586,22 +545,55 @@ def resolve_wikipedia_page(session: requests.Session, country: str) -> Optional[
             continue
 
         final_url = resp.url or url
-        html = resp.text.lower()
+        html_l = resp.text.lower()
 
-        if "wikipedia does not have an article with this exact name" in html:
+        if "wikipedia does not have an article with this exact name" in html_l:
             continue
 
-        if "election" not in html and "poll" not in html:
+        if "poll" in html_l or "election" in html_l:
+            return title, final_url
+
+    # search fallback
+    search_terms = [
+        f'site:en.wikipedia.org "{country}" wikipedia opinion polls election',
+        f'site:en.wikipedia.org "{country}" parliamentary election wikipedia',
+    ]
+
+    for q in search_terms:
+        try:
+            resp = session.get(
+                "https://en.wikipedia.org/w/index.php",
+                params={"search": q},
+                timeout=REQUEST_TIMEOUT,
+                allow_redirects=True,
+            )
+        except Exception:
             continue
 
-        return title, final_url
+        if resp.status_code != 200:
+            continue
+
+        soup = BeautifulSoup(resp.text, "html.parser")
+        for a in soup.select(".mw-search-results a[href], .mw-search-result-heading a[href], a[href]"):
+          href = a.get("href") or ""
+          if not href.startswith("/wiki/"):
+              continue
+          if ":" in href:
+              continue
+          candidate_url = "https://en.wikipedia.org" + href
+          try:
+              r2 = session.get(candidate_url, timeout=REQUEST_TIMEOUT, allow_redirects=True)
+          except Exception:
+              continue
+          if r2.status_code != 200:
+              continue
+          html_l = r2.text.lower()
+          if "poll" in html_l and "wikitable" in html_l:
+              title = candidate_url.rsplit("/", 1)[-1].replace("_", " ")
+              return title, r2.url or candidate_url
 
     return None
 
-
-# ============================================================
-# WIKIPEDIA TABLE PARSER
-# ============================================================
 
 def is_probably_pollster_value(text: str) -> bool:
     t = clean_text(text).lower()
@@ -631,7 +623,6 @@ def wikipedia_find_best_poll_table(soup: BeautifulSoup):
     preferred_section_ids = [
         "Party_polling",
         "Party_poll",
-        "Opinion_polls",
         "Opinion_polls",
         "Opinion_polling",
         "Poll_results",
@@ -665,20 +656,20 @@ def wikipedia_find_best_poll_table(soup: BeautifulSoup):
     def table_score(table) -> int:
         txt = clean_text(table.get_text(" ", strip=True)).lower()
         score = 0
-        if "polling firm" in txt:
-            score += 5
+        if "polling firm" in txt or "pollster" in txt:
+            score += 8
         if "sample size" in txt:
             score += 4
-        if "date of publication" in txt:
-            score += 3
+        if "date of publication" in txt or "date" in txt:
+            score += 4
         if "party polling" in txt:
-            score += 5
-        if "opinion polls" in txt:
-            score += 5
+            score += 8
+        if "opinion polls" in txt or "opinion poll" in txt:
+            score += 8
         if "poll" in txt:
-            score += 2
+            score += 4
         if "party" in txt:
-            score += 2
+            score += 3
         if "%" in txt:
             score += 2
         score += min(len(table.find_all("tr")), 12)
@@ -709,19 +700,8 @@ def extract_header_matrix(table) -> Tuple[List[str], int]:
     if not header_rows:
         return [], 0
 
+    # use the last header row as baseline; earlier rows often contain grouped labels
     base = header_rows[-1][:]
-
-    if len(header_rows) >= 2:
-        upper = header_rows[-2]
-        merged: List[str] = []
-        for idx, item in enumerate(base):
-            prefix = upper[idx] if idx < len(upper) else ""
-            prefix = normalize_header(prefix)
-            if prefix and prefix.lower() not in {"", item.lower()} and item.lower() not in NON_PARTY_HEADERS:
-                merged.append(f"{prefix} {item}".strip())
-            else:
-                merged.append(item)
-        base = merged
 
     return base, header_row_count
 
@@ -748,6 +728,7 @@ def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, o
         else:
             roles["non_party_indices"].append(idx)
 
+    # fallback 1: first text-like col as pollster
     if roles["pollster_idx"] is None:
         for idx, val in enumerate(sample_row):
             txt = clean_text(val)
@@ -755,6 +736,7 @@ def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, o
                 roles["pollster_idx"] = idx
                 break
 
+    # fallback 2: first date-like col
     if roles["date_idx"] is None:
         for idx, val in enumerate(sample_row):
             publication_date, _, _ = normalize_date_cell(val)
@@ -762,8 +744,21 @@ def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, o
                 roles["date_idx"] = idx
                 break
 
+    # Kosovo/Montenegro-style fallback:
+    # if first col is text and second col is date -> lock them
+    if len(sample_row) >= 2:
+        first_txt = clean_text(sample_row[0])
+        second_txt = clean_text(sample_row[1])
+        second_date, _, _ = normalize_date_cell(second_txt)
+        if roles["pollster_idx"] is None and first_txt and parse_float(first_txt) is None:
+            roles["pollster_idx"] = 0
+        if roles["date_idx"] is None and second_date:
+            roles["date_idx"] = 1
+
     if roles["sample_idx"] is None:
         for idx, val in enumerate(sample_row):
+            if idx in {roles["pollster_idx"], roles["date_idx"]}:
+                continue
             iv = parse_int(val)
             if iv and iv >= 100:
                 roles["sample_idx"] = idx
@@ -772,6 +767,15 @@ def infer_column_roles(headers: List[str], sample_row: List[str]) -> Dict[str, o
     if not roles["party_indices"]:
         reserved = {roles["pollster_idx"], roles["date_idx"], roles["sample_idx"]}
         roles["party_indices"] = [i for i in range(len(headers)) if i not in reserved]
+
+    # strip obvious non-party columns from party indices
+    clean_party_indices = []
+    for idx in roles["party_indices"]:
+        h = normalize_header(headers[idx]).lower()
+        if h in NON_PARTY_HEADERS or h in GENERIC_NON_PARTY_HINTS:
+            continue
+        clean_party_indices.append(idx)
+    roles["party_indices"] = clean_party_indices
 
     return roles
 
@@ -837,6 +841,7 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
 
         sample_size = parse_int(sample_size_cell)
 
+        row_party_count = 0
         for idx in party_indices:
             if idx >= len(cells) or idx >= len(headers):
                 continue
@@ -850,7 +855,7 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
             party_l = party.lower()
             if party_l in NON_PARTY_HEADERS or party_l in GENERIC_NON_PARTY_HINTS:
                 continue
-            if party_l in {"approval", "disapproval", "turnout", "votes", "vote"}:
+            if party_l in {"approval", "disapproval", "turnout", "votes", "vote", "other", "others"}:
                 continue
 
             value = parse_float(raw_value)
@@ -859,6 +864,7 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
             if value < 0 or value > 100:
                 continue
 
+            row_party_count += 1
             records.append(
                 PollRecord(
                     country=country,
@@ -869,9 +875,13 @@ def wikipedia_parse_table(country: str, source_name: str, table) -> List[PollRec
                     sample_size=sample_size,
                     fieldwork_start=fieldwork_start,
                     fieldwork_end=fieldwork_end,
-                    notes="auto_scraped_from_wikipedia_hinted_resolver_v4",
+                    notes="auto_scraped_from_wikipedia_hinted_resolver_v5",
                 )
             )
+
+        # skip rows that yield zero party values
+        if row_party_count == 0:
+            continue
 
     return records
 
@@ -907,10 +917,6 @@ def scrape_with_wikipedia_hinted_polling(
     return records, raw_path, resolved_url
 
 
-# ============================================================
-# PARSER REGISTRY
-# ============================================================
-
 def scrape_source(
     session: requests.Session,
     country: str,
@@ -929,16 +935,12 @@ def scrape_source(
     raise RuntimeError(f"Ismeretlen parser: {parser}")
 
 
-# ============================================================
-# MAIN
-# ============================================================
-
 def run() -> None:
     ensure_dirs()
     session = build_session()
     statuses: List[ScrapeStatus] = []
 
-    print("=== Common Poll Scraper – Resolver v4 with Kosovo + Montenegro ===")
+    print("=== Common Poll Scraper – Resolver v5 for Kosovo + Montenegro ===")
 
     for country in COUNTRIES:
         print(f"\n[COUNTRY] {country}")
