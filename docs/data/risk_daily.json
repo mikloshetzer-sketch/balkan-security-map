@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-15T15:41:05Z",
+  "generated_utc": "2026-04-15T17:34:16Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.14,
+    "overall_score": 1.169,
     "confidence": "medium",
-    "confidence_value": 0.589,
+    "confidence_value": 0.591,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.008,
-      "military": 0.007,
-      "policing": 0.015,
+      "political": 2.043,
+      "military": 0.017,
+      "policing": 0.027,
       "migration": 0.003,
-      "social": 0.0,
-      "infrastructure": 0.015
+      "social": 0.021,
+      "infrastructure": 0.021
     },
     "watchlist": [
       {
@@ -39,17 +39,17 @@
         ]
       },
       {
-        "country": "Albania",
+        "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 1.232,
+        "overall_score": 1.314,
         "drivers": [
           "unknown"
         ]
       },
       {
-        "country": "Kosovo",
+        "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.197,
+        "overall_score": 1.261,
         "drivers": [
           "unknown"
         ]
@@ -74,14 +74,15 @@
     "top_drivers": [
       "unknown",
       "explosion",
-      "deescalation"
+      "shooting",
+      "protest"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.139,
+      "overall_score": 2.145,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -93,7 +94,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.584,
+        "political": 3.592,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.036,
@@ -103,8 +104,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 294,
-      "recent_incident_count": 40,
+      "incident_count": 295,
+      "recent_incident_count": 41,
       "top_incidents": [
         {
           "time": "2026-04-15T00:00:00Z",
@@ -161,9 +162,9 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.888,
+      "overall_score": 1.903,
       "confidence": "medium",
-      "confidence_value": 0.603,
+      "confidence_value": 0.605,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -173,7 +174,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.216,
+        "political": 3.239,
         "military": 0.038,
         "policing": 0.018,
         "migration": 0.0,
@@ -184,8 +185,8 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 158,
-      "recent_incident_count": 32,
+      "incident_count": 161,
+      "recent_incident_count": 34,
       "top_incidents": [
         {
           "time": "2026-04-15T12:46:29Z",
@@ -242,7 +243,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.653,
+      "overall_score": 1.668,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -254,7 +255,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.878,
+        "political": 2.901,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -264,8 +265,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 152,
-      "recent_incident_count": 20,
+      "incident_count": 153,
+      "recent_incident_count": 21,
       "top_incidents": [
         {
           "time": "2026-04-15T00:00:00Z",
@@ -322,9 +323,9 @@
     {
       "country": "Turkey",
       "overall": "normal",
-      "overall_score": 1.479,
+      "overall_score": 1.555,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.599,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -334,19 +335,31 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.61,
-        "military": 0.0,
-        "policing": 0.0,
+        "political": 2.649,
+        "military": 0.084,
+        "policing": 0.147,
         "migration": 0.0,
-        "social": 0.0,
+        "social": 0.225,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "shooting"
       ],
-      "incident_count": 111,
-      "recent_incident_count": 12,
+      "incident_count": 115,
+      "recent_incident_count": 16,
       "top_incidents": [
+        {
+          "time": "2026-04-15T12:36:29Z",
+          "title": "Nine dead and 13 injured in second school shooting in Turkey this week, governor says",
+          "event_type": "shooting",
+          "score": 0.303,
+          "source": "RSS",
+          "dimensions": [
+            "policing",
+            "social"
+          ]
+        },
         {
           "time": "2026-04-15T00:00:00Z",
           "title": "Gurlek, Usak, Turkey",
@@ -360,6 +373,16 @@
         {
           "time": "2026-04-15T00:00:00Z",
           "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-15T00:00:00Z",
+          "title": "Gurlek, Usak, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -370,26 +393,6 @@
         {
           "time": "2026-04-15T00:00:00Z",
           "title": "Izmir, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-15T00:00:00Z",
-          "title": "Gurlek, Usak, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-15T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -480,9 +483,9 @@
       ]
     },
     {
-      "country": "Albania",
+      "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 1.232,
+      "overall_score": 1.314,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -494,7 +497,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.219,
+        "political": 2.35,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -504,12 +507,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 60,
-      "recent_incident_count": 14,
+      "incident_count": 65,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-04-15T00:00:00Z",
-          "title": "Albania",
+          "title": "Mitrovica, Mitrovica, Kosovo",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-15T00:00:00Z",
+          "title": "Kosovo",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -519,7 +532,7 @@
         },
         {
           "time": "2026-04-15T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
+          "title": "Kosovo",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -529,7 +542,7 @@
         },
         {
           "time": "2026-04-15T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
+          "title": "Ferizaj, Opstina Urosevac, Kosovo",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -539,17 +552,7 @@
         },
         {
           "time": "2026-04-15T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-15T00:00:00Z",
-          "title": "Albania",
+          "title": "Balkan, , Kosovo",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -560,9 +563,9 @@
       ]
     },
     {
-      "country": "Kosovo",
+      "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.197,
+      "overall_score": 1.261,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -574,7 +577,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.161,
+        "political": 2.265,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -585,11 +588,11 @@
         "unknown"
       ],
       "incident_count": 61,
-      "recent_incident_count": 9,
+      "recent_incident_count": 15,
       "top_incidents": [
         {
           "time": "2026-04-15T00:00:00Z",
-          "title": "Kosovo",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -599,7 +602,7 @@
         },
         {
           "time": "2026-04-15T00:00:00Z",
-          "title": "Kosovo",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -608,30 +611,30 @@
           ]
         },
         {
-          "time": "2026-04-14T00:00:00Z",
-          "title": "Mitrovica, Mitrovica, Kosovo",
+          "time": "2026-04-15T00:00:00Z",
+          "title": "Albania",
           "event_type": "unknown",
-          "score": 0.149,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-04-14T00:00:00Z",
-          "title": "Leposavic, Komuna e Leposaviqit, Kosovo",
+          "time": "2026-04-15T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
-          "score": 0.149,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-04-14T00:00:00Z",
-          "title": "Kosovo",
+          "time": "2026-04-15T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -962,9 +965,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.538,
+      "overall_score": 0.656,
       "confidence": "medium",
-      "confidence_value": 0.655,
+      "confidence_value": 0.668,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -974,30 +977,53 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.819,
-        "military": 0.047,
-        "policing": 0.182,
+        "political": 0.946,
+        "military": 0.095,
+        "policing": 0.184,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.086
+        "social": 0.048,
+        "infrastructure": 0.164
       },
       "drivers": [
         "unknown",
         "explosion",
-        "deescalation"
+        "protest"
       ],
-      "incident_count": 22,
-      "recent_incident_count": 4,
+      "incident_count": 25,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-04-15T09:54:34Z",
           "title": "Australian lesbian group’s fight to bar trans women to return to tribunal after federal court win",
           "event_type": "explosion",
-          "score": 0.38,
+          "score": 0.317,
           "source": "RSS",
           "dimensions": [
             "political",
             "policing"
+          ]
+        },
+        {
+          "time": "2026-04-15T16:04:48Z",
+          "title": "Peace activist, 91, walks across Ireland in protest against US military stopovers",
+          "event_type": "protest",
+          "score": 0.195,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-04-15T00:00:00Z",
+          "title": "Balkan, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
           ]
         },
         {
@@ -1018,28 +1044,6 @@
           "source": "GDELT",
           "dimensions": [
             "political"
-          ]
-        },
-        {
-          "time": "2026-04-15T15:22:45Z",
-          "title": "Trump says war in Iran ‘can be over very soon’ amid uncertain peace negotiations",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-04-15T14:52:14Z",
-          "title": "Sinlaku rips through Northern Mariana Islands as strongest tropical cyclone this year",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "infrastructure"
           ]
         }
       ]
@@ -1113,10 +1117,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1108,
+    "incident_count": 1125,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 89
+    "rss_story_count_raw": 133
   },
   "legend": {
     "levels": [
