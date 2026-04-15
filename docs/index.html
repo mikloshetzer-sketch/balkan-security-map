@@ -38,8 +38,10 @@
       --safe-right: max(env(safe-area-inset-right), 0px);
       --safe-left: max(env(safe-area-inset-left), 0px);
       --safe-bottom: max(env(safe-area-inset-bottom), 0px);
-      --country-chart-h: 160px;
-      --map-overlay-top: 190px;
+
+      /* JAVÍTVA */
+      --country-chart-h: 185px;
+      --map-overlay-top: 235px;
     }
 
     * { box-sizing: border-box; }
@@ -249,7 +251,7 @@
       box-shadow: var(--shadow-soft);
       border-radius: 18px;
       backdrop-filter: blur(8px);
-      padding: 12px 14px 10px;
+      padding: 12px 14px 12px;
     }
 
     .country-chart-top{
@@ -326,8 +328,8 @@
     }
 
     .country-chart-canvas{
-      margin-top: 10px;
-      height: 95px;
+      margin-top: 12px;
+      height: 108px;
       width: 100%;
       position: relative;
     }
@@ -1014,7 +1016,7 @@
         height: auto;
         min-height: 100vh;
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto minmax(520px, 65vh) auto;
+        grid-template-rows: auto auto minmax(560px, 68vh) auto;
         grid-template-areas:
           "header"
           "left"
@@ -1035,16 +1037,12 @@
       .sidebar-right{
         max-height: none;
       }
-
-      .country-chart-panel{
-        position: absolute;
-      }
     }
 
     @media (max-width: 720px){
       :root{
-        --country-chart-h: 220px;
-        --map-overlay-top: 250px;
+        --country-chart-h: 235px;
+        --map-overlay-top: 275px;
       }
 
       .app{
@@ -1096,7 +1094,7 @@
       }
 
       .country-chart-canvas{
-        height: 120px;
+        height: 128px;
       }
     }
   </style>
@@ -2242,7 +2240,6 @@
 
     function renderCountryChart(countryData){
       const wrap = document.getElementById("countryChartCanvasWrap");
-      const svg = document.getElementById("countryPartyChart");
       const sub = document.getElementById("countryChartSub");
       const sourceCountEl = document.getElementById("chartSourceCount");
       const latestDateEl = document.getElementById("chartLatestDate");
