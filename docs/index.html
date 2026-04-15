@@ -39,7 +39,6 @@
       --safe-left: max(env(safe-area-inset-left), 0px);
       --safe-bottom: max(env(safe-area-inset-bottom), 0px);
 
-      /* JAVÍTVA */
       --country-chart-h: 185px;
       --map-overlay-top: 235px;
     }
@@ -370,20 +369,22 @@
     .map-note,
     .map-tools{
       pointer-events:auto;
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.86);
       border: 1px solid var(--line);
       box-shadow: var(--shadow-soft);
-      border-radius: 16px;
+      border-radius: 14px;
       backdrop-filter: blur(8px);
     }
 
+    /* KISEBB OVERLAY NOTE */
     .map-note{
-      max-width: 360px;
-      padding: 10px 12px;
+      max-width: 260px;
+      padding: 6px 8px;
+      opacity: 0.85;
     }
 
     .map-note-title{
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -391,17 +392,18 @@
     }
 
     .map-note-text{
-      margin-top: 5px;
-      font-size: 12px;
-      line-height: 1.45;
+      margin-top: 4px;
+      font-size: 10.5px;
+      line-height: 1.3;
       color: var(--muted);
     }
 
+    /* KISEBB TOOLBAR */
     .map-tools{
-      padding: 8px;
+      padding: 6px;
       display:flex;
       align-items:center;
-      gap:8px;
+      gap:6px;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
@@ -410,9 +412,9 @@
       border: 1px solid var(--line);
       background: #fff;
       color: var(--text);
-      border-radius: 10px;
-      padding: 7px 10px;
-      font-size: 12px;
+      border-radius: 9px;
+      padding: 5px 8px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       transition: 0.15s ease;
@@ -1096,6 +1098,10 @@
       .country-chart-canvas{
         height: 128px;
       }
+
+      .map-note{
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -1596,8 +1602,7 @@
         fillOpacity: 0.85
       };
     }
-
-    function trustedStoryToFeature(story){
+        function trustedStoryToFeature(story){
       if (!story || !story.country_hint) return null;
 
       const countryCenters = {
