@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-18T17:55:42Z",
+  "generated_utc": "2026-04-18T19:11:45Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.15,
+    "overall_score": 1.159,
     "confidence": "medium",
-    "confidence_value": 0.584,
+    "confidence_value": 0.585,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.026,
-      "military": 0.015,
+      "political": 2.035,
+      "military": 0.013,
       "policing": 0.006,
-      "migration": 0.007,
-      "social": 0.011,
-      "infrastructure": 0.013
+      "migration": 0.006,
+      "social": 0.023,
+      "infrastructure": 0.012
     },
     "watchlist": [
       {
@@ -75,7 +75,8 @@
       "unknown",
       "deescalation",
       "explosion",
-      "protest"
+      "protest",
+      "troop_movement"
     ]
   },
   "countries": [
@@ -160,91 +161,6 @@
       ]
     },
     {
-      "country": "Hungary",
-      "overall": "normal",
-      "overall_score": 1.767,
-      "confidence": "medium",
-      "confidence_value": 0.596,
-      "dimensions": {
-        "political": "tense",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 3.012,
-        "military": 0.09,
-        "policing": 0.0,
-        "migration": 0.081,
-        "social": 0.081,
-        "infrastructure": 0.081
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 155,
-      "recent_incident_count": 17,
-      "top_incidents": [
-        {
-          "time": "2026-04-18T12:16:14Z",
-          "title": "Trump is facing an increasingly defiant world",
-          "event_type": "explosion",
-          "score": 0.412,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "migration",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-04-18T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-18T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-18T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-18T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Romania",
       "overall": "normal",
       "overall_score": 1.765,
@@ -317,6 +233,91 @@
           "title": "Romania",
           "event_type": "unknown",
           "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Hungary",
+      "overall": "normal",
+      "overall_score": 1.762,
+      "confidence": "medium",
+      "confidence_value": 0.596,
+      "dimensions": {
+        "political": "tense",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 3.01,
+        "military": 0.076,
+        "policing": 0.0,
+        "migration": 0.067,
+        "social": 0.067,
+        "infrastructure": 0.067
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 155,
+      "recent_incident_count": 17,
+      "top_incidents": [
+        {
+          "time": "2026-04-18T12:16:14Z",
+          "title": "Trump is facing an increasingly defiant world",
+          "event_type": "explosion",
+          "score": 0.34,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "migration",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-04-18T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-18T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-18T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-18T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -422,9 +423,9 @@
       "dimension_scores": {
         "political": 2.649,
         "military": 0.0,
-        "policing": 0.056,
+        "policing": 0.055,
         "migration": 0.0,
-        "social": 0.056,
+        "social": 0.055,
         "infrastructure": 0.0
       },
       "drivers": [
@@ -478,7 +479,7 @@
           "time": "2026-04-18T07:00:06Z",
           "title": "Young Bulgarians hold out for change in eighth election in five years",
           "event_type": "protest",
-          "score": 0.171,
+          "score": 0.168,
           "source": "RSS",
           "dimensions": [
             "political",
@@ -971,9 +972,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.52,
+      "overall_score": 0.635,
       "confidence": "medium",
-      "confidence_value": 0.63,
+      "confidence_value": 0.645,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -983,20 +984,32 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.919,
-        "military": 0.075,
+        "political": 1.034,
+        "military": 0.064,
         "policing": 0.0,
         "migration": 0.013,
-        "social": 0.0,
+        "social": 0.179,
         "infrastructure": 0.031
       },
       "drivers": [
         "unknown",
+        "troop_movement",
         "deescalation"
       ],
-      "incident_count": 21,
-      "recent_incident_count": 5,
+      "incident_count": 22,
+      "recent_incident_count": 6,
       "top_incidents": [
+        {
+          "time": "2026-04-18T18:03:56Z",
+          "title": "At anti-Trump rally, Sánchez promises to ‘twist the arm’ of the global right",
+          "event_type": "troop_movement",
+          "score": 0.373,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social"
+          ]
+        },
         {
           "time": "2026-04-17T00:00:00Z",
           "title": "Pljevlja, Montenegro (general), Montenegro",
@@ -1030,16 +1043,6 @@
         {
           "time": "2026-04-16T00:00:00Z",
           "title": "Kape, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-16T00:00:00Z",
-          "title": "Balkan, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1118,7 +1121,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1149,
+    "incident_count": 1150,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 129
