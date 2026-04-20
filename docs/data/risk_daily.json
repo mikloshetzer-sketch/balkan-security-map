@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-20T19:38:36Z",
+  "generated_utc": "2026-04-20T21:08:17Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.18,
+    "overall_score": 1.184,
     "confidence": "medium",
     "confidence_value": 0.588,
     "dimensions": {
@@ -22,14 +22,23 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.079,
+      "political": 2.081,
       "military": 0.008,
       "policing": 0.011,
       "migration": 0.005,
-      "social": 0.015,
-      "infrastructure": 0.031
+      "social": 0.017,
+      "infrastructure": 0.037
     },
     "watchlist": [
+      {
+        "country": "Greece",
+        "overall": "elevated",
+        "overall_score": 2.193,
+        "drivers": [
+          "unknown",
+          "military_exercise"
+        ]
+      },
       {
         "country": "Kosovo",
         "overall": "elevated",
@@ -61,14 +70,6 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Bosnia and Herzegovina",
-        "overall": "elevated",
-        "overall_score": 0.789,
-        "drivers": [
-          "unknown"
-        ]
       }
     ],
     "top_drivers": [
@@ -81,8 +82,8 @@
   "countries": [
     {
       "country": "Greece",
-      "overall": "normal",
-      "overall_score": 2.178,
+      "overall": "elevated",
+      "overall_score": 2.193,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -94,7 +95,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.635,
+        "political": 3.656,
         "military": 0.041,
         "policing": 0.0,
         "migration": 0.041,
@@ -105,8 +106,8 @@
         "unknown",
         "military_exercise"
       ],
-      "incident_count": 299,
-      "recent_incident_count": 38,
+      "incident_count": 302,
+      "recent_incident_count": 41,
       "top_incidents": [
         {
           "time": "2026-04-20T18:17:42Z",
@@ -167,9 +168,9 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.78,
+      "overall_score": 1.809,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.591,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -179,18 +180,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.068,
+        "political": 3.107,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
+        "social": 0.024,
+        "infrastructure": 0.024
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 152,
-      "recent_incident_count": 19,
+      "incident_count": 155,
+      "recent_incident_count": 22,
       "top_incidents": [
         {
           "time": "2026-04-20T00:00:00Z",
@@ -247,7 +248,7 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.728,
+      "overall_score": 1.727,
       "confidence": "medium",
       "confidence_value": 0.595,
       "dimensions": {
@@ -259,7 +260,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.966,
+        "political": 2.965,
         "military": 0.051,
         "policing": 0.051,
         "migration": 0.0,
@@ -842,7 +843,7 @@
       "top_incidents": [
         {
           "time": "2026-04-20T00:00:00Z",
-          "title": "Doboj, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "title": "Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.182,
           "source": "GDELT",
@@ -852,7 +853,7 @@
         },
         {
           "time": "2026-04-20T00:00:00Z",
-          "title": "Bosnia-Herzegovina",
+          "title": "Doboj, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.182,
           "source": "GDELT",
@@ -987,12 +988,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.238,
+        "political": 1.213,
         "military": 0.01,
         "policing": 0.0,
         "migration": 0.006,
         "social": 0.0,
-        "infrastructure": 0.106
+        "infrastructure": 0.15
       },
       "drivers": [
         "unknown",
@@ -1001,6 +1002,16 @@
       "incident_count": 26,
       "recent_incident_count": 8,
       "top_incidents": [
+        {
+          "time": "2026-04-20T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-04-20T00:00:00Z",
           "title": "Balkan, Montenegro (general), Montenegro",
@@ -1024,16 +1035,6 @@
         {
           "time": "2026-04-20T00:00:00Z",
           "title": "Herceg Novi, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-20T00:00:00Z",
-          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -1122,10 +1123,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1187,
+    "incident_count": 1193,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 126
+    "rss_story_count_raw": 128
   },
   "legend": {
     "levels": [
