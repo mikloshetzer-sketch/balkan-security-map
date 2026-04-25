@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-04-25T11:11:14Z",
+  "generated_utc": "2026-04-25T11:58:04Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.153,
+    "overall_score": 1.157,
     "confidence": "medium",
     "confidence_value": 0.587,
     "dimensions": {
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.037,
+      "political": 2.044,
       "military": 0.006,
       "policing": 0.005,
       "migration": 0.0,
@@ -30,14 +30,6 @@
       "infrastructure": 0.016
     },
     "watchlist": [
-      {
-        "country": "Turkey",
-        "overall": "elevated",
-        "overall_score": 1.458,
-        "drivers": [
-          "unknown"
-        ]
-      },
       {
         "country": "Kosovo",
         "overall": "elevated",
@@ -69,6 +61,14 @@
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Slovenia",
+        "overall": "elevated",
+        "overall_score": 0.697,
+        "drivers": [
+          "unknown"
+        ]
       }
     ],
     "top_drivers": [
@@ -80,7 +80,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.184,
+      "overall_score": 2.189,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -92,7 +92,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.649,
+        "political": 3.656,
         "military": 0.028,
         "policing": 0.0,
         "migration": 0.0,
@@ -102,8 +102,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 311,
-      "recent_incident_count": 34,
+      "incident_count": 312,
+      "recent_incident_count": 35,
       "top_incidents": [
         {
           "time": "2026-04-25T00:00:00Z",
@@ -240,7 +240,7 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.547,
+      "overall_score": 1.584,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -252,7 +252,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.717,
+        "political": 2.772,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -262,12 +262,32 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 123,
-      "recent_incident_count": 11,
+      "incident_count": 125,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-04-25T00:00:00Z",
           "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-25T00:00:00Z",
+          "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-04-25T00:00:00Z",
+          "title": "Iztok, Blagoevgrad, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -288,26 +308,6 @@
         {
           "time": "2026-04-24T00:00:00Z",
           "title": "Sofia, Sofiya-Grad, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-24T00:00:00Z",
-          "title": "Burgas, Burgas, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-04-24T00:00:00Z",
-          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -399,12 +399,12 @@
     },
     {
       "country": "Turkey",
-      "overall": "elevated",
-      "overall_score": 1.458,
+      "overall": "normal",
+      "overall_score": 1.479,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -412,7 +412,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.57,
+        "political": 2.603,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -422,8 +422,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 106,
-      "recent_incident_count": 13,
+      "incident_count": 107,
+      "recent_incident_count": 14,
       "top_incidents": [
         {
           "time": "2026-04-25T00:00:00Z",
@@ -466,10 +466,10 @@
           ]
         },
         {
-          "time": "2026-04-24T00:00:00Z",
-          "title": "Gallipoli Peninsula, Çnakkale, Turkey",
+          "time": "2026-04-25T00:00:00Z",
+          "title": "Denizli, Denizli, Turkey",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -892,7 +892,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.252,
+        "political": 1.251,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -903,7 +903,7 @@
         "unknown"
       ],
       "incident_count": 30,
-      "recent_incident_count": 3,
+      "recent_incident_count": 2,
       "top_incidents": [
         {
           "time": "2026-04-24T00:00:00Z",
@@ -1107,7 +1107,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1185,
+    "incident_count": 1189,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 132
