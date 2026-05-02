@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-02T10:13:41Z",
+  "generated_utc": "2026-05-02T11:09:53Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.119,
+    "overall_score": 1.126,
     "confidence": "medium",
-    "confidence_value": 0.585,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.988,
-      "military": 0.003,
-      "policing": 0.007,
-      "migration": 0.0,
-      "social": 0.001,
-      "infrastructure": 0.009
+      "political": 1.997,
+      "military": 0.002,
+      "policing": 0.011,
+      "migration": 0.002,
+      "social": 0.005,
+      "infrastructure": 0.015
     },
     "watchlist": [
       {
@@ -41,7 +41,7 @@
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.415,
+        "overall_score": 1.437,
         "drivers": [
           "unknown"
         ]
@@ -49,9 +49,10 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.36,
+        "overall_score": 1.417,
         "drivers": [
-          "unknown"
+          "unknown",
+          "violent_protest"
         ]
       },
       {
@@ -72,7 +73,8 @@
       }
     ],
     "top_drivers": [
-      "unknown"
+      "unknown",
+      "violent_protest"
     ]
   },
   "countries": [
@@ -159,7 +161,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.724,
+      "overall_score": 1.738,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -171,7 +173,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.979,
+        "political": 3.0,
         "military": 0.024,
         "policing": 0.0,
         "migration": 0.0,
@@ -181,9 +183,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 171,
-      "recent_incident_count": 11,
+      "incident_count": 172,
+      "recent_incident_count": 12,
       "top_incidents": [
+        {
+          "time": "2026-05-02T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-05-02T00:00:00Z",
           "title": "Romania",
@@ -216,19 +228,9 @@
         },
         {
           "time": "2026-05-02T00:00:00Z",
-          "title": "Romania",
+          "title": "Tulcea, Tulcea, Romania",
           "event_type": "unknown",
           "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-01T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -319,7 +321,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.415,
+      "overall_score": 1.437,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -331,7 +333,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.51,
+        "political": 2.545,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -341,12 +343,12 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 94,
-      "recent_incident_count": 12,
+      "incident_count": 95,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-05-02T00:00:00Z",
-          "title": "Hungary",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -356,7 +358,7 @@
         },
         {
           "time": "2026-05-02T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -376,7 +378,7 @@
         },
         {
           "time": "2026-05-02T00:00:00Z",
-          "title": "Szeged, Szeged, Hungary",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -386,7 +388,7 @@
         },
         {
           "time": "2026-05-02T00:00:00Z",
-          "title": "Hungary",
+          "title": "Szeged, Szeged, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -399,9 +401,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.36,
+      "overall_score": 1.417,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -411,19 +413,33 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.413,
-        "military": 0.012,
-        "policing": 0.012,
-        "migration": 0.0,
-        "social": 0.012,
-        "infrastructure": 0.012
+        "political": 2.463,
+        "military": 0.0,
+        "policing": 0.063,
+        "migration": 0.029,
+        "social": 0.063,
+        "infrastructure": 0.091
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "violent_protest"
       ],
-      "incident_count": 93,
-      "recent_incident_count": 9,
+      "incident_count": 95,
+      "recent_incident_count": 11,
       "top_incidents": [
+        {
+          "time": "2026-05-01T11:51:51Z",
+          "title": "Turkish police fire tear gas and arrest at least 570 people at May Day rallies",
+          "event_type": "violent_protest",
+          "score": 0.254,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
+          ]
+        },
         {
           "time": "2026-05-02T00:00:00Z",
           "title": "Izmir, Izmir, Turkey",
@@ -455,20 +471,10 @@
           ]
         },
         {
-          "time": "2026-05-01T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
+          "time": "2026-05-02T00:00:00Z",
+          "title": "Boursa, Bursa, Turkey",
           "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-01T00:00:00Z",
-          "title": "Mugla, Mugla, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -959,9 +965,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.603,
+      "overall_score": 0.61,
       "confidence": "medium",
-      "confidence_value": 0.615,
+      "confidence_value": 0.619,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -971,17 +977,17 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.075,
+        "political": 1.091,
         "military": 0.0,
         "policing": 0.038,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.083
+        "infrastructure": 0.075
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 31,
+      "incident_count": 32,
       "recent_incident_count": 6,
       "top_incidents": [
         {
@@ -1105,10 +1111,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1157,
+    "incident_count": 1162,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 94
+    "rss_story_count_raw": 131
   },
   "legend": {
     "levels": [
