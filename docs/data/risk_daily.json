@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-02T12:02:34Z",
+  "generated_utc": "2026-05-02T13:54:03Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.131,
+    "overall_score": 1.14,
     "confidence": "medium",
-    "confidence_value": 0.585,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.009,
+      "political": 2.02,
       "military": 0.002,
-      "policing": 0.006,
-      "migration": 0.0,
-      "social": 0.0,
-      "infrastructure": 0.007
+      "policing": 0.009,
+      "migration": 0.002,
+      "social": 0.003,
+      "infrastructure": 0.013
     },
     "watchlist": [
       {
@@ -49,15 +49,16 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.376,
+        "overall_score": 1.407,
         "drivers": [
-          "unknown"
+          "unknown",
+          "violent_protest"
         ]
       },
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.275,
+        "overall_score": 1.328,
         "drivers": [
           "unknown"
         ]
@@ -72,14 +73,15 @@
       }
     ],
     "top_drivers": [
-      "unknown"
+      "unknown",
+      "violent_protest"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.138,
+      "overall_score": 2.149,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -91,7 +93,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.584,
+        "political": 3.599,
         "military": 0.0,
         "policing": 0.04,
         "migration": 0.0,
@@ -101,8 +103,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 312,
-      "recent_incident_count": 30,
+      "incident_count": 314,
+      "recent_incident_count": 32,
       "top_incidents": [
         {
           "time": "2026-05-02T00:00:00Z",
@@ -159,7 +161,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.764,
+      "overall_score": 1.777,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -171,7 +173,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.04,
+        "political": 3.059,
         "military": 0.02,
         "policing": 0.0,
         "migration": 0.0,
@@ -181,8 +183,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 174,
-      "recent_incident_count": 14,
+      "incident_count": 175,
+      "recent_incident_count": 15,
       "top_incidents": [
         {
           "time": "2026-05-02T00:00:00Z",
@@ -376,7 +378,7 @@
         },
         {
           "time": "2026-05-02T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -386,7 +388,7 @@
         },
         {
           "time": "2026-05-02T00:00:00Z",
-          "title": "Szeged, Szeged, Hungary",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -399,9 +401,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.376,
+      "overall_score": 1.407,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -411,18 +413,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.449,
+        "political": 2.459,
         "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
+        "policing": 0.043,
+        "migration": 0.029,
+        "social": 0.043,
+        "infrastructure": 0.072
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "violent_protest"
       ],
-      "incident_count": 93,
-      "recent_incident_count": 9,
+      "incident_count": 95,
+      "recent_incident_count": 11,
       "top_incidents": [
         {
           "time": "2026-05-02T00:00:00Z",
@@ -465,13 +468,16 @@
           ]
         },
         {
-          "time": "2026-05-01T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
+          "time": "2026-05-01T11:51:51Z",
+          "title": "Turkish police fire tear gas and arrest at least 570 people at May Day rallies",
+          "event_type": "violent_protest",
+          "score": 0.175,
+          "source": "RSS",
           "dimensions": [
-            "political"
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
           ]
         }
       ]
@@ -479,7 +485,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.275,
+      "overall_score": 1.328,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -491,7 +497,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.288,
+        "political": 2.372,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -501,8 +507,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 77,
-      "recent_incident_count": 10,
+      "incident_count": 79,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-05-02T00:00:00Z",
@@ -525,28 +531,28 @@
           ]
         },
         {
-          "time": "2026-05-01T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-01T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-01T00:00:00Z",
+          "time": "2026-05-02T00:00:00Z",
           "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-02T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-01T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -959,9 +965,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.598,
+      "overall_score": 0.61,
       "confidence": "medium",
-      "confidence_value": 0.615,
+      "confidence_value": 0.619,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -971,7 +977,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.07,
+        "political": 1.091,
         "military": 0.0,
         "policing": 0.038,
         "migration": 0.0,
@@ -981,8 +987,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 31,
-      "recent_incident_count": 6,
+      "incident_count": 32,
+      "recent_incident_count": 5,
       "top_incidents": [
         {
           "time": "2026-05-01T00:00:00Z",
@@ -1105,10 +1111,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1163,
+    "incident_count": 1171,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 92
+    "rss_story_count_raw": 129
   },
   "legend": {
     "levels": [
