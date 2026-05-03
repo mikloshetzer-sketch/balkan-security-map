@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-03T17:13:57Z",
+  "generated_utc": "2026-05-03T18:08:05Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.116,
+    "overall_score": 1.118,
     "confidence": "medium",
     "confidence_value": 0.586,
     "dimensions": {
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.979,
+      "political": 1.982,
       "military": 0.001,
       "policing": 0.011,
       "migration": 0.001,
@@ -30,6 +30,15 @@
       "infrastructure": 0.01
     },
     "watchlist": [
+      {
+        "country": "Turkey",
+        "overall": "elevated",
+        "overall_score": 1.385,
+        "drivers": [
+          "unknown",
+          "violent_protest"
+        ]
+      },
       {
         "country": "Hungary",
         "overall": "elevated",
@@ -52,15 +61,6 @@
         "overall_score": 1.375,
         "drivers": [
           "unknown"
-        ]
-      },
-      {
-        "country": "Turkey",
-        "overall": "elevated",
-        "overall_score": 1.361,
-        "drivers": [
-          "unknown",
-          "violent_protest"
         ]
       },
       {
@@ -229,6 +229,87 @@
         {
           "time": "2026-05-03T00:00:00Z",
           "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Turkey",
+      "overall": "elevated",
+      "overall_score": 1.385,
+      "confidence": "medium",
+      "confidence_value": 0.596,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.427,
+        "military": 0.0,
+        "policing": 0.042,
+        "migration": 0.019,
+        "social": 0.042,
+        "infrastructure": 0.061
+      },
+      "drivers": [
+        "unknown",
+        "violent_protest"
+      ],
+      "incident_count": 98,
+      "recent_incident_count": 9,
+      "top_incidents": [
+        {
+          "time": "2026-05-03T00:00:00Z",
+          "title": "Gelibolu, Çnakkale, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-03T00:00:00Z",
+          "title": "Izmir, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-03T00:00:00Z",
+          "title": "Bursa, Bursa, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-03T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-03T00:00:00Z",
+          "title": "Izmir, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -474,90 +555,6 @@
           "source": "GDELT",
           "dimensions": [
             "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Turkey",
-      "overall": "elevated",
-      "overall_score": 1.361,
-      "confidence": "medium",
-      "confidence_value": 0.596,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.388,
-        "military": 0.0,
-        "policing": 0.042,
-        "migration": 0.019,
-        "social": 0.042,
-        "infrastructure": 0.061
-      },
-      "drivers": [
-        "unknown",
-        "violent_protest"
-      ],
-      "incident_count": 97,
-      "recent_incident_count": 8,
-      "top_incidents": [
-        {
-          "time": "2026-05-03T00:00:00Z",
-          "title": "Gelibolu, Çnakkale, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-03T00:00:00Z",
-          "title": "Bursa, Bursa, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-03T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-03T00:00:00Z",
-          "title": "Izmir, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-01T11:51:51Z",
-          "title": "Turkish police fire tear gas and arrest at least 570 people at May Day rallies",
-          "event_type": "violent_protest",
-          "score": 0.171,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social",
-            "infrastructure"
           ]
         }
       ]
@@ -885,7 +882,7 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.627,
+      "overall_score": 0.623,
       "confidence": "medium",
       "confidence_value": 0.618,
       "dimensions": {
@@ -897,12 +894,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.079,
-        "military": 0.017,
-        "policing": 0.099,
+        "political": 1.078,
+        "military": 0.014,
+        "policing": 0.096,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.072
+        "infrastructure": 0.069
       },
       "drivers": [
         "unknown"
@@ -941,19 +938,6 @@
           ]
         },
         {
-          "time": "2026-05-03T11:39:35Z",
-          "title": "US’s Rubio to visit Italy after Trump’s spats with Meloni, Pope Leo",
-          "event_type": "unknown",
-          "score": 0.067,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "policing",
-            "infrastructure"
-          ]
-        },
-        {
           "time": "2026-05-03T14:18:42Z",
           "title": "Spain demands release of Gaza flotilla activists ‘held illegally’ by Israel",
           "event_type": "unknown",
@@ -961,6 +945,16 @@
           "source": "RSS",
           "dimensions": [
             "policing"
+          ]
+        },
+        {
+          "time": "2026-04-30T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.063,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
           ]
         }
       ]
@@ -1114,7 +1108,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1164,
+    "incident_count": 1165,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 130
