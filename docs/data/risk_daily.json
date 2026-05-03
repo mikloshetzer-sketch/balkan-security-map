@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-03T19:31:35Z",
+  "generated_utc": "2026-05-03T21:06:10Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.121,
+    "overall_score": 1.131,
     "confidence": "medium",
     "confidence_value": 0.586,
     "dimensions": {
@@ -22,9 +22,9 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.987,
-      "military": 0.001,
-      "policing": 0.011,
+      "political": 1.999,
+      "military": 0.015,
+      "policing": 0.01,
       "migration": 0.001,
       "social": 0.003,
       "infrastructure": 0.01
@@ -66,7 +66,7 @@
       {
         "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 1.24,
+        "overall_score": 1.268,
         "drivers": [
           "unknown"
         ]
@@ -74,7 +74,8 @@
     ],
     "top_drivers": [
       "unknown",
-      "violent_protest"
+      "violent_protest",
+      "explosion"
     ]
   },
   "countries": [
@@ -562,7 +563,7 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 1.24,
+      "overall_score": 1.268,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -574,7 +575,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.231,
+        "political": 2.277,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -584,8 +585,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 74,
-      "recent_incident_count": 9,
+      "incident_count": 75,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-05-03T00:00:00Z",
@@ -618,10 +619,10 @@
           ]
         },
         {
-          "time": "2026-05-02T00:00:00Z",
-          "title": "Mitrovica, Mitrovica, Kosovo",
+          "time": "2026-05-03T00:00:00Z",
+          "title": "Zhur, Prizren, Kosovo",
           "event_type": "unknown",
-          "score": 0.149,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -629,9 +630,9 @@
         },
         {
           "time": "2026-05-02T00:00:00Z",
-          "title": "Kosovo",
+          "title": "Mitrovica, Mitrovica, Kosovo",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.149,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -881,12 +882,12 @@
     },
     {
       "country": "Montenegro",
-      "overall": "normal",
-      "overall_score": 0.623,
+      "overall": "elevated",
+      "overall_score": 0.731,
       "confidence": "medium",
-      "confidence_value": 0.618,
+      "confidence_value": 0.628,
       "dimensions": {
-        "political": "normal",
+        "political": "elevated",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -894,19 +895,31 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.078,
-        "military": 0.014,
-        "policing": 0.096,
+        "political": 1.185,
+        "military": 0.195,
+        "policing": 0.086,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.069
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "explosion"
       ],
-      "incident_count": 33,
-      "recent_incident_count": 4,
+      "incident_count": 34,
+      "recent_incident_count": 5,
       "top_incidents": [
+        {
+          "time": "2026-05-03T20:27:31Z",
+          "title": "Merz ‘not giving up on working with Trump’ despite Iran war spat",
+          "event_type": "explosion",
+          "score": 0.38,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military"
+          ]
+        },
         {
           "time": "2026-05-02T00:00:00Z",
           "title": "Montenegro",
@@ -935,16 +948,6 @@
           "source": "GDELT",
           "dimensions": [
             "political"
-          ]
-        },
-        {
-          "time": "2026-05-03T14:18:42Z",
-          "title": "Spain demands release of Gaza flotilla activists ‘held illegally’ by Israel",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "policing"
           ]
         },
         {
@@ -1108,10 +1111,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1169,
+    "incident_count": 1171,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 129
+    "rss_story_count_raw": 128
   },
   "legend": {
     "levels": [
