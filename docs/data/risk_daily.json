@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-09T08:54:40Z",
+  "generated_utc": "2026-05-09T10:19:23Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.17,
+    "overall_score": 1.182,
     "confidence": "medium",
     "confidence_value": 0.593,
     "dimensions": {
@@ -22,22 +22,29 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.081,
-      "military": 0.003,
+      "political": 2.101,
+      "military": 0.0,
       "policing": 0.005,
       "migration": 0.002,
       "social": 0.005,
-      "infrastructure": 0.01
+      "infrastructure": 0.007
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.407,
+        "overall_score": 1.394,
         "drivers": [
           "unknown",
-          "government_crisis",
-          "deescalation"
+          "government_crisis"
+        ]
+      },
+      {
+        "country": "Bulgaria",
+        "overall": "elevated",
+        "overall_score": 1.357,
+        "drivers": [
+          "unknown"
         ]
       },
       {
@@ -49,25 +56,17 @@
         ]
       },
       {
-        "country": "Bulgaria",
-        "overall": "elevated",
-        "overall_score": 1.306,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.224,
+        "overall_score": 1.252,
         "drivers": [
           "unknown"
         ]
       },
       {
-        "country": "Croatia",
+        "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 1.104,
+        "overall_score": 1.121,
         "drivers": [
           "unknown"
         ]
@@ -76,7 +75,6 @@
     "top_drivers": [
       "unknown",
       "government_crisis",
-      "deescalation",
       "protest"
     ]
   },
@@ -244,9 +242,9 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.407,
+      "overall_score": 1.394,
       "confidence": "medium",
-      "confidence_value": 0.599,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -256,20 +254,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.484,
-        "military": 0.034,
+        "political": 2.477,
+        "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.034
+        "infrastructure": 0.0
       },
       "drivers": [
         "unknown",
-        "government_crisis",
-        "deescalation"
+        "government_crisis"
       ],
-      "incident_count": 92,
-      "recent_incident_count": 14,
+      "incident_count": 91,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-05-09T00:00:00Z",
@@ -283,7 +280,7 @@
         },
         {
           "time": "2026-05-09T00:00:00Z",
-          "title": "Hungary",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -293,7 +290,7 @@
         },
         {
           "time": "2026-05-09T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -317,6 +314,86 @@
           "event_type": "government_crisis",
           "score": 0.169,
           "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Bulgaria",
+      "overall": "elevated",
+      "overall_score": 1.357,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.419,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 91,
+      "recent_incident_count": 11,
+      "top_incidents": [
+        {
+          "time": "2026-05-09T00:00:00Z",
+          "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-09T00:00:00Z",
+          "title": "Sofia, Sofiya-Grad, Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-09T00:00:00Z",
+          "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-08T00:00:00Z",
+          "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-08T00:00:00Z",
+          "title": "Sofia, Sofiya-Grad, Bulgaria",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
           "dimensions": [
             "political"
           ]
@@ -404,9 +481,9 @@
       ]
     },
     {
-      "country": "Bulgaria",
+      "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.306,
+      "overall_score": 1.252,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -418,7 +495,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.338,
+        "political": 2.251,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -428,12 +505,12 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 89,
+      "incident_count": 81,
       "recent_incident_count": 9,
       "top_incidents": [
         {
           "time": "2026-05-09T00:00:00Z",
-          "title": "Bulgaria",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -441,76 +518,6 @@
             "political"
           ]
         },
-        {
-          "time": "2026-05-08T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-08T00:00:00Z",
-          "title": "Sofia, Sofiya-Grad, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-08T00:00:00Z",
-          "title": "Kyustendil, Kyustendil, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-08T00:00:00Z",
-          "title": "Varna, Varna, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Albania",
-      "overall": "elevated",
-      "overall_score": 1.224,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.204,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 80,
-      "recent_incident_count": 8,
-      "top_incidents": [
         {
           "time": "2026-05-09T00:00:00Z",
           "title": "Albania",
@@ -523,7 +530,7 @@
         },
         {
           "time": "2026-05-09T00:00:00Z",
-          "title": "Albania",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -550,10 +557,80 @@
           "dimensions": [
             "political"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Kosovo",
+      "overall": "elevated",
+      "overall_score": 1.121,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.036,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 68,
+      "recent_incident_count": 4,
+      "top_incidents": [
+        {
+          "time": "2026-05-09T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
         },
         {
           "time": "2026-05-08T00:00:00Z",
-          "title": "Albania",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-08T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-08T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-07T00:00:00Z",
+          "title": "Kosovo",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -644,89 +721,9 @@
       ]
     },
     {
-      "country": "Kosovo",
-      "overall": "elevated",
-      "overall_score": 1.087,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.98,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 67,
-      "recent_incident_count": 3,
-      "top_incidents": [
-        {
-          "time": "2026-05-08T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-08T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-08T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-07T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-07T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.875,
+      "overall_score": 0.917,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -738,7 +735,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.622,
+        "political": 1.694,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -748,8 +745,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 43,
-      "recent_incident_count": 8,
+      "incident_count": 44,
+      "recent_incident_count": 9,
       "top_incidents": [
         {
           "time": "2026-05-09T00:00:00Z",
@@ -772,6 +769,16 @@
           ]
         },
         {
+          "time": "2026-05-09T00:00:00Z",
+          "title": "Transnistria, Moldova (general), Moldova",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-05-08T00:00:00Z",
           "title": "Moldova",
           "event_type": "unknown",
@@ -784,16 +791,6 @@
         {
           "time": "2026-05-08T00:00:00Z",
           "title": "Chisinau, Chisinau, Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-08T00:00:00Z",
-          "title": "Transnistria, Moldova (general), Moldova",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -806,7 +803,7 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.734,
+      "overall_score": 0.731,
       "confidence": "medium",
       "confidence_value": 0.623,
       "dimensions": {
@@ -818,7 +815,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.251,
+        "political": 1.245,
         "military": 0.0,
         "policing": 0.065,
         "migration": 0.027,
@@ -1102,10 +1099,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1057,
+    "incident_count": 1061,
     "country_count": 14,
     "active_country_count": 12,
-    "rss_story_count_raw": 128
+    "rss_story_count_raw": 130
   },
   "legend": {
     "levels": [
