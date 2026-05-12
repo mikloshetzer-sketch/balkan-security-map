@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-12T20:56:22Z",
+  "generated_utc": "2026-05-12T22:38:56Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.267,
+    "overall_score": 1.283,
     "confidence": "medium",
-    "confidence_value": 0.594,
+    "confidence_value": 0.595,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.245,
-      "military": 0.013,
+      "political": 2.251,
+      "military": 0.024,
       "policing": 0.0,
       "migration": 0.002,
-      "social": 0.008,
-      "infrastructure": 0.008
+      "social": 0.019,
+      "infrastructure": 0.037
     },
     "watchlist": [
       {
         "country": "Bulgaria",
         "overall": "elevated",
-        "overall_score": 1.411,
+        "overall_score": 1.388,
         "drivers": [
           "unknown"
         ]
@@ -56,17 +56,18 @@
         ]
       },
       {
-        "country": "Kosovo",
+        "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.231,
+        "overall_score": 1.276,
         "drivers": [
-          "unknown"
+          "unknown",
+          "explosion"
         ]
       },
       {
-        "country": "Turkey",
+        "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 1.212,
+        "overall_score": 1.231,
         "drivers": [
           "unknown"
         ]
@@ -81,7 +82,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.252,
+      "overall_score": 2.256,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -93,7 +94,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.744,
+        "political": 3.75,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -103,8 +104,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 317,
-      "recent_incident_count": 66,
+      "incident_count": 318,
+      "recent_incident_count": 67,
       "top_incidents": [
         {
           "time": "2026-05-12T00:00:00Z",
@@ -245,7 +246,7 @@
     {
       "country": "Bulgaria",
       "overall": "elevated",
-      "overall_score": 1.411,
+      "overall_score": 1.388,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -257,7 +258,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.504,
+        "political": 2.468,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -267,8 +268,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 93,
-      "recent_incident_count": 17,
+      "incident_count": 92,
+      "recent_incident_count": 16,
       "top_incidents": [
         {
           "time": "2026-05-12T00:00:00Z",
@@ -312,7 +313,7 @@
         },
         {
           "time": "2026-05-12T00:00:00Z",
-          "title": "Sofia, Sofiya-Grad, Bulgaria",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -484,6 +485,89 @@
       ]
     },
     {
+      "country": "Croatia",
+      "overall": "elevated",
+      "overall_score": 1.276,
+      "confidence": "medium",
+      "confidence_value": 0.596,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.22,
+        "military": 0.131,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.131,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 67,
+      "recent_incident_count": 12,
+      "top_incidents": [
+        {
+          "time": "2026-05-12T22:35:23Z",
+          "title": "Israel qualifies for Eurovision final",
+          "event_type": "explosion",
+          "score": 0.405,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Karlovac, Karlovacka, Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Kosovo",
       "overall": "elevated",
       "overall_score": 1.231,
@@ -644,89 +728,9 @@
       ]
     },
     {
-      "country": "Croatia",
-      "overall": "elevated",
-      "overall_score": 1.211,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.184,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 66,
-      "recent_incident_count": 11,
-      "top_incidents": [
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Karlovac, Karlovacka, Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Dugo Selo, Zagrebacka, Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.986,
+      "overall_score": 1.025,
       "confidence": "medium",
       "confidence_value": 0.595,
       "dimensions": {
@@ -738,7 +742,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.812,
+        "political": 1.876,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -748,8 +752,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 35,
-      "recent_incident_count": 10,
+      "incident_count": 36,
+      "recent_incident_count": 11,
       "top_incidents": [
         {
           "time": "2026-05-12T00:00:00Z",
@@ -884,6 +888,87 @@
       ]
     },
     {
+      "country": "Montenegro",
+      "overall": "elevated",
+      "overall_score": 0.739,
+      "confidence": "medium",
+      "confidence_value": 0.62,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.194,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.346
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 28,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-05-12T22:04:03Z",
+          "title": "Death of man struck by Frontier Airlines plane ruled suicide by medical examiner",
+          "event_type": "explosion",
+          "score": 0.375,
+          "source": "RSS",
+          "dimensions": [
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-11T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-11T00:00:00Z",
+          "title": "Golubovci, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Slovenia",
       "overall": "elevated",
       "overall_score": 0.705,
@@ -964,86 +1049,6 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.631,
-      "confidence": "medium",
-      "confidence_value": 0.607,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.194,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 27,
-      "recent_incident_count": 6,
-      "top_incidents": [
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-11T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-11T00:00:00Z",
-          "title": "Golubovci, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-10T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "North Macedonia",
       "overall": "normal",
       "overall_score": 0.0,
@@ -1099,10 +1104,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1110,
+    "incident_count": 1113,
     "country_count": 14,
     "active_country_count": 12,
-    "rss_story_count_raw": 130
+    "rss_story_count_raw": 129
   },
   "legend": {
     "levels": [
