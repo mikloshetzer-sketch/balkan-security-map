@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-13T00:16:18Z",
+  "generated_utc": "2026-05-13T04:17:59Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.147,
+    "overall_score": 1.153,
     "confidence": "medium",
-    "confidence_value": 0.592,
+    "confidence_value": 0.59,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,14 +22,24 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.026,
-      "military": 0.023,
-      "policing": 0.0,
-      "migration": 0.002,
-      "social": 0.018,
-      "infrastructure": 0.036
+      "political": 2.05,
+      "military": 0.016,
+      "policing": 0.005,
+      "migration": 0.003,
+      "social": 0.014,
+      "infrastructure": 0.005
     },
     "watchlist": [
+      {
+        "country": "Hungary",
+        "overall": "elevated",
+        "overall_score": 1.328,
+        "drivers": [
+          "unknown",
+          "explosion",
+          "protest"
+        ]
+      },
       {
         "country": "Bulgaria",
         "overall": "elevated",
@@ -39,18 +49,9 @@
         ]
       },
       {
-        "country": "Hungary",
-        "overall": "elevated",
-        "overall_score": 1.233,
-        "drivers": [
-          "unknown",
-          "explosion"
-        ]
-      },
-      {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.152,
+        "overall_score": 1.188,
         "drivers": [
           "unknown"
         ]
@@ -75,14 +76,15 @@
     ],
     "top_drivers": [
       "unknown",
-      "explosion"
+      "explosion",
+      "protest"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.165,
+      "overall_score": 2.205,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -94,7 +96,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.624,
+        "political": 3.68,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -104,9 +106,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 293,
-      "recent_incident_count": 33,
+      "incident_count": 300,
+      "recent_incident_count": 40,
       "top_incidents": [
+        {
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-05-13T00:00:00Z",
           "title": "Athens, AttikíR, Greece",
@@ -118,40 +130,30 @@
           ]
         },
         {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Greece",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.209,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Greece",
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Mount Athos, Aftonomi Monastiki Politeia Agiou Orous, Greece",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.209,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Greece",
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Ilioupoli, Perifereia Attikis, Greece",
           "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.209,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -162,9 +164,9 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.771,
+      "overall_score": 1.751,
       "confidence": "medium",
-      "confidence_value": 0.593,
+      "confidence_value": 0.591,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -174,33 +176,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.027,
-        "military": 0.083,
-        "policing": 0.0,
+        "political": 3.02,
+        "military": 0.0,
+        "policing": 0.024,
         "migration": 0.0,
-        "social": 0.083,
-        "infrastructure": 0.083
+        "social": 0.0,
+        "infrastructure": 0.024
       },
       "drivers": [
-        "unknown",
-        "explosion"
+        "unknown"
       ],
       "incident_count": 148,
       "recent_incident_count": 21,
       "top_incidents": [
-        {
-          "time": "2026-05-12T16:55:08Z",
-          "title": "German lawmaker downplays Trump troop withdrawal",
-          "event_type": "explosion",
-          "score": 0.339,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "social",
-            "infrastructure"
-          ]
-        },
         {
           "time": "2026-05-13T00:00:00Z",
           "title": "Romania",
@@ -234,6 +222,102 @@
         {
           "time": "2026-05-12T00:00:00Z",
           "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Cotroceni, Romania (general), Romania",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Hungary",
+      "overall": "elevated",
+      "overall_score": 1.328,
+      "confidence": "medium",
+      "confidence_value": 0.601,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.334,
+        "military": 0.0,
+        "policing": 0.041,
+        "migration": 0.041,
+        "social": 0.041,
+        "infrastructure": 0.041
+      },
+      "drivers": [
+        "unknown",
+        "explosion",
+        "protest"
+      ],
+      "incident_count": 87,
+      "recent_incident_count": 9,
+      "top_incidents": [
+        {
+          "time": "2026-05-11T14:42:12Z",
+          "title": "EU approves sanctions on Israeli settlers after Hungarian backing",
+          "event_type": "explosion",
+          "score": 0.225,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-13T02:00:00Z",
+          "title": "Bardella’s next dream: A Franco-German reset",
+          "event_type": "protest",
+          "score": 0.206,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "migration",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -324,90 +408,9 @@
       ]
     },
     {
-      "country": "Hungary",
-      "overall": "elevated",
-      "overall_score": 1.233,
-      "confidence": "medium",
-      "confidence_value": 0.597,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.22,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 84,
-      "recent_incident_count": 6,
-      "top_incidents": [
-        {
-          "time": "2026-05-11T14:42:12Z",
-          "title": "EU approves sanctions on Israeli settlers after Hungarian backing",
-          "event_type": "explosion",
-          "score": 0.225,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Szeged, Szeged, Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Szazhalombatta, Pest, Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.152,
+      "overall_score": 1.188,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -419,7 +422,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.088,
+        "political": 2.147,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -429,10 +432,20 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 77,
-      "recent_incident_count": 5,
+      "incident_count": 78,
+      "recent_incident_count": 6,
       "top_incidents": [
         {
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-05-12T00:00:00Z",
           "title": "Albania",
           "event_type": "unknown",
@@ -455,16 +468,6 @@
         {
           "time": "2026-05-12T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Albania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -500,7 +503,7 @@
       },
       "dimension_scores": {
         "political": 1.985,
-        "military": 0.057,
+        "military": 0.056,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
@@ -728,9 +731,9 @@
       ]
     },
     {
-      "country": "Moldova",
+      "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.873,
+      "overall_score": 0.881,
       "confidence": "medium",
       "confidence_value": 0.595,
       "dimensions": {
@@ -742,18 +745,98 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.607,
+        "political": 1.633,
         "military": 0.0,
         "policing": 0.0,
-        "migration": 0.029,
+        "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 42,
-      "recent_incident_count": 4,
+      "incident_count": 35,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.215,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.149,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.149,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.149,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-11T00:00:00Z",
+          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.149,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Moldova",
+      "overall": "elevated",
+      "overall_score": 0.859,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.595,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 41,
+      "recent_incident_count": 3,
       "top_incidents": [
         {
           "time": "2026-05-12T00:00:00Z",
@@ -798,167 +881,6 @@
         {
           "time": "2026-05-11T00:00:00Z",
           "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Bosnia and Herzegovina",
-      "overall": "elevated",
-      "overall_score": 0.828,
-      "confidence": "medium",
-      "confidence_value": 0.596,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.542,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 34,
-      "recent_incident_count": 6,
-      "top_incidents": [
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.149,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.149,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.149,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-11T00:00:00Z",
-          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.149,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-11T00:00:00Z",
-          "title": "Trnopolje, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.149,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Montenegro",
-      "overall": "normal",
-      "overall_score": 0.655,
-      "confidence": "medium",
-      "confidence_value": 0.622,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.027,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.346
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 26,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-05-12T22:04:03Z",
-          "title": "Death of man struck by Frontier Airlines plane ruled suicide by medical examiner",
-          "event_type": "explosion",
-          "score": 0.375,
-          "source": "RSS",
-          "dimensions": [
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-12T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-11T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-11T00:00:00Z",
-          "title": "Golubovci, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1049,6 +971,86 @@
       ]
     },
     {
+      "country": "Montenegro",
+      "overall": "normal",
+      "overall_score": 0.532,
+      "confidence": "medium",
+      "confidence_value": 0.603,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.016,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 24,
+      "recent_incident_count": 3,
+      "top_incidents": [
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-12T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-11T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-11T00:00:00Z",
+          "title": "Golubovci, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-10T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.063,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "North Macedonia",
       "overall": "normal",
       "overall_score": 0.0,
@@ -1104,10 +1106,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1018,
+    "incident_count": 1027,
     "country_count": 14,
     "active_country_count": 12,
-    "rss_story_count_raw": 129
+    "rss_story_count_raw": 125
   },
   "legend": {
     "levels": [
