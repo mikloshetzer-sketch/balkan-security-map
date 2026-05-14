@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-14T21:39:30Z",
+  "generated_utc": "2026-05-14T23:14:56Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.22,
+    "overall_score": 1.222,
     "confidence": "medium",
-    "confidence_value": 0.585,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,14 +22,22 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.157,
-      "military": 0.006,
-      "policing": 0.006,
-      "migration": 0.001,
-      "social": 0.001,
-      "infrastructure": 0.012
+      "political": 2.16,
+      "military": 0.012,
+      "policing": 0.002,
+      "migration": 0.0,
+      "social": 0.0,
+      "infrastructure": 0.011
     },
     "watchlist": [
+      {
+        "country": "Greece",
+        "overall": "elevated",
+        "overall_score": 2.265,
+        "drivers": [
+          "unknown"
+        ]
+      },
       {
         "country": "Hungary",
         "overall": "elevated",
@@ -47,25 +55,17 @@
         ]
       },
       {
+        "country": "Turkey",
+        "overall": "elevated",
+        "overall_score": 1.326,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
         "country": "Kosovo",
         "overall": "elevated",
         "overall_score": 1.325,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Turkey",
-        "overall": "elevated",
-        "overall_score": 1.311,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Croatia",
-        "overall": "elevated",
-        "overall_score": 1.154,
         "drivers": [
           "unknown"
         ]
@@ -78,8 +78,8 @@
   "countries": [
     {
       "country": "Greece",
-      "overall": "normal",
-      "overall_score": 2.261,
+      "overall": "elevated",
+      "overall_score": 2.265,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -91,7 +91,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.756,
+        "political": 3.762,
         "military": 0.02,
         "policing": 0.0,
         "migration": 0.0,
@@ -101,8 +101,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 325,
-      "recent_incident_count": 54,
+      "incident_count": 326,
+      "recent_incident_count": 55,
       "top_incidents": [
         {
           "time": "2026-05-14T00:00:00Z",
@@ -159,9 +159,9 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.862,
+      "overall_score": 1.858,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.591,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -171,18 +171,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.18,
-        "military": 0.033,
-        "policing": 0.01,
-        "migration": 0.01,
-        "social": 0.01,
-        "infrastructure": 0.033
+        "political": 3.179,
+        "military": 0.024,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.024
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 161,
-      "recent_incident_count": 28,
+      "incident_count": 160,
+      "recent_incident_count": 27,
       "top_incidents": [
         {
           "time": "2026-05-14T00:00:00Z",
@@ -477,6 +477,86 @@
       ]
     },
     {
+      "country": "Turkey",
+      "overall": "elevated",
+      "overall_score": 1.326,
+      "confidence": "medium",
+      "confidence_value": 0.595,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.361,
+        "military": 0.039,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 80,
+      "recent_incident_count": 16,
+      "top_incidents": [
+        {
+          "time": "2026-05-14T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-14T00:00:00Z",
+          "title": "Bergama, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-14T00:00:00Z",
+          "title": "Bursa, Bursa, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-14T00:00:00Z",
+          "title": "Edirne, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-14T00:00:00Z",
+          "title": "Pergamos, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Kosovo",
       "overall": "elevated",
       "overall_score": 1.325,
@@ -547,86 +627,6 @@
         {
           "time": "2026-05-14T00:00:00Z",
           "title": "Skenderaj, Srbica, Kosovo",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Turkey",
-      "overall": "elevated",
-      "overall_score": 1.311,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.345,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 78,
-      "recent_incident_count": 15,
-      "top_incidents": [
-        {
-          "time": "2026-05-14T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-14T00:00:00Z",
-          "title": "Bergama, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-14T00:00:00Z",
-          "title": "Bursa, Bursa, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-14T00:00:00Z",
-          "title": "Edirne, Edirne, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-14T00:00:00Z",
-          "title": "Pergamos, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -879,9 +879,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.769,
+      "overall_score": 0.783,
       "confidence": "medium",
-      "confidence_value": 0.611,
+      "confidence_value": 0.615,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -891,9 +891,9 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.389,
-        "military": 0.0,
-        "policing": 0.038,
+        "political": 1.408,
+        "military": 0.053,
+        "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.065
@@ -901,8 +901,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 30,
-      "recent_incident_count": 9,
+      "incident_count": 31,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-05-14T00:00:00Z",
@@ -1105,10 +1105,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1120,
+    "incident_count": 1123,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 93
+    "rss_story_count_raw": 133
   },
   "legend": {
     "levels": [
