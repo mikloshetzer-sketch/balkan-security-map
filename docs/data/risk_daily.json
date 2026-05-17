@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-17T10:02:47Z",
+  "generated_utc": "2026-05-17T11:36:11Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.134,
+    "overall_score": 1.139,
     "confidence": "medium",
     "confidence_value": 0.585,
     "dimensions": {
@@ -22,26 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.019,
+      "political": 2.022,
       "military": 0.006,
       "policing": 0.004,
       "migration": 0.001,
-      "social": 0.002,
+      "social": 0.017,
       "infrastructure": 0.005
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.346,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Kosovo",
-        "overall": "elevated",
-        "overall_score": 1.321,
+        "overall_score": 1.37,
         "drivers": [
           "unknown"
         ]
@@ -49,7 +41,16 @@
       {
         "country": "Bulgaria",
         "overall": "elevated",
-        "overall_score": 1.294,
+        "overall_score": 1.324,
+        "drivers": [
+          "unknown",
+          "protest"
+        ]
+      },
+      {
+        "country": "Kosovo",
+        "overall": "elevated",
+        "overall_score": 1.321,
         "drivers": [
           "unknown"
         ]
@@ -72,14 +73,15 @@
       }
     ],
     "top_drivers": [
-      "unknown"
+      "unknown",
+      "protest"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.134,
+      "overall_score": 2.139,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -91,7 +93,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.58,
+        "political": 3.588,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -101,8 +103,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 314,
-      "recent_incident_count": 19,
+      "incident_count": 315,
+      "recent_incident_count": 20,
       "top_incidents": [
         {
           "time": "2026-05-17T00:00:00Z",
@@ -116,7 +118,7 @@
         },
         {
           "time": "2026-05-17T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
+          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -126,7 +128,7 @@
         },
         {
           "time": "2026-05-17T00:00:00Z",
-          "title": "Greece",
+          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -239,7 +241,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.346,
+      "overall_score": 1.37,
       "confidence": "medium",
       "confidence_value": 0.594,
       "dimensions": {
@@ -251,7 +253,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.39,
+        "political": 2.429,
         "military": 0.013,
         "policing": 0.013,
         "migration": 0.0,
@@ -261,8 +263,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 93,
-      "recent_incident_count": 7,
+      "incident_count": 94,
+      "recent_incident_count": 8,
       "top_incidents": [
         {
           "time": "2026-05-17T00:00:00Z",
@@ -285,28 +287,109 @@
           ]
         },
         {
-          "time": "2026-05-16T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-16T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-16T00:00:00Z",
+          "time": "2026-05-17T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-16T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-16T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Bulgaria",
+      "overall": "elevated",
+      "overall_score": 1.324,
+      "confidence": "medium",
+      "confidence_value": 0.596,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.307,
+        "military": 0.0,
+        "policing": 0.015,
+        "migration": 0.0,
+        "social": 0.206,
+        "infrastructure": 0.015
+      },
+      "drivers": [
+        "unknown",
+        "protest"
+      ],
+      "incident_count": 92,
+      "recent_incident_count": 6,
+      "top_incidents": [
+        {
+          "time": "2026-05-17T11:23:00Z",
+          "title": "Bulgaria wins Eurovision song contest with Dara's Bangaranga – video",
+          "event_type": "protest",
+          "score": 0.201,
+          "source": "RSS",
+          "dimensions": [
+            "social"
+          ]
+        },
+        {
+          "time": "2026-05-17T00:00:00Z",
+          "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-16T00:00:00Z",
+          "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-16T00:00:00Z",
+          "title": "Sofia, Sofiya-Grad, Bulgaria",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-16T00:00:00Z",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -387,86 +470,6 @@
         {
           "time": "2026-05-16T00:00:00Z",
           "title": "Skenderaj, Srbica, Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Bulgaria",
-      "overall": "elevated",
-      "overall_score": 1.294,
-      "confidence": "medium",
-      "confidence_value": 0.592,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.307,
-        "military": 0.0,
-        "policing": 0.015,
-        "migration": 0.0,
-        "social": 0.015,
-        "infrastructure": 0.015
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 91,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-05-17T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-16T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-16T00:00:00Z",
-          "title": "Sofia, Sofiya-Grad, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-16T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-15T00:00:00Z",
-          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1115,10 +1118,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1114,
+    "incident_count": 1117,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 127
+    "rss_story_count_raw": 125
   },
   "legend": {
     "levels": [
