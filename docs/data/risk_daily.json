@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-22T18:07:50Z",
+  "generated_utc": "2026-05-22T20:13:02Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.224,
+    "overall_score": 1.237,
     "confidence": "medium",
-    "confidence_value": 0.585,
+    "confidence_value": 0.587,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,20 +22,21 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.155,
+      "political": 2.17,
       "military": 0.011,
-      "policing": 0.003,
+      "policing": 0.015,
       "migration": 0.0,
-      "social": 0.001,
-      "infrastructure": 0.014
+      "social": 0.016,
+      "infrastructure": 0.02
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.288,
+        "overall_score": 2.305,
         "drivers": [
-          "unknown"
+          "unknown",
+          "protest"
         ]
       },
       {
@@ -49,7 +50,7 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.413,
+        "overall_score": 1.435,
         "drivers": [
           "unknown"
         ]
@@ -65,23 +66,24 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.249,
+        "overall_score": 1.28,
         "drivers": [
           "unknown"
         ]
       }
     ],
     "top_drivers": [
-      "unknown"
+      "unknown",
+      "protest"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.288,
+      "overall_score": 2.305,
       "confidence": "medium",
-      "confidence_value": 0.591,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -91,20 +93,32 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.794,
+        "political": 3.813,
         "military": 0.0,
-        "policing": 0.035,
+        "policing": 0.124,
         "migration": 0.0,
-        "social": 0.0,
+        "social": 0.09,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "protest"
       ],
-      "incident_count": 348,
-      "recent_incident_count": 65,
+      "incident_count": 353,
+      "recent_incident_count": 70,
       "top_incidents": [
         {
+          "time": "2026-05-22T10:42:51Z",
+          "title": "Greece protesters marched in Athens outside Israeli embassy",
+          "event_type": "protest",
+          "score": 0.184,
+          "source": "RSS",
+          "dimensions": [
+            "policing",
+            "social"
+          ]
+        },
+        {
           "time": "2026-05-22T00:00:00Z",
           "title": "Greece",
           "event_type": "unknown",
@@ -127,16 +141,6 @@
         {
           "time": "2026-05-22T00:00:00Z",
           "title": "Athens, AttikíR, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-22T00:00:00Z",
-          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -286,27 +290,27 @@
         },
         {
           "time": "2026-05-22T00:00:00Z",
+          "title": "Matochina, Khaskovo, Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-22T00:00:00Z",
+          "title": "Svilengrad, Khaskovo, Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-22T00:00:00Z",
           "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-22T00:00:00Z",
-          "title": "Balkans, Vidin, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-22T00:00:00Z",
-          "title": "Panagyurishte, Pazardzhit, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -399,7 +403,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.413,
+      "overall_score": 1.435,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -411,7 +415,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.507,
+        "political": 2.542,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -421,12 +425,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 90,
-      "recent_incident_count": 13,
+      "incident_count": 91,
+      "recent_incident_count": 14,
       "top_incidents": [
         {
           "time": "2026-05-22T00:00:00Z",
           "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-22T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -457,16 +471,6 @@
         {
           "time": "2026-05-22T00:00:00Z",
           "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-22T00:00:00Z",
-          "title": "Mullaj, Fier, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -559,9 +563,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.249,
+      "overall_score": 1.28,
       "confidence": "medium",
-      "confidence_value": 0.598,
+      "confidence_value": 0.608,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -571,18 +575,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.209,
+        "political": 2.223,
         "military": 0.071,
-        "policing": 0.0,
+        "policing": 0.071,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.071
+        "social": 0.029,
+        "infrastructure": 0.112
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 69,
-      "recent_incident_count": 16,
+      "incident_count": 73,
+      "recent_incident_count": 20,
       "top_incidents": [
         {
           "time": "2026-05-22T00:00:00Z",
@@ -799,7 +803,7 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.94,
+      "overall_score": 0.98,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -811,7 +815,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.733,
+        "political": 1.801,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -821,14 +825,24 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 46,
-      "recent_incident_count": 6,
+      "incident_count": 47,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-05-22T00:00:00Z",
           "title": "Bileca, Republika Srpska, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-22T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -857,16 +871,6 @@
         {
           "time": "2026-05-21T00:00:00Z",
           "title": "Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-21T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.129,
           "source": "GDELT",
@@ -959,9 +963,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.607,
+      "overall_score": 0.667,
       "confidence": "medium",
-      "confidence_value": 0.601,
+      "confidence_value": 0.615,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -971,18 +975,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.106,
+        "political": 1.163,
         "military": 0.055,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.022
+        "social": 0.065,
+        "infrastructure": 0.055
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 28,
-      "recent_incident_count": 4,
+      "incident_count": 31,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-05-22T00:00:00Z",
@@ -1025,7 +1029,7 @@
           ]
         },
         {
-          "time": "2026-05-22T17:54:03Z",
+          "time": "2026-05-22T19:59:36Z",
           "title": "Tulsi Gabbard resigns as national intelligence director, with Trump naming Aaron Lukas as acting DNI chief – US politics live",
           "event_type": "unknown",
           "score": 0.067,
@@ -1116,10 +1120,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1234,
+    "incident_count": 1248,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 92
+    "rss_story_count_raw": 135
   },
   "legend": {
     "levels": [
