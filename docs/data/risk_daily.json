@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-24T14:04:17Z",
+  "generated_utc": "2026-05-24T15:36:49Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.076,
+    "overall_score": 1.082,
     "confidence": "medium",
-    "confidence_value": 0.581,
+    "confidence_value": 0.579,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,27 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.887,
+      "political": 1.905,
       "military": 0.0,
-      "policing": 0.015,
+      "policing": 0.0,
       "migration": 0.0,
-      "social": 0.01,
-      "infrastructure": 0.038
+      "social": 0.002,
+      "infrastructure": 0.028
     },
     "watchlist": [
       {
-        "country": "Greece",
-        "overall": "elevated",
-        "overall_score": 2.255,
-        "drivers": [
-          "unknown",
-          "protest"
-        ]
-      },
-      {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.337,
+        "overall_score": 1.362,
         "drivers": [
           "unknown"
         ]
@@ -66,27 +57,32 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.224,
+        "overall_score": 1.213,
         "drivers": [
-          "unknown",
-          "violent_protest"
+          "unknown"
+        ]
+      },
+      {
+        "country": "Croatia",
+        "overall": "elevated",
+        "overall_score": 1.008,
+        "drivers": [
+          "unknown"
         ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "protest",
-      "violent_protest",
       "explosion"
     ]
   },
   "countries": [
     {
       "country": "Greece",
-      "overall": "elevated",
-      "overall_score": 2.255,
+      "overall": "normal",
+      "overall_score": 2.264,
       "confidence": "medium",
-      "confidence_value": 0.591,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -96,19 +92,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.746,
+        "political": 3.762,
         "military": 0.0,
-        "policing": 0.061,
+        "policing": 0.0,
         "migration": 0.0,
-        "social": 0.061,
+        "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "protest"
+        "unknown"
       ],
-      "incident_count": 359,
-      "recent_incident_count": 37,
+      "incident_count": 361,
+      "recent_incident_count": 40,
       "top_incidents": [
         {
           "time": "2026-05-24T00:00:00Z",
@@ -165,7 +160,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.859,
+      "overall_score": 1.89,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -177,7 +172,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.185,
+        "political": 3.231,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -187,8 +182,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 196,
-      "recent_incident_count": 9,
+      "incident_count": 199,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-05-24T00:00:00Z",
@@ -203,6 +198,16 @@
         {
           "time": "2026-05-24T00:00:00Z",
           "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -229,23 +234,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-05-23T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.541,
+      "overall_score": 1.559,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -257,7 +252,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.706,
+        "political": 2.735,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -267,8 +262,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 112,
-      "recent_incident_count": 11,
+      "incident_count": 113,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-05-24T00:00:00Z",
@@ -301,10 +296,10 @@
           ]
         },
         {
-          "time": "2026-05-23T00:00:00Z",
-          "title": "Bulgaria",
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -325,7 +320,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.337,
+      "overall_score": 1.362,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -337,7 +332,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.386,
+        "political": 2.426,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -347,8 +342,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 89,
-      "recent_incident_count": 9,
+      "incident_count": 90,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-05-24T00:00:00Z",
@@ -381,10 +376,10 @@
           ]
         },
         {
-          "time": "2026-05-23T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Albania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -392,7 +387,7 @@
         },
         {
           "time": "2026-05-23T00:00:00Z",
-          "title": "Albania",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -565,9 +560,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.224,
+      "overall_score": 1.213,
       "confidence": "medium",
-      "confidence_value": 0.603,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -577,30 +572,27 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.121,
+        "political": 2.187,
         "military": 0.0,
-        "policing": 0.15,
+        "policing": 0.0,
         "migration": 0.0,
-        "social": 0.019,
-        "infrastructure": 0.132
+        "social": 0.0,
+        "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "violent_protest"
+        "unknown"
       ],
-      "incident_count": 73,
-      "recent_incident_count": 7,
+      "incident_count": 71,
+      "recent_incident_count": 8,
       "top_incidents": [
         {
-          "time": "2026-05-24T13:56:54Z",
-          "title": "Turkish police storm main opposition headquarters with tear gas",
-          "event_type": "violent_protest",
-          "score": 0.308,
-          "source": "RSS",
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Kemal, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
           "dimensions": [
-            "political",
-            "policing",
-            "infrastructure"
+            "political"
           ]
         },
         {
@@ -635,7 +627,7 @@
         },
         {
           "time": "2026-05-24T00:00:00Z",
-          "title": "Kemal, Edirne, Turkey",
+          "title": "Manisa, Manisa, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -808,7 +800,7 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.876,
+      "overall_score": 0.919,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -820,7 +812,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.624,
+        "political": 1.697,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -830,9 +822,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 46,
-      "recent_incident_count": 3,
+      "incident_count": 47,
+      "recent_incident_count": 4,
       "top_incidents": [
+        {
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-05-23T00:00:00Z",
           "title": "Bileca, Republika Srpska, Bosnia-Herzegovina",
@@ -868,97 +870,6 @@
           "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-22T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Montenegro",
-      "overall": "normal",
-      "overall_score": 0.684,
-      "confidence": "medium",
-      "confidence_value": 0.628,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.01,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.064,
-        "infrastructure": 0.396
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 30,
-      "recent_incident_count": 7,
-      "top_incidents": [
-        {
-          "time": "2026-05-24T05:13:26Z",
-          "title": "Shark attack: man dies on Great Barrier Reef in far north Queensland",
-          "event_type": "explosion",
-          "score": 0.313,
-          "source": "RSS",
-          "dimensions": [
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-05-24T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-22T00:00:00Z",
-          "title": "Kotor, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-24T11:31:38Z",
-          "title": "With oil markets nearing the danger zone, a US-Iran deal can’t come soon enough | Heather Stewart",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-05-21T00:00:00Z",
-          "title": "Balkan, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.063,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1039,6 +950,87 @@
           "title": "Ljubljana, Slovenia (general), Slovenia",
           "event_type": "unknown",
           "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "overall": "normal",
+      "overall_score": 0.661,
+      "confidence": "medium",
+      "confidence_value": 0.62,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 0.987,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.027,
+        "infrastructure": 0.396
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 28,
+      "recent_incident_count": 5,
+      "top_incidents": [
+        {
+          "time": "2026-05-24T05:13:26Z",
+          "title": "Shark attack: man dies on Great Barrier Reef in far north Queensland",
+          "event_type": "explosion",
+          "score": 0.313,
+          "source": "RSS",
+          "dimensions": [
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-22T00:00:00Z",
+          "title": "Kotor, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-24T11:31:38Z",
+          "title": "With oil markets nearing the danger zone, a US-Iran deal can’t come soon enough | Heather Stewart",
+          "event_type": "unknown",
+          "score": 0.066,
+          "source": "RSS",
+          "dimensions": [
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-21T00:00:00Z",
+          "title": "Balkan, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.063,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1138,10 +1130,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1237,
+    "incident_count": 1241,
     "country_count": 14,
     "active_country_count": 14,
-    "rss_story_count_raw": 135
+    "rss_story_count_raw": 94
   },
   "legend": {
     "levels": [
