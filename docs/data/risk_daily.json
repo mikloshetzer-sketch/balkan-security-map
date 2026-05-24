@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-24T17:18:17Z",
+  "generated_utc": "2026-05-24T19:44:04Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.083,
+    "overall_score": 1.097,
     "confidence": "medium",
-    "confidence_value": 0.58,
+    "confidence_value": 0.581,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,14 +22,33 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.905,
+      "political": 1.915,
       "military": 0.002,
-      "policing": 0.002,
-      "migration": 0.0,
-      "social": 0.001,
-      "infrastructure": 0.028
+      "policing": 0.024,
+      "migration": 0.003,
+      "social": 0.017,
+      "infrastructure": 0.044
     },
     "watchlist": [
+      {
+        "country": "Greece",
+        "overall": "elevated",
+        "overall_score": 2.275,
+        "drivers": [
+          "unknown",
+          "protest"
+        ]
+      },
+      {
+        "country": "Turkey",
+        "overall": "elevated",
+        "overall_score": 1.365,
+        "drivers": [
+          "unknown",
+          "violent_protest",
+          "protest"
+        ]
+      },
       {
         "country": "Albania",
         "overall": "elevated",
@@ -53,36 +72,22 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Turkey",
-        "overall": "elevated",
-        "overall_score": 1.225,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Croatia",
-        "overall": "elevated",
-        "overall_score": 1.008,
-        "drivers": [
-          "unknown"
-        ]
       }
     ],
     "top_drivers": [
       "unknown",
+      "protest",
+      "violent_protest",
       "explosion"
     ]
   },
   "countries": [
     {
       "country": "Greece",
-      "overall": "normal",
-      "overall_score": 2.264,
+      "overall": "elevated",
+      "overall_score": 2.275,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.591,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -92,18 +97,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.762,
+        "political": 3.773,
         "military": 0.0,
-        "policing": 0.0,
+        "policing": 0.061,
         "migration": 0.0,
-        "social": 0.0,
+        "social": 0.061,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "protest"
       ],
-      "incident_count": 361,
-      "recent_incident_count": 40,
+      "incident_count": 364,
+      "recent_incident_count": 42,
       "top_incidents": [
         {
           "time": "2026-05-24T00:00:00Z",
@@ -318,6 +324,97 @@
       ]
     },
     {
+      "country": "Turkey",
+      "overall": "elevated",
+      "overall_score": 1.365,
+      "confidence": "medium",
+      "confidence_value": 0.614,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.253,
+        "military": 0.024,
+        "policing": 0.275,
+        "migration": 0.041,
+        "social": 0.142,
+        "infrastructure": 0.236
+      },
+      "drivers": [
+        "unknown",
+        "violent_protest",
+        "protest"
+      ],
+      "incident_count": 77,
+      "recent_incident_count": 12,
+      "top_incidents": [
+        {
+          "time": "2026-05-24T15:15:52Z",
+          "title": "Turkish police use tear gas to break into CHP headquarters",
+          "event_type": "violent_protest",
+          "score": 0.344,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-24T13:56:54Z",
+          "title": "Turkish police storm main opposition headquarters with tear gas",
+          "event_type": "violent_protest",
+          "score": 0.308,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-24T19:39:18Z",
+          "title": "Cyprus election sees parliament fragment as anti-establishment parties gain ground",
+          "event_type": "protest",
+          "score": 0.206,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "migration",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Kemal, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Manisa, Manisa, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Albania",
       "overall": "elevated",
       "overall_score": 1.362,
@@ -347,7 +444,7 @@
       "top_incidents": [
         {
           "time": "2026-05-24T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -357,7 +454,7 @@
         },
         {
           "time": "2026-05-24T00:00:00Z",
-          "title": "Albania",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -558,89 +655,9 @@
       ]
     },
     {
-      "country": "Turkey",
-      "overall": "elevated",
-      "overall_score": 1.225,
-      "confidence": "medium",
-      "confidence_value": 0.593,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.194,
-        "military": 0.024,
-        "policing": 0.024,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 72,
-      "recent_incident_count": 9,
-      "top_incidents": [
-        {
-          "time": "2026-05-24T00:00:00Z",
-          "title": "Kemal, Edirne, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-24T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-24T00:00:00Z",
-          "title": "Fener, Istanbul, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-24T00:00:00Z",
-          "title": "Aleksi, Balikesir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-24T00:00:00Z",
-          "title": "Manisa, Manisa, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.008,
+      "overall_score": 1.044,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -652,7 +669,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.848,
+        "political": 1.909,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -662,12 +679,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 61,
-      "recent_incident_count": 3,
+      "incident_count": 62,
+      "recent_incident_count": 4,
       "top_incidents": [
         {
           "time": "2026-05-24T00:00:00Z",
           "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -698,16 +725,6 @@
         {
           "time": "2026-05-22T00:00:00Z",
           "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-22T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -960,9 +977,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.656,
+      "overall_score": 0.663,
       "confidence": "medium",
-      "confidence_value": 0.62,
+      "confidence_value": 0.624,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -972,19 +989,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.982,
+        "political": 0.993,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.019,
-        "infrastructure": 0.394
+        "social": 0.037,
+        "infrastructure": 0.384
       },
       "drivers": [
         "unknown",
         "explosion"
       ],
-      "incident_count": 28,
-      "recent_incident_count": 5,
+      "incident_count": 29,
+      "recent_incident_count": 4,
       "top_incidents": [
         {
           "time": "2026-05-24T05:13:26Z",
@@ -1017,18 +1034,18 @@
           ]
         },
         {
-          "time": "2026-05-24T11:31:38Z",
-          "title": "With oil markets nearing the danger zone, a US-Iran deal can’t come soon enough | Heather Stewart",
+          "time": "2026-05-21T00:00:00Z",
+          "title": "Balkan, Montenegro (general), Montenegro",
           "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
+          "score": 0.063,
+          "source": "GDELT",
           "dimensions": [
-            "infrastructure"
+            "political"
           ]
         },
         {
-          "time": "2026-05-21T00:00:00Z",
-          "title": "Balkan, Montenegro (general), Montenegro",
+          "time": "2026-05-20T00:00:00Z",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.063,
           "source": "GDELT",
@@ -1130,10 +1147,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1242,
+    "incident_count": 1252,
     "country_count": 14,
     "active_country_count": 14,
-    "rss_story_count_raw": 93
+    "rss_story_count_raw": 133
   },
   "legend": {
     "levels": [
