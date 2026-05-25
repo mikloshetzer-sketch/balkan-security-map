@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-25T16:06:23Z",
+  "generated_utc": "2026-05-25T18:01:00Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.085,
+    "overall_score": 1.106,
     "confidence": "medium",
-    "confidence_value": 0.581,
+    "confidence_value": 0.598,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,20 +22,29 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.901,
+      "political": 1.915,
       "military": 0.002,
-      "policing": 0.031,
-      "migration": 0.003,
-      "social": 0.012,
-      "infrastructure": 0.012
+      "policing": 0.04,
+      "migration": 0.01,
+      "social": 0.029,
+      "infrastructure": 0.033
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.257,
+        "overall_score": 2.268,
         "drivers": [
           "unknown"
+        ]
+      },
+      {
+        "country": "Albania",
+        "overall": "elevated",
+        "overall_score": 1.482,
+        "drivers": [
+          "unknown",
+          "explosion"
         ]
       },
       {
@@ -47,19 +56,12 @@
         ]
       },
       {
-        "country": "Albania",
-        "overall": "elevated",
-        "overall_score": 1.433,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.328,
+        "overall_score": 1.392,
         "drivers": [
-          "unknown"
+          "unknown",
+          "violent_protest"
         ]
       },
       {
@@ -74,6 +76,7 @@
     "top_drivers": [
       "unknown",
       "explosion",
+      "violent_protest",
       "protest"
     ]
   },
@@ -81,7 +84,7 @@
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.257,
+      "overall_score": 2.268,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -93,7 +96,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.747,
+        "political": 3.763,
         "military": 0.012,
         "policing": 0.012,
         "migration": 0.036,
@@ -103,8 +106,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 352,
-      "recent_incident_count": 44,
+      "incident_count": 355,
+      "recent_incident_count": 47,
       "top_incidents": [
         {
           "time": "2026-05-25T00:00:00Z",
@@ -148,7 +151,7 @@
         },
         {
           "time": "2026-05-25T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
+          "title": "Stena, Perifereia Dytikis Makedonias, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -239,6 +242,90 @@
       ]
     },
     {
+      "country": "Albania",
+      "overall": "elevated",
+      "overall_score": 1.482,
+      "confidence": "medium",
+      "confidence_value": 0.594,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.559,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.1,
+        "social": 0.1,
+        "infrastructure": 0.1
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 94,
+      "recent_incident_count": 14,
+      "top_incidents": [
+        {
+          "time": "2026-05-25T17:49:05Z",
+          "title": "Dutch government gives green light to establish migrant ‘return hubs’ outside EU",
+          "event_type": "explosion",
+          "score": 0.411,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "migration",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-25T00:00:00Z",
+          "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-25T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-25T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-25T00:00:00Z",
+          "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Bulgaria",
       "overall": "elevated",
       "overall_score": 1.47,
@@ -319,91 +406,11 @@
       ]
     },
     {
-      "country": "Albania",
-      "overall": "elevated",
-      "overall_score": 1.433,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.539,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 93,
-      "recent_incident_count": 13,
-      "top_incidents": [
-        {
-          "time": "2026-05-25T00:00:00Z",
-          "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-25T00:00:00Z",
-          "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-25T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-25T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-25T00:00:00Z",
-          "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.328,
+      "overall_score": 1.392,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.611,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -413,27 +420,31 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.357,
-        "military": 0.02,
-        "policing": 0.02,
+        "political": 2.406,
+        "military": 0.014,
+        "policing": 0.117,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.029
+        "social": 0.048,
+        "infrastructure": 0.131
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "violent_protest"
       ],
-      "incident_count": 76,
-      "recent_incident_count": 17,
+      "incident_count": 80,
+      "recent_incident_count": 21,
       "top_incidents": [
         {
-          "time": "2026-05-25T00:00:00Z",
-          "title": "Bursa, Bursa, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
+          "time": "2026-05-24T15:15:52Z",
+          "title": "Turkish police use tear gas to break into CHP headquarters",
+          "event_type": "violent_protest",
+          "score": 0.193,
+          "source": "RSS",
           "dimensions": [
-            "political"
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
           ]
         },
         {
@@ -448,16 +459,6 @@
         },
         {
           "time": "2026-05-25T00:00:00Z",
-          "title": "Manisa, Manisa, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-25T00:00:00Z",
           "title": "Bursa, Bursa, Turkey",
           "event_type": "unknown",
           "score": 0.178,
@@ -469,6 +470,16 @@
         {
           "time": "2026-05-25T00:00:00Z",
           "title": "Manisa, Manisa, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-25T00:00:00Z",
+          "title": "Bursa, Bursa, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -961,9 +972,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.699,
+      "overall_score": 0.683,
       "confidence": "medium",
-      "confidence_value": 0.633,
+      "confidence_value": 0.637,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -973,9 +984,9 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.941,
+        "political": 0.952,
         "military": 0.0,
-        "policing": 0.402,
+        "policing": 0.34,
         "migration": 0.0,
         "social": 0.152,
         "infrastructure": 0.065
@@ -985,14 +996,14 @@
         "explosion",
         "protest"
       ],
-      "incident_count": 28,
+      "incident_count": 29,
       "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-05-25T10:30:24Z",
           "title": "BHP defies its own climate strategy to spend hundreds of millions on polluting diesel trucks in Pilbara",
           "event_type": "explosion",
-          "score": 0.375,
+          "score": 0.313,
           "source": "RSS",
           "dimensions": [
             "policing"
@@ -1029,13 +1040,77 @@
           ]
         },
         {
-          "time": "2026-05-25T12:43:34Z",
+          "time": "2026-05-25T16:05:41Z",
           "title": "Oil prices fall below $100 a barrel on hopes of Iran peace deal",
           "event_type": "unknown",
           "score": 0.066,
           "source": "RSS",
           "dimensions": [
             "infrastructure"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Serbia",
+      "overall": "normal",
+      "overall_score": 0.198,
+      "confidence": "medium",
+      "confidence_value": 0.717,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 0.139,
+        "military": 0.0,
+        "policing": 0.092,
+        "migration": 0.0,
+        "social": 0.092,
+        "infrastructure": 0.092
+      },
+      "drivers": [
+        "violent_protest",
+        "unknown"
+      ],
+      "incident_count": 3,
+      "recent_incident_count": 1,
+      "top_incidents": [
+        {
+          "time": "2026-05-25T13:24:58Z",
+          "title": "Violent clashes break out after mass protest in Belgrade",
+          "event_type": "violent_protest",
+          "score": 0.375,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-15T00:00:00Z",
+          "title": "Ivica, , Serbia",
+          "event_type": "unknown",
+          "score": 0.025,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Bajina Basta, , Serbia",
+          "event_type": "unknown",
+          "score": 0.025,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
           ]
         }
       ]
@@ -1079,63 +1154,13 @@
           ]
         }
       ]
-    },
-    {
-      "country": "Serbia",
-      "overall": "normal",
-      "overall_score": 0.025,
-      "confidence": "low",
-      "confidence_value": 0.5,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 0.049,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 2,
-      "recent_incident_count": 0,
-      "top_incidents": [
-        {
-          "time": "2026-05-15T00:00:00Z",
-          "title": "Ivica, , Serbia",
-          "event_type": "unknown",
-          "score": 0.025,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-13T00:00:00Z",
-          "title": "Bajina Basta, , Serbia",
-          "event_type": "unknown",
-          "score": 0.025,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
     }
   ],
   "stats": {
-    "incident_count": 1221,
+    "incident_count": 1231,
     "country_count": 14,
     "active_country_count": 14,
-    "rss_story_count_raw": 94
+    "rss_story_count_raw": 131
   },
   "legend": {
     "levels": [
