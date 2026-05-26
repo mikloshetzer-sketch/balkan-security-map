@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-26T22:02:04Z",
+  "generated_utc": "2026-05-26T23:36:53Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.139,
+    "overall_score": 1.12,
     "confidence": "medium",
-    "confidence_value": 0.598,
+    "confidence_value": 0.58,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.976,
+      "political": 1.967,
       "military": 0.002,
-      "policing": 0.037,
+      "policing": 0.009,
       "migration": 0.001,
-      "social": 0.028,
-      "infrastructure": 0.035
+      "social": 0.021,
+      "infrastructure": 0.013
     },
     "watchlist": [
       {
@@ -36,6 +36,15 @@
         "overall_score": 2.29,
         "drivers": [
           "unknown"
+        ]
+      },
+      {
+        "country": "Turkey",
+        "overall": "elevated",
+        "overall_score": 1.504,
+        "drivers": [
+          "unknown",
+          "protest"
         ]
       },
       {
@@ -61,21 +70,11 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Moldova",
-        "overall": "elevated",
-        "overall_score": 0.954,
-        "drivers": [
-          "unknown"
-        ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "violent_protest",
-      "protest",
-      "shooting"
+      "protest"
     ]
   },
   "countries": [
@@ -240,98 +239,6 @@
       ]
     },
     {
-      "country": "Turkey",
-      "overall": "normal",
-      "overall_score": 1.577,
-      "confidence": "medium",
-      "confidence_value": 0.62,
-      "dimensions": {
-        "political": "tense",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.643,
-        "military": 0.0,
-        "policing": 0.321,
-        "migration": 0.0,
-        "social": 0.157,
-        "infrastructure": 0.21
-      },
-      "drivers": [
-        "unknown",
-        "violent_protest",
-        "protest"
-      ],
-      "incident_count": 89,
-      "recent_incident_count": 24,
-      "top_incidents": [
-        {
-          "time": "2026-05-26T13:25:49Z",
-          "title": "Turkish police use water cannon ahead of deposed opposition leader's speech in Izmir",
-          "event_type": "violent_protest",
-          "score": 0.251,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing"
-          ]
-        },
-        {
-          "time": "2026-05-26T19:56:20Z",
-          "title": "Turkish police fire water cannon at protesters after opposition leader ousted – video",
-          "event_type": "protest",
-          "score": 0.232,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-05-26T17:40:40Z",
-          "title": "Turkish police fire teargas to break up protest after opposition leader ousted",
-          "event_type": "protest",
-          "score": 0.232,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-05-24T15:15:52Z",
-          "title": "Turkish police use tear gas to break into CHP headquarters",
-          "event_type": "violent_protest",
-          "score": 0.188,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-05-26T00:00:00Z",
-          "title": "Izmir, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Bulgaria",
       "overall": "normal",
       "overall_score": 1.531,
@@ -482,6 +389,93 @@
         {
           "time": "2026-05-26T00:00:00Z",
           "title": "Veliaj, Berat, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Turkey",
+      "overall": "elevated",
+      "overall_score": 1.504,
+      "confidence": "medium",
+      "confidence_value": 0.601,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.587,
+        "military": 0.0,
+        "policing": 0.113,
+        "migration": 0.0,
+        "social": 0.113,
+        "infrastructure": 0.113
+      },
+      "drivers": [
+        "unknown",
+        "protest"
+      ],
+      "incident_count": 84,
+      "recent_incident_count": 21,
+      "top_incidents": [
+        {
+          "time": "2026-05-26T19:56:20Z",
+          "title": "Turkish police fire water cannon at protesters after opposition leader ousted – video",
+          "event_type": "protest",
+          "score": 0.232,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-26T17:40:40Z",
+          "title": "Turkish police fire teargas to break up protest after opposition leader ousted",
+          "event_type": "protest",
+          "score": 0.232,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-26T00:00:00Z",
+          "title": "Izmir, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-26T00:00:00Z",
+          "title": "Mahmut, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-26T00:00:00Z",
+          "title": "Kemal, Edirne, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -974,9 +968,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.695,
+      "overall_score": 0.593,
       "confidence": "medium",
-      "confidence_value": 0.637,
+      "confidence_value": 0.62,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -986,32 +980,20 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.019,
+        "political": 1.002,
         "military": 0.0,
-        "policing": 0.138,
+        "policing": 0.0,
         "migration": 0.0,
         "social": 0.155,
-        "infrastructure": 0.212
+        "infrastructure": 0.052
       },
       "drivers": [
         "unknown",
-        "shooting",
         "protest"
       ],
-      "incident_count": 27,
-      "recent_incident_count": 7,
+      "incident_count": 25,
+      "recent_incident_count": 5,
       "top_incidents": [
-        {
-          "time": "2026-05-26T18:57:56Z",
-          "title": "Woman shot dead outside Sheffield bar was innocent bystander, police say",
-          "event_type": "shooting",
-          "score": 0.285,
-          "source": "RSS",
-          "dimensions": [
-            "policing",
-            "infrastructure"
-          ]
-        },
         {
           "time": "2026-05-26T00:00:00Z",
           "title": "Montenegro",
@@ -1053,66 +1035,12 @@
           "dimensions": [
             "political"
           ]
-        }
-      ]
-    },
-    {
-      "country": "Serbia",
-      "overall": "normal",
-      "overall_score": 0.124,
-      "confidence": "medium",
-      "confidence_value": 0.717,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 0.1,
-        "military": 0.0,
-        "policing": 0.052,
-        "migration": 0.0,
-        "social": 0.052,
-        "infrastructure": 0.052
-      },
-      "drivers": [
-        "violent_protest",
-        "unknown"
-      ],
-      "incident_count": 3,
-      "recent_incident_count": 1,
-      "top_incidents": [
-        {
-          "time": "2026-05-25T13:24:58Z",
-          "title": "Violent clashes break out after mass protest in Belgrade",
-          "event_type": "violent_protest",
-          "score": 0.21,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social",
-            "infrastructure"
-          ]
         },
         {
-          "time": "2026-05-15T00:00:00Z",
-          "title": "Ivica, , Serbia",
+          "time": "2026-05-24T00:00:00Z",
+          "title": "Montenegro",
           "event_type": "unknown",
-          "score": 0.025,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-13T00:00:00Z",
-          "title": "Bajina Basta, , Serbia",
-          "event_type": "unknown",
-          "score": 0.025,
+          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1159,13 +1087,63 @@
           ]
         }
       ]
+    },
+    {
+      "country": "Serbia",
+      "overall": "normal",
+      "overall_score": 0.025,
+      "confidence": "low",
+      "confidence_value": 0.5,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 0.049,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 2,
+      "recent_incident_count": 0,
+      "top_incidents": [
+        {
+          "time": "2026-05-15T00:00:00Z",
+          "title": "Ivica, , Serbia",
+          "event_type": "unknown",
+          "score": 0.025,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-13T00:00:00Z",
+          "title": "Bajina Basta, , Serbia",
+          "event_type": "unknown",
+          "score": 0.025,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
     }
   ],
   "stats": {
-    "incident_count": 1248,
+    "incident_count": 1240,
     "country_count": 14,
     "active_country_count": 14,
-    "rss_story_count_raw": 132
+    "rss_story_count_raw": 91
   },
   "legend": {
     "levels": [
