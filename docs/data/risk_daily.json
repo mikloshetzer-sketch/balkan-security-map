@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-29T19:43:44Z",
+  "generated_utc": "2026-05-29T22:08:54Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.228,
+    "overall_score": 1.229,
     "confidence": "medium",
-    "confidence_value": 0.586,
+    "confidence_value": 0.587,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -23,17 +23,26 @@
     },
     "dimension_scores": {
       "political": 2.154,
-      "military": 0.019,
-      "policing": 0.013,
-      "migration": 0.004,
-      "social": 0.014,
+      "military": 0.026,
+      "policing": 0.012,
+      "migration": 0.008,
+      "social": 0.019,
       "infrastructure": 0.022
     },
     "watchlist": [
       {
+        "country": "Romania",
+        "overall": "elevated",
+        "overall_score": 2.052,
+        "drivers": [
+          "unknown",
+          "shooting"
+        ]
+      },
+      {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.455,
+        "overall_score": 1.452,
         "drivers": [
           "unknown",
           "protest"
@@ -42,7 +51,7 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.323,
+        "overall_score": 1.313,
         "drivers": [
           "unknown",
           "protest"
@@ -63,14 +72,6 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Bosnia and Herzegovina",
-        "overall": "elevated",
-        "overall_score": 1.092,
-        "drivers": [
-          "unknown"
-        ]
       }
     ],
     "top_drivers": [
@@ -84,7 +85,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.27,
+      "overall_score": 2.273,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -96,7 +97,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.769,
+        "political": 3.774,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -106,8 +107,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 359,
-      "recent_incident_count": 56,
+      "incident_count": 360,
+      "recent_incident_count": 57,
       "top_incidents": [
         {
           "time": "2026-05-29T00:00:00Z",
@@ -163,10 +164,10 @@
     },
     {
       "country": "Romania",
-      "overall": "normal",
-      "overall_score": 2.043,
+      "overall": "elevated",
+      "overall_score": 2.052,
       "confidence": "medium",
-      "confidence_value": 0.596,
+      "confidence_value": 0.599,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -176,19 +177,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.43,
-        "military": 0.241,
+        "political": 3.429,
+        "military": 0.316,
         "policing": 0.0,
-        "migration": 0.03,
-        "social": 0.047,
-        "infrastructure": 0.03
+        "migration": 0.084,
+        "social": 0.111,
+        "infrastructure": 0.056
       },
       "drivers": [
         "unknown",
         "shooting"
       ],
-      "incident_count": 211,
-      "recent_incident_count": 49,
+      "incident_count": 215,
+      "recent_incident_count": 53,
       "top_incidents": [
         {
           "time": "2026-05-29T16:55:41Z",
@@ -303,7 +304,7 @@
         },
         {
           "time": "2026-05-29T00:00:00Z",
-          "title": "Agia Sofia, Perifereia Kentrikis Makedonias, Greece",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -313,7 +314,7 @@
         },
         {
           "time": "2026-05-29T00:00:00Z",
-          "title": "Sunny Beach, Burgas, Bulgaria",
+          "title": "Agia Sofia, Perifereia Kentrikis Makedonias, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -326,9 +327,9 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.455,
+      "overall_score": 1.452,
       "confidence": "medium",
-      "confidence_value": 0.599,
+      "confidence_value": 0.601,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -340,31 +341,19 @@
       "dimension_scores": {
         "political": 2.53,
         "military": 0.0,
-        "policing": 0.101,
-        "migration": 0.024,
-        "social": 0.067,
-        "infrastructure": 0.024
+        "policing": 0.103,
+        "migration": 0.02,
+        "social": 0.055,
+        "infrastructure": 0.02
       },
       "drivers": [
         "unknown",
         "protest"
       ],
-      "incident_count": 89,
-      "recent_incident_count": 17,
+      "incident_count": 90,
+      "recent_incident_count": 18,
       "top_incidents": [
         {
-          "time": "2026-05-29T14:52:24Z",
-          "title": "Budapest Pride allowed to take place in 2026",
-          "event_type": "protest",
-          "score": 0.203,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social"
-          ]
-        },
-        {
           "time": "2026-05-29T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
@@ -397,6 +386,16 @@
         {
           "time": "2026-05-29T00:00:00Z",
           "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-29T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -409,7 +408,7 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.323,
+      "overall_score": 1.313,
       "confidence": "medium",
       "confidence_value": 0.596,
       "dimensions": {
@@ -421,12 +420,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.342,
+        "political": 2.338,
         "military": 0.0,
-        "policing": 0.032,
+        "policing": 0.015,
         "migration": 0.0,
-        "social": 0.032,
-        "infrastructure": 0.032
+        "social": 0.015,
+        "infrastructure": 0.015
       },
       "drivers": [
         "unknown",
@@ -466,21 +465,18 @@
           ]
         },
         {
-          "time": "2026-05-26T19:56:20Z",
-          "title": "Turkish police fire water cannon at protesters after opposition leader ousted – video",
-          "event_type": "protest",
-          "score": 0.127,
-          "source": "RSS",
+          "time": "2026-05-28T00:00:00Z",
+          "title": "Kemal, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
           "dimensions": [
-            "political",
-            "policing",
-            "social",
-            "infrastructure"
+            "political"
           ]
         },
         {
           "time": "2026-05-28T00:00:00Z",
-          "title": "Kemal, Edirne, Turkey",
+          "title": "Turkeli, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -653,7 +649,7 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 1.092,
+      "overall_score": 1.091,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -665,7 +661,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.988,
+        "political": 1.986,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -893,9 +889,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.836,
+      "overall_score": 0.85,
       "confidence": "medium",
-      "confidence_value": 0.612,
+      "confidence_value": 0.617,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -906,18 +902,18 @@
       },
       "dimension_scores": {
         "political": 1.433,
-        "military": 0.0,
+        "military": 0.027,
         "policing": 0.033,
         "migration": 0.0,
-        "social": 0.033,
+        "social": 0.06,
         "infrastructure": 0.196
       },
       "drivers": [
         "unknown",
         "explosion"
       ],
-      "incident_count": 27,
-      "recent_incident_count": 7,
+      "incident_count": 28,
+      "recent_incident_count": 8,
       "top_incidents": [
         {
           "time": "2026-05-29T17:14:59Z",
@@ -1121,10 +1117,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1242,
+    "incident_count": 1249,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 92
+    "rss_story_count_raw": 136
   },
   "legend": {
     "levels": [
