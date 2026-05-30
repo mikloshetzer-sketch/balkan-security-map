@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-30T16:19:07Z",
+  "generated_utc": "2026-05-30T18:18:33Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.19,
+    "overall_score": 1.194,
     "confidence": "medium",
     "confidence_value": 0.587,
     "dimensions": {
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.09,
-      "military": 0.018,
-      "policing": 0.019,
+      "political": 2.099,
+      "military": 0.008,
+      "policing": 0.016,
       "migration": 0.008,
-      "social": 0.009,
-      "infrastructure": 0.025
+      "social": 0.008,
+      "infrastructure": 0.022
     },
     "watchlist": [
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.341,
+        "overall_score": 1.39,
         "drivers": [
           "unknown",
           "protest"
@@ -58,7 +58,7 @@
       {
         "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 1.2,
+        "overall_score": 1.23,
         "drivers": [
           "unknown"
         ]
@@ -66,7 +66,7 @@
       {
         "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 1.077,
+        "overall_score": 1.062,
         "drivers": [
           "unknown",
           "explosion"
@@ -76,7 +76,6 @@
     "top_drivers": [
       "unknown",
       "protest",
-      "shooting",
       "explosion"
     ]
   },
@@ -164,9 +163,9 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.991,
+      "overall_score": 1.978,
       "confidence": "medium",
-      "confidence_value": 0.597,
+      "confidence_value": 0.595,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -176,32 +175,20 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.35,
-        "military": 0.205,
+        "political": 3.342,
+        "military": 0.079,
         "policing": 0.0,
         "migration": 0.06,
-        "social": 0.069,
+        "social": 0.06,
         "infrastructure": 0.041
       },
       "drivers": [
-        "unknown",
-        "shooting"
+        "unknown"
       ],
-      "incident_count": 215,
-      "recent_incident_count": 38,
+      "incident_count": 214,
+      "recent_incident_count": 37,
       "top_incidents": [
         {
-          "time": "2026-05-29T16:55:41Z",
-          "title": "Nato says drone that crashed in Romania was ‘of Russian origin’ despite Moscow’s denials – as it happened",
-          "event_type": "shooting",
-          "score": 0.249,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military"
-          ]
-        },
-        {
           "time": "2026-05-30T00:00:00Z",
           "title": "Romania",
           "event_type": "unknown",
@@ -234,6 +221,16 @@
         {
           "time": "2026-05-30T00:00:00Z",
           "title": "Braila, Braila, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-30T00:00:00Z",
+          "title": "Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -326,7 +323,7 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.341,
+      "overall_score": 1.39,
       "confidence": "medium",
       "confidence_value": 0.596,
       "dimensions": {
@@ -338,7 +335,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.383,
+        "political": 2.461,
         "military": 0.0,
         "policing": 0.015,
         "migration": 0.0,
@@ -349,8 +346,8 @@
         "unknown",
         "protest"
       ],
-      "incident_count": 81,
-      "recent_incident_count": 9,
+      "incident_count": 83,
+      "recent_incident_count": 11,
       "top_incidents": [
         {
           "time": "2026-05-30T00:00:00Z",
@@ -567,7 +564,7 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 1.2,
+      "overall_score": 1.23,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -579,7 +576,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.166,
+        "political": 2.214,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -589,9 +586,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 74,
-      "recent_incident_count": 6,
+      "incident_count": 75,
+      "recent_incident_count": 7,
       "top_incidents": [
+        {
+          "time": "2026-05-30T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-05-30T00:00:00Z",
           "title": "Gjilan, Gnjilane, Kosovo",
@@ -631,23 +638,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-05-29T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 1.077,
+      "overall_score": 1.062,
       "confidence": "medium",
       "confidence_value": 0.602,
       "dimensions": {
@@ -661,10 +658,10 @@
       "dimension_scores": {
         "political": 1.806,
         "military": 0.0,
-        "policing": 0.205,
+        "policing": 0.17,
         "migration": 0.03,
         "social": 0.0,
-        "infrastructure": 0.205
+        "infrastructure": 0.17
       },
       "drivers": [
         "unknown",
@@ -677,7 +674,7 @@
           "time": "2026-05-30T12:00:19Z",
           "title": "Why $1bn in Balkans energy contracts are going to an obscure company connected to Donald Trump",
           "event_type": "explosion",
-          "score": 0.429,
+          "score": 0.354,
           "source": "RSS",
           "dimensions": [
             "policing",
@@ -889,7 +886,7 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.731,
+      "overall_score": 0.728,
       "confidence": "medium",
       "confidence_value": 0.618,
       "dimensions": {
@@ -901,12 +898,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.326,
-        "military": 0.03,
-        "policing": 0.011,
-        "migration": 0.011,
-        "social": 0.03,
-        "infrastructure": 0.011
+        "political": 1.325,
+        "military": 0.028,
+        "policing": 0.009,
+        "migration": 0.009,
+        "social": 0.028,
+        "infrastructure": 0.009
       },
       "drivers": [
         "unknown",
@@ -1116,7 +1113,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1254,
+    "incident_count": 1256,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 132
