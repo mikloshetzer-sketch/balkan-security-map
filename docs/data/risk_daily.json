@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-05-30T20:20:41Z",
+  "generated_utc": "2026-05-30T22:16:43Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.198,
+    "overall_score": 1.202,
     "confidence": "medium",
-    "confidence_value": 0.587,
+    "confidence_value": 0.588,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -27,9 +27,18 @@
       "policing": 0.016,
       "migration": 0.008,
       "social": 0.008,
-      "infrastructure": 0.022
+      "infrastructure": 0.05
     },
     "watchlist": [
+      {
+        "country": "Hungary",
+        "overall": "elevated",
+        "overall_score": 1.407,
+        "drivers": [
+          "unknown",
+          "explosion"
+        ]
+      },
       {
         "country": "Turkey",
         "overall": "elevated",
@@ -37,14 +46,6 @@
         "drivers": [
           "unknown",
           "protest"
-        ]
-      },
-      {
-        "country": "Hungary",
-        "overall": "elevated",
-        "overall_score": 1.354,
-        "drivers": [
-          "unknown"
         ]
       },
       {
@@ -75,8 +76,8 @@
     ],
     "top_drivers": [
       "unknown",
-      "protest",
-      "explosion"
+      "explosion",
+      "protest"
     ]
   },
   "countries": [
@@ -220,7 +221,7 @@
         },
         {
           "time": "2026-05-30T00:00:00Z",
-          "title": "Braila, Braila, Romania",
+          "title": "Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -230,7 +231,7 @@
         },
         {
           "time": "2026-05-30T00:00:00Z",
-          "title": "Romania",
+          "title": "Braila, Braila, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -321,6 +322,87 @@
       ]
     },
     {
+      "country": "Hungary",
+      "overall": "elevated",
+      "overall_score": 1.407,
+      "confidence": "medium",
+      "confidence_value": 0.599,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.396,
+        "military": 0.0,
+        "policing": 0.019,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.417
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 88,
+      "recent_incident_count": 13,
+      "top_incidents": [
+        {
+          "time": "2026-05-30T19:36:40Z",
+          "title": "‘Happy either way’: Arsenal fans find zen attitude to Champions League final",
+          "event_type": "explosion",
+          "score": 0.401,
+          "source": "RSS",
+          "dimensions": [
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-05-30T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-30T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-30T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-05-30T00:00:00Z",
+          "title": "Balkan, Bés, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Turkey",
       "overall": "elevated",
       "overall_score": 1.39,
@@ -394,86 +476,6 @@
           "title": "Izmir, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Hungary",
-      "overall": "elevated",
-      "overall_score": 1.354,
-      "confidence": "medium",
-      "confidence_value": 0.594,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.396,
-        "military": 0.0,
-        "policing": 0.019,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.057
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 87,
-      "recent_incident_count": 12,
-      "top_incidents": [
-        {
-          "time": "2026-05-30T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-30T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-30T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-30T00:00:00Z",
-          "title": "Balkan, Bés, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-05-29T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -601,7 +603,7 @@
         },
         {
           "time": "2026-05-30T00:00:00Z",
-          "title": "Gjilan, Gnjilane, Kosovo",
+          "title": "Kosovo",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -611,7 +613,7 @@
         },
         {
           "time": "2026-05-30T00:00:00Z",
-          "title": "Kosovo",
+          "title": "Gjilan, Gnjilane, Kosovo",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -659,7 +661,7 @@
         "political": 1.87,
         "military": 0.0,
         "policing": 0.17,
-        "migration": 0.03,
+        "migration": 0.029,
         "social": 0.0,
         "infrastructure": 0.17
       },
@@ -668,7 +670,7 @@
         "explosion"
       ],
       "incident_count": 53,
-      "recent_incident_count": 9,
+      "recent_incident_count": 8,
       "top_incidents": [
         {
           "time": "2026-05-30T12:00:19Z",
@@ -1113,10 +1115,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1258,
+    "incident_count": 1259,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 132
+    "rss_story_count_raw": 133
   },
   "legend": {
     "levels": [
