@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-05T04:50:58Z",
+  "generated_utc": "2026-06-05T08:55:06Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.189,
+    "overall_score": 1.2,
     "confidence": "medium",
-    "confidence_value": 0.585,
+    "confidence_value": 0.584,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.086,
-      "military": 0.017,
-      "policing": 0.008,
+      "political": 2.11,
+      "military": 0.009,
+      "policing": 0.014,
       "migration": 0.001,
-      "social": 0.033,
-      "infrastructure": 0.031
+      "social": 0.031,
+      "infrastructure": 0.025
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.362,
+        "overall_score": 1.378,
         "drivers": [
           "unknown"
         ]
@@ -41,7 +41,7 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.302,
+        "overall_score": 1.319,
         "drivers": [
           "unknown",
           "explosion"
@@ -50,17 +50,16 @@
       {
         "country": "Montenegro",
         "overall": "elevated",
-        "overall_score": 1.095,
+        "overall_score": 1.096,
         "drivers": [
           "unknown",
-          "explosion",
-          "protest"
+          "explosion"
         ]
       },
       {
         "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 0.92,
+        "overall_score": 0.961,
         "drivers": [
           "unknown"
         ]
@@ -68,7 +67,7 @@
       {
         "country": "Slovenia",
         "overall": "elevated",
-        "overall_score": 0.898,
+        "overall_score": 0.881,
         "drivers": [
           "unknown"
         ]
@@ -76,15 +75,16 @@
     ],
     "top_drivers": [
       "unknown",
-      "protest",
-      "explosion"
+      "explosion",
+      "armed_clash",
+      "protest"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.201,
+      "overall_score": 2.214,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -96,7 +96,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.672,
+        "political": 3.69,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -106,24 +106,14 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 332,
-      "recent_incident_count": 41,
+      "incident_count": 337,
+      "recent_incident_count": 46,
       "top_incidents": [
-        {
-          "time": "2026-06-05T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
         {
           "time": "2026-06-05T00:00:00Z",
           "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -133,7 +123,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Greece",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -141,9 +131,19 @@
         },
         {
           "time": "2026-06-05T00:00:00Z",
-          "title": "Artemis, Perifereia Attikis, Greece",
+          "title": "Greece",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -153,7 +153,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Kalamata, Perifereia Peloponnisou, Greece",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -164,9 +164,9 @@
     {
       "country": "Albania",
       "overall": "normal",
-      "overall_score": 1.787,
+      "overall_score": 1.83,
       "confidence": "medium",
-      "confidence_value": 0.597,
+      "confidence_value": 0.6,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -176,35 +176,49 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.052,
+        "political": 3.1,
         "military": 0.0,
-        "policing": 0.081,
+        "policing": 0.163,
         "migration": 0.0,
-        "social": 0.167,
+        "social": 0.246,
         "infrastructure": 0.0
       },
       "drivers": [
         "unknown",
+        "armed_clash",
         "protest"
       ],
-      "incident_count": 126,
-      "recent_incident_count": 29,
+      "incident_count": 130,
+      "recent_incident_count": 33,
       "top_incidents": [
         {
-          "time": "2026-06-05T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
+          "time": "2026-06-04T09:24:03Z",
+          "title": "Protesters clash with police in Albania over Jared Kushner-backed luxury resort – video",
+          "event_type": "armed_clash",
+          "score": 0.337,
+          "source": "RSS",
           "dimensions": [
-            "political"
+            "political",
+            "policing",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-06-04T13:52:08Z",
+          "title": "Clash at protest against Kushner linked Albania resort project",
+          "event_type": "protest",
+          "score": 0.181,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social"
           ]
         },
         {
           "time": "2026-06-05T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -214,7 +228,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -222,19 +236,9 @@
         },
         {
           "time": "2026-06-05T00:00:00Z",
-          "title": "Albania",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-05T00:00:00Z",
-          "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -245,7 +249,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.717,
+      "overall_score": 1.758,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -257,7 +261,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.974,
+        "political": 3.036,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -267,10 +271,40 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 167,
-      "recent_incident_count": 19,
+      "incident_count": 170,
+      "recent_incident_count": 22,
       "top_incidents": [
         {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Cotroceni, Romania (general), Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Balkans, Romania (general), Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-06-04T00:00:00Z",
           "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
@@ -283,36 +317,6 @@
         {
           "time": "2026-06-04T00:00:00Z",
           "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Bucharest, Bucuresti, Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -325,7 +329,7 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.573,
+      "overall_score": 1.575,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -337,7 +341,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.756,
+        "political": 2.759,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -347,14 +351,14 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 113,
-      "recent_incident_count": 18,
+      "incident_count": 114,
+      "recent_incident_count": 19,
       "top_incidents": [
         {
           "time": "2026-06-05T00:00:00Z",
           "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -364,7 +368,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -374,7 +378,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -384,7 +388,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Plovdiv, Plovdiv, Bulgaria",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -394,7 +398,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Lyulin, Yambol, Bulgaria",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -405,7 +409,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.362,
+      "overall_score": 1.378,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -417,7 +421,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.415,
+        "political": 2.44,
         "military": 0.0,
         "policing": 0.018,
         "migration": 0.018,
@@ -427,14 +431,14 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 89,
-      "recent_incident_count": 9,
+      "incident_count": 90,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-06-05T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -444,35 +448,35 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Hungary",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
+          "time": "2026-06-05T00:00:00Z",
           "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-04T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-04T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -485,7 +489,7 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.302,
+      "overall_score": 1.319,
       "confidence": "medium",
       "confidence_value": 0.597,
       "dimensions": {
@@ -497,7 +501,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.276,
+        "political": 2.305,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -508,8 +512,8 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 87,
-      "recent_incident_count": 11,
+      "incident_count": 88,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-06-03T14:19:30Z",
@@ -525,7 +529,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Smyrna, Izmir, Turkey",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -535,7 +539,17 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Bursa, Bursa, Turkey",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Findik, Balikesir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -550,25 +564,15 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Izmir, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 1.095,
+      "overall_score": 1.096,
       "confidence": "medium",
-      "confidence_value": 0.637,
+      "confidence_value": 0.625,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -578,34 +582,20 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.775,
-        "military": 0.222,
+        "political": 1.885,
+        "military": 0.115,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.222,
-        "infrastructure": 0.168
+        "social": 0.115,
+        "infrastructure": 0.097
       },
       "drivers": [
         "unknown",
-        "explosion",
-        "protest"
+        "explosion"
       ],
-      "incident_count": 35,
-      "recent_incident_count": 16,
+      "incident_count": 36,
+      "recent_incident_count": 17,
       "top_incidents": [
-        {
-          "time": "2026-06-05T02:00:00Z",
-          "title": "Macron and Merz head to Montenegro as EU races to secure its next frontier",
-          "event_type": "explosion",
-          "score": 0.411,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "social",
-            "infrastructure"
-          ]
-        },
         {
           "time": "2026-06-05T04:00:27Z",
           "title": "EU summit with western Balkan leaders to reaffirm membership prospects",
@@ -617,20 +607,23 @@
           ]
         },
         {
-          "time": "2026-06-05T00:00:00Z",
-          "title": "Balkan, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
+          "time": "2026-06-05T02:00:00Z",
+          "title": "Macron and Merz head to Montenegro as EU races to secure its next frontier",
+          "event_type": "explosion",
+          "score": 0.339,
+          "source": "RSS",
           "dimensions": [
-            "political"
+            "political",
+            "military",
+            "social",
+            "infrastructure"
           ]
         },
         {
           "time": "2026-06-05T00:00:00Z",
-          "title": "Kavac, Montenegro (general), Montenegro",
+          "title": "Montenegro",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -640,7 +633,17 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Montenegro",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Balkan, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -651,7 +654,7 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.92,
+      "overall_score": 0.961,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -663,7 +666,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.699,
+        "political": 1.768,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -673,9 +676,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 48,
-      "recent_incident_count": 3,
+      "incident_count": 49,
+      "recent_incident_count": 4,
       "top_incidents": [
+        {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-06-03T00:00:00Z",
           "title": "Viogor, Republika Srpska, Bosnia-Herzegovina",
@@ -715,23 +728,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Slovenia",
       "overall": "elevated",
-      "overall_score": 0.898,
+      "overall_score": 0.881,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -743,7 +746,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.662,
+        "political": 1.633,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -760,7 +763,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Ljubljana, Slovenia (general), Slovenia",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -770,7 +773,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Ljubljana, Slovenia (general), Slovenia",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -799,86 +802,6 @@
         {
           "time": "2026-06-04T00:00:00Z",
           "title": "Slovenia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Croatia",
-      "overall": "elevated",
-      "overall_score": 0.868,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.61,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 45,
-      "recent_incident_count": 7,
-      "top_incidents": [
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Senj, Splitsko-Dalmatinska, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Medulin, Istarska, Croatia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -969,9 +892,9 @@
       ]
     },
     {
-      "country": "Moldova",
+      "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 0.855,
+      "overall_score": 0.865,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -983,7 +906,87 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.588,
+        "political": 1.605,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 45,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-06-04T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-04T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-04T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-04T00:00:00Z",
+          "title": "Senj, Splitsko-Dalmatinska, Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-04T00:00:00Z",
+          "title": "Medulin, Istarska, Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Moldova",
+      "overall": "elevated",
+      "overall_score": 0.847,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.575,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -1000,7 +1003,7 @@
           "time": "2026-06-05T00:00:00Z",
           "title": "Moldova",
           "event_type": "unknown",
-          "score": 0.209,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1117,7 +1120,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1191,
+    "incident_count": 1208,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 130
