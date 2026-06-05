@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-05T18:14:38Z",
+  "generated_utc": "2026-06-05T20:18:36Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.258,
+    "overall_score": 1.255,
     "confidence": "medium",
-    "confidence_value": 0.588,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,36 +22,26 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.195,
-      "military": 0.018,
-      "policing": 0.011,
+      "political": 2.197,
+      "military": 0.002,
+      "policing": 0.007,
       "migration": 0.001,
-      "social": 0.052,
-      "infrastructure": 0.058
+      "social": 0.044,
+      "infrastructure": 0.024
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.271,
+        "overall_score": 2.282,
         "drivers": [
           "unknown"
         ]
       },
       {
-        "country": "Albania",
-        "overall": "elevated",
-        "overall_score": 1.892,
-        "drivers": [
-          "unknown",
-          "protest",
-          "armed_clash"
-        ]
-      },
-      {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.399,
+        "overall_score": 1.422,
         "drivers": [
           "unknown"
         ]
@@ -59,34 +49,41 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.342,
+        "overall_score": 1.31,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
+        "country": "Montenegro",
+        "overall": "elevated",
+        "overall_score": 1.107,
         "drivers": [
           "unknown",
           "explosion"
         ]
       },
       {
-        "country": "Montenegro",
+        "country": "Moldova",
         "overall": "elevated",
-        "overall_score": 1.177,
+        "overall_score": 1.009,
         "drivers": [
-          "unknown",
-          "explosion"
+          "unknown"
         ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "explosion",
       "protest",
-      "armed_clash"
+      "armed_clash",
+      "explosion"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.271,
+      "overall_score": 2.282,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -98,7 +95,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.77,
+        "political": 3.785,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -108,8 +105,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 351,
-      "recent_incident_count": 59,
+      "incident_count": 354,
+      "recent_incident_count": 62,
       "top_incidents": [
         {
           "time": "2026-06-05T00:00:00Z",
@@ -166,9 +163,9 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.958,
+      "overall_score": 1.944,
       "confidence": "medium",
-      "confidence_value": 0.593,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -178,41 +175,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.296,
-        "military": 0.22,
+        "political": 3.309,
+        "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.22
+        "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "explosion"
+        "unknown"
       ],
-      "incident_count": 188,
-      "recent_incident_count": 40,
+      "incident_count": 187,
+      "recent_incident_count": 39,
       "top_incidents": [
-        {
-          "time": "2026-06-05T12:18:51Z",
-          "title": "Romania: TV reporter flees live on air after drone explosion in Constanța",
-          "event_type": "explosion",
-          "score": 0.404,
-          "source": "RSS",
-          "dimensions": [
-            "military",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-06-05T00:00:00Z",
-          "title": "Bucharest, Bucuresti, Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
         {
           "time": "2026-06-05T00:00:00Z",
           "title": "Bucharest, Bucuresti, Romania",
@@ -242,15 +217,35 @@
           "dimensions": [
             "political"
           ]
+        },
+        {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Tulcea, Tulcea, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
         }
       ]
     },
     {
       "country": "Albania",
-      "overall": "elevated",
-      "overall_score": 1.892,
+      "overall": "normal",
+      "overall_score": 1.9,
       "confidence": "medium",
-      "confidence_value": 0.607,
+      "confidence_value": 0.6,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -260,11 +255,11 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.171,
+        "political": 3.2,
         "military": 0.0,
-        "policing": 0.131,
+        "policing": 0.076,
         "migration": 0.0,
-        "social": 0.442,
+        "social": 0.342,
         "infrastructure": 0.09
       },
       "drivers": [
@@ -272,7 +267,7 @@
         "protest",
         "armed_clash"
       ],
-      "incident_count": 137,
+      "incident_count": 138,
       "recent_incident_count": 40,
       "top_incidents": [
         {
@@ -414,7 +409,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.399,
+      "overall_score": 1.422,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -426,7 +421,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.477,
+        "political": 2.513,
         "military": 0.0,
         "policing": 0.015,
         "migration": 0.015,
@@ -436,8 +431,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 91,
-      "recent_incident_count": 11,
+      "incident_count": 92,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-06-05T00:00:00Z",
@@ -480,10 +475,10 @@
           ]
         },
         {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Szeged, Szeged, Hungary",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -494,9 +489,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.342,
+      "overall_score": 1.31,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -511,25 +506,14 @@
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.211
+        "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "explosion"
+        "unknown"
       ],
-      "incident_count": 89,
+      "incident_count": 88,
       "recent_incident_count": 11,
       "top_incidents": [
-        {
-          "time": "2026-06-03T14:19:30Z",
-          "title": "SOCAR, TotalEnergies and ADNOC lock in Caspian gas supply deal",
-          "event_type": "explosion",
-          "score": 0.221,
-          "source": "RSS",
-          "dimensions": [
-            "infrastructure"
-          ]
-        },
         {
           "time": "2026-06-05T00:00:00Z",
           "title": "Smyrna, Izmir, Turkey",
@@ -569,15 +553,25 @@
           "dimensions": [
             "political"
           ]
+        },
+        {
+          "time": "2026-06-04T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
         }
       ]
     },
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 1.177,
+      "overall_score": 1.107,
       "confidence": "medium",
-      "confidence_value": 0.628,
+      "confidence_value": 0.618,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -587,7 +581,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.994,
+        "political": 1.866,
         "military": 0.02,
         "policing": 0.0,
         "migration": 0.0,
@@ -598,8 +592,8 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 36,
-      "recent_incident_count": 17,
+      "incident_count": 35,
+      "recent_incident_count": 16,
       "top_incidents": [
         {
           "time": "2026-06-05T15:00:21Z",
@@ -616,17 +610,7 @@
           "time": "2026-06-05T12:15:08Z",
           "title": "Dua Lipa and Callum Turner wedding divides Palermo: ‘I could understand if it was for the pope’",
           "event_type": "explosion",
-          "score": 0.375,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-05T04:00:27Z",
-          "title": "EU summit with western Balkan leaders to reaffirm membership prospects",
-          "event_type": "explosion",
-          "score": 0.327,
+          "score": 0.313,
           "source": "RSS",
           "dimensions": [
             "political"
@@ -645,6 +629,16 @@
         {
           "time": "2026-06-05T00:00:00Z",
           "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Balkan, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -657,7 +651,7 @@
     {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.971,
+      "overall_score": 1.009,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -669,7 +663,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.786,
+        "political": 1.85,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -679,8 +673,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 47,
-      "recent_incident_count": 8,
+      "incident_count": 48,
+      "recent_incident_count": 9,
       "top_incidents": [
         {
           "time": "2026-06-05T00:00:00Z",
@@ -723,10 +717,10 @@
           ]
         },
         {
-          "time": "2026-06-04T00:00:00Z",
-          "title": "Moldova",
+          "time": "2026-06-05T00:00:00Z",
+          "title": "Chisinau, Chisinau, Moldova",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1123,10 +1117,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1258,
+    "incident_count": 1261,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 131
+    "rss_story_count_raw": 90
   },
   "legend": {
     "levels": [
