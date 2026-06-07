@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-07T18:42:41Z",
+  "generated_utc": "2026-06-07T20:42:09Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.285,
+    "overall_score": 1.284,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.253,
-      "military": 0.019,
-      "policing": 0.015,
+      "political": 2.255,
+      "military": 0.021,
+      "policing": 0.006,
       "migration": 0.008,
-      "social": 0.029,
-      "infrastructure": 0.032
+      "social": 0.027,
+      "infrastructure": 0.028
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.235,
+        "overall_score": 2.258,
         "drivers": [
           "unknown",
           "riot"
@@ -58,10 +58,11 @@
       {
         "country": "Montenegro",
         "overall": "elevated",
-        "overall_score": 0.971,
+        "overall_score": 0.95,
         "drivers": [
           "unknown",
-          "protest"
+          "protest",
+          "deescalation"
         ]
       },
       {
@@ -77,14 +78,15 @@
       "unknown",
       "protest",
       "riot",
-      "explosion"
+      "explosion",
+      "deescalation"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.235,
+      "overall_score": 2.258,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -96,25 +98,25 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.715,
-        "military": 0.099,
+        "political": 3.749,
+        "military": 0.082,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.099,
+        "social": 0.082,
         "infrastructure": 0.0
       },
       "drivers": [
         "unknown",
         "riot"
       ],
-      "incident_count": 344,
-      "recent_incident_count": 33,
+      "incident_count": 350,
+      "recent_incident_count": 39,
       "top_incidents": [
         {
           "time": "2026-06-07T13:03:16Z",
           "title": "France and Cyprus to sign defense pact for French deployment to island",
           "event_type": "riot",
-          "score": 0.304,
+          "score": 0.251,
           "source": "RSS",
           "dimensions": [
             "political",
@@ -134,7 +136,7 @@
         },
         {
           "time": "2026-06-07T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
+          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -144,7 +146,7 @@
         },
         {
           "time": "2026-06-07T00:00:00Z",
-          "title": "Greece",
+          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -249,7 +251,7 @@
     {
       "country": "Albania",
       "overall": "normal",
-      "overall_score": 1.849,
+      "overall_score": 1.847,
       "confidence": "medium",
       "confidence_value": 0.599,
       "dimensions": {
@@ -261,12 +263,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.143,
+        "political": 3.142,
         "military": 0.0,
-        "policing": 0.051,
+        "policing": 0.042,
         "migration": 0.0,
-        "social": 0.185,
-        "infrastructure": 0.051
+        "social": 0.176,
+        "infrastructure": 0.042
       },
       "drivers": [
         "unknown",
@@ -275,19 +277,6 @@
       "incident_count": 148,
       "recent_incident_count": 21,
       "top_incidents": [
-        {
-          "time": "2026-06-07T13:57:54Z",
-          "title": "EU warns Albania over Kushner-linked project",
-          "event_type": "protest",
-          "score": 0.206,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social",
-            "infrastructure"
-          ]
-        },
         {
           "time": "2026-06-07T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
@@ -321,6 +310,16 @@
         {
           "time": "2026-06-07T00:00:00Z",
           "title": "Zvernec, Vlore, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-07T00:00:00Z",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -480,7 +479,7 @@
         },
         {
           "time": "2026-06-07T00:00:00Z",
-          "title": "Szeged, Szeged, Hungary",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -573,7 +572,7 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.971,
+      "overall_score": 0.95,
       "confidence": "medium",
       "confidence_value": 0.62,
       "dimensions": {
@@ -586,15 +585,16 @@
       },
       "dimension_scores": {
         "political": 1.597,
-        "military": 0.0,
-        "policing": 0.115,
+        "military": 0.047,
+        "policing": 0.023,
         "migration": 0.09,
         "social": 0.063,
-        "infrastructure": 0.2
+        "infrastructure": 0.156
       },
       "drivers": [
         "unknown",
-        "protest"
+        "protest",
+        "deescalation"
       ],
       "incident_count": 40,
       "recent_incident_count": 9,
@@ -608,17 +608,6 @@
           "dimensions": [
             "migration",
             "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-06-07T15:48:50Z",
-          "title": "Thousands march for French schoolgirl murdered after police failed to question suspect",
-          "event_type": "protest",
-          "score": 0.19,
-          "source": "RSS",
-          "dimensions": [
-            "policing",
             "infrastructure"
           ]
         },
@@ -645,6 +634,16 @@
         {
           "time": "2026-06-06T00:00:00Z",
           "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-06T00:00:00Z",
+          "title": "Balkan, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1110,10 +1109,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1270,
+    "incident_count": 1276,
     "country_count": 14,
     "active_country_count": 12,
-    "rss_story_count_raw": 126
+    "rss_story_count_raw": 127
   },
   "legend": {
     "levels": [
