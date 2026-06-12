@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-12T14:18:04Z",
+  "generated_utc": "2026-06-12T17:45:32Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.114,
+    "overall_score": 1.141,
     "confidence": "medium",
-    "confidence_value": 0.58,
+    "confidence_value": 0.582,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,14 +22,22 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.948,
-      "military": 0.004,
-      "policing": 0.008,
-      "migration": 0.008,
-      "social": 0.01,
-      "infrastructure": 0.03
+      "political": 1.983,
+      "military": 0.017,
+      "policing": 0.002,
+      "migration": 0.017,
+      "social": 0.027,
+      "infrastructure": 0.046
     },
     "watchlist": [
+      {
+        "country": "Greece",
+        "overall": "elevated",
+        "overall_score": 2.293,
+        "drivers": [
+          "unknown"
+        ]
+      },
       {
         "country": "Hungary",
         "overall": "elevated",
@@ -41,9 +49,20 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.288,
+        "overall_score": 1.379,
         "drivers": [
-          "unknown"
+          "unknown",
+          "airspace_violation"
+        ]
+      },
+      {
+        "country": "Montenegro",
+        "overall": "elevated",
+        "overall_score": 1.031,
+        "drivers": [
+          "unknown",
+          "explosion",
+          "protest"
         ]
       },
       {
@@ -53,37 +72,20 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Croatia",
-        "overall": "elevated",
-        "overall_score": 0.968,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Montenegro",
-        "overall": "elevated",
-        "overall_score": 0.933,
-        "drivers": [
-          "unknown",
-          "explosion",
-          "protest"
-        ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "explosion",
-      "protest"
+      "protest",
+      "airspace_violation",
+      "explosion"
     ]
   },
   "countries": [
     {
       "country": "Greece",
-      "overall": "normal",
-      "overall_score": 2.279,
+      "overall": "elevated",
+      "overall_score": 2.293,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -95,7 +97,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.782,
+        "political": 3.801,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -105,8 +107,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 356,
-      "recent_incident_count": 53,
+      "incident_count": 360,
+      "recent_incident_count": 57,
       "top_incidents": [
         {
           "time": "2026-06-12T00:00:00Z",
@@ -163,7 +165,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.855,
+      "overall_score": 1.866,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -175,7 +177,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.174,
+        "political": 3.19,
         "military": 0.014,
         "policing": 0.014,
         "migration": 0.0,
@@ -185,8 +187,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 171,
-      "recent_incident_count": 27,
+      "incident_count": 172,
+      "recent_incident_count": 28,
       "top_incidents": [
         {
           "time": "2026-06-12T00:00:00Z",
@@ -220,7 +222,7 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Romania",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -230,7 +232,7 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Transilvania, Romania (general), Romania",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -243,9 +245,9 @@
     {
       "country": "Albania",
       "overall": "normal",
-      "overall_score": 1.831,
+      "overall_score": 1.86,
       "confidence": "medium",
-      "confidence_value": 0.591,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -255,19 +257,30 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.142,
+        "political": 3.162,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.029,
-        "infrastructure": 0.0
+        "social": 0.233,
+        "infrastructure": 0.02
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "protest"
       ],
-      "incident_count": 177,
-      "recent_incident_count": 26,
+      "incident_count": 181,
+      "recent_incident_count": 30,
       "top_incidents": [
+        {
+          "time": "2026-06-12T07:26:26Z",
+          "title": "Albania: thousands rally on 12th day of protests against Trump-linked resort",
+          "event_type": "protest",
+          "score": 0.197,
+          "source": "RSS",
+          "dimensions": [
+            "social"
+          ]
+        },
         {
           "time": "2026-06-12T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
@@ -307,23 +320,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-06-12T00:00:00Z",
-          "title": "Narta, Vlore, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.693,
+      "overall_score": 1.678,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -335,7 +338,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.938,
+        "political": 2.915,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -345,8 +348,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 128,
-      "recent_incident_count": 24,
+      "incident_count": 127,
+      "recent_incident_count": 23,
       "top_incidents": [
         {
           "time": "2026-06-12T00:00:00Z",
@@ -390,7 +393,7 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Struma, Blagoevgrad, Bulgaria",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -460,7 +463,7 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Szeged, Szeged, Hungary",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -470,7 +473,7 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Hungary",
+          "title": "Szeged, Szeged, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -483,9 +486,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.288,
+      "overall_score": 1.379,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.597,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -495,19 +498,41 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.295,
-        "military": 0.018,
-        "policing": 0.018,
+        "political": 2.378,
+        "military": 0.159,
+        "policing": 0.015,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.018
+        "infrastructure": 0.159
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "airspace_violation"
       ],
-      "incident_count": 77,
-      "recent_incident_count": 12,
+      "incident_count": 80,
+      "recent_incident_count": 15,
       "top_incidents": [
+        {
+          "time": "2026-06-12T14:55:46Z",
+          "title": "NATO allies seek to give top commander more freedom to shoot down drones",
+          "event_type": "airspace_violation",
+          "score": 0.299,
+          "source": "RSS",
+          "dimensions": [
+            "military",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-06-12T00:00:00Z",
           "title": "Denizli, Denizli, Turkey",
@@ -537,10 +562,52 @@
           "dimensions": [
             "political"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "overall": "elevated",
+      "overall_score": 1.031,
+      "confidence": "medium",
+      "confidence_value": 0.64,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.517,
+        "military": 0.069,
+        "policing": 0.0,
+        "migration": 0.232,
+        "social": 0.133,
+        "infrastructure": 0.448
+      },
+      "drivers": [
+        "unknown",
+        "explosion",
+        "protest"
+      ],
+      "incident_count": 47,
+      "recent_incident_count": 15,
+      "top_incidents": [
+        {
+          "time": "2026-06-12T17:18:58Z",
+          "title": "David Hockney, revolutionary British artist famed for his pools and portraits, dies aged 88",
+          "event_type": "explosion",
+          "score": 0.375,
+          "source": "RSS",
+          "dimensions": [
+            "infrastructure"
+          ]
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -550,12 +617,33 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Pamukkale, Denizli, Turkey",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
+          ]
+        },
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Durmitor, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-12T08:15:58Z",
+          "title": "Belgium: Jordan Bardella strengthens ties with Vlaams Belang in Brussels visit",
+          "event_type": "protest",
+          "score": 0.157,
+          "source": "RSS",
+          "dimensions": [
+            "migration",
+            "social"
           ]
         }
       ]
@@ -721,92 +809,9 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.933,
-      "confidence": "medium",
-      "confidence_value": 0.623,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.408,
-        "military": 0.017,
-        "policing": 0.078,
-        "migration": 0.117,
-        "social": 0.094,
-        "infrastructure": 0.384
-      },
-      "drivers": [
-        "unknown",
-        "explosion",
-        "protest"
-      ],
-      "incident_count": 41,
-      "recent_incident_count": 9,
-      "top_incidents": [
-        {
-          "time": "2026-06-12T12:14:15Z",
-          "title": "David Hockney, revolutionary British artist famed for his pools and portraits, dies aged 88",
-          "event_type": "explosion",
-          "score": 0.375,
-          "source": "RSS",
-          "dimensions": [
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-06-12T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-12T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-12T05:35:26Z",
-          "title": "One Nation fundraiser moved from Melbourne restaurant amid planned protests",
-          "event_type": "protest",
-          "score": 0.158,
-          "source": "RSS",
-          "dimensions": [
-            "policing",
-            "social"
-          ]
-        },
-        {
-          "time": "2026-06-11T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.893,
+      "overall_score": 0.934,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -818,7 +823,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.653,
+        "political": 1.723,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -828,12 +833,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 47,
-      "recent_incident_count": 4,
+      "incident_count": 48,
+      "recent_incident_count": 5,
       "top_incidents": [
         {
           "time": "2026-06-12T00:00:00Z",
           "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Chisinau, Chisinau, Moldova",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -863,16 +878,6 @@
         },
         {
           "time": "2026-06-11T00:00:00Z",
-          "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-10T00:00:00Z",
           "title": "Moldova",
           "event_type": "unknown",
           "score": 0.125,
@@ -886,7 +891,7 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 0.67,
+      "overall_score": 0.73,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -898,7 +903,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.264,
+        "political": 1.369,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -908,9 +913,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 36,
-      "recent_incident_count": 2,
+      "incident_count": 37,
+      "recent_incident_count": 3,
       "top_incidents": [
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Zubin Potok, Komuna e Zubin Potokut, Kosovo",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-06-12T00:00:00Z",
           "title": "Kosovo",
@@ -950,23 +965,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-06-07T00:00:00Z",
-          "title": "Mitrovica, Mitrovica, Kosovo",
-          "event_type": "unknown",
-          "score": 0.074,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.649,
+      "overall_score": 0.702,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -978,7 +983,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.227,
+        "political": 1.321,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -988,9 +993,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 33,
-      "recent_incident_count": 3,
+      "incident_count": 34,
+      "recent_incident_count": 4,
       "top_incidents": [
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-06-12T00:00:00Z",
           "title": "Bosnia-Herzegovina",
@@ -1026,16 +1041,6 @@
           "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-11T00:00:00Z",
-          "title": "Bihor, Bihor, Romania",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1125,10 +1130,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1255,
+    "incident_count": 1276,
     "country_count": 14,
     "active_country_count": 14,
-    "rss_story_count_raw": 87
+    "rss_story_count_raw": 132
   },
   "legend": {
     "levels": [
