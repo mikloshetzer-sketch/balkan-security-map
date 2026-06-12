@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-12T20:29:04Z",
+  "generated_utc": "2026-06-12T22:50:16Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.147,
+    "overall_score": 1.14,
     "confidence": "medium",
-    "confidence_value": 0.581,
+    "confidence_value": 0.579,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -23,17 +23,17 @@
     },
     "dimension_scores": {
       "political": 2.005,
-      "military": 0.017,
+      "military": 0.013,
       "policing": 0.002,
-      "migration": 0.017,
-      "social": 0.027,
-      "infrastructure": 0.017
+      "migration": 0.008,
+      "social": 0.004,
+      "infrastructure": 0.012
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.293,
+        "overall_score": 2.296,
         "drivers": [
           "unknown"
         ]
@@ -49,20 +49,18 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.403,
+        "overall_score": 1.396,
         "drivers": [
           "unknown",
           "airspace_violation"
         ]
       },
       {
-        "country": "Montenegro",
+        "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 0.985,
+        "overall_score": 1.006,
         "drivers": [
-          "unknown",
-          "protest",
-          "deescalation"
+          "unknown"
         ]
       },
       {
@@ -76,16 +74,14 @@
     ],
     "top_drivers": [
       "unknown",
-      "protest",
-      "airspace_violation",
-      "deescalation"
+      "airspace_violation"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.293,
+      "overall_score": 2.296,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -97,7 +93,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.801,
+        "political": 3.806,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -107,8 +103,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 360,
-      "recent_incident_count": 57,
+      "incident_count": 361,
+      "recent_incident_count": 58,
       "top_incidents": [
         {
           "time": "2026-06-12T00:00:00Z",
@@ -245,9 +241,9 @@
     {
       "country": "Albania",
       "overall": "normal",
-      "overall_score": 1.86,
+      "overall_score": 1.845,
       "confidence": "medium",
-      "confidence_value": 0.596,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -257,30 +253,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.162,
+        "political": 3.159,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.231,
+        "social": 0.048,
         "infrastructure": 0.02
       },
       "drivers": [
-        "unknown",
-        "protest"
+        "unknown"
       ],
-      "incident_count": 181,
-      "recent_incident_count": 30,
+      "incident_count": 179,
+      "recent_incident_count": 27,
       "top_incidents": [
-        {
-          "time": "2026-06-12T07:26:26Z",
-          "title": "Albania: thousands rally on 12th day of protests against Trump-linked resort",
-          "event_type": "protest",
-          "score": 0.194,
-          "source": "RSS",
-          "dimensions": [
-            "social"
-          ]
-        },
         {
           "time": "2026-06-12T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
@@ -314,6 +299,16 @@
         {
           "time": "2026-06-12T00:00:00Z",
           "title": "Zvernec, Vlore, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Vlora, Vlore, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -486,7 +481,7 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.403,
+      "overall_score": 1.396,
       "confidence": "medium",
       "confidence_value": 0.597,
       "dimensions": {
@@ -499,11 +494,11 @@
       },
       "dimension_scores": {
         "political": 2.418,
-        "military": 0.159,
+        "military": 0.135,
         "policing": 0.015,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.159
+        "infrastructure": 0.135
       },
       "drivers": [
         "unknown",
@@ -516,7 +511,7 @@
           "time": "2026-06-12T14:55:46Z",
           "title": "NATO allies seek to give top commander more freedom to shoot down drones",
           "event_type": "airspace_violation",
-          "score": 0.299,
+          "score": 0.248,
           "source": "RSS",
           "dimensions": [
             "military",
@@ -566,11 +561,11 @@
       ]
     },
     {
-      "country": "Montenegro",
+      "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 0.985,
+      "overall_score": 1.006,
       "confidence": "medium",
-      "confidence_value": 0.632,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -580,24 +575,22 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.619,
-        "military": 0.064,
+        "political": 1.845,
+        "military": 0.0,
         "policing": 0.0,
-        "migration": 0.231,
-        "social": 0.131,
-        "infrastructure": 0.05
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "protest",
-        "deescalation"
+        "unknown"
       ],
-      "incident_count": 47,
-      "recent_incident_count": 14,
+      "incident_count": 48,
+      "recent_incident_count": 8,
       "top_incidents": [
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Montenegro",
+          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -607,7 +600,7 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Montenegro",
+          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -617,7 +610,7 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Durmitor, Montenegro (general), Montenegro",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -627,7 +620,7 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Herceg Novi, Montenegro (general), Montenegro",
+          "title": "Drnis, ibensko-Kniniska, Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -636,14 +629,13 @@
           ]
         },
         {
-          "time": "2026-06-12T08:15:58Z",
-          "title": "Belgium: Jordan Bardella strengthens ties with Vlaams Belang in Brussels visit",
-          "event_type": "protest",
-          "score": 0.155,
-          "source": "RSS",
+          "time": "2026-06-11T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
           "dimensions": [
-            "migration",
-            "social"
+            "political"
           ]
         }
       ]
@@ -809,11 +801,11 @@
       ]
     },
     {
-      "country": "Croatia",
+      "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.968,
+      "overall_score": 0.876,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.602,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -823,22 +815,22 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.781,
-        "military": 0.0,
+        "political": 1.562,
+        "military": 0.028,
         "policing": 0.0,
-        "migration": 0.0,
+        "migration": 0.118,
         "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 47,
-      "recent_incident_count": 7,
+      "incident_count": 40,
+      "recent_incident_count": 8,
       "top_incidents": [
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Croatia",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -848,7 +840,7 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Croatia",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -858,7 +850,17 @@
         },
         {
           "time": "2026-06-12T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "title": "Durmitor, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Herceg Novi, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -868,17 +870,7 @@
         },
         {
           "time": "2026-06-11T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-11T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1130,10 +1122,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1282,
+    "incident_count": 1275,
     "country_count": 14,
     "active_country_count": 14,
-    "rss_story_count_raw": 135
+    "rss_story_count_raw": 90
   },
   "legend": {
     "levels": [
