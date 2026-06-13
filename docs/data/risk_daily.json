@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-13T20:44:49Z",
+  "generated_utc": "2026-06-13T22:21:06Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.105,
+    "overall_score": 1.1,
     "confidence": "medium",
-    "confidence_value": 0.58,
+    "confidence_value": 0.578,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.944,
-      "military": 0.004,
+      "political": 1.943,
+      "military": 0.002,
       "policing": 0.0,
-      "migration": 0.009,
-      "social": 0.029,
-      "infrastructure": 0.004
+      "migration": 0.004,
+      "social": 0.014,
+      "infrastructure": 0.002
     },
     "watchlist": [
       {
@@ -73,8 +73,7 @@
     ],
     "top_drivers": [
       "unknown",
-      "protest",
-      "deescalation"
+      "protest"
     ]
   },
   "countries": [
@@ -161,9 +160,9 @@
     {
       "country": "Albania",
       "overall": "normal",
-      "overall_score": 1.873,
+      "overall_score": 1.865,
       "confidence": "medium",
-      "confidence_value": 0.596,
+      "confidence_value": 0.593,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -177,19 +176,29 @@
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.299,
+        "social": 0.179,
         "infrastructure": 0.02
       },
       "drivers": [
         "unknown",
         "protest"
       ],
-      "incident_count": 186,
-      "recent_incident_count": 23,
+      "incident_count": 185,
+      "recent_incident_count": 22,
       "top_incidents": [
         {
           "time": "2026-06-13T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-13T00:00:00Z",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -226,23 +235,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-06-13T00:00:00Z",
-          "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.795,
+      "overall_score": 1.807,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -254,7 +253,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.091,
+        "political": 3.109,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -264,8 +263,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 170,
-      "recent_incident_count": 21,
+      "incident_count": 171,
+      "recent_incident_count": 22,
       "top_incidents": [
         {
           "time": "2026-06-13T00:00:00Z",
@@ -308,10 +307,10 @@
           ]
         },
         {
-          "time": "2026-06-12T00:00:00Z",
-          "title": "Romania",
+          "time": "2026-06-13T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -389,7 +388,7 @@
         },
         {
           "time": "2026-06-13T00:00:00Z",
-          "title": "Balkan, Khaskovo, Bulgaria",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -802,9 +801,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.877,
+      "overall_score": 0.808,
       "confidence": "medium",
-      "confidence_value": 0.624,
+      "confidence_value": 0.598,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -814,20 +813,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.504,
-        "military": 0.044,
+        "political": 1.482,
+        "military": 0.019,
         "policing": 0.0,
-        "migration": 0.115,
-        "social": 0.092,
-        "infrastructure": 0.025
+        "migration": 0.037,
+        "social": 0.0,
+        "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "protest",
-        "deescalation"
+        "unknown"
       ],
-      "incident_count": 45,
-      "recent_incident_count": 11,
+      "incident_count": 40,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-06-13T00:00:00Z",
@@ -1123,10 +1120,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1275,
+    "incident_count": 1270,
     "country_count": 14,
     "active_country_count": 14,
-    "rss_story_count_raw": 129
+    "rss_story_count_raw": 89
   },
   "legend": {
     "levels": [
