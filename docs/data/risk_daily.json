@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-13T10:09:56Z",
+  "generated_utc": "2026-06-13T12:05:02Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.08,
+    "overall_score": 1.087,
     "confidence": "medium",
     "confidence_value": 0.581,
     "dimensions": {
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.897,
-      "military": 0.014,
+      "political": 1.913,
+      "military": 0.006,
       "policing": 0.0,
       "migration": 0.011,
       "social": 0.019,
-      "infrastructure": 0.014
+      "infrastructure": 0.005
     },
     "watchlist": [
       {
@@ -41,10 +41,17 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.289,
+        "overall_score": 1.252,
         "drivers": [
-          "unknown",
-          "airspace_violation"
+          "unknown"
+        ]
+      },
+      {
+        "country": "Croatia",
+        "overall": "elevated",
+        "overall_score": 0.982,
+        "drivers": [
+          "unknown"
         ]
       },
       {
@@ -62,20 +69,11 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Croatia",
-        "overall": "elevated",
-        "overall_score": 0.902,
-        "drivers": [
-          "unknown"
-        ]
       }
     ],
     "top_drivers": [
       "unknown",
       "protest",
-      "airspace_violation",
       "deescalation"
     ]
   },
@@ -83,7 +81,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.221,
+      "overall_score": 2.242,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -95,7 +93,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.702,
+        "political": 3.732,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -105,8 +103,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 353,
-      "recent_incident_count": 30,
+      "incident_count": 358,
+      "recent_incident_count": 35,
       "top_incidents": [
         {
           "time": "2026-06-13T00:00:00Z",
@@ -140,7 +138,7 @@
         },
         {
           "time": "2026-06-13T00:00:00Z",
-          "title": "Greece",
+          "title": "Aigio, Perifereia Dytikis Elladas, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -150,7 +148,7 @@
         },
         {
           "time": "2026-06-13T00:00:00Z",
-          "title": "Kokkinia, Perifereia Dytikis Makedonias, Greece",
+          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -163,7 +161,7 @@
     {
       "country": "Albania",
       "overall": "normal",
-      "overall_score": 1.784,
+      "overall_score": 1.821,
       "confidence": "medium",
       "confidence_value": 0.595,
       "dimensions": {
@@ -175,7 +173,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.056,
+        "political": 3.112,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -186,19 +184,9 @@
         "unknown",
         "protest"
       ],
-      "incident_count": 179,
-      "recent_incident_count": 15,
+      "incident_count": 182,
+      "recent_incident_count": 18,
       "top_incidents": [
-        {
-          "time": "2026-06-13T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
         {
           "time": "2026-06-13T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
@@ -220,20 +208,30 @@
           ]
         },
         {
-          "time": "2026-06-12T07:26:26Z",
-          "title": "Albania: thousands rally on 12th day of protests against Trump-linked resort",
-          "event_type": "protest",
-          "score": 0.134,
-          "source": "RSS",
+          "time": "2026-06-13T00:00:00Z",
+          "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
           "dimensions": [
-            "social"
+            "political"
           ]
         },
         {
-          "time": "2026-06-12T00:00:00Z",
+          "time": "2026-06-13T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-13T00:00:00Z",
+          "title": "Vlora, Vlore, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -484,9 +482,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.289,
+      "overall_score": 1.252,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -497,30 +495,18 @@
       },
       "dimension_scores": {
         "political": 2.25,
-        "military": 0.119,
+        "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.119
+        "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "airspace_violation"
+        "unknown"
       ],
-      "incident_count": 76,
-      "recent_incident_count": 14,
+      "incident_count": 75,
+      "recent_incident_count": 13,
       "top_incidents": [
-        {
-          "time": "2026-06-12T14:55:46Z",
-          "title": "NATO allies seek to give top commander more freedom to shoot down drones",
-          "event_type": "airspace_violation",
-          "score": 0.244,
-          "source": "RSS",
-          "dimensions": [
-            "military",
-            "infrastructure"
-          ]
-        },
         {
           "time": "2026-06-13T00:00:00Z",
           "title": "Smyrna, Izmir, Turkey",
@@ -554,6 +540,96 @@
         {
           "time": "2026-06-12T00:00:00Z",
           "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Denizli, Denizli, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Croatia",
+      "overall": "elevated",
+      "overall_score": 0.982,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.804,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 48,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-06-13T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-13T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-13T00:00:00Z",
+          "title": "Luka Modric, Dubrovacko-Neretvanska, Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-12T00:00:00Z",
+          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -714,86 +790,6 @@
         {
           "time": "2026-06-12T00:00:00Z",
           "title": "Ljubljana, Slovenia (general), Slovenia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Croatia",
-      "overall": "elevated",
-      "overall_score": 0.902,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.668,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 46,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-06-13T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-12T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-12T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-12T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-12T00:00:00Z",
-          "title": "Drnis, ibensko-Kniniska, Croatia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1127,7 +1123,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1253,
+    "incident_count": 1262,
     "country_count": 14,
     "active_country_count": 14,
     "rss_story_count_raw": 126
