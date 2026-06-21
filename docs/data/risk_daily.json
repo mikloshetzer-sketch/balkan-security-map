@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-21T20:05:24Z",
+  "generated_utc": "2026-06-21T21:44:07Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.022,
+    "overall_score": 1.028,
     "confidence": "medium",
     "confidence_value": 0.573,
     "dimensions": {
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.813,
+      "political": 1.823,
       "military": 0.0,
       "policing": 0.002,
       "migration": 0.0,
@@ -79,7 +79,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.234,
+      "overall_score": 2.238,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -91,7 +91,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.72,
+        "political": 3.726,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -101,8 +101,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 364,
-      "recent_incident_count": 36,
+      "incident_count": 365,
+      "recent_incident_count": 37,
       "top_incidents": [
         {
           "time": "2026-06-21T00:00:00Z",
@@ -319,7 +319,7 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.528,
+      "overall_score": 1.547,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -331,7 +331,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.687,
+        "political": 2.716,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -341,12 +341,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 121,
-      "recent_incident_count": 7,
+      "incident_count": 122,
+      "recent_incident_count": 8,
       "top_incidents": [
         {
           "time": "2026-06-21T00:00:00Z",
           "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-21T00:00:00Z",
+          "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -376,19 +386,9 @@
         },
         {
           "time": "2026-06-21T00:00:00Z",
-          "title": "Sofia, Sofiya-Grad, Bulgaria",
+          "title": "Omurtag, Turgovishte, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-20T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -877,6 +877,86 @@
       ]
     },
     {
+      "country": "Bosnia and Herzegovina",
+      "overall": "normal",
+      "overall_score": 0.566,
+      "confidence": "medium",
+      "confidence_value": 0.55,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.077,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 23,
+      "recent_incident_count": 1,
+      "top_incidents": [
+        {
+          "time": "2026-06-21T00:00:00Z",
+          "title": "Tuzla Canton, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-19T00:00:00Z",
+          "title": "Zeljava, Bosnia and Herzegovina (general), Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.129,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-19T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.129,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-19T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.129,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-18T00:00:00Z",
+          "title": "Srpska, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.074,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Kosovo",
       "overall": "normal",
       "overall_score": 0.526,
@@ -949,86 +1029,6 @@
           "title": "Banjska, Vucitrn, Kosovo",
           "event_type": "unknown",
           "score": 0.063,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Bosnia and Herzegovina",
-      "overall": "normal",
-      "overall_score": 0.506,
-      "confidence": "medium",
-      "confidence_value": 0.55,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 0.968,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 22,
-      "recent_incident_count": 0,
-      "top_incidents": [
-        {
-          "time": "2026-06-19T00:00:00Z",
-          "title": "Zeljava, Bosnia and Herzegovina (general), Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-19T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-19T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-18T00:00:00Z",
-          "title": "Srpska, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.074,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-18T00:00:00Z",
-          "title": "Srpska, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.074,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1118,7 +1118,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1211,
+    "incident_count": 1214,
     "country_count": 14,
     "active_country_count": 14,
     "rss_story_count_raw": 85
