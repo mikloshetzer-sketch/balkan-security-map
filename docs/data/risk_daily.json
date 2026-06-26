@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-26T20:58:49Z",
+  "generated_utc": "2026-06-26T22:39:35Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.2,
+    "overall_score": 1.198,
     "confidence": "medium",
-    "confidence_value": 0.587,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,14 +22,22 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.102,
-      "military": 0.011,
-      "policing": 0.018,
+      "political": 2.101,
+      "military": 0.009,
+      "policing": 0.014,
       "migration": 0.013,
       "social": 0.006,
-      "infrastructure": 0.011
+      "infrastructure": 0.009
     },
     "watchlist": [
+      {
+        "country": "Hungary",
+        "overall": "elevated",
+        "overall_score": 1.469,
+        "drivers": [
+          "unknown"
+        ]
+      },
       {
         "country": "Croatia",
         "overall": "elevated",
@@ -41,7 +49,7 @@
       {
         "country": "Montenegro",
         "overall": "elevated",
-        "overall_score": 0.959,
+        "overall_score": 0.929,
         "drivers": [
           "unknown",
           "protest",
@@ -63,14 +71,6 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Bosnia and Herzegovina",
-        "overall": "elevated",
-        "overall_score": 0.766,
-        "drivers": [
-          "unknown"
-        ]
       }
     ],
     "top_drivers": [
@@ -83,7 +83,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.231,
+      "overall_score": 2.24,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -95,7 +95,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.716,
+        "political": 3.728,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -105,8 +105,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 342,
-      "recent_incident_count": 47,
+      "incident_count": 344,
+      "recent_incident_count": 49,
       "top_incidents": [
         {
           "time": "2026-06-26T00:00:00Z",
@@ -483,12 +483,12 @@
     },
     {
       "country": "Hungary",
-      "overall": "normal",
-      "overall_score": 1.474,
+      "overall": "elevated",
+      "overall_score": 1.469,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.59,
       "dimensions": {
-        "political": "tense",
+        "political": "elevated",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -496,7 +496,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.602,
+        "political": 2.595,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -506,7 +506,7 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 93,
+      "incident_count": 92,
       "recent_incident_count": 18,
       "top_incidents": [
         {
@@ -644,9 +644,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.959,
+      "overall_score": 0.929,
       "confidence": "medium",
-      "confidence_value": 0.637,
+      "confidence_value": 0.626,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -656,20 +656,20 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.502,
-        "military": 0.11,
-        "policing": 0.208,
-        "migration": 0.143,
+        "political": 1.485,
+        "military": 0.091,
+        "policing": 0.156,
+        "migration": 0.142,
         "social": 0.053,
-        "infrastructure": 0.11
+        "infrastructure": 0.091
       },
       "drivers": [
         "unknown",
         "protest",
         "explosion"
       ],
-      "incident_count": 36,
-      "recent_incident_count": 11,
+      "incident_count": 33,
+      "recent_incident_count": 9,
       "top_incidents": [
         {
           "time": "2026-06-26T20:50:05Z",
@@ -1116,10 +1116,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1187,
+    "incident_count": 1185,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 134
+    "rss_story_count_raw": 91
   },
   "legend": {
     "levels": [
