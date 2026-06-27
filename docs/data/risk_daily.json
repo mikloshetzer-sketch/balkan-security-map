@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-27T20:35:43Z",
+  "generated_utc": "2026-06-27T22:20:24Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.151,
+    "overall_score": 1.078,
     "confidence": "medium",
-    "confidence_value": 0.586,
+    "confidence_value": 0.608,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.032,
-      "military": 0.004,
-      "policing": 0.015,
+      "political": 1.893,
+      "military": 0.003,
+      "policing": 0.017,
       "migration": 0.004,
-      "social": 0.008,
-      "infrastructure": 0.004
+      "social": 0.011,
+      "infrastructure": 0.007
     },
     "watchlist": [
       {
@@ -84,7 +84,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.225,
+      "overall_score": 2.23,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -96,7 +96,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.708,
+        "political": 3.714,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -106,8 +106,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 348,
-      "recent_incident_count": 43,
+      "incident_count": 349,
+      "recent_incident_count": 44,
       "top_incidents": [
         {
           "time": "2026-06-27T00:00:00Z",
@@ -164,7 +164,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.823,
+      "overall_score": 1.846,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -176,7 +176,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.132,
+        "political": 3.165,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -186,8 +186,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 174,
-      "recent_incident_count": 20,
+      "incident_count": 176,
+      "recent_incident_count": 22,
       "top_incidents": [
         {
           "time": "2026-06-27T00:00:00Z",
@@ -211,6 +211,16 @@
         },
         {
           "time": "2026-06-27T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-27T00:00:00Z",
           "title": "Cotroceni, Romania (general), Romania",
           "event_type": "unknown",
           "score": 0.178,
@@ -222,16 +232,6 @@
         {
           "time": "2026-06-27T00:00:00Z",
           "title": "Vaslui, Vaslui, Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-27T00:00:00Z",
-          "title": "Tulcea, Tulcea, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -405,7 +405,7 @@
     {
       "country": "Turkey",
       "overall": "normal",
-      "overall_score": 1.48,
+      "overall_score": 1.483,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -417,7 +417,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.613,
+        "political": 2.617,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -427,7 +427,7 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 104,
+      "incident_count": 105,
       "recent_incident_count": 15,
       "top_incidents": [
         {
@@ -1049,6 +1049,49 @@
       ]
     },
     {
+      "country": "Serbia",
+      "overall": "normal",
+      "overall_score": 0.099,
+      "confidence": "high",
+      "confidence_value": 0.904,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 0.051,
+        "military": 0.0,
+        "policing": 0.051,
+        "migration": 0.0,
+        "social": 0.051,
+        "infrastructure": 0.051
+      },
+      "drivers": [
+        "protest"
+      ],
+      "incident_count": 1,
+      "recent_incident_count": 1,
+      "top_incidents": [
+        {
+          "time": "2026-06-27T22:11:40Z",
+          "title": "Serbian President Vučić says he will resign within ‘weeks’",
+          "event_type": "protest",
+          "score": 0.206,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
+          ]
+        }
+      ]
+    },
+    {
       "country": "North Macedonia",
       "overall": "normal",
       "overall_score": 0.031,
@@ -1087,39 +1130,12 @@
           ]
         }
       ]
-    },
-    {
-      "country": "Serbia",
-      "overall": "normal",
-      "overall_score": 0.0,
-      "confidence": "low",
-      "confidence_value": 0.0,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 0.0,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [],
-      "incident_count": 0,
-      "recent_incident_count": 0,
-      "top_incidents": []
     }
   ],
   "stats": {
-    "incident_count": 1182,
+    "incident_count": 1187,
     "country_count": 14,
-    "active_country_count": 13,
+    "active_country_count": 14,
     "rss_story_count_raw": 133
   },
   "legend": {
