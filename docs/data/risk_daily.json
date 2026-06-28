@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-28T09:35:35Z",
+  "generated_utc": "2026-06-28T12:00:56Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.031,
+    "overall_score": 1.038,
     "confidence": "medium",
-    "confidence_value": 0.605,
+    "confidence_value": 0.606,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,27 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.804,
+      "political": 1.816,
       "military": 0.007,
       "policing": 0.017,
       "migration": 0.008,
-      "social": 0.013,
+      "social": 0.01,
       "infrastructure": 0.01
     },
     "watchlist": [
       {
-        "country": "Hungary",
-        "overall": "elevated",
-        "overall_score": 1.48,
-        "drivers": [
-          "unknown",
-          "protest"
-        ]
-      },
-      {
         "country": "Bulgaria",
         "overall": "elevated",
-        "overall_score": 1.402,
+        "overall_score": 1.447,
         "drivers": [
           "unknown"
         ]
@@ -50,7 +41,7 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.386,
+        "overall_score": 1.41,
         "drivers": [
           "unknown"
         ]
@@ -58,7 +49,7 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.36,
+        "overall_score": 1.359,
         "drivers": [
           "unknown"
         ]
@@ -70,20 +61,30 @@
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Montenegro",
+        "overall": "elevated",
+        "overall_score": 0.882,
+        "drivers": [
+          "unknown",
+          "blockade",
+          "explosion"
+        ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "protest",
       "explosion",
-      "blockade"
+      "blockade",
+      "protest"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.166,
+      "overall_score": 2.176,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -95,7 +96,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.625,
+        "political": 3.639,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -105,8 +106,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 340,
-      "recent_incident_count": 26,
+      "incident_count": 342,
+      "recent_incident_count": 28,
       "top_incidents": [
         {
           "time": "2026-06-28T00:00:00Z",
@@ -120,7 +121,7 @@
         },
         {
           "time": "2026-06-28T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
+          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -130,7 +131,7 @@
         },
         {
           "time": "2026-06-28T00:00:00Z",
-          "title": "Greece",
+          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -163,7 +164,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.747,
+      "overall_score": 1.773,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -175,7 +176,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.019,
+        "political": 3.058,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -185,8 +186,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 170,
-      "recent_incident_count": 10,
+      "incident_count": 172,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-06-28T00:00:00Z",
@@ -209,20 +210,20 @@
           ]
         },
         {
-          "time": "2026-06-27T00:00:00Z",
-          "title": "Romania",
+          "time": "2026-06-28T00:00:00Z",
+          "title": "Alba Iulia, Alba, Romania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-06-27T00:00:00Z",
+          "time": "2026-06-28T00:00:00Z",
           "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -242,12 +243,12 @@
     },
     {
       "country": "Hungary",
-      "overall": "elevated",
-      "overall_score": 1.48,
+      "overall": "normal",
+      "overall_score": 1.475,
       "confidence": "medium",
-      "confidence_value": 0.594,
+      "confidence_value": 0.592,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -255,16 +256,15 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.598,
+        "political": 2.604,
         "military": 0.0,
-        "policing": 0.038,
+        "policing": 0.0,
         "migration": 0.0,
-        "social": 0.038,
+        "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "protest"
+        "unknown"
       ],
       "incident_count": 94,
       "recent_incident_count": 15,
@@ -301,7 +301,7 @@
         },
         {
           "time": "2026-06-28T00:00:00Z",
-          "title": "Szeged, Szeged, Hungary",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -311,7 +311,7 @@
         },
         {
           "time": "2026-06-28T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "title": "Szeged, Szeged, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -324,7 +324,7 @@
     {
       "country": "Bulgaria",
       "overall": "elevated",
-      "overall_score": 1.402,
+      "overall_score": 1.447,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -336,7 +336,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.49,
+        "political": 2.56,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -346,10 +346,30 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 111,
-      "recent_incident_count": 3,
+      "incident_count": 113,
+      "recent_incident_count": 5,
       "top_incidents": [
         {
+          "time": "2026-06-28T00:00:00Z",
+          "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-06-28T00:00:00Z",
+          "title": "Balkan, Khaskovo, Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-06-27T00:00:00Z",
           "title": "Bulgaria",
           "event_type": "unknown",
@@ -371,26 +391,6 @@
         },
         {
           "time": "2026-06-27T00:00:00Z",
-          "title": "Sofia, Sofiya-Grad, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-26T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-26T00:00:00Z",
           "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
           "score": 0.125,
@@ -404,7 +404,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.386,
+      "overall_score": 1.41,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -416,7 +416,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.465,
+        "political": 2.502,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -426,12 +426,12 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 110,
-      "recent_incident_count": 6,
+      "incident_count": 111,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-06-28T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -441,7 +441,7 @@
         },
         {
           "time": "2026-06-28T00:00:00Z",
-          "title": "Albania",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -460,10 +460,10 @@
           ]
         },
         {
-          "time": "2026-06-27T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
+          "time": "2026-06-28T00:00:00Z",
+          "title": "Albania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -471,7 +471,7 @@
         },
         {
           "time": "2026-06-27T00:00:00Z",
-          "title": "Troshani, Qarku i Lezhes, Albania",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -484,7 +484,7 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.36,
+      "overall_score": 1.359,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -496,7 +496,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.423,
+        "political": 2.422,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -644,9 +644,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.872,
+      "overall_score": 0.882,
       "confidence": "medium",
-      "confidence_value": 0.616,
+      "confidence_value": 0.621,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -658,7 +658,7 @@
       "dimension_scores": {
         "political": 1.49,
         "military": 0.047,
-        "policing": 0.098,
+        "policing": 0.135,
         "migration": 0.052,
         "social": 0.047,
         "infrastructure": 0.047
@@ -668,7 +668,7 @@
         "blockade",
         "explosion"
       ],
-      "incident_count": 34,
+      "incident_count": 35,
       "recent_incident_count": 7,
       "top_incidents": [
         {
@@ -1050,7 +1050,7 @@
     {
       "country": "Serbia",
       "overall": "normal",
-      "overall_score": 0.237,
+      "overall_score": 0.236,
       "confidence": "high",
       "confidence_value": 0.947,
       "dimensions": {
@@ -1095,7 +1095,7 @@
           "time": "2026-06-27T22:11:40Z",
           "title": "Serbian President Vučić says he will resign within ‘weeks’",
           "event_type": "protest",
-          "score": 0.17,
+          "score": 0.167,
           "source": "RSS",
           "dimensions": [
             "political",
@@ -1148,10 +1148,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1158,
+    "incident_count": 1166,
     "country_count": 14,
     "active_country_count": 14,
-    "rss_story_count_raw": 93
+    "rss_story_count_raw": 135
   },
   "legend": {
     "levels": [
