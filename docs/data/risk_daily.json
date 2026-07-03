@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-03T13:15:04Z",
+  "generated_utc": "2026-07-03T15:29:53Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.144,
+    "overall_score": 1.176,
     "confidence": "medium",
-    "confidence_value": 0.587,
+    "confidence_value": 0.588,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,27 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.0,
-      "military": 0.022,
-      "policing": 0.034,
+      "political": 2.052,
+      "military": 0.026,
+      "policing": 0.03,
       "migration": 0.001,
-      "social": 0.007,
-      "infrastructure": 0.04
+      "social": 0.016,
+      "infrastructure": 0.037
     },
     "watchlist": [
       {
-        "country": "Greece",
-        "overall": "elevated",
-        "overall_score": 2.219,
-        "drivers": [
-          "unknown",
-          "protest"
-        ]
-      },
-      {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.478,
+        "overall_score": 1.525,
         "drivers": [
           "unknown",
           "explosion"
@@ -51,7 +42,7 @@
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.422,
+        "overall_score": 1.444,
         "drivers": [
           "unknown"
         ]
@@ -59,7 +50,7 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.341,
+        "overall_score": 1.366,
         "drivers": [
           "unknown"
         ]
@@ -68,6 +59,14 @@
         "country": "Croatia",
         "overall": "elevated",
         "overall_score": 1.029,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
+        "country": "Moldova",
+        "overall": "elevated",
+        "overall_score": 0.943,
         "drivers": [
           "unknown"
         ]
@@ -82,10 +81,10 @@
   "countries": [
     {
       "country": "Greece",
-      "overall": "elevated",
-      "overall_score": 2.219,
+      "overall": "normal",
+      "overall_score": 2.237,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.591,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -95,20 +94,29 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.694,
+        "political": 3.723,
         "military": 0.0,
-        "policing": 0.074,
+        "policing": 0.02,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.074
+        "infrastructure": 0.02
       },
       "drivers": [
-        "unknown",
-        "protest"
+        "unknown"
       ],
-      "incident_count": 326,
-      "recent_incident_count": 47,
+      "incident_count": 330,
+      "recent_incident_count": 51,
       "top_incidents": [
+        {
+          "time": "2026-07-03T00:00:00Z",
+          "title": "Evros, Turkey (general), Turkey",
+          "event_type": "unknown",
+          "score": 0.201,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-07-03T00:00:00Z",
           "title": "Greece",
@@ -141,17 +149,7 @@
         },
         {
           "time": "2026-07-03T00:00:00Z",
-          "title": "Messenia, Perifereia Peloponnisou, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-03T00:00:00Z",
-          "title": "Vagia, Perifereia Stereas Elladas, Greece",
+          "title": "Lefkada, Perifereia Ionion Nison, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -211,16 +209,6 @@
         },
         {
           "time": "2026-07-03T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-03T00:00:00Z",
           "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
@@ -231,7 +219,17 @@
         },
         {
           "time": "2026-07-03T00:00:00Z",
-          "title": "Macelaru, Romania (general), Romania",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-03T00:00:00Z",
+          "title": "Prut River, Romania (general), Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -329,9 +327,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.478,
+      "overall_score": 1.525,
       "confidence": "medium",
-      "confidence_value": 0.6,
+      "confidence_value": 0.602,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -341,19 +339,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.506,
-        "military": 0.15,
+        "political": 2.578,
+        "military": 0.167,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.352
+        "social": 0.018,
+        "infrastructure": 0.364
       },
       "drivers": [
         "unknown",
         "explosion"
       ],
-      "incident_count": 96,
-      "recent_incident_count": 19,
+      "incident_count": 99,
+      "recent_incident_count": 21,
       "top_incidents": [
         {
           "time": "2026-07-03T11:19:46Z",
@@ -371,7 +369,7 @@
           "time": "2026-07-01T13:53:45Z",
           "title": "EU urged to exempt UK from car rules that could be worst Brexit impact yet",
           "event_type": "explosion",
-          "score": 0.227,
+          "score": 0.223,
           "source": "RSS",
           "dimensions": [
             "infrastructure"
@@ -412,7 +410,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.422,
+      "overall_score": 1.444,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -424,7 +422,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.51,
+        "political": 2.545,
         "military": 0.014,
         "policing": 0.0,
         "migration": 0.014,
@@ -434,8 +432,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 99,
-      "recent_incident_count": 12,
+      "incident_count": 100,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-07-03T00:00:00Z",
@@ -459,6 +457,16 @@
         },
         {
           "time": "2026-07-03T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-03T00:00:00Z",
           "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
@@ -469,19 +477,9 @@
         },
         {
           "time": "2026-07-03T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-02T00:00:00Z",
           "title": "Hungary",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -492,7 +490,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.341,
+      "overall_score": 1.366,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -504,7 +502,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.394,
+        "political": 2.433,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -514,8 +512,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 91,
-      "recent_incident_count": 14,
+      "incident_count": 92,
+      "recent_incident_count": 15,
       "top_incidents": [
         {
           "time": "2026-07-03T00:00:00Z",
@@ -548,10 +546,10 @@
           ]
         },
         {
-          "time": "2026-07-02T00:00:00Z",
-          "title": "Albania",
+          "time": "2026-07-03T00:00:00Z",
+          "title": "Zvernec, Vlore, Albania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -559,7 +557,7 @@
         },
         {
           "time": "2026-07-02T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -652,7 +650,7 @@
     {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.902,
+      "overall_score": 0.943,
       "confidence": "medium",
       "confidence_value": 0.595,
       "dimensions": {
@@ -664,7 +662,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.654,
+        "political": 1.724,
         "military": 0.035,
         "policing": 0.0,
         "migration": 0.0,
@@ -674,8 +672,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 38,
-      "recent_incident_count": 10,
+      "incident_count": 39,
+      "recent_incident_count": 11,
       "top_incidents": [
         {
           "time": "2026-07-03T00:00:00Z",
@@ -718,10 +716,10 @@
           ]
         },
         {
-          "time": "2026-07-02T00:00:00Z",
-          "title": "Moldova",
+          "time": "2026-07-03T00:00:00Z",
+          "title": "Ungheni, Ungheni, Moldova",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -810,92 +808,11 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.738,
-      "confidence": "medium",
-      "confidence_value": 0.612,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.225,
-        "military": 0.0,
-        "policing": 0.293,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 31,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-07-03T04:00:18Z",
-          "title": "How many more Lyhannas must there be before France takes child sexual assault seriously? | Rokhaya Diallo",
-          "event_type": "explosion",
-          "score": 0.313,
-          "source": "RSS",
-          "dimensions": [
-            "policing"
-          ]
-        },
-        {
-          "time": "2026-07-02T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-02T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-02T00:00:00Z",
-          "title": "Niksic, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-01T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.731,
+      "overall_score": 0.843,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.595,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -905,8 +822,8 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.371,
-        "military": 0.0,
+        "political": 1.551,
+        "military": 0.036,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
@@ -915,14 +832,34 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 31,
-      "recent_incident_count": 4,
+      "incident_count": 34,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-07-03T00:00:00Z",
           "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-03T00:00:00Z",
+          "title": "Bihor, Bihor, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-03T00:00:00Z",
+          "title": "Oradea, Bihor, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -947,22 +884,85 @@
           "dimensions": [
             "political"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "overall": "elevated",
+      "overall_score": 0.835,
+      "confidence": "medium",
+      "confidence_value": 0.622,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.365,
+        "military": 0.0,
+        "policing": 0.293,
+        "migration": 0.0,
+        "social": 0.093,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown",
+        "explosion",
+        "protest"
+      ],
+      "incident_count": 33,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-07-03T04:00:18Z",
+          "title": "How many more Lyhannas must there be before France takes child sexual assault seriously? | Rokhaya Diallo",
+          "event_type": "explosion",
+          "score": 0.313,
+          "source": "RSS",
+          "dimensions": [
+            "policing"
+          ]
         },
         {
-          "time": "2026-07-01T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "time": "2026-07-03T14:57:34Z",
+          "title": "One Nation is campaigning directly to Christians. But will party policies rub against worshippers’ conscience?",
+          "event_type": "protest",
+          "score": 0.19,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-07-03T00:00:00Z",
+          "title": "Montenegro",
           "event_type": "unknown",
-          "score": 0.129,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-07-01T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "time": "2026-07-02T00:00:00Z",
+          "title": "Montenegro",
           "event_type": "unknown",
-          "score": 0.129,
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-02T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -973,7 +973,7 @@
     {
       "country": "Kosovo",
       "overall": "normal",
-      "overall_score": 0.496,
+      "overall_score": 0.555,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -985,7 +985,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.949,
+        "political": 1.057,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -995,12 +995,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 19,
-      "recent_incident_count": 3,
+      "incident_count": 20,
+      "recent_incident_count": 4,
       "top_incidents": [
         {
           "time": "2026-07-03T00:00:00Z",
           "title": "Balkan, , Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-03T00:00:00Z",
+          "title": "Kosovo",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -1033,16 +1043,6 @@
           "title": "Kosovo",
           "event_type": "unknown",
           "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-06-30T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.063,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1119,10 +1119,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1141,
+    "incident_count": 1157,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 91
+    "rss_story_count_raw": 94
   },
   "legend": {
     "levels": [
