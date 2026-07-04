@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-04T22:16:25Z",
+  "generated_utc": "2026-07-04T23:19:41Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.074,
+    "overall_score": 1.076,
     "confidence": "medium",
     "confidence_value": 0.593,
     "dimensions": {
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.889,
+      "political": 1.892,
       "military": 0.002,
       "policing": 0.017,
       "migration": 0.001,
@@ -30,6 +30,14 @@
       "infrastructure": 0.017
     },
     "watchlist": [
+      {
+        "country": "Albania",
+        "overall": "elevated",
+        "overall_score": 1.429,
+        "drivers": [
+          "unknown"
+        ]
+      },
       {
         "country": "Hungary",
         "overall": "elevated",
@@ -45,14 +53,6 @@
         "drivers": [
           "unknown",
           "explosion"
-        ]
-      },
-      {
-        "country": "Albania",
-        "overall": "elevated",
-        "overall_score": 1.406,
-        "drivers": [
-          "unknown"
         ]
       },
       {
@@ -320,6 +320,86 @@
       ]
     },
     {
+      "country": "Albania",
+      "overall": "elevated",
+      "overall_score": 1.429,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.532,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 92,
+      "recent_incident_count": 12,
+      "top_incidents": [
+        {
+          "time": "2026-07-04T00:00:00Z",
+          "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-04T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-04T00:00:00Z",
+          "title": "Shenkoll, Tirane, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-04T00:00:00Z",
+          "title": "Progni, Qarku Elbasan, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-04T00:00:00Z",
+          "title": "Elbasan, Qarku Elbasan, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Hungary",
       "overall": "elevated",
       "overall_score": 1.423,
@@ -473,86 +553,6 @@
           "title": "Kemal, Edirne, Turkey",
           "event_type": "unknown",
           "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Albania",
-      "overall": "elevated",
-      "overall_score": 1.406,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.496,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 91,
-      "recent_incident_count": 11,
-      "top_incidents": [
-        {
-          "time": "2026-07-04T00:00:00Z",
-          "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-04T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-04T00:00:00Z",
-          "title": "Shenkoll, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-04T00:00:00Z",
-          "title": "Progni, Qarku Elbasan, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-04T00:00:00Z",
-          "title": "Elbasan, Qarku Elbasan, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1127,7 +1127,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1160,
+    "incident_count": 1161,
     "country_count": 14,
     "active_country_count": 14,
     "rss_story_count_raw": 131
