@@ -34,18 +34,46 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          19.25,
-          47.75
+          23.75,
+          37.75
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.1,
+        "escalation": 11.0,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 21.381,
+        "baseline": 31.2,
+        "ratio": 0.669,
+        "src_mix": 2,
+        "zone": null,
+        "zone_mult": 1.0,
+        "src_recent": {
+          "GDELT": 10,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 4
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.25,
+          47.25
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 1.3,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 5.2,
-        "baseline": 21.825,
-        "ratio": 0.244,
+        "baseline": 16.9,
+        "ratio": 0.31,
         "src_mix": 1,
         "zone": null,
         "zone_mult": 1.0,
@@ -62,26 +90,54 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          23.75,
-          37.75
+          19.25,
+          47.75
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 8.1,
+        "escalation": 1.6,
         "cell_deg": 0.5,
         "neighbor_active": 0,
-        "recent": 17.552,
-        "baseline": 31.2,
-        "ratio": 0.552,
-        "src_mix": 2,
+        "recent": 6.5,
+        "baseline": 21.825,
+        "ratio": 0.3,
+        "src_mix": 1,
         "zone": null,
         "zone_mult": 1.0,
         "src_recent": {
-          "GDELT": 7,
+          "GDELT": 5,
           "USGS": 0,
           "GDACS": 0,
-          "RSS": 4
+          "RSS": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.25,
+          41.25
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 1.4,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 5.2,
+        "baseline": 15.6,
+        "ratio": 0.333,
+        "src_mix": 1,
+        "zone": null,
+        "zone_mult": 1.0,
+        "src_recent": {
+          "GDELT": 4,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 0
         }
       }
     },
@@ -96,7 +152,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 2.5,
+        "escalation": 2.4,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 7.8,
@@ -118,23 +174,23 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          20.25,
-          47.25
+          15.75,
+          45.25
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 0.8,
+        "escalation": 2.4,
         "cell_deg": 0.5,
         "neighbor_active": 0,
-        "recent": 3.9,
-        "baseline": 16.9,
-        "ratio": 0.239,
+        "recent": 6.5,
+        "baseline": 13.0,
+        "ratio": 0.483,
         "src_mix": 1,
         "zone": null,
         "zone_mult": 1.0,
         "src_recent": {
-          "GDELT": 3,
+          "GDELT": 5,
           "USGS": 0,
           "GDACS": 0,
           "RSS": 0
@@ -146,23 +202,23 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          20.25,
-          41.25
+          21.75,
+          39.25
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 0.9,
+        "escalation": 4.2,
         "cell_deg": 0.5,
         "neighbor_active": 0,
-        "recent": 3.9,
-        "baseline": 15.6,
-        "ratio": 0.257,
+        "recent": 7.8,
+        "baseline": 9.1,
+        "ratio": 0.783,
         "src_mix": 1,
         "zone": null,
         "zone_mult": 1.0,
         "src_recent": {
-          "GDELT": 3,
+          "GDELT": 6,
           "USGS": 0,
           "GDACS": 0,
           "RSS": 0
@@ -202,13 +258,97 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          19.25,
+          42.75
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 0.8,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 3.9,
+        "baseline": 15.6,
+        "ratio": 0.257,
+        "src_mix": 1,
+        "zone": null,
+        "zone_mult": 1.0,
+        "src_recent": {
+          "GDELT": 3,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.25,
+          42.75
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 0.9,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 3.9,
+        "baseline": 14.3,
+        "ratio": 0.278,
+        "src_mix": 1,
+        "zone": null,
+        "zone_mult": 1.0,
+        "src_recent": {
+          "GDELT": 3,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.25,
+          38.75
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 1.8,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 2.6,
+        "baseline": 1.3,
+        "ratio": 1.107,
+        "src_mix": 1,
+        "zone": null,
+        "zone_mult": 1.0,
+        "src_recent": {
+          "GDELT": 2,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           27.25,
           38.25
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 3.4,
+        "escalation": 3.2,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 6.5,
@@ -236,7 +376,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 2.0,
+        "escalation": 1.9,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 3.9,
@@ -258,41 +398,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          19.25,
-          42.75
-        ]
-      },
-      "properties": {
-        "type": "early_warning",
-        "escalation": 0.4,
-        "cell_deg": 0.5,
-        "neighbor_active": 0,
-        "recent": 2.6,
-        "baseline": 15.6,
-        "ratio": 0.181,
-        "src_mix": 1,
-        "zone": null,
-        "zone_mult": 1.0,
-        "src_recent": {
-          "GDELT": 2,
-          "USGS": 0,
-          "GDACS": 0,
-          "RSS": 0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           14.75,
           46.25
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.9,
+        "escalation": 1.8,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 3.329,
@@ -342,18 +454,46 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          15.75,
-          45.25
+          22.25,
+          40.75
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.7,
+        "escalation": 0.6,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 1.3,
+        "baseline": 1.3,
+        "ratio": 0.643,
+        "src_mix": 1,
+        "zone": null,
+        "zone_mult": 1.0,
+        "src_recent": {
+          "GDELT": 1,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.75,
+          38.25
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 1.5,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 5.2,
-        "baseline": 13.0,
-        "ratio": 0.393,
+        "baseline": 14.3,
+        "ratio": 0.361,
         "src_mix": 1,
         "zone": null,
         "zone_mult": 1.0,
@@ -370,23 +510,79 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          25.25,
-          43.25
+          19.25,
+          44.25
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 0.4,
+        "escalation": 2.2,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 3.9,
+        "baseline": 5.2,
+        "ratio": 0.657,
+        "src_mix": 1,
+        "zone": "Bosznia (entitásvonal tág)",
+        "zone_mult": 1.2,
+        "src_recent": {
+          "GDELT": 3,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.75,
+          44.25
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 3.3,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 2.6,
-        "baseline": 15.6,
-        "ratio": 0.181,
+        "baseline": 0.0,
+        "ratio": 2.067,
+        "src_mix": 1,
+        "zone": "Bosznia (entitásvonal tág)",
+        "zone_mult": 1.2,
+        "src_recent": {
+          "GDELT": 2,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.75,
+          45.25
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 0.3,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 1.3,
+        "baseline": 3.9,
+        "ratio": 0.333,
         "src_mix": 1,
         "zone": null,
         "zone_mult": 1.0,
         "src_recent": {
-          "GDELT": 2,
+          "GDELT": 1,
           "USGS": 0,
           "GDACS": 0,
           "RSS": 0
@@ -404,20 +600,104 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.9,
+        "escalation": 2.5,
         "cell_deg": 0.5,
         "neighbor_active": 0,
-        "recent": 6.057,
+        "recent": 7.357,
         "baseline": 17.68,
-        "ratio": 0.342,
+        "ratio": 0.41,
         "src_mix": 2,
+        "zone": null,
+        "zone_mult": 1.0,
+        "src_recent": {
+          "GDELT": 4,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 1
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.75,
+          39.75
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 0.6,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 1.3,
+        "baseline": 1.3,
+        "ratio": 0.643,
+        "src_mix": 1,
+        "zone": null,
+        "zone_mult": 1.0,
+        "src_recent": {
+          "GDELT": 1,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.25,
+          43.25
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 1.4,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 5.2,
+        "baseline": 15.6,
+        "ratio": 0.333,
+        "src_mix": 1,
+        "zone": null,
+        "zone_mult": 1.0,
+        "src_recent": {
+          "GDELT": 4,
+          "USGS": 0,
+          "GDACS": 0,
+          "RSS": 0
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.75,
+          43.25
+        ]
+      },
+      "properties": {
+        "type": "early_warning",
+        "escalation": 3.4,
+        "cell_deg": 0.5,
+        "neighbor_active": 0,
+        "recent": 3.9,
+        "baseline": 1.3,
+        "ratio": 1.571,
+        "src_mix": 1,
         "zone": null,
         "zone_mult": 1.0,
         "src_recent": {
           "GDELT": 3,
           "USGS": 0,
           "GDACS": 0,
-          "RSS": 1
+          "RSS": 0
         }
       }
     },
@@ -432,7 +712,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 2.4,
+        "escalation": 2.3,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 7.229,
@@ -488,7 +768,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.7,
+        "escalation": 1.6,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 3.9,
@@ -538,41 +818,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          23.75,
-          38.25
-        ]
-      },
-      "properties": {
-        "type": "early_warning",
-        "escalation": 0.9,
-        "cell_deg": 0.5,
-        "neighbor_active": 0,
-        "recent": 3.9,
-        "baseline": 14.3,
-        "ratio": 0.278,
-        "src_mix": 1,
-        "zone": null,
-        "zone_mult": 1.0,
-        "src_recent": {
-          "GDELT": 3,
-          "USGS": 0,
-          "GDACS": 0,
-          "RSS": 0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           27.25,
           37.75
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 0.5,
+        "escalation": 0.4,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -600,7 +852,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 0.5,
+        "escalation": 0.4,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -656,7 +908,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 3.6,
+        "escalation": 3.5,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 5.289,
@@ -684,7 +936,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.9,
+        "escalation": 1.8,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 2.6,
@@ -695,34 +947,6 @@
         "zone_mult": 1.0,
         "src_recent": {
           "GDELT": 2,
-          "USGS": 0,
-          "GDACS": 0,
-          "RSS": 0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          21.75,
-          39.25
-        ]
-      },
-      "properties": {
-        "type": "early_warning",
-        "escalation": 1.3,
-        "cell_deg": 0.5,
-        "neighbor_active": 0,
-        "recent": 3.9,
-        "baseline": 9.1,
-        "ratio": 0.415,
-        "src_mix": 1,
-        "zone": null,
-        "zone_mult": 1.0,
-        "src_recent": {
-          "GDELT": 3,
           "USGS": 0,
           "GDACS": 0,
           "RSS": 0
@@ -749,34 +973,6 @@
         "src_mix": 1,
         "zone": null,
         "zone_mult": 1.0,
-        "src_recent": {
-          "GDELT": 2,
-          "USGS": 0,
-          "GDACS": 0,
-          "RSS": 0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          19.25,
-          44.25
-        ]
-      },
-      "properties": {
-        "type": "early_warning",
-        "escalation": 1.2,
-        "cell_deg": 0.5,
-        "neighbor_active": 0,
-        "recent": 2.6,
-        "baseline": 5.2,
-        "ratio": 0.463,
-        "src_mix": 1,
-        "zone": "Bosznia (entitásvonal tág)",
-        "zone_mult": 1.2,
         "src_recent": {
           "GDELT": 2,
           "USGS": 0,
@@ -908,7 +1104,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.2,
+        "escalation": 1.1,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -1104,7 +1300,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 0.8,
+        "escalation": 0.7,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -1188,7 +1384,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.9,
+        "escalation": 1.8,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 2.6,
@@ -1244,7 +1440,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.2,
+        "escalation": 1.1,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -1255,34 +1451,6 @@
         "zone_mult": 1.2,
         "src_recent": {
           "GDELT": 1,
-          "USGS": 0,
-          "GDACS": 0,
-          "RSS": 0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          27.75,
-          43.25
-        ]
-      },
-      "properties": {
-        "type": "early_warning",
-        "escalation": 1.9,
-        "cell_deg": 0.5,
-        "neighbor_active": 0,
-        "recent": 2.6,
-        "baseline": 1.3,
-        "ratio": 1.107,
-        "src_mix": 1,
-        "zone": null,
-        "zone_mult": 1.0,
-        "src_recent": {
-          "GDELT": 2,
           "USGS": 0,
           "GDACS": 0,
           "RSS": 0
@@ -1328,7 +1496,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.2,
+        "escalation": 1.1,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -1384,7 +1552,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 0.4,
+        "escalation": 0.3,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -1462,34 +1630,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          23.25,
-          42.75
-        ]
-      },
-      "properties": {
-        "type": "early_warning",
-        "escalation": 0.1,
-        "cell_deg": 0.5,
-        "neighbor_active": 0,
-        "recent": 1.3,
-        "baseline": 14.3,
-        "ratio": 0.114,
-        "src_mix": 1,
-        "zone": null,
-        "zone_mult": 1.0,
-        "src_recent": {
-          "GDELT": 1,
-          "USGS": 0,
-          "GDACS": 0,
-          "RSS": 0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           22.25,
           46.75
         ]
@@ -1524,7 +1664,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 0.5,
+        "escalation": 0.4,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -1580,7 +1720,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.2,
+        "escalation": 1.1,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -1602,41 +1742,13 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          22.25,
-          38.75
-        ]
-      },
-      "properties": {
-        "type": "early_warning",
-        "escalation": 0.6,
-        "cell_deg": 0.5,
-        "neighbor_active": 0,
-        "recent": 1.3,
-        "baseline": 1.3,
-        "ratio": 0.643,
-        "src_mix": 1,
-        "zone": null,
-        "zone_mult": 1.0,
-        "src_recent": {
-          "GDELT": 1,
-          "USGS": 0,
-          "GDACS": 0,
-          "RSS": 0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           17.25,
           44.75
         ]
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 1.2,
+        "escalation": 1.1,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -1742,34 +1854,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          18.75,
-          44.25
-        ]
-      },
-      "properties": {
-        "type": "early_warning",
-        "escalation": 1.2,
-        "cell_deg": 0.5,
-        "neighbor_active": 0,
-        "recent": 1.3,
-        "baseline": 0.0,
-        "ratio": 1.2,
-        "src_mix": 1,
-        "zone": "Bosznia (entitásvonal tág)",
-        "zone_mult": 1.2,
-        "src_recent": {
-          "GDELT": 1,
-          "USGS": 0,
-          "GDACS": 0,
-          "RSS": 0
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           17.25,
           46.75
         ]
@@ -1804,7 +1888,7 @@
       },
       "properties": {
         "type": "early_warning",
-        "escalation": 0.4,
+        "escalation": 0.3,
         "cell_deg": 0.5,
         "neighbor_active": 0,
         "recent": 1.3,
@@ -1835,9 +1919,9 @@
         "escalation": 100.0,
         "cell_deg": 0.5,
         "neighbor_active": 0,
-        "recent": 76.698,
+        "recent": 78.832,
         "baseline": 25.753,
-        "ratio": 2.833,
+        "ratio": 2.911,
         "src_mix": 1,
         "zone": null,
         "zone_mult": 1.0,
@@ -1845,7 +1929,7 @@
           "GDELT": 0,
           "USGS": 0,
           "GDACS": 0,
-          "RSS": 36
+          "RSS": 37
         }
       }
     }
