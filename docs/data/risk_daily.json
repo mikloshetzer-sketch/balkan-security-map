@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-10T18:48:06Z",
+  "generated_utc": "2026-07-10T20:47:41Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.189,
+    "overall_score": 1.193,
     "confidence": "medium",
-    "confidence_value": 0.584,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.102,
-      "military": 0.005,
+      "political": 2.106,
+      "military": 0.018,
       "policing": 0.0,
       "migration": 0.0,
-      "social": 0.003,
-      "infrastructure": 0.011
+      "social": 0.004,
+      "infrastructure": 0.012
     },
     "watchlist": [
       {
@@ -41,7 +41,7 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.416,
+        "overall_score": 1.451,
         "drivers": [
           "unknown",
           "deescalation",
@@ -51,9 +51,10 @@
       {
         "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 1.218,
+        "overall_score": 1.237,
         "drivers": [
-          "unknown"
+          "unknown",
+          "protest"
         ]
       },
       {
@@ -76,14 +77,15 @@
     "top_drivers": [
       "unknown",
       "deescalation",
-      "explosion"
+      "explosion",
+      "protest"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.278,
+      "overall_score": 2.282,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -95,7 +97,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.781,
+        "political": 3.786,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -105,8 +107,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 351,
-      "recent_incident_count": 58,
+      "incident_count": 352,
+      "recent_incident_count": 59,
       "top_incidents": [
         {
           "time": "2026-07-10T00:00:00Z",
@@ -483,9 +485,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.416,
+      "overall_score": 1.451,
       "confidence": "medium",
-      "confidence_value": 0.605,
+      "confidence_value": 0.616,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -495,20 +497,20 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.46,
-        "military": 0.066,
+        "political": 2.475,
+        "military": 0.239,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.033,
-        "infrastructure": 0.144
+        "social": 0.049,
+        "infrastructure": 0.16
       },
       "drivers": [
         "unknown",
         "deescalation",
         "explosion"
       ],
-      "incident_count": 90,
-      "recent_incident_count": 15,
+      "incident_count": 96,
+      "recent_incident_count": 18,
       "top_incidents": [
         {
           "time": "2026-07-10T00:00:00Z",
@@ -565,9 +567,9 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 1.218,
+      "overall_score": 1.237,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.599,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -577,7 +579,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.195,
+        "political": 2.226,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -585,9 +587,10 @@
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "protest"
       ],
-      "incident_count": 46,
+      "incident_count": 47,
       "recent_incident_count": 15,
       "top_incidents": [
         {
@@ -1111,10 +1114,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1178,
+    "incident_count": 1186,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 88
+    "rss_story_count_raw": 131
   },
   "legend": {
     "levels": [
