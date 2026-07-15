@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-15T19:39:15Z",
+  "generated_utc": "2026-07-15T21:17:39Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.169,
+    "overall_score": 1.181,
     "confidence": "medium",
-    "confidence_value": 0.585,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,20 +22,21 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.061,
-      "military": 0.003,
-      "policing": 0.021,
+      "political": 2.069,
+      "military": 0.007,
+      "policing": 0.04,
       "migration": 0.0,
-      "social": 0.001,
-      "infrastructure": 0.004
+      "social": 0.006,
+      "infrastructure": 0.009
     },
     "watchlist": [
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.45,
+        "overall_score": 1.487,
         "drivers": [
-          "unknown"
+          "unknown",
+          "government_crisis"
         ]
       },
       {
@@ -65,7 +66,7 @@
       {
         "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 0.955,
+        "overall_score": 0.995,
         "drivers": [
           "unknown"
         ]
@@ -73,6 +74,7 @@
     ],
     "top_drivers": [
       "unknown",
+      "government_crisis",
       "explosion"
     ]
   },
@@ -320,7 +322,7 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.522,
+      "overall_score": 1.54,
       "confidence": "medium",
       "confidence_value": 0.594,
       "dimensions": {
@@ -332,7 +334,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.667,
+        "political": 2.695,
         "military": 0.014,
         "policing": 0.014,
         "migration": 0.0,
@@ -342,8 +344,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 97,
-      "recent_incident_count": 18,
+      "incident_count": 98,
+      "recent_incident_count": 19,
       "top_incidents": [
         {
           "time": "2026-07-15T00:00:00Z",
@@ -400,9 +402,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.45,
+      "overall_score": 1.487,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -412,19 +414,34 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.562,
-        "military": 0.02,
-        "policing": 0.0,
+        "political": 2.573,
+        "military": 0.08,
+        "policing": 0.061,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
+        "social": 0.061,
+        "infrastructure": 0.061
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "government_crisis"
       ],
-      "incident_count": 98,
-      "recent_incident_count": 12,
+      "incident_count": 99,
+      "recent_incident_count": 13,
       "top_incidents": [
+        {
+          "time": "2026-07-15T20:37:00Z",
+          "title": "Zelenskyy ousts reformer Fedorov as defense minister amid Ukraine government reshuffle",
+          "event_type": "government_crisis",
+          "score": 0.309,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "policing",
+            "social",
+            "infrastructure"
+          ]
+        },
         {
           "time": "2026-07-15T00:00:00Z",
           "title": "Kemal, Edirne, Turkey",
@@ -460,16 +477,6 @@
           "title": "Kusadasi, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-14T00:00:00Z",
-          "title": "Bursa, Bursa, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -720,7 +727,7 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.955,
+      "overall_score": 0.995,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -732,7 +739,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.759,
+        "political": 1.826,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -742,12 +749,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 47,
-      "recent_incident_count": 2,
+      "incident_count": 48,
+      "recent_incident_count": 3,
       "top_incidents": [
         {
           "time": "2026-07-15T00:00:00Z",
           "title": "Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-15T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.182,
           "source": "GDELT",
@@ -784,25 +801,15 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-07-13T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.777,
+      "overall_score": 0.828,
       "confidence": "medium",
-      "confidence_value": 0.613,
+      "confidence_value": 0.623,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -812,9 +819,9 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.303,
+        "political": 1.294,
         "military": 0.0,
-        "policing": 0.256,
+        "policing": 0.439,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.038
@@ -823,7 +830,7 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 36,
+      "incident_count": 37,
       "recent_incident_count": 8,
       "top_incidents": [
         {
@@ -831,6 +838,16 @@
           "title": "Bangkok bar fire: death toll reaches 30 as police say negligence is ‘primary theory’",
           "event_type": "explosion",
           "score": 0.216,
+          "source": "RSS",
+          "dimensions": [
+            "policing"
+          ]
+        },
+        {
+          "time": "2026-07-14T06:49:25Z",
+          "title": "Flowers and forensic teams at Bangkok bar where deadly fire killed at least 27",
+          "event_type": "explosion",
+          "score": 0.215,
           "source": "RSS",
           "dimensions": [
             "policing"
@@ -851,16 +868,6 @@
           "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-14T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1107,10 +1114,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1185,
+    "incident_count": 1189,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 92
+    "rss_story_count_raw": 132
   },
   "legend": {
     "levels": [
