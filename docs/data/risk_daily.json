@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-16T16:44:34Z",
+  "generated_utc": "2026-07-16T18:37:24Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.151,
+    "overall_score": 1.161,
     "confidence": "medium",
-    "confidence_value": 0.585,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,26 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.032,
+      "political": 2.042,
       "military": 0.001,
-      "policing": 0.009,
+      "policing": 0.023,
       "migration": 0.003,
-      "social": 0.012,
-      "infrastructure": 0.017
+      "social": 0.01,
+      "infrastructure": 0.015
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.262,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Albania",
-        "overall": "elevated",
-        "overall_score": 1.451,
+        "overall_score": 2.266,
         "drivers": [
           "unknown"
         ]
@@ -50,6 +42,14 @@
         "country": "Turkey",
         "overall": "elevated",
         "overall_score": 1.385,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
+        "country": "Bosnia and Herzegovina",
+        "overall": "elevated",
+        "overall_score": 0.959,
         "drivers": [
           "unknown"
         ]
@@ -73,14 +73,15 @@
     ],
     "top_drivers": [
       "unknown",
-      "protest"
+      "protest",
+      "explosion"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.262,
+      "overall_score": 2.266,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -92,7 +93,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.758,
+        "political": 3.763,
         "military": 0.0,
         "policing": 0.024,
         "migration": 0.0,
@@ -102,8 +103,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 355,
-      "recent_incident_count": 54,
+      "incident_count": 356,
+      "recent_incident_count": 55,
       "top_incidents": [
         {
           "time": "2026-07-16T00:00:00Z",
@@ -325,9 +326,9 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.492,
+      "overall_score": 1.495,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -337,18 +338,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.621,
+        "political": 2.635,
         "military": 0.0,
-        "policing": 0.018,
+        "policing": 0.0,
         "migration": 0.0,
-        "social": 0.018,
-        "infrastructure": 0.018
+        "social": 0.0,
+        "infrastructure": 0.0
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 96,
-      "recent_incident_count": 15,
+      "incident_count": 97,
+      "recent_incident_count": 16,
       "top_incidents": [
         {
           "time": "2026-07-16T00:00:00Z",
@@ -404,12 +405,12 @@
     },
     {
       "country": "Albania",
-      "overall": "elevated",
-      "overall_score": 1.451,
+      "overall": "normal",
+      "overall_score": 1.472,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -417,7 +418,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.567,
+        "political": 2.6,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -427,8 +428,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 99,
-      "recent_incident_count": 13,
+      "incident_count": 100,
+      "recent_incident_count": 14,
       "top_incidents": [
         {
           "time": "2026-07-16T00:00:00Z",
@@ -555,6 +556,86 @@
           "title": "Heybeliada, Istanbul, Turkey",
           "event_type": "unknown",
           "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Bosnia and Herzegovina",
+      "overall": "elevated",
+      "overall_score": 0.959,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.766,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 48,
+      "recent_incident_count": 5,
+      "top_incidents": [
+        {
+          "time": "2026-07-16T00:00:00Z",
+          "title": "Srebrenica, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-16T00:00:00Z",
+          "title": "Maglaj, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-16T00:00:00Z",
+          "title": "Oradea, Bihor, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-15T00:00:00Z",
+          "title": "Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.129,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-15T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.129,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -723,91 +804,11 @@
       ]
     },
     {
-      "country": "Bosnia and Herzegovina",
-      "overall": "elevated",
-      "overall_score": 0.919,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.697,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 47,
-      "recent_incident_count": 4,
-      "top_incidents": [
-        {
-          "time": "2026-07-16T00:00:00Z",
-          "title": "Srebrenica, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.21,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-16T00:00:00Z",
-          "title": "Maglaj, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.182,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-15T00:00:00Z",
-          "title": "Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-15T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-14T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.752,
+      "overall_score": 0.808,
       "confidence": "medium",
-      "confidence_value": 0.615,
+      "confidence_value": 0.624,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -819,18 +820,29 @@
       "dimension_scores": {
         "political": 1.263,
         "military": 0.017,
-        "policing": 0.038,
+        "policing": 0.237,
         "migration": 0.0,
         "social": 0.071,
         "infrastructure": 0.159
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "explosion"
       ],
-      "incident_count": 37,
+      "incident_count": 38,
       "recent_incident_count": 9,
       "top_incidents": [
         {
+          "time": "2026-07-14T06:49:25Z",
+          "title": "Flowers and forensic teams at Bangkok bar where deadly fire killed at least 27",
+          "event_type": "explosion",
+          "score": 0.212,
+          "source": "RSS",
+          "dimensions": [
+            "policing"
+          ]
+        },
+        {
           "time": "2026-07-16T00:00:00Z",
           "title": "Montenegro",
           "event_type": "unknown",
@@ -862,16 +874,6 @@
         },
         {
           "time": "2026-07-15T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-14T00:00:00Z",
           "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.125,
@@ -1121,10 +1123,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1161,
+    "incident_count": 1166,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 94
+    "rss_story_count_raw": 134
   },
   "legend": {
     "levels": [
