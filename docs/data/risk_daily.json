@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-19T13:57:24Z",
+  "generated_utc": "2026-07-19T15:18:01Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.089,
+    "overall_score": 1.096,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.92,
-      "military": 0.007,
-      "policing": 0.016,
+      "political": 1.93,
+      "military": 0.012,
+      "policing": 0.01,
       "migration": 0.0,
       "social": 0.005,
-      "infrastructure": 0.029
+      "infrastructure": 0.034
     },
     "watchlist": [
       {
@@ -41,10 +41,9 @@
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.456,
+        "overall_score": 1.436,
         "drivers": [
-          "unknown",
-          "organized_crime"
+          "unknown"
         ]
       },
       {
@@ -76,10 +75,10 @@
     ],
     "top_drivers": [
       "unknown",
-      "organized_crime",
       "deescalation",
       "riot",
-      "armed_clash"
+      "armed_clash",
+      "protest"
     ]
   },
   "countries": [
@@ -326,9 +325,9 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.456,
+      "overall_score": 1.436,
       "confidence": "medium",
-      "confidence_value": 0.596,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -338,19 +337,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.558,
+        "political": 2.543,
         "military": 0.0,
-        "policing": 0.08,
+        "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "organized_crime"
+        "unknown"
       ],
-      "incident_count": 102,
-      "recent_incident_count": 11,
+      "incident_count": 101,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-07-19T00:00:00Z",
@@ -383,19 +381,18 @@
           ]
         },
         {
-          "time": "2026-07-18T17:52:15Z",
-          "title": "Hungarian president fires himself, bowing out under Magyar’s pressure",
-          "event_type": "organized_crime",
-          "score": 0.163,
-          "source": "RSS",
+          "time": "2026-07-18T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
           "dimensions": [
-            "political",
-            "policing"
+            "political"
           ]
         },
         {
           "time": "2026-07-18T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -813,12 +810,12 @@
     },
     {
       "country": "Montenegro",
-      "overall": "normal",
-      "overall_score": 0.65,
+      "overall": "elevated",
+      "overall_score": 0.754,
       "confidence": "medium",
-      "confidence_value": 0.609,
+      "confidence_value": 0.62,
       "dimensions": {
-        "political": "normal",
+        "political": "elevated",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -826,19 +823,20 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.015,
-        "military": 0.0,
+        "political": 1.155,
+        "military": 0.062,
         "policing": 0.065,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.29
+        "infrastructure": 0.345
       },
       "drivers": [
         "unknown",
-        "armed_clash"
+        "armed_clash",
+        "protest"
       ],
-      "incident_count": 28,
-      "recent_incident_count": 4,
+      "incident_count": 30,
+      "recent_incident_count": 6,
       "top_incidents": [
         {
           "time": "2026-07-18T15:24:42Z",
@@ -851,8 +849,30 @@
           ]
         },
         {
+          "time": "2026-07-19T14:52:39Z",
+          "title": "Ships continue to move through Strait of Hormuz, US Energy chief says",
+          "event_type": "protest",
+          "score": 0.189,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "infrastructure"
+          ]
+        },
+        {
           "time": "2026-07-19T00:00:00Z",
           "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-19T00:00:00Z",
+          "title": "Kotor, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -868,26 +888,6 @@
           "source": "GDELT",
           "dimensions": [
             "political"
-          ]
-        },
-        {
-          "time": "2026-07-17T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-19T13:00:29Z",
-          "title": "What happened to Nolan Wells? Family seeks answers two weeks after 18-year-old’s death",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "policing"
           ]
         }
       ]
@@ -1161,10 +1161,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1147,
+    "incident_count": 1148,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 85
+    "rss_story_count_raw": 84
   },
   "legend": {
     "levels": [
