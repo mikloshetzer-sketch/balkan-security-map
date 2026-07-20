@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-20T22:16:07Z",
+  "generated_utc": "2026-07-20T23:20:24Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.134,
+    "overall_score": 1.131,
     "confidence": "medium",
-    "confidence_value": 0.588,
+    "confidence_value": 0.587,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.994,
-      "military": 0.023,
+      "political": 2.001,
+      "military": 0.01,
       "policing": 0.002,
       "migration": 0.0,
       "social": 0.007,
-      "infrastructure": 0.027
+      "infrastructure": 0.014
     },
     "watchlist": [
       {
@@ -55,35 +55,33 @@
         ]
       },
       {
-        "country": "Montenegro",
-        "overall": "elevated",
-        "overall_score": 0.899,
-        "drivers": [
-          "unknown",
-          "explosion",
-          "armed_clash"
-        ]
-      },
-      {
         "country": "Moldova",
         "overall": "elevated",
         "overall_score": 0.855,
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Montenegro",
+        "overall": "elevated",
+        "overall_score": 0.846,
+        "drivers": [
+          "unknown",
+          "explosion"
+        ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "explosion",
-      "armed_clash"
+      "explosion"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.253,
+      "overall_score": 2.257,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -95,7 +93,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.745,
+        "political": 3.75,
         "military": 0.0,
         "policing": 0.02,
         "migration": 0.0,
@@ -105,8 +103,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 356,
-      "recent_incident_count": 48,
+      "incident_count": 357,
+      "recent_incident_count": 49,
       "top_incidents": [
         {
           "time": "2026-07-20T00:00:00Z",
@@ -641,92 +639,6 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.899,
-      "confidence": "medium",
-      "confidence_value": 0.636,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.329,
-        "military": 0.286,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.095,
-        "infrastructure": 0.318
-      },
-      "drivers": [
-        "unknown",
-        "explosion",
-        "armed_clash"
-      ],
-      "incident_count": 33,
-      "recent_incident_count": 11,
-      "top_incidents": [
-        {
-          "time": "2026-07-20T21:58:48Z",
-          "title": "US military launches further strikes on Iran after Trump says Tehran ‘will pay’ for killing soldiers – Middle East crisis live",
-          "event_type": "explosion",
-          "score": 0.389,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-07-20T20:31:52Z",
-          "title": "Small dog missing for weeks rescued while swimming in San Francisco Bay",
-          "event_type": "armed_clash",
-          "score": 0.38,
-          "source": "RSS",
-          "dimensions": [
-            "military",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-07-20T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-20T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-19T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Moldova",
       "overall": "elevated",
       "overall_score": 0.855,
@@ -756,7 +668,7 @@
       "top_incidents": [
         {
           "time": "2026-07-20T00:00:00Z",
-          "title": "Chisinau, Chisinau, Moldova",
+          "title": "Moldova",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -766,7 +678,7 @@
         },
         {
           "time": "2026-07-20T00:00:00Z",
-          "title": "Moldova",
+          "title": "Chisinau, Chisinau, Moldova",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -797,6 +709,90 @@
         {
           "time": "2026-07-19T00:00:00Z",
           "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "overall": "elevated",
+      "overall_score": 0.846,
+      "confidence": "medium",
+      "confidence_value": 0.625,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.408,
+        "military": 0.112,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.095,
+        "infrastructure": 0.147
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 33,
+      "recent_incident_count": 11,
+      "top_incidents": [
+        {
+          "time": "2026-07-20T22:59:05Z",
+          "title": "US military launches further strikes on Iran after Trump says Tehran ‘will pay’ for killing soldiers – Middle East crisis live",
+          "event_type": "explosion",
+          "score": 0.389,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-07-20T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-20T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-20T00:00:00Z",
+          "title": "Kotor, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-19T00:00:00Z",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1155,7 +1151,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1164,
+    "incident_count": 1165,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 125
