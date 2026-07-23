@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-23T20:33:59Z",
+  "generated_utc": "2026-07-23T22:18:38Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.2,
+    "overall_score": 1.197,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.108,
-      "military": 0.003,
-      "policing": 0.0,
+      "political": 2.104,
+      "military": 0.001,
+      "policing": 0.001,
       "migration": 0.0,
-      "social": 0.006,
-      "infrastructure": 0.018
+      "social": 0.005,
+      "infrastructure": 0.015
     },
     "watchlist": [
       {
@@ -880,12 +880,12 @@
     },
     {
       "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.708,
+      "overall": "normal",
+      "overall_score": 0.67,
       "confidence": "medium",
-      "confidence_value": 0.632,
+      "confidence_value": 0.625,
       "dimensions": {
-        "political": "elevated",
+        "political": "normal",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -893,18 +893,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.145,
-        "military": 0.033,
-        "policing": 0.0,
+        "political": 1.095,
+        "military": 0.017,
+        "policing": 0.017,
         "migration": 0.0,
-        "social": 0.073,
-        "infrastructure": 0.232
+        "social": 0.067,
+        "infrastructure": 0.197
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 33,
-      "recent_incident_count": 12,
+      "incident_count": 31,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-07-23T00:00:00Z",
@@ -947,14 +947,15 @@
           ]
         },
         {
-          "time": "2026-07-23T16:58:25Z",
-          "title": "Donald Trump says decision on ‘massive attack’ against Iran is close",
+          "time": "2026-07-23T21:38:57Z",
+          "title": "Trump administration announces new tariffs on more than 80 countries, claiming failed ‘forced labor’ enforcement – US politics live",
           "event_type": "unknown",
-          "score": 0.068,
+          "score": 0.069,
           "source": "RSS",
           "dimensions": [
             "political",
-            "social",
+            "military",
+            "policing",
             "infrastructure"
           ]
         }
@@ -1149,10 +1150,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1206,
+    "incident_count": 1204,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 128
+    "rss_story_count_raw": 90
   },
   "legend": {
     "levels": [
