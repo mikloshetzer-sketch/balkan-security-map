@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-24T19:50:19Z",
+  "generated_utc": "2026-07-24T21:30:23Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -12,7 +12,7 @@
     "overall": "elevated",
     "overall_score": 1.17,
     "confidence": "medium",
-    "confidence_value": 0.59,
+    "confidence_value": 0.589,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,26 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.064,
+      "political": 2.065,
       "military": 0.0,
       "policing": 0.003,
       "migration": 0.0,
-      "social": 0.007,
-      "infrastructure": 0.008
+      "social": 0.006,
+      "infrastructure": 0.004
     },
     "watchlist": [
       {
+        "country": "Greece",
+        "overall": "elevated",
+        "overall_score": 2.299,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.458,
+        "overall_score": 1.456,
         "drivers": [
           "unknown"
         ]
@@ -41,7 +49,7 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.403,
+        "overall_score": 1.426,
         "drivers": [
           "unknown"
         ]
@@ -61,14 +69,6 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Moldova",
-        "overall": "elevated",
-        "overall_score": 0.982,
-        "drivers": [
-          "unknown"
-        ]
       }
     ],
     "top_drivers": [
@@ -79,8 +79,8 @@
   "countries": [
     {
       "country": "Greece",
-      "overall": "normal",
-      "overall_score": 2.288,
+      "overall": "elevated",
+      "overall_score": 2.299,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -92,7 +92,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.795,
+        "political": 3.809,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -102,8 +102,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 365,
-      "recent_incident_count": 52,
+      "incident_count": 368,
+      "recent_incident_count": 55,
       "top_incidents": [
         {
           "time": "2026-07-24T00:00:00Z",
@@ -320,7 +320,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.458,
+      "overall_score": 1.456,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -332,7 +332,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.577,
+        "political": 2.575,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -400,7 +400,7 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.403,
+      "overall_score": 1.426,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -412,7 +412,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.492,
+        "political": 2.527,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -422,8 +422,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 88,
-      "recent_incident_count": 11,
+      "incident_count": 89,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-07-24T00:00:00Z",
@@ -800,9 +800,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.72,
+      "overall_score": 0.682,
       "confidence": "medium",
-      "confidence_value": 0.624,
+      "confidence_value": 0.615,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -812,31 +812,20 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.233,
+        "political": 1.196,
         "military": 0.0,
         "policing": 0.033,
         "migration": 0.0,
-        "social": 0.093,
-        "infrastructure": 0.102
+        "social": 0.078,
+        "infrastructure": 0.054
       },
       "drivers": [
         "unknown",
         "protest"
       ],
-      "incident_count": 29,
-      "recent_incident_count": 8,
+      "incident_count": 27,
+      "recent_incident_count": 6,
       "top_incidents": [
-        {
-          "time": "2026-07-24T14:14:22Z",
-          "title": "Indian Cockroach activist ends hunger strike after 26 days as protests spread",
-          "event_type": "protest",
-          "score": 0.19,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "social"
-          ]
-        },
         {
           "time": "2026-07-24T00:00:00Z",
           "title": "Montenegro",
@@ -855,6 +844,17 @@
           "source": "GDELT",
           "dimensions": [
             "political"
+          ]
+        },
+        {
+          "time": "2026-07-24T14:14:22Z",
+          "title": "Indian Cockroach activist ends hunger strike after 26 days as protests spread",
+          "event_type": "protest",
+          "score": 0.158,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social"
           ]
         },
         {
@@ -1148,10 +1148,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1197,
+    "incident_count": 1199,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 131
+    "rss_story_count_raw": 92
   },
   "legend": {
     "levels": [
