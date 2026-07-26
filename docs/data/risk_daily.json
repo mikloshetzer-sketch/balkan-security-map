@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-26T22:17:13Z",
+  "generated_utc": "2026-07-26T23:19:28Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.134,
+    "overall_score": 1.137,
     "confidence": "medium",
-    "confidence_value": 0.591,
+    "confidence_value": 0.59,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.004,
+      "political": 1.998,
       "military": 0.011,
       "policing": 0.0,
-      "migration": 0.009,
+      "migration": 0.02,
       "social": 0.005,
-      "infrastructure": 0.009
+      "infrastructure": 0.02
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.28,
+        "overall_score": 2.284,
         "drivers": [
           "unknown"
         ]
@@ -41,7 +41,7 @@
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.457,
+        "overall_score": 1.452,
         "drivers": [
           "unknown"
         ]
@@ -74,6 +74,7 @@
     "top_drivers": [
       "unknown",
       "airspace_violation",
+      "explosion",
       "protest"
     ]
   },
@@ -81,7 +82,7 @@
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.28,
+      "overall_score": 2.284,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -93,7 +94,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.782,
+        "political": 3.787,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.057,
@@ -103,8 +104,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 375,
-      "recent_incident_count": 44,
+      "incident_count": 376,
+      "recent_incident_count": 45,
       "top_incidents": [
         {
           "time": "2026-07-26T00:00:00Z",
@@ -323,9 +324,9 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.457,
+      "overall_score": 1.452,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -335,7 +336,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.576,
+        "political": 2.569,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -345,8 +346,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 102,
-      "recent_incident_count": 14,
+      "incident_count": 101,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-07-26T00:00:00Z",
@@ -721,11 +722,11 @@
       ]
     },
     {
-      "country": "Bosnia and Herzegovina",
+      "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.751,
+      "overall_score": 0.791,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.625,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -735,7 +736,90 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.407,
+        "political": 1.231,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.182,
+        "social": 0.053,
+        "infrastructure": 0.242
+      },
+      "drivers": [
+        "unknown",
+        "explosion",
+        "protest"
+      ],
+      "incident_count": 30,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-07-26T22:54:44Z",
+          "title": "News live: national AusAlert test to blare siren; latest US tariffs on Australia ‘unjustified’, James Paterson says",
+          "event_type": "explosion",
+          "score": 0.38,
+          "source": "RSS",
+          "dimensions": [
+            "migration",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-07-26T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-25T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-25T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-25T00:00:00Z",
+          "title": "Balkan, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Bosnia and Herzegovina",
+      "overall": "elevated",
+      "overall_score": 0.731,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.372,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -745,8 +829,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 35,
-      "recent_incident_count": 3,
+      "incident_count": 34,
+      "recent_incident_count": 2,
       "top_incidents": [
         {
           "time": "2026-07-26T00:00:00Z",
@@ -793,87 +877,6 @@
           "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.731,
-      "confidence": "medium",
-      "confidence_value": 0.629,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.275,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.033,
-        "social": 0.053,
-        "infrastructure": 0.104
-      },
-      "drivers": [
-        "unknown",
-        "protest"
-      ],
-      "incident_count": 33,
-      "recent_incident_count": 8,
-      "top_incidents": [
-        {
-          "time": "2026-07-26T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-25T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-25T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-25T00:00:00Z",
-          "title": "Balkan, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-24T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1150,10 +1153,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1218,
+    "incident_count": 1214,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 126
+    "rss_story_count_raw": 88
   },
   "legend": {
     "levels": [
