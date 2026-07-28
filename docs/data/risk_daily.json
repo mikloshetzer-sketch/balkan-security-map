@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-28T20:37:47Z",
+  "generated_utc": "2026-07-28T22:20:16Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.176,
+    "overall_score": 1.191,
     "confidence": "medium",
-    "confidence_value": 0.591,
+    "confidence_value": 0.592,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.069,
-      "military": 0.002,
-      "policing": 0.012,
+      "political": 2.087,
+      "military": 0.0,
+      "policing": 0.032,
       "migration": 0.0,
       "social": 0.014,
-      "infrastructure": 0.012
+      "infrastructure": 0.01
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.432,
+        "overall_score": 1.456,
         "drivers": [
           "unknown"
         ]
@@ -63,17 +63,20 @@
         ]
       },
       {
-        "country": "Moldova",
+        "country": "Montenegro",
         "overall": "elevated",
-        "overall_score": 0.897,
+        "overall_score": 0.928,
         "drivers": [
-          "unknown"
+          "unknown",
+          "shooting",
+          "protest"
         ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "protest"
+      "protest",
+      "shooting"
     ]
   },
   "countries": [
@@ -160,7 +163,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 2.032,
+      "overall_score": 2.039,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -172,7 +175,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.436,
+        "political": 3.446,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -182,8 +185,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 215,
-      "recent_incident_count": 37,
+      "incident_count": 216,
+      "recent_incident_count": 38,
       "top_incidents": [
         {
           "time": "2026-07-28T00:00:00Z",
@@ -320,9 +323,9 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.432,
+      "overall_score": 1.456,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -332,7 +335,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.537,
+        "political": 2.575,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -342,8 +345,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 96,
-      "recent_incident_count": 14,
+      "incident_count": 98,
+      "recent_incident_count": 15,
       "top_incidents": [
         {
           "time": "2026-07-28T00:00:00Z",
@@ -597,6 +600,16 @@
         },
         {
           "time": "2026-07-28T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-28T00:00:00Z",
           "title": "Zagreb, Zagreb, Grad, Croatia",
           "event_type": "unknown",
           "score": 0.178,
@@ -624,12 +637,169 @@
           "dimensions": [
             "political"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "overall": "elevated",
+      "overall_score": 0.928,
+      "confidence": "medium",
+      "confidence_value": 0.629,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.489,
+        "military": 0.0,
+        "policing": 0.364,
+        "migration": 0.0,
+        "social": 0.111,
+        "infrastructure": 0.027
+      },
+      "drivers": [
+        "unknown",
+        "shooting",
+        "protest"
+      ],
+      "incident_count": 34,
+      "recent_incident_count": 11,
+      "top_incidents": [
+        {
+          "time": "2026-07-28T21:29:37Z",
+          "title": "Seattle police recover machine gun and ghost gun from scene of mass shooting",
+          "event_type": "shooting",
+          "score": 0.282,
+          "source": "RSS",
+          "dimensions": [
+            "policing"
+          ]
+        },
+        {
+          "time": "2026-07-28T16:58:49Z",
+          "title": "‘A control freak’: murderer James Desborough convicted of two further killings",
+          "event_type": "protest",
+          "score": 0.227,
+          "source": "RSS",
+          "dimensions": [
+            "policing",
+            "social"
+          ]
         },
         {
           "time": "2026-07-28T00:00:00Z",
-          "title": "Croatia",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-28T00:00:00Z",
+          "title": "Krnovo, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-28T00:00:00Z",
+          "title": "Baranya County, Baranya, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Bosnia and Herzegovina",
+      "overall": "elevated",
+      "overall_score": 0.923,
+      "confidence": "medium",
+      "confidence_value": 0.608,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.646,
+        "military": 0.0,
+        "policing": 0.048,
+        "migration": 0.0,
+        "social": 0.048,
+        "infrastructure": 0.048
+      },
+      "drivers": [
+        "unknown",
+        "protest"
+      ],
+      "incident_count": 38,
+      "recent_incident_count": 8,
+      "top_incidents": [
+        {
+          "time": "2026-07-28T00:00:00Z",
+          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-28T07:23:37Z",
+          "title": "India’s Cockroach movement threatens to restart protests after mass student arrests",
+          "event_type": "protest",
+          "score": 0.196,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-07-28T00:00:00Z",
+          "title": "Medjugorje, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-28T00:00:00Z",
+          "title": "Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-28T00:00:00Z",
+          "title": "Medjugorje, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -718,175 +888,9 @@
       ]
     },
     {
-      "country": "Bosnia and Herzegovina",
-      "overall": "elevated",
-      "overall_score": 0.871,
-      "confidence": "medium",
-      "confidence_value": 0.603,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.553,
-        "military": 0.0,
-        "policing": 0.048,
-        "migration": 0.0,
-        "social": 0.048,
-        "infrastructure": 0.048
-      },
-      "drivers": [
-        "unknown",
-        "protest"
-      ],
-      "incident_count": 36,
-      "recent_incident_count": 7,
-      "top_incidents": [
-        {
-          "time": "2026-07-28T00:00:00Z",
-          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.21,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-28T07:23:37Z",
-          "title": "India’s Cockroach movement threatens to restart protests after mass student arrests",
-          "event_type": "protest",
-          "score": 0.196,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-07-28T00:00:00Z",
-          "title": "Medjugorje, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.182,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-28T00:00:00Z",
-          "title": "Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.182,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-28T00:00:00Z",
-          "title": "Medjugorje, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.182,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.866,
-      "confidence": "medium",
-      "confidence_value": 0.619,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.472,
-        "military": 0.027,
-        "policing": 0.111,
-        "migration": 0.0,
-        "social": 0.111,
-        "infrastructure": 0.054
-      },
-      "drivers": [
-        "unknown",
-        "protest"
-      ],
-      "incident_count": 33,
-      "recent_incident_count": 11,
-      "top_incidents": [
-        {
-          "time": "2026-07-28T16:58:49Z",
-          "title": "‘A control freak’: murderer James Desborough convicted of two further killings",
-          "event_type": "protest",
-          "score": 0.227,
-          "source": "RSS",
-          "dimensions": [
-            "policing",
-            "social"
-          ]
-        },
-        {
-          "time": "2026-07-28T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-28T00:00:00Z",
-          "title": "Krnovo, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-28T00:00:00Z",
-          "title": "Baranya County, Baranya, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-28T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 0.828,
+      "overall_score": 0.871,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -898,7 +902,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.54,
+        "political": 1.616,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -908,8 +912,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 31,
-      "recent_incident_count": 8,
+      "incident_count": 32,
+      "recent_incident_count": 9,
       "top_incidents": [
         {
           "time": "2026-07-28T00:00:00Z",
@@ -1152,10 +1156,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1199,
+    "incident_count": 1206,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 96
+    "rss_story_count_raw": 135
   },
   "legend": {
     "levels": [
