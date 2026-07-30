@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-30T18:50:11Z",
+  "generated_utc": "2026-07-30T20:37:41Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.177,
+    "overall_score": 1.179,
     "confidence": "medium",
-    "confidence_value": 0.588,
+    "confidence_value": 0.589,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.082,
+      "political": 2.085,
       "military": 0.001,
       "policing": 0.003,
       "migration": 0.001,
       "social": 0.003,
-      "infrastructure": 0.006
+      "infrastructure": 0.007
     },
     "watchlist": [
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.312,
+        "overall_score": 1.326,
         "drivers": [
           "unknown"
         ]
@@ -74,6 +74,7 @@
     ],
     "top_drivers": [
       "unknown",
+      "armed_clash",
       "protest"
     ]
   },
@@ -81,9 +82,9 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.24,
+      "overall_score": 2.247,
       "confidence": "medium",
-      "confidence_value": 0.591,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -93,7 +94,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.727,
+        "political": 3.737,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -101,11 +102,22 @@
         "infrastructure": 0.029
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "armed_clash"
       ],
-      "incident_count": 358,
-      "recent_incident_count": 51,
+      "incident_count": 359,
+      "recent_incident_count": 52,
       "top_incidents": [
+        {
+          "time": "2026-07-30T11:29:37Z",
+          "title": "Crete wildfire kills two firefighters as fierce flames spread in Greece",
+          "event_type": "armed_clash",
+          "score": 0.329,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-07-30T00:00:00Z",
           "title": "Greece",
@@ -129,16 +141,6 @@
         {
           "time": "2026-07-30T00:00:00Z",
           "title": "Krya Vrysi, Perifereia Thessalias, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-30T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -401,9 +403,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.312,
+      "overall_score": 1.326,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.595,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -413,18 +415,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.346,
+        "political": 2.364,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.0
+        "infrastructure": 0.02
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 80,
-      "recent_incident_count": 11,
+      "incident_count": 82,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-07-30T00:00:00Z",
@@ -598,7 +600,7 @@
         },
         {
           "time": "2026-07-30T00:00:00Z",
-          "title": "Osijek, Osjecko-Baranjska, Croatia",
+          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -608,7 +610,7 @@
         },
         {
           "time": "2026-07-30T00:00:00Z",
-          "title": "Croatia",
+          "title": "Osijek, Osjecko-Baranjska, Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -1151,10 +1153,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1213,
+    "incident_count": 1216,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 94
+    "rss_story_count_raw": 136
   },
   "legend": {
     "levels": [
