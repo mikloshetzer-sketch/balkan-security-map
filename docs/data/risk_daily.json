@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-01T21:12:05Z",
+  "generated_utc": "2026-08-01T22:15:47Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.162,
+    "overall_score": 1.163,
     "confidence": "medium",
-    "confidence_value": 0.583,
+    "confidence_value": 0.584,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.039,
-      "military": 0.005,
+      "political": 2.041,
+      "military": 0.007,
       "policing": 0.022,
       "migration": 0.005,
       "social": 0.008,
-      "infrastructure": 0.014
+      "infrastructure": 0.015
     },
     "watchlist": [
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.425,
+        "overall_score": 1.442,
         "drivers": [
           "unknown"
         ]
@@ -75,6 +75,7 @@
     ],
     "top_drivers": [
       "unknown",
+      "armed_clash",
       "explosion",
       "shooting",
       "protest"
@@ -84,9 +85,9 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.27,
+      "overall_score": 2.274,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.591,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -96,7 +97,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.77,
+        "political": 3.776,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -104,12 +105,23 @@
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "armed_clash"
       ],
-      "incident_count": 367,
+      "incident_count": 368,
       "recent_incident_count": 62,
       "top_incidents": [
         {
+          "time": "2026-07-30T11:29:37Z",
+          "title": "Crete wildfire kills two firefighters as fierce flames spread in Greece",
+          "event_type": "armed_clash",
+          "score": 0.221,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-08-01T00:00:00Z",
           "title": "Greece",
           "event_type": "unknown",
@@ -132,16 +144,6 @@
         {
           "time": "2026-08-01T00:00:00Z",
           "title": "Athens, AttikíR, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-01T00:00:00Z",
-          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -409,9 +411,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.425,
+      "overall_score": 1.442,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.6,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -421,18 +423,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.515,
-        "military": 0.0,
+        "political": 2.536,
+        "military": 0.02,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.057
+        "infrastructure": 0.067
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 95,
-      "recent_incident_count": 17,
+      "incident_count": 99,
+      "recent_incident_count": 19,
       "top_incidents": [
         {
           "time": "2026-08-01T00:00:00Z",
@@ -1127,10 +1129,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1252,
+    "incident_count": 1257,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 89
+    "rss_story_count_raw": 128
   },
   "legend": {
     "levels": [
