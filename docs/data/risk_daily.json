@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-02T19:38:08Z",
+  "generated_utc": "2026-08-02T21:13:25Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.142,
+    "overall_score": 1.148,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.017,
+      "political": 2.026,
       "military": 0.006,
-      "policing": 0.034,
+      "policing": 0.043,
       "migration": 0.004,
       "social": 0.007,
-      "infrastructure": 0.01
+      "infrastructure": 0.021
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.313,
+        "overall_score": 2.323,
         "drivers": [
           "unknown",
           "armed_clash",
@@ -67,7 +67,7 @@
       {
         "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 0.79,
+        "overall_score": 0.836,
         "drivers": [
           "unknown"
         ]
@@ -84,9 +84,9 @@
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.313,
+      "overall_score": 2.323,
       "confidence": "medium",
-      "confidence_value": 0.594,
+      "confidence_value": 0.595,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -96,21 +96,33 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.818,
+        "political": 3.826,
         "military": 0.0,
-        "policing": 0.368,
+        "policing": 0.479,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.0
+        "infrastructure": 0.131
       },
       "drivers": [
         "unknown",
         "armed_clash",
         "explosion"
       ],
-      "incident_count": 379,
-      "recent_incident_count": 54,
+      "incident_count": 381,
+      "recent_incident_count": 56,
       "top_incidents": [
+        {
+          "time": "2026-08-02T19:38:28Z",
+          "title": "Choppers collide, killing 2, as fires and foreboding grip Greece",
+          "event_type": "armed_clash",
+          "score": 0.405,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "infrastructure"
+          ]
+        },
         {
           "time": "2026-08-02T18:29:33Z",
           "title": "Man arrested after Scottish woman found dead inside suitcase in Athens",
@@ -144,16 +156,6 @@
         {
           "time": "2026-08-02T00:00:00Z",
           "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-02T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -246,7 +248,7 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.636,
+      "overall_score": 1.652,
       "confidence": "medium",
       "confidence_value": 0.593,
       "dimensions": {
@@ -258,7 +260,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.826,
+        "political": 2.851,
         "military": 0.046,
         "policing": 0.0,
         "migration": 0.046,
@@ -269,8 +271,8 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 134,
-      "recent_incident_count": 9,
+      "incident_count": 135,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-08-01T11:10:34Z",
@@ -307,10 +309,10 @@
           ]
         },
         {
-          "time": "2026-08-01T00:00:00Z",
-          "title": "Bulgaria",
+          "time": "2026-08-02T00:00:00Z",
+          "title": "Chelopech, Sofiya, Bulgaria",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -423,7 +425,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.495,
+        "political": 2.494,
         "military": 0.034,
         "policing": 0.0,
         "migration": 0.0,
@@ -651,7 +653,7 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 0.79,
+      "overall_score": 0.836,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -663,7 +665,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.475,
+        "political": 1.554,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -673,14 +675,24 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 35,
-      "recent_incident_count": 3,
+      "incident_count": 36,
+      "recent_incident_count": 4,
       "top_incidents": [
         {
           "time": "2026-08-02T00:00:00Z",
           "title": "Zubin Potok, Komuna e Zubin Potokut, Kosovo",
           "event_type": "unknown",
           "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-02T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -709,16 +721,6 @@
         {
           "time": "2026-08-01T00:00:00Z",
           "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-31T00:00:00Z",
-          "title": "Recak, Shtime, Kosovo",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1148,7 +1150,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1268,
+    "incident_count": 1272,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 127
