@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-02T22:13:39Z",
+  "generated_utc": "2026-08-02T23:17:09Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -24,16 +24,16 @@
     "dimension_scores": {
       "political": 2.026,
       "military": 0.006,
-      "policing": 0.043,
+      "policing": 0.065,
       "migration": 0.004,
       "social": 0.007,
-      "infrastructure": 0.021
+      "infrastructure": 0.019
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.323,
+        "overall_score": 2.33,
         "drivers": [
           "unknown",
           "armed_clash",
@@ -84,9 +84,9 @@
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.323,
+      "overall_score": 2.33,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -98,7 +98,7 @@
       "dimension_scores": {
         "political": 3.826,
         "military": 0.0,
-        "policing": 0.479,
+        "policing": 0.777,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.131
@@ -108,8 +108,8 @@
         "armed_clash",
         "explosion"
       ],
-      "incident_count": 381,
-      "recent_incident_count": 56,
+      "incident_count": 382,
+      "recent_incident_count": 57,
       "top_incidents": [
         {
           "time": "2026-08-02T19:38:28Z",
@@ -121,6 +121,16 @@
             "political",
             "policing",
             "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-08-02T22:50:19Z",
+          "title": "News live: Australian company ‘deeply saddened’ by fatal collision of its two firefighting helicopters in Greece",
+          "event_type": "armed_clash",
+          "score": 0.401,
+          "source": "RSS",
+          "dimensions": [
+            "policing"
           ]
         },
         {
@@ -152,23 +162,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-02T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.949,
+      "overall_score": 1.948,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -185,7 +185,7 @@
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.039
+        "infrastructure": 0.019
       },
       "drivers": [
         "unknown"
@@ -1150,7 +1150,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1272,
+    "incident_count": 1273,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 127
