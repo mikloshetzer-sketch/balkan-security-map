@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-03T20:01:43Z",
+  "generated_utc": "2026-08-03T21:32:45Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.148,
+    "overall_score": 1.151,
     "confidence": "medium",
-    "confidence_value": 0.592,
+    "confidence_value": 0.593,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,26 +22,27 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.021,
-      "military": 0.022,
+      "political": 2.022,
+      "military": 0.023,
       "policing": 0.014,
-      "migration": 0.009,
+      "migration": 0.008,
       "social": 0.001,
-      "infrastructure": 0.047
+      "infrastructure": 0.05
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.296,
+        "overall_score": 2.306,
         "drivers": [
-          "unknown"
+          "unknown",
+          "armed_clash"
         ]
       },
       {
         "country": "Romania",
         "overall": "elevated",
-        "overall_score": 2.075,
+        "overall_score": 2.072,
         "drivers": [
           "unknown",
           "explosion"
@@ -50,7 +51,7 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.358,
+        "overall_score": 1.363,
         "drivers": [
           "unknown"
         ]
@@ -74,16 +75,17 @@
     ],
     "top_drivers": [
       "unknown",
-      "explosion"
+      "explosion",
+      "armed_clash"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.296,
+      "overall_score": 2.306,
       "confidence": "medium",
-      "confidence_value": 0.591,
+      "confidence_value": 0.593,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -93,7 +95,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.803,
+        "political": 3.818,
         "military": 0.0,
         "policing": 0.07,
         "migration": 0.0,
@@ -101,11 +103,32 @@
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "armed_clash"
       ],
-      "incident_count": 378,
-      "recent_incident_count": 59,
+      "incident_count": 380,
+      "recent_incident_count": 61,
       "top_incidents": [
+        {
+          "time": "2026-08-03T06:16:01Z",
+          "title": "Wildfires force evacuations on Greek island of Kefalonia",
+          "event_type": "armed_clash",
+          "score": 0.325,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-02T19:26:03Z",
+          "title": "Helicopters and firefighters fight fast-moving wildfire near Athens",
+          "event_type": "armed_clash",
+          "score": 0.225,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-03T00:00:00Z",
           "title": "Evros, Perifereia Anatolikis Makedonias kai Thrakis, Greece",
@@ -135,33 +158,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-03T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-03T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Romania",
       "overall": "elevated",
-      "overall_score": 2.075,
+      "overall_score": 2.072,
       "confidence": "medium",
       "confidence_value": 0.596,
       "dimensions": {
@@ -173,12 +176,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.444,
+        "political": 3.443,
         "military": 0.194,
         "policing": 0.018,
-        "migration": 0.018,
-        "social": 0.018,
-        "infrastructure": 0.607
+        "migration": 0.015,
+        "social": 0.015,
+        "infrastructure": 0.542
       },
       "drivers": [
         "unknown",
@@ -191,7 +194,7 @@
           "time": "2026-08-03T14:40:22Z",
           "title": "Romania blasts rock to divert water from drought-hit Danube to nuclear reactor",
           "event_type": "explosion",
-          "score": 0.479,
+          "score": 0.397,
           "source": "RSS",
           "dimensions": [
             "infrastructure"
@@ -290,7 +293,7 @@
         },
         {
           "time": "2026-08-03T00:00:00Z",
-          "title": "Sofia, Sofiya-Grad, Bulgaria",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -300,7 +303,7 @@
         },
         {
           "time": "2026-08-03T00:00:00Z",
-          "title": "Bulgaria",
+          "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -403,9 +406,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.358,
+      "overall_score": 1.363,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -415,8 +418,8 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.42,
-        "military": 0.0,
+        "political": 2.426,
+        "military": 0.009,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
@@ -425,9 +428,29 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 91,
+      "incident_count": 93,
       "recent_incident_count": 10,
       "top_incidents": [
+        {
+          "time": "2026-08-03T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-03T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-03T00:00:00Z",
           "title": "Corlu, Tekirdag, Turkey",
@@ -450,27 +473,7 @@
         },
         {
           "time": "2026-08-03T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-03T00:00:00Z",
           "title": "Bursa, Bursa, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-03T00:00:00Z",
-          "title": "Alevi, Kü, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -643,9 +646,9 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 0.762,
+      "overall_score": 0.778,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -660,13 +663,13 @@
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.0
+        "infrastructure": 0.057
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 33,
-      "recent_incident_count": 4,
+      "incident_count": 34,
+      "recent_incident_count": 5,
       "top_incidents": [
         {
           "time": "2026-08-03T00:00:00Z",
@@ -801,6 +804,90 @@
       ]
     },
     {
+      "country": "Montenegro",
+      "overall": "elevated",
+      "overall_score": 0.689,
+      "confidence": "medium",
+      "confidence_value": 0.614,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.11,
+        "military": 0.095,
+        "policing": 0.095,
+        "migration": 0.095,
+        "social": 0.0,
+        "infrastructure": 0.053
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 29,
+      "recent_incident_count": 4,
+      "top_incidents": [
+        {
+          "time": "2026-08-03T17:30:00Z",
+          "title": "The Guardian view on events in Ceuta: chaos and tragedy are weaponised by the far right | Editorial",
+          "event_type": "explosion",
+          "score": 0.389,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "policing",
+            "migration"
+          ]
+        },
+        {
+          "time": "2026-08-02T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-01T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-03T15:49:50Z",
+          "title": "Anti-war politician flees Russia amid pre-election crackdown on dissent",
+          "event_type": "unknown",
+          "score": 0.066,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-07-31T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.063,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Moldova",
       "overall": "elevated",
       "overall_score": 0.681,
@@ -871,90 +958,6 @@
         {
           "time": "2026-07-30T00:00:00Z",
           "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.063,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.673,
-      "confidence": "medium",
-      "confidence_value": 0.609,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.11,
-        "military": 0.095,
-        "policing": 0.095,
-        "migration": 0.095,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 28,
-      "recent_incident_count": 3,
-      "top_incidents": [
-        {
-          "time": "2026-08-03T17:30:00Z",
-          "title": "The Guardian view on events in Ceuta: chaos and tragedy are weaponised by the far right | Editorial",
-          "event_type": "explosion",
-          "score": 0.389,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "policing",
-            "migration"
-          ]
-        },
-        {
-          "time": "2026-08-02T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-01T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-03T15:49:50Z",
-          "title": "Anti-war politician flees Russia amid pre-election crackdown on dissent",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-07-31T00:00:00Z",
-          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.063,
           "source": "GDELT",
@@ -1153,10 +1156,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1265,
+    "incident_count": 1271,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 92
+    "rss_story_count_raw": 128
   },
   "legend": {
     "levels": [
