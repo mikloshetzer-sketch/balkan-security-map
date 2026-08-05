@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-05T15:32:06Z",
+  "generated_utc": "2026-08-05T17:56:19Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.179,
+    "overall_score": 1.208,
     "confidence": "medium",
     "confidence_value": 0.595,
     "dimensions": {
@@ -22,18 +22,27 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.07,
-      "military": 0.005,
-      "policing": 0.014,
+      "political": 2.117,
+      "military": 0.004,
+      "policing": 0.009,
       "migration": 0.0,
       "social": 0.013,
-      "infrastructure": 0.013
+      "infrastructure": 0.035
     },
     "watchlist": [
       {
+        "country": "Greece",
+        "overall": "elevated",
+        "overall_score": 2.249,
+        "drivers": [
+          "unknown",
+          "armed_clash"
+        ]
+      },
+      {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.396,
+        "overall_score": 1.446,
         "drivers": [
           "unknown"
         ]
@@ -41,7 +50,7 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.311,
+        "overall_score": 1.386,
         "drivers": [
           "unknown"
         ]
@@ -49,7 +58,7 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.0,
+        "overall_score": 1.037,
         "drivers": [
           "unknown"
         ]
@@ -61,33 +70,22 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Bosnia and Herzegovina",
-        "overall": "elevated",
-        "overall_score": 0.865,
-        "drivers": [
-          "unknown",
-          "shooting",
-          "protest"
-        ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "shooting",
       "protest",
-      "explosion",
-      "deescalation"
+      "armed_clash",
+      "explosion"
     ]
   },
   "countries": [
     {
       "country": "Greece",
-      "overall": "normal",
-      "overall_score": 2.228,
+      "overall": "elevated",
+      "overall_score": 2.249,
       "confidence": "medium",
-      "confidence_value": 0.591,
+      "confidence_value": 0.595,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -97,25 +95,46 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.711,
+        "political": 3.734,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.0
+        "infrastructure": 0.214
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "armed_clash"
       ],
-      "incident_count": 346,
-      "recent_incident_count": 36,
+      "incident_count": 351,
+      "recent_incident_count": 39,
       "top_incidents": [
         {
-          "time": "2026-08-05T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
+          "time": "2026-08-04T11:20:46Z",
+          "title": "Greece: Firefighters battle major wildfire as strong winds fuel flames",
+          "event_type": "armed_clash",
+          "score": 0.225,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-04T07:57:00Z",
+          "title": "Burned homes, blackened cars: Greek wildfires leave trail of destruction in Porto Germeno",
+          "event_type": "armed_clash",
+          "score": 0.225,
+          "source": "RSS",
+          "dimensions": [
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-08-03T06:16:01Z",
+          "title": "Wildfires force evacuations on Greek island of Kefalonia",
+          "event_type": "armed_clash",
+          "score": 0.221,
+          "source": "RSS",
           "dimensions": [
             "political"
           ]
@@ -132,27 +151,7 @@
         },
         {
           "time": "2026-08-05T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-05T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-05T00:00:00Z",
-          "title": "Megara, Perifereia Attikis, Greece",
+          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -165,7 +164,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 2.096,
+      "overall_score": 2.12,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -177,7 +176,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.524,
+        "political": 3.559,
         "military": 0.012,
         "policing": 0.012,
         "migration": 0.0,
@@ -187,8 +186,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 241,
-      "recent_incident_count": 45,
+      "incident_count": 245,
+      "recent_incident_count": 49,
       "top_incidents": [
         {
           "time": "2026-08-05T00:00:00Z",
@@ -232,7 +231,7 @@
         },
         {
           "time": "2026-08-05T00:00:00Z",
-          "title": "Cernavoda, Romania (general), Romania",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -245,7 +244,7 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.648,
+      "overall_score": 1.75,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -257,7 +256,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.871,
+        "political": 3.024,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -267,19 +266,9 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 123,
-      "recent_incident_count": 18,
+      "incident_count": 130,
+      "recent_incident_count": 25,
       "top_incidents": [
-        {
-          "time": "2026-08-05T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
         {
           "time": "2026-08-05T00:00:00Z",
           "title": "Sofia, Sofiya-Grad, Bulgaria",
@@ -302,7 +291,7 @@
         },
         {
           "time": "2026-08-05T00:00:00Z",
-          "title": "Moschino, Pernik, Bulgaria",
+          "title": "Kozloduy, Vratsa, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -312,7 +301,17 @@
         },
         {
           "time": "2026-08-05T00:00:00Z",
-          "title": "Kozloduy, Vratsa, Bulgaria",
+          "title": "Burgas, Burgas, Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-05T00:00:00Z",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -405,9 +404,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.396,
+      "overall_score": 1.446,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -417,8 +416,8 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.48,
-        "military": 0.0,
+        "political": 2.551,
+        "military": 0.04,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
@@ -427,8 +426,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 84,
-      "recent_incident_count": 13,
+      "incident_count": 87,
+      "recent_incident_count": 16,
       "top_incidents": [
         {
           "time": "2026-08-05T00:00:00Z",
@@ -485,7 +484,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.311,
+      "overall_score": 1.386,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -497,7 +496,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.345,
+        "political": 2.464,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -507,8 +506,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 72,
-      "recent_incident_count": 15,
+      "incident_count": 75,
+      "recent_incident_count": 18,
       "top_incidents": [
         {
           "time": "2026-08-05T00:00:00Z",
@@ -565,7 +564,7 @@
     {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.0,
+      "overall_score": 1.037,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -577,7 +576,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.835,
+        "political": 1.897,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -587,8 +586,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 57,
-      "recent_incident_count": 6,
+      "incident_count": 58,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-08-05T00:00:00Z",
@@ -611,10 +610,10 @@
           ]
         },
         {
-          "time": "2026-08-04T00:00:00Z",
-          "title": "Croatia",
+          "time": "2026-08-05T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -632,7 +631,7 @@
         },
         {
           "time": "2026-08-04T00:00:00Z",
-          "title": "Sveta Nedjelja, Zagrebacka, Croatia",
+          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -723,99 +722,11 @@
       ]
     },
     {
-      "country": "Bosnia and Herzegovina",
-      "overall": "elevated",
-      "overall_score": 0.865,
-      "confidence": "medium",
-      "confidence_value": 0.614,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.457,
-        "military": 0.054,
-        "policing": 0.054,
-        "migration": 0.0,
-        "social": 0.111,
-        "infrastructure": 0.111
-      },
-      "drivers": [
-        "unknown",
-        "shooting",
-        "protest"
-      ],
-      "incident_count": 34,
-      "recent_incident_count": 6,
-      "top_incidents": [
-        {
-          "time": "2026-08-05T04:29:36Z",
-          "title": "Ukraine war briefing: Russian soldier in Crimea shoots comrades and civilians",
-          "event_type": "shooting",
-          "score": 0.274,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "policing",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-08-05T00:00:00Z",
-          "title": "Srebrenica, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.21,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-05T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.182,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-05T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.182,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-04T17:59:46Z",
-          "title": "India’s ruling BJP loses byelection in stronghold after Cockroach student protests",
-          "event_type": "protest",
-          "score": 0.176,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "social",
-            "infrastructure"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 0.797,
+      "overall_score": 0.807,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.595,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -830,12 +741,12 @@
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.0
+        "infrastructure": 0.039
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 34,
+      "incident_count": 35,
       "recent_incident_count": 7,
       "top_incidents": [
         {
@@ -891,11 +802,94 @@
       ]
     },
     {
+      "country": "Bosnia and Herzegovina",
+      "overall": "elevated",
+      "overall_score": 0.796,
+      "confidence": "medium",
+      "confidence_value": 0.602,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.431,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.058,
+        "infrastructure": 0.058
+      },
+      "drivers": [
+        "unknown",
+        "protest"
+      ],
+      "incident_count": 33,
+      "recent_incident_count": 5,
+      "top_incidents": [
+        {
+          "time": "2026-08-05T00:00:00Z",
+          "title": "Srebrenica, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-05T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-05T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-04T17:59:46Z",
+          "title": "India’s ruling BJP loses byelection in stronghold after Cockroach student protests",
+          "event_type": "protest",
+          "score": 0.176,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-08-04T00:00:00Z",
+          "title": "Cerno, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.129,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.602,
+      "overall_score": 0.659,
       "confidence": "medium",
-      "confidence_value": 0.622,
+      "confidence_value": 0.63,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -905,20 +899,20 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.05,
+        "political": 1.089,
         "military": 0.0,
-        "policing": 0.065,
+        "policing": 0.054,
         "migration": 0.0,
-        "social": 0.047,
-        "infrastructure": 0.047
+        "social": 0.093,
+        "infrastructure": 0.128
       },
       "drivers": [
         "unknown",
         "explosion",
-        "deescalation"
+        "protest"
       ],
-      "incident_count": 28,
-      "recent_incident_count": 5,
+      "incident_count": 30,
+      "recent_incident_count": 6,
       "top_incidents": [
         {
           "time": "2026-08-05T07:46:42Z",
@@ -928,6 +922,17 @@
           "source": "RSS",
           "dimensions": [
             "political"
+          ]
+        },
+        {
+          "time": "2026-08-05T16:59:20Z",
+          "title": "Pakistani authorities ban international media from reporting in most of country",
+          "event_type": "protest",
+          "score": 0.19,
+          "source": "RSS",
+          "dimensions": [
+            "social",
+            "infrastructure"
           ]
         },
         {
@@ -951,24 +956,13 @@
           ]
         },
         {
-          "time": "2026-08-05T14:50:13Z",
-          "title": "Middle East crisis live: Israel resumes Lebanon strikes as US-Iran Hormuz stand-off continues",
-          "event_type": "deescalation",
-          "score": 0.095,
-          "source": "RSS",
-          "dimensions": [
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-08-05T10:40:03Z",
-          "title": "Peruvian cardinal hails $150m lead poisoning settlement for 1,300 people as a ‘historic milestone’",
+          "time": "2026-08-05T17:00:24Z",
+          "title": "Trump is pioneering the role of commentator-in-chief when issues grow thorny",
           "event_type": "unknown",
           "score": 0.066,
           "source": "RSS",
           "dimensions": [
-            "policing"
+            "political"
           ]
         }
       ]
@@ -1056,7 +1050,7 @@
     {
       "country": "Serbia",
       "overall": "normal",
-      "overall_score": 0.292,
+      "overall_score": 0.362,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -1068,7 +1062,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.569,
+        "political": 0.701,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -1078,9 +1072,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 7,
-      "recent_incident_count": 2,
+      "incident_count": 8,
+      "recent_incident_count": 3,
       "top_incidents": [
+        {
+          "time": "2026-08-05T00:00:00Z",
+          "title": "Djerdap, , Serbia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-04T00:00:00Z",
           "title": "Iron Gate, , Serbia",
@@ -1120,16 +1124,6 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-02T00:00:00Z",
-          "title": "Djerdap, , Serbia",
-          "event_type": "unknown",
-          "score": 0.063,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
@@ -1162,10 +1156,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1213,
+    "incident_count": 1239,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 90
+    "rss_story_count_raw": 129
   },
   "legend": {
     "levels": [
