@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-09T06:00:52Z",
+  "generated_utc": "2026-08-09T07:19:31Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -24,7 +24,7 @@
     "dimension_scores": {
       "political": 1.87,
       "military": 0.01,
-      "policing": 0.001,
+      "policing": 0.007,
       "migration": 0.005,
       "social": 0.007,
       "infrastructure": 0.009
@@ -81,9 +81,9 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.078,
+      "overall_score": 2.081,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.591,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -95,7 +95,7 @@
       "dimension_scores": {
         "political": 3.501,
         "military": 0.0,
-        "policing": 0.0,
+        "policing": 0.07,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.0
@@ -103,21 +103,11 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 304,
-      "recent_incident_count": 20,
+      "incident_count": 305,
+      "recent_incident_count": 21,
       "top_incidents": [
         {
           "time": "2026-08-09T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-09T00:00:00Z",
           "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
@@ -139,6 +129,16 @@
         {
           "time": "2026-08-09T00:00:00Z",
           "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-09T00:00:00Z",
+          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -1152,10 +1152,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1156,
+    "incident_count": 1157,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 124
+    "rss_story_count_raw": 125
   },
   "legend": {
     "levels": [
