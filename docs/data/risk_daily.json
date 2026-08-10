@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-10T22:59:02Z",
+  "generated_utc": "2026-08-10T23:56:12Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.133,
+    "overall_score": 1.134,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -23,11 +23,11 @@
     },
     "dimension_scores": {
       "political": 2.005,
-      "military": 0.002,
+      "military": 0.004,
       "policing": 0.006,
-      "migration": 0.004,
+      "migration": 0.005,
       "social": 0.002,
-      "infrastructure": 0.01
+      "infrastructure": 0.009
     },
     "watchlist": [
       {
@@ -79,7 +79,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.133,
+      "overall_score": 2.139,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -91,7 +91,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.579,
+        "political": 3.588,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -101,9 +101,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 320,
-      "recent_incident_count": 37,
+      "incident_count": 321,
+      "recent_incident_count": 38,
       "top_incidents": [
+        {
+          "time": "2026-08-11T00:00:00Z",
+          "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-10T00:00:00Z",
           "title": "Greece",
@@ -137,16 +147,6 @@
         {
           "time": "2026-08-10T00:00:00Z",
           "title": "Athens, AttikíR, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-10T00:00:00Z",
-          "title": "Kavala, Perifereia Anatolikis Makedonias kai Thrakis, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -879,9 +879,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.636,
+      "overall_score": 0.648,
       "confidence": "medium",
-      "confidence_value": 0.607,
+      "confidence_value": 0.612,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -891,18 +891,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.123,
-        "military": 0.0,
+        "political": 1.117,
+        "military": 0.038,
         "policing": 0.032,
-        "migration": 0.032,
+        "migration": 0.055,
         "social": 0.014,
-        "infrastructure": 0.065
+        "infrastructure": 0.055
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 27,
-      "recent_incident_count": 6,
+      "incident_count": 28,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-08-10T00:00:00Z",
@@ -1145,10 +1145,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1195,
+    "incident_count": 1197,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 89
+    "rss_story_count_raw": 125
   },
   "legend": {
     "levels": [
