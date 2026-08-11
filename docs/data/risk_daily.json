@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-11T02:31:20Z",
+  "generated_utc": "2026-08-11T04:44:38Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.022,
+    "overall_score": 1.035,
     "confidence": "medium",
     "confidence_value": 0.591,
     "dimensions": {
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.819,
-      "military": 0.004,
+      "political": 1.84,
+      "military": 0.009,
       "policing": 0.006,
-      "migration": 0.004,
-      "social": 0.002,
-      "infrastructure": 0.01
+      "migration": 0.006,
+      "social": 0.006,
+      "infrastructure": 0.013
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.303,
+        "overall_score": 1.333,
         "drivers": [
           "unknown"
         ]
@@ -72,16 +72,17 @@
       }
     ],
     "top_drivers": [
-      "unknown"
+      "unknown",
+      "riot"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.063,
+      "overall_score": 2.083,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -91,19 +92,34 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.481,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
+        "political": 3.495,
+        "military": 0.064,
+        "policing": 0.015,
+        "migration": 0.05,
+        "social": 0.05,
+        "infrastructure": 0.064
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "riot"
       ],
-      "incident_count": 301,
-      "recent_incident_count": 27,
+      "incident_count": 304,
+      "recent_incident_count": 30,
       "top_incidents": [
+        {
+          "time": "2026-08-10T14:54:52Z",
+          "title": "Europe is running out of Patriot missiles as Ukraine braces for Russia’s winter attacks",
+          "event_type": "riot",
+          "score": 0.251,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "migration",
+            "social",
+            "infrastructure"
+          ]
+        },
         {
           "time": "2026-08-11T00:00:00Z",
           "title": "Greece",
@@ -126,16 +142,6 @@
         },
         {
           "time": "2026-08-11T00:00:00Z",
-          "title": "Mimi, Perifereia Peloponnisou, Greece",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-11T00:00:00Z",
           "title": "Greece",
           "event_type": "unknown",
           "score": 0.209,
@@ -146,7 +152,7 @@
         },
         {
           "time": "2026-08-11T00:00:00Z",
-          "title": "Epidaurus, Perifereia Peloponnisou, Greece",
+          "title": "Mimi, Perifereia Peloponnisou, Greece",
           "event_type": "unknown",
           "score": 0.209,
           "source": "GDELT",
@@ -159,7 +165,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.837,
+      "overall_score": 1.876,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -171,19 +177,49 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.15,
+        "political": 3.207,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.029
+        "infrastructure": 0.028
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 214,
-      "recent_incident_count": 16,
+      "incident_count": 217,
+      "recent_incident_count": 19,
       "top_incidents": [
+        {
+          "time": "2026-08-11T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-11T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-11T00:00:00Z",
+          "title": "Voluntari, Romania (general), Romania",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-11T00:00:00Z",
           "title": "Romania",
@@ -203,43 +239,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-10T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-10T00:00:00Z",
-          "title": "Bucharest, Bucuresti, Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-10T00:00:00Z",
-          "title": "Cotroceni, Romania (general), Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.599,
+      "overall_score": 1.619,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -251,7 +257,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.795,
+        "political": 2.826,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -261,12 +267,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 135,
-      "recent_incident_count": 13,
+      "incident_count": 136,
+      "recent_incident_count": 14,
       "top_incidents": [
         {
           "time": "2026-08-11T00:00:00Z",
           "title": "Balkans, Vidin, Bulgaria",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-11T00:00:00Z",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.209,
           "source": "GDELT",
@@ -303,23 +319,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-10T00:00:00Z",
-          "title": "Sofia, Sofiya-Grad, Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.303,
+      "overall_score": 1.333,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -331,7 +337,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.333,
+        "political": 2.381,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -341,12 +347,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 101,
-      "recent_incident_count": 10,
+      "incident_count": 102,
+      "recent_incident_count": 11,
       "top_incidents": [
         {
           "time": "2026-08-11T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-11T00:00:00Z",
+          "title": "Paks, Tolna, Hungary",
           "event_type": "unknown",
           "score": 0.209,
           "source": "GDELT",
@@ -377,16 +393,6 @@
         {
           "time": "2026-08-10T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-10T00:00:00Z",
-          "title": "Paks, Tolna, Hungary",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -426,7 +432,7 @@
       "top_incidents": [
         {
           "time": "2026-08-11T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
+          "title": "Halki, Istanbul, Turkey",
           "event_type": "unknown",
           "score": 0.209,
           "source": "GDELT",
@@ -436,7 +442,7 @@
         },
         {
           "time": "2026-08-11T00:00:00Z",
-          "title": "Halki, Istanbul, Turkey",
+          "title": "Smyrna, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.209,
           "source": "GDELT",
@@ -719,9 +725,9 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 0.724,
+      "overall_score": 0.707,
       "confidence": "medium",
-      "confidence_value": 0.601,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -731,18 +737,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.337,
+        "political": 1.329,
         "military": 0.0,
-        "policing": 0.015,
-        "migration": 0.015,
+        "policing": 0.0,
+        "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.015
+        "infrastructure": 0.0
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 35,
-      "recent_incident_count": 5,
+      "incident_count": 34,
+      "recent_incident_count": 4,
       "top_incidents": [
         {
           "time": "2026-08-10T00:00:00Z",
@@ -879,9 +885,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.512,
+      "overall_score": 0.58,
       "confidence": "medium",
-      "confidence_value": 0.622,
+      "confidence_value": 0.621,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -891,7 +897,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.863,
+        "political": 0.995,
         "military": 0.038,
         "policing": 0.032,
         "migration": 0.032,
@@ -901,9 +907,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 24,
-      "recent_incident_count": 7,
+      "incident_count": 25,
+      "recent_incident_count": 8,
       "top_incidents": [
+        {
+          "time": "2026-08-11T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-10T00:00:00Z",
           "title": "Montenegro",
@@ -935,24 +951,14 @@
           ]
         },
         {
-          "time": "2026-08-11T02:16:05Z",
-          "title": "Australia politics live: five Coalition backbenchers urge Liberals and Nationals to push Labor harder on gambling reform: RBA interest rates decision due today",
+          "time": "2026-08-11T04:34:49Z",
+          "title": "Australia news live: RBA holds cash rate at 4.35%; PM defends Japan relationship after Coalition question over ‘classless’ melon comment",
           "event_type": "unknown",
           "score": 0.067,
           "source": "RSS",
           "dimensions": [
             "political",
             "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-08-11T01:38:25Z",
-          "title": "Ukraine war briefing: Russia bans voting against the war",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "political"
           ]
         }
       ]
@@ -1146,10 +1152,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1105,
+    "incident_count": 1113,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 127
+    "rss_story_count_raw": 125
   },
   "legend": {
     "levels": [
