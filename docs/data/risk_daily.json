@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-12T19:29:46Z",
+  "generated_utc": "2026-08-12T21:06:46Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.168,
+    "overall_score": 1.165,
     "confidence": "medium",
     "confidence_value": 0.591,
     "dimensions": {
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.051,
+      "political": 2.053,
       "military": 0.01,
       "policing": 0.007,
       "migration": 0.0,
-      "social": 0.009,
-      "infrastructure": 0.035
+      "social": 0.015,
+      "infrastructure": 0.017
     },
     "watchlist": [
       {
@@ -74,7 +74,8 @@
     ],
     "top_drivers": [
       "unknown",
-      "explosion"
+      "explosion",
+      "protest"
     ]
   },
   "countries": [
@@ -726,9 +727,9 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 0.973,
+      "overall_score": 0.968,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -738,7 +739,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.789,
+        "political": 1.782,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -748,7 +749,7 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 38,
+      "incident_count": 37,
       "recent_incident_count": 8,
       "top_incidents": [
         {
@@ -806,9 +807,9 @@
     {
       "country": "Slovenia",
       "overall": "elevated",
-      "overall_score": 0.839,
+      "overall_score": 0.754,
       "confidence": "medium",
-      "confidence_value": 0.603,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -823,25 +824,14 @@
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.305
+        "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "explosion"
+        "unknown"
       ],
-      "incident_count": 32,
-      "recent_incident_count": 6,
+      "incident_count": 31,
+      "recent_incident_count": 5,
       "top_incidents": [
-        {
-          "time": "2026-08-12T06:00:21Z",
-          "title": "‘If we exhibited all the Balkan jokes, we wouldn’t have opened’: a trip to Slovenia’s Bullshit Museum",
-          "event_type": "explosion",
-          "score": 0.327,
-          "source": "RSS",
-          "dimensions": [
-            "infrastructure"
-          ]
-        },
         {
           "time": "2026-08-12T00:00:00Z",
           "title": "Slovenia",
@@ -875,6 +865,16 @@
         {
           "time": "2026-08-11T00:00:00Z",
           "title": "Slovenia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-11T00:00:00Z",
+          "title": "Vipava, Vipava, Slovenia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -887,9 +887,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.66,
+      "overall_score": 0.721,
       "confidence": "medium",
-      "confidence_value": 0.614,
+      "confidence_value": 0.631,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -899,19 +899,32 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.197,
+        "political": 1.235,
         "military": 0.037,
         "policing": 0.019,
         "migration": 0.0,
-        "social": 0.019,
-        "infrastructure": 0.018
+        "social": 0.088,
+        "infrastructure": 0.087
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "protest"
       ],
-      "incident_count": 25,
-      "recent_incident_count": 9,
+      "incident_count": 26,
+      "recent_incident_count": 10,
       "top_incidents": [
+        {
+          "time": "2026-08-12T20:36:19Z",
+          "title": "Australia politics live: tech giants face law to pay for news content; Australia joins call for Iran to end death penalty",
+          "event_type": "protest",
+          "score": 0.212,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social",
+            "infrastructure"
+          ]
+        },
         {
           "time": "2026-08-12T00:00:00Z",
           "title": "Montenegro",
@@ -945,16 +958,6 @@
         {
           "time": "2026-08-11T00:00:00Z",
           "title": "Mareza, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-11T00:00:00Z",
-          "title": "Plav, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1153,7 +1156,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1162,
+    "incident_count": 1161,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 132
