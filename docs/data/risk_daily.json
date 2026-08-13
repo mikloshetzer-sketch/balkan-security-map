@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-13T08:46:19Z",
+  "generated_utc": "2026-08-13T10:30:59Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.066,
+    "overall_score": 1.078,
     "confidence": "medium",
     "confidence_value": 0.589,
     "dimensions": {
@@ -22,18 +22,26 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.901,
+      "political": 1.919,
       "military": 0.003,
       "policing": 0.001,
       "migration": 0.0,
-      "social": 0.004,
-      "infrastructure": 0.002
+      "social": 0.001,
+      "infrastructure": 0.004
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.351,
+        "overall_score": 1.394,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
+        "country": "Turkey",
+        "overall": "elevated",
+        "overall_score": 1.184,
         "drivers": [
           "unknown"
         ]
@@ -42,14 +50,6 @@
         "country": "Croatia",
         "overall": "elevated",
         "overall_score": 1.14,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Turkey",
-        "overall": "elevated",
-        "overall_score": 1.121,
         "drivers": [
           "unknown"
         ]
@@ -79,7 +79,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 1.996,
+      "overall_score": 2.011,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -91,7 +91,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.383,
+        "political": 3.406,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -101,8 +101,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 277,
-      "recent_incident_count": 19,
+      "incident_count": 279,
+      "recent_incident_count": 21,
       "top_incidents": [
         {
           "time": "2026-08-13T00:00:00Z",
@@ -239,9 +239,9 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.701,
+      "overall_score": 1.711,
       "confidence": "medium",
-      "confidence_value": 0.594,
+      "confidence_value": 0.593,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -251,11 +251,11 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.947,
+        "political": 2.965,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.028,
+        "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
@@ -267,6 +267,16 @@
         {
           "time": "2026-08-13T00:00:00Z",
           "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-13T00:00:00Z",
+          "title": "Burgas, Burgas, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -303,25 +313,15 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-12T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.351,
+      "overall_score": 1.394,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -331,7 +331,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.41,
+        "political": 2.477,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -341,8 +341,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 95,
-      "recent_incident_count": 11,
+      "incident_count": 96,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-08-13T00:00:00Z",
@@ -389,6 +389,86 @@
           "title": "Paks, Tolna, Hungary",
           "event_type": "unknown",
           "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Turkey",
+      "overall": "elevated",
+      "overall_score": 1.184,
+      "confidence": "medium",
+      "confidence_value": 0.593,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.129,
+        "military": 0.02,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.02
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 75,
+      "recent_incident_count": 12,
+      "top_incidents": [
+        {
+          "time": "2026-08-13T00:00:00Z",
+          "title": "Kemal, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-13T00:00:00Z",
+          "title": "Azmir, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-13T00:00:00Z",
+          "title": "Cihan, Bursa, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-12T00:00:00Z",
+          "title": "Safiye, Kocaeli, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-12T00:00:00Z",
+          "title": "Silivri, Istanbul, Turkey",
+          "event_type": "unknown",
+          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -467,86 +547,6 @@
         {
           "time": "2026-08-12T00:00:00Z",
           "title": "Rijeka, Primorsko-Goranska, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Turkey",
-      "overall": "elevated",
-      "overall_score": 1.121,
-      "confidence": "medium",
-      "confidence_value": 0.593,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.023,
-        "military": 0.02,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.02
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 73,
-      "recent_incident_count": 10,
-      "top_incidents": [
-        {
-          "time": "2026-08-13T00:00:00Z",
-          "title": "Kemal, Edirne, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-12T00:00:00Z",
-          "title": "Safiye, Kocaeli, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-12T00:00:00Z",
-          "title": "Silivri, Istanbul, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-12T00:00:00Z",
-          "title": "Menemen, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-12T00:00:00Z",
-          "title": "Saadet, Bursa, Turkey",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -959,9 +959,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.535,
+      "overall_score": 0.557,
       "confidence": "medium",
-      "confidence_value": 0.605,
+      "confidence_value": 0.611,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -971,18 +971,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.987,
+        "political": 1.007,
         "military": 0.019,
         "policing": 0.019,
         "migration": 0.0,
         "social": 0.019,
-        "infrastructure": 0.0
+        "infrastructure": 0.033
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 21,
-      "recent_incident_count": 3,
+      "incident_count": 22,
+      "recent_incident_count": 4,
       "top_incidents": [
         {
           "time": "2026-08-12T00:00:00Z",
@@ -1145,7 +1145,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1102,
+    "incident_count": 1109,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 133
