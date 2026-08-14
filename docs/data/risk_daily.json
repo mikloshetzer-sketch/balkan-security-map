@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-14T08:39:49Z",
+  "generated_utc": "2026-08-14T10:19:43Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.107,
+    "overall_score": 1.116,
     "confidence": "medium",
     "confidence_value": 0.589,
     "dimensions": {
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.962,
-      "military": 0.003,
+      "political": 1.977,
+      "military": 0.001,
       "policing": 0.0,
-      "migration": 0.0,
+      "migration": 0.015,
       "social": 0.0,
-      "infrastructure": 0.044
+      "infrastructure": 0.02
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.362,
+        "overall_score": 1.41,
         "drivers": [
           "unknown"
         ]
@@ -41,16 +41,15 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.304,
+        "overall_score": 1.281,
         "drivers": [
-          "unknown",
-          "armed_clash"
+          "unknown"
         ]
       },
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.277,
+        "overall_score": 1.271,
         "drivers": [
           "unknown"
         ]
@@ -58,15 +57,16 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.048,
+        "overall_score": 1.087,
         "drivers": [
-          "unknown"
+          "unknown",
+          "migrant_pressure"
         ]
       },
       {
-        "country": "Moldova",
+        "country": "Kosovo",
         "overall": "elevated",
-        "overall_score": 0.941,
+        "overall_score": 0.907,
         "drivers": [
           "unknown"
         ]
@@ -74,14 +74,14 @@
     ],
     "top_drivers": [
       "unknown",
-      "armed_clash"
+      "migrant_pressure"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.026,
+      "overall_score": 2.048,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -93,7 +93,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.425,
+        "political": 3.456,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -103,8 +103,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 264,
-      "recent_incident_count": 32,
+      "incident_count": 267,
+      "recent_incident_count": 35,
       "top_incidents": [
         {
           "time": "2026-08-14T00:00:00Z",
@@ -161,7 +161,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.945,
+      "overall_score": 1.98,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -173,7 +173,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.307,
+        "political": 3.357,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -183,8 +183,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 226,
-      "recent_incident_count": 29,
+      "incident_count": 230,
+      "recent_incident_count": 33,
       "top_incidents": [
         {
           "time": "2026-08-14T00:00:00Z",
@@ -208,27 +208,27 @@
         },
         {
           "time": "2026-08-14T00:00:00Z",
+          "title": "Cernavoda, Romania (general), Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
           "title": "Mioveni, Romania (general), Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Cotroceni, Romania (general), Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Mihail Kogalniceanu, Romania (general), Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -268,7 +268,7 @@
       "top_incidents": [
         {
           "time": "2026-08-14T00:00:00Z",
-          "title": "Bulgaria",
+          "title": "Burgas, Burgas, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -278,7 +278,7 @@
         },
         {
           "time": "2026-08-14T00:00:00Z",
-          "title": "Burgas, Burgas, Bulgaria",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -321,7 +321,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.362,
+      "overall_score": 1.41,
       "confidence": "medium",
       "confidence_value": 0.594,
       "dimensions": {
@@ -333,7 +333,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.421,
+        "political": 2.496,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -343,8 +343,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 94,
-      "recent_incident_count": 14,
+      "incident_count": 96,
+      "recent_incident_count": 16,
       "top_incidents": [
         {
           "time": "2026-08-14T00:00:00Z",
@@ -358,6 +358,16 @@
         },
         {
           "time": "2026-08-14T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
           "title": "Paks, Tolna, Hungary",
           "event_type": "unknown",
           "score": 0.178,
@@ -377,20 +387,10 @@
           ]
         },
         {
-          "time": "2026-08-13T00:00:00Z",
+          "time": "2026-08-14T00:00:00Z",
           "title": "Hungary",
           "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-13T00:00:00Z",
-          "title": "Paks, Tolna, Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -401,9 +401,9 @@
     {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.304,
+      "overall_score": 1.281,
       "confidence": "medium",
-      "confidence_value": 0.599,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -413,30 +413,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.235,
+        "political": 2.28,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.368
+        "infrastructure": 0.07
       },
       "drivers": [
-        "unknown",
-        "armed_clash"
+        "unknown"
       ],
-      "incident_count": 65,
-      "recent_incident_count": 13,
+      "incident_count": 66,
+      "recent_incident_count": 14,
       "top_incidents": [
-        {
-          "time": "2026-08-14T08:19:53Z",
-          "title": "Three firefighters and a child hospitalised in England as fires blaze in UK, Greece, France and Croatia – Europe live",
-          "event_type": "armed_clash",
-          "score": 0.401,
-          "source": "RSS",
-          "dimensions": [
-            "infrastructure"
-          ]
-        },
         {
           "time": "2026-08-14T00:00:00Z",
           "title": "Croatia",
@@ -460,6 +449,16 @@
         {
           "time": "2026-08-14T00:00:00Z",
           "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
+          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -482,9 +481,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.277,
+      "overall_score": 1.271,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.593,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -495,16 +494,16 @@
       },
       "dimension_scores": {
         "political": 2.267,
-        "military": 0.019,
+        "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.075
+        "infrastructure": 0.056
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 73,
+      "incident_count": 72,
       "recent_incident_count": 15,
       "top_incidents": [
         {
@@ -562,9 +561,9 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.048,
+      "overall_score": 1.087,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -577,16 +576,27 @@
         "political": 1.915,
         "military": 0.0,
         "policing": 0.0,
-        "migration": 0.0,
+        "migration": 0.192,
         "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "migrant_pressure"
       ],
-      "incident_count": 65,
-      "recent_incident_count": 8,
+      "incident_count": 66,
+      "recent_incident_count": 9,
       "top_incidents": [
+        {
+          "time": "2026-08-14T09:29:56Z",
+          "title": "Albanian ambassador attacks UK right wing for ‘unhinged’ fixation with 2022 migrant surge",
+          "event_type": "migrant_pressure",
+          "score": 0.201,
+          "source": "RSS",
+          "dimensions": [
+            "migration"
+          ]
+        },
         {
           "time": "2026-08-14T00:00:00Z",
           "title": "Kruja, Qarku i Durresit, Albania",
@@ -626,103 +636,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-13T00:00:00Z",
-          "title": "Farka, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Moldova",
-      "overall": "elevated",
-      "overall_score": 0.941,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.735,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 44,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-13T00:00:00Z",
-          "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-13T00:00:00Z",
-          "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 0.865,
+      "overall_score": 0.907,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -734,7 +654,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.605,
+        "political": 1.677,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -744,12 +664,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 37,
-      "recent_incident_count": 4,
+      "incident_count": 38,
+      "recent_incident_count": 5,
       "top_incidents": [
         {
           "time": "2026-08-14T00:00:00Z",
           "title": "Balkan, , Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
+          "title": "Peja, Opstina Pec, Kosovo",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -786,12 +716,82 @@
           "dimensions": [
             "political"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Moldova",
+      "overall": "elevated",
+      "overall_score": 0.9,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.665,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 43,
+      "recent_incident_count": 4,
+      "top_incidents": [
+        {
+          "time": "2026-08-14T00:00:00Z",
+          "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
+          "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-13T00:00:00Z",
+          "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-13T00:00:00Z",
+          "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
         },
         {
           "time": "2026-08-12T00:00:00Z",
-          "title": "Zubin Potok, Komuna e Zubin Potokut, Kosovo",
+          "title": "Moldova",
           "event_type": "unknown",
-          "score": 0.149,
+          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1148,10 +1148,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1100,
+    "incident_count": 1110,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 135
+    "rss_story_count_raw": 134
   },
   "legend": {
     "levels": [
