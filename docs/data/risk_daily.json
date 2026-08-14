@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-14T21:46:23Z",
+  "generated_utc": "2026-08-14T22:44:18Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -12,7 +12,7 @@
     "overall": "elevated",
     "overall_score": 1.215,
     "confidence": "medium",
-    "confidence_value": 0.59,
+    "confidence_value": 0.589,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -27,21 +27,13 @@
       "policing": 0.031,
       "migration": 0.001,
       "social": 0.0,
-      "infrastructure": 0.03
+      "infrastructure": 0.027
     },
     "watchlist": [
       {
-        "country": "Hungary",
-        "overall": "elevated",
-        "overall_score": 1.466,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.44,
+        "overall_score": 1.435,
         "drivers": [
           "unknown"
         ]
@@ -49,7 +41,7 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.428,
+        "overall_score": 1.414,
         "drivers": [
           "unknown",
           "armed_clash"
@@ -67,6 +59,14 @@
         "country": "Kosovo",
         "overall": "elevated",
         "overall_score": 1.024,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
+        "country": "Moldova",
+        "overall": "elevated",
+        "overall_score": 0.98,
         "drivers": [
           "unknown"
         ]
@@ -320,12 +320,12 @@
     },
     {
       "country": "Hungary",
-      "overall": "elevated",
-      "overall_score": 1.466,
+      "overall": "normal",
+      "overall_score": 1.483,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.59,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -333,7 +333,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.591,
+        "political": 2.616,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -401,9 +401,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.44,
+      "overall_score": 1.435,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -418,13 +418,13 @@
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.04
+        "infrastructure": 0.0
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 79,
-      "recent_incident_count": 22,
+      "incident_count": 78,
+      "recent_incident_count": 21,
       "top_incidents": [
         {
           "time": "2026-08-14T00:00:00Z",
@@ -481,9 +481,9 @@
     {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.428,
+      "overall_score": 1.414,
       "confidence": "medium",
-      "confidence_value": 0.607,
+      "confidence_value": 0.602,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -493,7 +493,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.376,
+        "political": 2.349,
         "military": 0.0,
         "policing": 0.368,
         "migration": 0.0,
@@ -504,8 +504,8 @@
         "unknown",
         "armed_clash"
       ],
-      "incident_count": 70,
-      "recent_incident_count": 18,
+      "incident_count": 68,
+      "recent_incident_count": 16,
       "top_incidents": [
         {
           "time": "2026-08-14T16:58:04Z",
@@ -1148,10 +1148,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1175,
+    "incident_count": 1172,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 136
+    "rss_story_count_raw": 93
   },
   "legend": {
     "levels": [
