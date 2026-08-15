@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-01T07:56:46Z",
+  "generated_utc": "2026-08-15T04:22:37Z",
   "config": {
     "min_sources_per_country": 3,
     "max_poll_age_days": 365,
@@ -9,39 +9,132 @@
   },
   "summary": {
     "country_count": 3,
-    "countries_ready_for_display": 1,
-    "countries_not_ready_for_display": 2,
+    "countries_ready_for_display": 2,
+    "countries_not_ready_for_display": 1,
     "total_poll_entries": 19
   },
   "countries": [
     {
       "country": "Bulgaria",
       "status": {
-        "ready_for_display": false,
-        "readiness_reason": "1 distinct source(s) within 365 days; minimum required: 3",
-        "distinct_source_count": 1,
+        "ready_for_display": true,
+        "readiness_reason": "3 distinct source(s) within 365 days; minimum required: 3",
+        "distinct_source_count": 3,
         "distinct_sources": [
+          "alpha_research",
+          "gallup",
           "market_links"
         ],
-        "fresh_poll_count": 2,
+        "fresh_poll_count": 4,
         "max_poll_age_days": 365,
         "latest_poll_date": "2026-05-27"
       },
       "leader": {
         "party": "PB",
-        "weighted_average": 45.79,
-        "simple_average": 46.0,
-        "trend_direction": "unknown"
+        "weighted_average": 45.76,
+        "simple_average": 45.8,
+        "trend_direction": "flat"
       },
       "parties": [
         {
           "party": "PB",
-          "simple_average": 46.0,
-          "weighted_average": 45.79,
-          "poll_count": 2,
-          "source_count": 1,
+          "simple_average": 45.8,
+          "weighted_average": 45.76,
+          "poll_count": 4,
+          "source_count": 3,
           "sources": [
+            "alpha_research",
+            "gallup",
             "market_links"
+          ],
+          "trend": {
+            "direction": "flat",
+            "delta": 0.9,
+            "recent_average": 46.25,
+            "older_average": 45.35
+          }
+        },
+        {
+          "party": "GERB–SDS",
+          "simple_average": 14.62,
+          "weighted_average": 15.17,
+          "poll_count": 4,
+          "source_count": 3,
+          "sources": [
+            "alpha_research",
+            "gallup",
+            "market_links"
+          ],
+          "trend": {
+            "direction": "up",
+            "delta": 1.15,
+            "recent_average": 15.2,
+            "older_average": 14.05
+          }
+        },
+        {
+          "party": "PP",
+          "simple_average": 11.45,
+          "weighted_average": 12.68,
+          "poll_count": 4,
+          "source_count": 3,
+          "sources": [
+            "alpha_research",
+            "gallup",
+            "market_links"
+          ],
+          "trend": {
+            "direction": "down",
+            "delta": -1.8,
+            "recent_average": 10.55,
+            "older_average": 12.35
+          }
+        },
+        {
+          "party": "DB",
+          "simple_average": 6.52,
+          "weighted_average": 6.67,
+          "poll_count": 4,
+          "source_count": 3,
+          "sources": [
+            "alpha_research",
+            "gallup",
+            "market_links"
+          ],
+          "trend": {
+            "direction": "flat",
+            "delta": 0.65,
+            "recent_average": 6.85,
+            "older_average": 6.2
+          }
+        },
+        {
+          "party": "DPS",
+          "simple_average": 5.65,
+          "weighted_average": 4.91,
+          "poll_count": 4,
+          "source_count": 3,
+          "sources": [
+            "alpha_research",
+            "gallup",
+            "market_links"
+          ],
+          "trend": {
+            "direction": "down",
+            "delta": -1.1,
+            "recent_average": 5.1,
+            "older_average": 6.2
+          }
+        },
+        {
+          "party": "Vaz.",
+          "simple_average": 4.75,
+          "weighted_average": 4.74,
+          "poll_count": 2,
+          "source_count": 2,
+          "sources": [
+            "alpha_research",
+            "gallup"
           ],
           "trend": {
             "direction": "unknown",
@@ -51,13 +144,13 @@
           }
         },
         {
-          "party": "GERB–SDS",
-          "simple_average": 15.55,
-          "weighted_average": 15.58,
-          "poll_count": 2,
+          "party": "MECh",
+          "simple_average": 2.2,
+          "weighted_average": 2.2,
+          "poll_count": 1,
           "source_count": 1,
           "sources": [
-            "market_links"
+            "gallup"
           ],
           "trend": {
             "direction": "unknown",
@@ -78,22 +171,65 @@
           "import_method": "manual_csv",
           "raw_file": "docs/data/manual_polls/bulgaria_auto.csv",
           "parties": {
+            "DB": 6.8,
+            "DPS": 4.3,
             "GERB–SDS": 15.6,
-            "PB": 45.7
+            "PB": 45.7,
+            "PP": 13.7
+          }
+        },
+        {
+          "date": "2026",
+          "source": "Alpha Research",
+          "source_id": "alpha_research",
+          "sample_size": 1000,
+          "fieldwork_start": null,
+          "fieldwork_end": null,
+          "import_method": "manual_csv",
+          "raw_file": "docs/data/manual_polls/bulgaria_auto.csv",
+          "parties": {
+            "DB": 6.9,
+            "DPS": 5.9,
+            "GERB–SDS": 14.8,
+            "PB": 46.8,
+            "PP": 7.4,
+            "Vaz.": 4.5
+          }
+        },
+        {
+          "date": "2026",
+          "source": "Gallup",
+          "source_id": "gallup",
+          "sample_size": 821,
+          "fieldwork_start": null,
+          "fieldwork_end": null,
+          "import_method": "manual_csv",
+          "raw_file": "docs/data/manual_polls/bulgaria_auto.csv",
+          "parties": {
+            "DB": 6.6,
+            "DPS": 7.4,
+            "GERB–SDS": 12.6,
+            "MECh": 2.2,
+            "PB": 44.4,
+            "PP": 8.0,
+            "Vaz.": 5.0
           }
         },
         {
           "date": "2026",
           "source": "Market Links",
           "source_id": "market_links",
-          "sample_size": 1005,
+          "sample_size": 1002,
           "fieldwork_start": null,
           "fieldwork_end": null,
           "import_method": "manual_csv",
           "raw_file": "docs/data/manual_polls/bulgaria_auto.csv",
           "parties": {
+            "DB": 5.8,
+            "DPS": 5.0,
             "GERB–SDS": 15.5,
-            "PB": 46.3
+            "PB": 46.3,
+            "PP": 16.7
           }
         }
       ]
@@ -108,22 +244,22 @@
           "ipsos",
           "promocija_plus"
         ],
-        "fresh_poll_count": 6,
+        "fresh_poll_count": 4,
         "max_poll_age_days": 365,
-        "latest_poll_date": "2026-07-05"
+        "latest_poll_date": "2026-05-26"
       },
       "leader": {
         "party": "HDZ",
-        "weighted_average": 27.47,
-        "simple_average": 28.2,
+        "weighted_average": 28.29,
+        "simple_average": 28.85,
         "trend_direction": "down"
       },
       "parties": [
         {
           "party": "HDZ",
-          "simple_average": 28.2,
-          "weighted_average": 27.47,
-          "poll_count": 6,
+          "simple_average": 28.85,
+          "weighted_average": 28.29,
+          "poll_count": 4,
           "source_count": 2,
           "sources": [
             "ipsos",
@@ -131,16 +267,16 @@
           ],
           "trend": {
             "direction": "down",
-            "delta": -1.2,
-            "recent_average": 26.9,
-            "older_average": 28.1
+            "delta": -1.5,
+            "recent_average": 28.1,
+            "older_average": 29.6
           }
         },
         {
           "party": "SDP",
-          "simple_average": 21.33,
-          "weighted_average": 20.96,
-          "poll_count": 6,
+          "simple_average": 21.7,
+          "weighted_average": 21.33,
+          "poll_count": 4,
           "source_count": 2,
           "sources": [
             "ipsos",
@@ -148,33 +284,33 @@
           ],
           "trend": {
             "direction": "flat",
-            "delta": -0.65,
-            "recent_average": 20.6,
-            "older_average": 21.25
+            "delta": -0.9,
+            "recent_average": 21.25,
+            "older_average": 22.15
           }
         },
         {
           "party": "Možemo",
-          "simple_average": 12.38,
-          "weighted_average": 12.3,
-          "poll_count": 6,
+          "simple_average": 12.73,
+          "weighted_average": 12.35,
+          "poll_count": 4,
           "source_count": 2,
           "sources": [
             "ipsos",
             "promocija_plus"
           ],
           "trend": {
-            "direction": "flat",
-            "delta": 0.2,
-            "recent_average": 12.35,
-            "older_average": 12.15
+            "direction": "down",
+            "delta": -1.15,
+            "recent_average": 12.15,
+            "older_average": 13.3
           }
         },
         {
           "party": "Most",
-          "simple_average": 7.68,
-          "weighted_average": 7.81,
-          "poll_count": 6,
+          "simple_average": 7.97,
+          "weighted_average": 7.75,
+          "poll_count": 4,
           "source_count": 2,
           "sources": [
             "ipsos",
@@ -182,33 +318,16 @@
           ],
           "trend": {
             "direction": "flat",
-            "delta": 0.4,
-            "recent_average": 8.0,
-            "older_average": 7.6
+            "delta": -0.75,
+            "recent_average": 7.6,
+            "older_average": 8.35
           }
         },
         {
           "party": "DP",
-          "simple_average": 2.5,
-          "weighted_average": 2.46,
-          "poll_count": 6,
-          "source_count": 2,
-          "sources": [
-            "ipsos",
-            "promocija_plus"
-          ],
-          "trend": {
-            "direction": "flat",
-            "delta": -0.05,
-            "recent_average": 2.45,
-            "older_average": 2.5
-          }
-        },
-        {
-          "party": "DOMiNO",
-          "simple_average": 1.42,
-          "weighted_average": 1.31,
-          "poll_count": 6,
+          "simple_average": 2.55,
+          "weighted_average": 2.55,
+          "poll_count": 4,
           "source_count": 2,
           "sources": [
             "ipsos",
@@ -217,15 +336,15 @@
           "trend": {
             "direction": "flat",
             "delta": -0.1,
-            "recent_average": 1.25,
-            "older_average": 1.35
+            "recent_average": 2.5,
+            "older_average": 2.6
           }
         },
         {
-          "party": "IDS",
-          "simple_average": 1.3,
-          "weighted_average": 1.3,
-          "poll_count": 6,
+          "party": "DOMiNO",
+          "simple_average": 1.5,
+          "weighted_average": 1.43,
+          "poll_count": 4,
           "source_count": 2,
           "sources": [
             "ipsos",
@@ -233,16 +352,16 @@
           ],
           "trend": {
             "direction": "flat",
-            "delta": 0.25,
-            "recent_average": 1.4,
-            "older_average": 1.15
+            "delta": -0.3,
+            "recent_average": 1.35,
+            "older_average": 1.65
           }
         },
         {
           "party": "HS",
-          "simple_average": 1.32,
-          "weighted_average": 1.21,
-          "poll_count": 5,
+          "simple_average": 1.38,
+          "weighted_average": 1.29,
+          "poll_count": 4,
           "source_count": 2,
           "sources": [
             "ipsos",
@@ -250,67 +369,33 @@
           ],
           "trend": {
             "direction": "flat",
-            "delta": -0.15,
-            "recent_average": 1.35,
-            "older_average": 1.5
+            "delta": -0.35,
+            "recent_average": 1.2,
+            "older_average": 1.55
+          }
+        },
+        {
+          "party": "IDS",
+          "simple_average": 1.27,
+          "weighted_average": 1.2,
+          "poll_count": 4,
+          "source_count": 2,
+          "sources": [
+            "ipsos",
+            "promocija_plus"
+          ],
+          "trend": {
+            "direction": "flat",
+            "delta": -0.25,
+            "recent_average": 1.15,
+            "older_average": 1.4
           }
         },
         {
           "party": "PiP",
           "simple_average": 1.05,
-          "weighted_average": 1.02,
-          "poll_count": 6,
-          "source_count": 2,
-          "sources": [
-            "ipsos",
-            "promocija_plus"
-          ],
-          "trend": {
-            "direction": "flat",
-            "delta": 0.1,
-            "recent_average": 1.05,
-            "older_average": 0.95
-          }
-        },
-        {
-          "party": "Centar",
-          "simple_average": 0.98,
-          "weighted_average": 0.93,
-          "poll_count": 6,
-          "source_count": 2,
-          "sources": [
-            "ipsos",
-            "promocija_plus"
-          ],
-          "trend": {
-            "direction": "flat",
-            "delta": -0.05,
-            "recent_average": 0.9,
-            "older_average": 0.95
-          }
-        },
-        {
-          "party": "HSS",
-          "simple_average": 0.68,
-          "weighted_average": 0.63,
-          "poll_count": 5,
-          "source_count": 2,
-          "sources": [
-            "ipsos",
-            "promocija_plus"
-          ],
-          "trend": {
-            "direction": "flat",
-            "delta": -0.05,
-            "recent_average": 0.65,
-            "older_average": 0.7
-          }
-        },
-        {
-          "party": "NPS",
-          "simple_average": 0.56,
-          "weighted_average": 0.51,
-          "poll_count": 5,
+          "weighted_average": 0.99,
+          "poll_count": 4,
           "source_count": 2,
           "sources": [
             "ipsos",
@@ -319,8 +404,59 @@
           "trend": {
             "direction": "flat",
             "delta": -0.2,
-            "recent_average": 0.35,
-            "older_average": 0.55
+            "recent_average": 0.95,
+            "older_average": 1.15
+          }
+        },
+        {
+          "party": "Centar",
+          "simple_average": 1.03,
+          "weighted_average": 0.96,
+          "poll_count": 4,
+          "source_count": 2,
+          "sources": [
+            "ipsos",
+            "promocija_plus"
+          ],
+          "trend": {
+            "direction": "flat",
+            "delta": -0.15,
+            "recent_average": 0.95,
+            "older_average": 1.1
+          }
+        },
+        {
+          "party": "NPS",
+          "simple_average": 0.65,
+          "weighted_average": 0.6,
+          "poll_count": 4,
+          "source_count": 2,
+          "sources": [
+            "ipsos",
+            "promocija_plus"
+          ],
+          "trend": {
+            "direction": "flat",
+            "delta": -0.1,
+            "recent_average": 0.6,
+            "older_average": 0.7
+          }
+        },
+        {
+          "party": "HSS",
+          "simple_average": 0.65,
+          "weighted_average": 0.52,
+          "poll_count": 4,
+          "source_count": 2,
+          "sources": [
+            "ipsos",
+            "promocija_plus"
+          ],
+          "trend": {
+            "direction": "flat",
+            "delta": -0.4,
+            "recent_average": 0.45,
+            "older_average": 0.85
           }
         },
         {
@@ -341,51 +477,6 @@
         }
       ],
       "polls_used": [
-        {
-          "date": "2026-07-05",
-          "source": "Promocija plus",
-          "source_id": "promocija_plus",
-          "sample_size": 1300,
-          "fieldwork_start": null,
-          "fieldwork_end": null,
-          "import_method": "manual_csv",
-          "raw_file": "docs/data/manual_polls/croatia_auto.csv",
-          "parties": {
-            "Centar": 1.0,
-            "DOMiNO": 1.1,
-            "DP": 2.1,
-            "HDZ": 27.0,
-            "IDS": 1.2,
-            "Most": 7.7,
-            "Možemo": 12.2,
-            "PiP": 1.0,
-            "SDP": 21.5
-          }
-        },
-        {
-          "date": "2026-06-26",
-          "source": "Ipsos",
-          "source_id": "ipsos",
-          "sample_size": 994,
-          "fieldwork_start": null,
-          "fieldwork_end": null,
-          "import_method": "manual_csv",
-          "raw_file": "docs/data/manual_polls/croatia_auto.csv",
-          "parties": {
-            "Centar": 0.8,
-            "DOMiNO": 1.4,
-            "DP": 2.8,
-            "HDZ": 26.8,
-            "HS": 1.1,
-            "HSS": 0.8,
-            "IDS": 1.6,
-            "Most": 8.3,
-            "Možemo": 12.5,
-            "NPS": 0.4,
-            "PiP": 1.1,
-            "SDP": 19.7
-          }
-        },
         {
           "date": "2026-05-26",
           "source": "Ipsos",
@@ -447,14 +538,14 @@
           "parties": {
             "Centar": 1.0,
             "DOMiNO": 2.1,
-            "DP": 2.7,
+            "DP": 2.8,
             "HDZ": 28.6,
             "HS": 2.2,
             "HSS": 1.0,
-            "IDS": 1.5,
-            "Most": 7.4,
-            "Možemo": 12.0,
-            "NPS": 0.2,
+            "IDS": 1.6,
+            "Most": 9.0,
+            "Možemo": 13.3,
+            "NPS": 0.4,
             "PiP": 1.1,
             "SDP": 21.2
           }
@@ -477,7 +568,7 @@
             "HS": 0.9,
             "HSS": 0.7,
             "IDS": 1.2,
-            "Most": 7.5,
+            "Most": 7.7,
             "Možemo": 13.3,
             "NPS": 1.0,
             "PiP": 1.2,
