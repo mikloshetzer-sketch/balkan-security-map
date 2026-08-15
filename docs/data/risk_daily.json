@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-15T15:39:43Z",
+  "generated_utc": "2026-08-15T16:44:15Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.164,
+    "overall_score": 1.169,
     "confidence": "medium",
-    "confidence_value": 0.588,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,9 +22,9 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.059,
+      "political": 2.06,
       "military": 0.004,
-      "policing": 0.002,
+      "policing": 0.03,
       "migration": 0.002,
       "social": 0.003,
       "infrastructure": 0.02
@@ -49,9 +49,10 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.27,
+        "overall_score": 1.33,
         "drivers": [
-          "unknown"
+          "unknown",
+          "armed_clash"
         ]
       },
       {
@@ -74,7 +75,8 @@
     "top_drivers": [
       "unknown",
       "explosion",
-      "deescalation"
+      "deescalation",
+      "armed_clash"
     ]
   },
   "countries": [
@@ -163,7 +165,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 2.017,
+      "overall_score": 2.025,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -175,7 +177,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.41,
+        "political": 3.421,
         "military": 0.017,
         "policing": 0.0,
         "migration": 0.017,
@@ -186,8 +188,8 @@
         "unknown",
         "deescalation"
       ],
-      "incident_count": 243,
-      "recent_incident_count": 33,
+      "incident_count": 244,
+      "recent_incident_count": 34,
       "top_incidents": [
         {
           "time": "2026-08-15T00:00:00Z",
@@ -221,7 +223,7 @@
         },
         {
           "time": "2026-08-15T00:00:00Z",
-          "title": "Romania",
+          "title": "Tiganesti, Romania (general), Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -231,7 +233,7 @@
         },
         {
           "time": "2026-08-15T00:00:00Z",
-          "title": "Tulcea, Tulcea, Romania",
+          "title": "Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -351,7 +353,7 @@
       "top_incidents": [
         {
           "time": "2026-08-15T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -361,7 +363,7 @@
         },
         {
           "time": "2026-08-15T00:00:00Z",
-          "title": "Hungary",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -484,9 +486,9 @@
     {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.27,
+      "overall_score": 1.33,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -498,17 +500,28 @@
       "dimension_scores": {
         "political": 2.28,
         "military": 0.0,
-        "policing": 0.0,
+        "policing": 0.368,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "armed_clash"
       ],
-      "incident_count": 66,
-      "recent_incident_count": 11,
+      "incident_count": 67,
+      "recent_incident_count": 12,
       "top_incidents": [
+        {
+          "time": "2026-08-15T15:32:38Z",
+          "title": "Hundreds arrested on suspicion of arson in France as wildfires rage across Europe",
+          "event_type": "armed_clash",
+          "score": 0.401,
+          "source": "RSS",
+          "dimensions": [
+            "policing"
+          ]
+        },
         {
           "time": "2026-08-15T00:00:00Z",
           "title": "Croatia",
@@ -542,16 +555,6 @@
         {
           "time": "2026-08-15T00:00:00Z",
           "title": "Makarska, Splitsko-Dalmatinska, Croatia",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-15T00:00:00Z",
-          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -964,9 +967,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.468,
+      "overall_score": 0.467,
       "confidence": "medium",
-      "confidence_value": 0.598,
+      "confidence_value": 0.558,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -987,7 +990,7 @@
         "unknown"
       ],
       "incident_count": 20,
-      "recent_incident_count": 2,
+      "recent_incident_count": 1,
       "top_incidents": [
         {
           "time": "2026-08-14T00:00:00Z",
@@ -1150,7 +1153,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1167,
+    "incident_count": 1169,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 95
