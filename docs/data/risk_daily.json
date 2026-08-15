@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-15T04:50:31Z",
+  "generated_utc": "2026-08-15T05:44:33Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.124,
+    "overall_score": 1.129,
     "confidence": "medium",
     "confidence_value": 0.59,
     "dimensions": {
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.983,
+      "political": 1.991,
       "military": 0.004,
       "policing": 0.026,
       "migration": 0.003,
@@ -64,9 +64,9 @@
         ]
       },
       {
-        "country": "Kosovo",
+        "country": "Moldova",
         "overall": "elevated",
-        "overall_score": 0.899,
+        "overall_score": 0.915,
         "drivers": [
           "unknown"
         ]
@@ -162,7 +162,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.98,
+      "overall_score": 1.99,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -174,7 +174,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.355,
+        "political": 3.369,
         "military": 0.021,
         "policing": 0.0,
         "migration": 0.021,
@@ -185,9 +185,19 @@
         "unknown",
         "deescalation"
       ],
-      "incident_count": 238,
-      "recent_incident_count": 28,
+      "incident_count": 239,
+      "recent_incident_count": 29,
       "top_incidents": [
+        {
+          "time": "2026-08-15T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-15T00:00:00Z",
           "title": "Romania",
@@ -221,16 +231,6 @@
         {
           "time": "2026-08-14T00:00:00Z",
           "title": "Bucharest, Bucuresti, Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Romania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -497,7 +497,7 @@
       "dimension_scores": {
         "political": 2.188,
         "military": 0.0,
-        "policing": 0.309,
+        "policing": 0.305,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.305
@@ -513,7 +513,7 @@
           "time": "2026-08-14T16:58:04Z",
           "title": "Hundreds arrested on suspicion of arson in France as wildfires rage across Europe",
           "event_type": "armed_clash",
-          "score": 0.332,
+          "score": 0.327,
           "source": "RSS",
           "dimensions": [
             "policing"
@@ -642,6 +642,86 @@
       ]
     },
     {
+      "country": "Moldova",
+      "overall": "elevated",
+      "overall_score": 0.915,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.691,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 46,
+      "recent_incident_count": 5,
+      "top_incidents": [
+        {
+          "time": "2026-08-15T00:00:00Z",
+          "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
+          "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
+          "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
+          "title": "Chisinau, Chisinau, Moldova",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-14T00:00:00Z",
+          "title": "Comrat, Gagauzia, Moldova",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Kosovo",
       "overall": "elevated",
       "overall_score": 0.899,
@@ -712,86 +792,6 @@
         {
           "time": "2026-08-14T00:00:00Z",
           "title": "Peja, Opstina Pec, Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Moldova",
-      "overall": "elevated",
-      "overall_score": 0.866,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.607,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 45,
-      "recent_incident_count": 4,
-      "top_incidents": [
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Chisinau, Chisinau, Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Comrat, Gagauzia, Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-13T00:00:00Z",
-          "title": "Moldova",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1150,7 +1150,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1135,
+    "incident_count": 1137,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 135
