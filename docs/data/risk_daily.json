@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-15T16:44:15Z",
+  "generated_utc": "2026-08-15T17:40:28Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.169,
+    "overall_score": 1.178,
     "confidence": "medium",
-    "confidence_value": 0.586,
+    "confidence_value": 0.589,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,28 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.06,
+      "political": 2.074,
       "military": 0.004,
-      "policing": 0.03,
+      "policing": 0.045,
       "migration": 0.002,
-      "social": 0.003,
-      "infrastructure": 0.02
+      "social": 0.018,
+      "infrastructure": 0.023
     },
     "watchlist": [
       {
+        "country": "Romania",
+        "overall": "elevated",
+        "overall_score": 2.063,
+        "drivers": [
+          "unknown",
+          "explosion",
+          "deescalation"
+        ]
+      },
+      {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.445,
+        "overall_score": 1.45,
         "drivers": [
           "unknown"
         ]
@@ -41,7 +51,7 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.386,
+        "overall_score": 1.391,
         "drivers": [
           "unknown"
         ]
@@ -49,7 +59,7 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.33,
+        "overall_score": 1.341,
         "drivers": [
           "unknown",
           "armed_clash"
@@ -59,14 +69,6 @@
         "country": "Albania",
         "overall": "elevated",
         "overall_score": 1.245,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Moldova",
-        "overall": "elevated",
-        "overall_score": 0.949,
         "drivers": [
           "unknown"
         ]
@@ -164,10 +166,10 @@
     },
     {
       "country": "Romania",
-      "overall": "normal",
-      "overall_score": 2.025,
+      "overall": "elevated",
+      "overall_score": 2.063,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.593,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -177,20 +179,32 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.421,
+        "political": 3.453,
         "military": 0.017,
-        "policing": 0.0,
+        "policing": 0.195,
         "migration": 0.017,
-        "social": 0.017,
+        "social": 0.211,
         "infrastructure": 0.017
       },
       "drivers": [
         "unknown",
+        "explosion",
         "deescalation"
       ],
-      "incident_count": 244,
-      "recent_incident_count": 34,
+      "incident_count": 248,
+      "recent_incident_count": 38,
       "top_incidents": [
+        {
+          "time": "2026-08-15T17:14:38Z",
+          "title": "Body found in Romania believed to be missing British hiker George Smyth",
+          "event_type": "explosion",
+          "score": 0.408,
+          "source": "RSS",
+          "dimensions": [
+            "policing",
+            "social"
+          ]
+        },
         {
           "time": "2026-08-15T00:00:00Z",
           "title": "Romania",
@@ -224,16 +238,6 @@
         {
           "time": "2026-08-15T00:00:00Z",
           "title": "Tiganesti, Romania (general), Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-15T00:00:00Z",
-          "title": "Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -326,9 +330,9 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.445,
+      "overall_score": 1.45,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -338,7 +342,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.547,
+        "political": 2.555,
         "military": 0.018,
         "policing": 0.0,
         "migration": 0.0,
@@ -348,7 +352,7 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 96,
+      "incident_count": 97,
       "recent_incident_count": 15,
       "top_incidents": [
         {
@@ -406,9 +410,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.386,
+      "overall_score": 1.391,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -423,12 +427,12 @@
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.0
+        "infrastructure": 0.039
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 80,
+      "incident_count": 81,
       "recent_incident_count": 12,
       "top_incidents": [
         {
@@ -486,9 +490,9 @@
     {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.33,
+      "overall_score": 1.341,
       "confidence": "medium",
-      "confidence_value": 0.596,
+      "confidence_value": 0.601,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -498,7 +502,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.28,
+        "political": 2.3,
         "military": 0.0,
         "policing": 0.368,
         "migration": 0.0,
@@ -509,8 +513,8 @@
         "unknown",
         "armed_clash"
       ],
-      "incident_count": 67,
-      "recent_incident_count": 12,
+      "incident_count": 69,
+      "recent_incident_count": 14,
       "top_incidents": [
         {
           "time": "2026-08-15T15:32:38Z",
@@ -967,9 +971,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.467,
+      "overall_score": 0.528,
       "confidence": "medium",
-      "confidence_value": 0.558,
+      "confidence_value": 0.597,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -979,7 +983,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.88,
+        "political": 0.992,
         "military": 0.013,
         "policing": 0.0,
         "migration": 0.0,
@@ -989,9 +993,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 20,
-      "recent_incident_count": 1,
+      "incident_count": 21,
+      "recent_incident_count": 2,
       "top_incidents": [
+        {
+          "time": "2026-08-15T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-14T00:00:00Z",
           "title": "Montenegro",
@@ -1017,16 +1031,6 @@
           "title": "Eperjes, Baranya, Hungary",
           "event_type": "unknown",
           "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-12T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.063,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1153,10 +1157,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1169,
+    "incident_count": 1178,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 95
+    "rss_story_count_raw": 137
   },
   "legend": {
     "levels": [
