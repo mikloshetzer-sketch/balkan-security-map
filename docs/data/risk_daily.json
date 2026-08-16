@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-16T15:38:46Z",
+  "generated_utc": "2026-08-16T16:47:08Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.158,
+    "overall_score": 1.159,
     "confidence": "medium",
     "confidence_value": 0.591,
     "dimensions": {
@@ -22,22 +22,31 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.022,
-      "military": 0.004,
+      "political": 2.024,
+      "military": 0.003,
       "policing": 0.025,
       "migration": 0.036,
-      "social": 0.003,
-      "infrastructure": 0.061
+      "social": 0.002,
+      "infrastructure": 0.06
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.072,
+        "overall_score": 2.085,
         "drivers": [
           "unknown",
           "armed_clash",
           "explosion"
+        ]
+      },
+      {
+        "country": "Hungary",
+        "overall": "elevated",
+        "overall_score": 1.516,
+        "drivers": [
+          "unknown",
+          "armed_clash"
         ]
       },
       {
@@ -64,14 +73,6 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Moldova",
-        "overall": "elevated",
-        "overall_score": 0.982,
-        "drivers": [
-          "unknown"
-        ]
       }
     ],
     "top_drivers": [
@@ -84,7 +85,7 @@
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.072,
+      "overall_score": 2.085,
       "confidence": "medium",
       "confidence_value": 0.593,
       "dimensions": {
@@ -96,7 +97,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.464,
+        "political": 3.484,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.368,
@@ -108,12 +109,12 @@
         "armed_clash",
         "explosion"
       ],
-      "incident_count": 254,
-      "recent_incident_count": 29,
+      "incident_count": 256,
+      "recent_incident_count": 30,
       "top_incidents": [
         {
           "time": "2026-08-16T15:16:45Z",
-          "title": "Greek island wildfire kills two people as helicopters called in to tackle Belgium forest blaze",
+          "title": "Greek wildfire kills two people as aircraft deployed to blaze at Belgian nature reserve",
           "event_type": "armed_clash",
           "score": 0.401,
           "source": "RSS",
@@ -180,10 +181,10 @@
       },
       "dimension_scores": {
         "political": 3.484,
-        "military": 0.024,
-        "policing": 0.024,
+        "military": 0.02,
+        "policing": 0.02,
         "migration": 0.0,
-        "social": 0.024,
+        "social": 0.02,
         "infrastructure": 0.0
       },
       "drivers": [
@@ -326,12 +327,12 @@
     },
     {
       "country": "Hungary",
-      "overall": "normal",
-      "overall_score": 1.517,
+      "overall": "elevated",
+      "overall_score": 1.516,
       "confidence": "medium",
       "confidence_value": 0.6,
       "dimensions": {
-        "political": "tense",
+        "political": "elevated",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -339,12 +340,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.6,
+        "political": 2.599,
         "military": 0.01,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.01,
-        "infrastructure": 0.347
+        "infrastructure": 0.341
       },
       "drivers": [
         "unknown",
@@ -974,7 +975,7 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.469,
+      "overall_score": 0.462,
       "confidence": "medium",
       "confidence_value": 0.605,
       "dimensions": {
@@ -986,12 +987,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.883,
-        "military": 0.013,
+        "political": 0.879,
+        "military": 0.006,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.013
+        "infrastructure": 0.006
       },
       "drivers": [
         "unknown"
@@ -1160,10 +1161,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1177,
+    "incident_count": 1179,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 133
+    "rss_story_count_raw": 132
   },
   "legend": {
     "levels": [
