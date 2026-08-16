@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-16T09:45:02Z",
+  "generated_utc": "2026-08-16T10:43:19Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.114,
+    "overall_score": 1.12,
     "confidence": "medium",
     "confidence_value": 0.587,
     "dimensions": {
@@ -22,18 +22,27 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.961,
-      "military": 0.003,
-      "policing": 0.037,
+      "political": 1.971,
+      "military": 0.005,
+      "policing": 0.039,
       "migration": 0.001,
-      "social": 0.013,
+      "social": 0.015,
       "infrastructure": 0.049
     },
     "watchlist": [
       {
+        "country": "Romania",
+        "overall": "elevated",
+        "overall_score": 2.039,
+        "drivers": [
+          "unknown",
+          "explosion"
+        ]
+      },
+      {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.447,
+        "overall_score": 1.469,
         "drivers": [
           "unknown",
           "armed_clash"
@@ -63,14 +72,6 @@
         "drivers": [
           "unknown"
         ]
-      },
-      {
-        "country": "Moldova",
-        "overall": "elevated",
-        "overall_score": 0.943,
-        "drivers": [
-          "unknown"
-        ]
       }
     ],
     "top_drivers": [
@@ -80,6 +81,88 @@
     ]
   },
   "countries": [
+    {
+      "country": "Romania",
+      "overall": "elevated",
+      "overall_score": 2.039,
+      "confidence": "medium",
+      "confidence_value": 0.592,
+      "dimensions": {
+        "political": "tense",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 3.422,
+        "military": 0.024,
+        "policing": 0.182,
+        "migration": 0.0,
+        "social": 0.182,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 248,
+      "recent_incident_count": 22,
+      "top_incidents": [
+        {
+          "time": "2026-08-15T17:14:38Z",
+          "title": "Body found in Romania believed to be missing British hiker George Smyth",
+          "event_type": "explosion",
+          "score": 0.332,
+          "source": "RSS",
+          "dimensions": [
+            "policing",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-08-16T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-16T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-16T00:00:00Z",
+          "title": "Cudalbi, Romania (general), Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-16T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
     {
       "country": "Greece",
       "overall": "normal",
@@ -152,89 +235,7 @@
         },
         {
           "time": "2026-08-16T00:00:00Z",
-          "title": "Theotokos, Perifereia Thessalias, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Romania",
-      "overall": "normal",
-      "overall_score": 2.029,
-      "confidence": "medium",
-      "confidence_value": 0.592,
-      "dimensions": {
-        "political": "tense",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 3.411,
-        "military": 0.0,
-        "policing": 0.16,
-        "migration": 0.0,
-        "social": 0.16,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 246,
-      "recent_incident_count": 20,
-      "top_incidents": [
-        {
-          "time": "2026-08-15T17:14:38Z",
-          "title": "Body found in Romania believed to be missing British hiker George Smyth",
-          "event_type": "explosion",
-          "score": 0.332,
-          "source": "RSS",
-          "dimensions": [
-            "policing",
-            "social"
-          ]
-        },
-        {
-          "time": "2026-08-16T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-16T00:00:00Z",
-          "title": "Cudalbi, Romania (general), Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-16T00:00:00Z",
-          "title": "Bucharest, Bucuresti, Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-16T00:00:00Z",
-          "title": "Romania",
+          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -247,7 +248,7 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.758,
+      "overall_score": 1.757,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -270,7 +271,7 @@
         "unknown"
       ],
       "incident_count": 159,
-      "recent_incident_count": 19,
+      "recent_incident_count": 18,
       "top_incidents": [
         {
           "time": "2026-08-16T00:00:00Z",
@@ -327,7 +328,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.447,
+      "overall_score": 1.469,
       "confidence": "medium",
       "confidence_value": 0.6,
       "dimensions": {
@@ -339,7 +340,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.465,
+        "political": 2.502,
         "military": 0.015,
         "policing": 0.0,
         "migration": 0.0,
@@ -350,12 +351,12 @@
         "unknown",
         "armed_clash"
       ],
-      "incident_count": 95,
-      "recent_incident_count": 12,
+      "incident_count": 96,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-08-16T07:22:21Z",
-          "title": "At least 12 people killed in a Polish tourist bus crash in Hungary",
+          "title": "At least 12 people killed in Polish tourist bus crash in Hungary",
           "event_type": "armed_clash",
           "score": 0.397,
           "source": "RSS",
@@ -394,10 +395,10 @@
           ]
         },
         {
-          "time": "2026-08-15T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "time": "2026-08-16T00:00:00Z",
+          "title": "Siofok, Somogy, Hungary",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -729,7 +730,7 @@
     {
       "country": "Kosovo",
       "overall": "elevated",
-      "overall_score": 0.823,
+      "overall_score": 0.867,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -741,7 +742,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.532,
+        "political": 1.608,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -751,9 +752,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 39,
-      "recent_incident_count": 2,
+      "incident_count": 40,
+      "recent_incident_count": 3,
       "top_incidents": [
+        {
+          "time": "2026-08-16T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-15T00:00:00Z",
           "title": "Kosovo",
@@ -787,16 +798,6 @@
         {
           "time": "2026-08-14T00:00:00Z",
           "title": "Balkan, , Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-14T00:00:00Z",
-          "title": "Peja, Opstina Pec, Kosovo",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1155,10 +1156,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1151,
+    "incident_count": 1155,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 133
+    "rss_story_count_raw": 132
   },
   "legend": {
     "levels": [
