@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-16T17:37:30Z",
+  "generated_utc": "2026-08-16T18:50:04Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.157,
+    "overall_score": 1.158,
     "confidence": "medium",
     "confidence_value": 0.591,
     "dimensions": {
@@ -33,10 +33,9 @@
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.085,
+        "overall_score": 2.092,
         "drivers": [
           "unknown",
-          "armed_clash",
           "explosion"
         ]
       },
@@ -77,15 +76,15 @@
     ],
     "top_drivers": [
       "unknown",
-      "armed_clash",
-      "explosion"
+      "explosion",
+      "armed_clash"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.085,
+      "overall_score": 2.092,
       "confidence": "medium",
       "confidence_value": 0.593,
       "dimensions": {
@@ -97,7 +96,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.484,
+        "political": 3.494,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.368,
@@ -106,16 +105,15 @@
       },
       "drivers": [
         "unknown",
-        "armed_clash",
         "explosion"
       ],
-      "incident_count": 256,
-      "recent_incident_count": 30,
+      "incident_count": 257,
+      "recent_incident_count": 31,
       "top_incidents": [
         {
-          "time": "2026-08-16T16:52:26Z",
+          "time": "2026-08-16T18:23:26Z",
           "title": "Greek wildfire kills two people as aircraft deployed to blaze at Belgian nature reserve",
-          "event_type": "armed_clash",
+          "event_type": "explosion",
           "score": 0.401,
           "source": "RSS",
           "dimensions": [
@@ -975,7 +973,7 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.462,
+      "overall_score": 0.458,
       "confidence": "medium",
       "confidence_value": 0.605,
       "dimensions": {
@@ -987,7 +985,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.879,
+        "political": 0.872,
         "military": 0.006,
         "policing": 0.0,
         "migration": 0.0,
@@ -1021,16 +1019,6 @@
           ]
         },
         {
-          "time": "2026-08-16T12:01:39Z",
-          "title": "Corgis race, bark and dress up at quirky competition in Vilnius",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
           "time": "2026-08-13T00:00:00Z",
           "title": "Montenegro",
           "event_type": "unknown",
@@ -1043,6 +1031,16 @@
         {
           "time": "2026-08-13T00:00:00Z",
           "title": "Eperjes, Baranya, Hungary",
+          "event_type": "unknown",
+          "score": 0.063,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-12T00:00:00Z",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.063,
           "source": "GDELT",
@@ -1161,7 +1159,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1179,
+    "incident_count": 1180,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 132
