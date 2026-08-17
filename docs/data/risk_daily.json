@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-17T19:00:31Z",
+  "generated_utc": "2026-08-17T19:45:16Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.125,
+    "overall_score": 1.131,
     "confidence": "medium",
     "confidence_value": 0.585,
     "dimensions": {
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.994,
+      "political": 2.004,
       "military": 0.001,
       "policing": 0.001,
       "migration": 0.0,
@@ -878,12 +878,12 @@
     },
     {
       "country": "Bosnia and Herzegovina",
-      "overall": "normal",
-      "overall_score": 0.573,
+      "overall": "elevated",
+      "overall_score": 0.587,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
-        "political": "normal",
+        "political": "elevated",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -891,7 +891,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.09,
+        "political": 1.115,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -901,8 +901,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 23,
-      "recent_incident_count": 3,
+      "incident_count": 24,
+      "recent_incident_count": 4,
       "top_incidents": [
         {
           "time": "2026-08-16T00:00:00Z",
@@ -959,9 +959,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.489,
+      "overall_score": 0.548,
       "confidence": "medium",
-      "confidence_value": 0.597,
+      "confidence_value": 0.596,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -971,7 +971,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.936,
+        "political": 1.045,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -981,9 +981,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 23,
-      "recent_incident_count": 4,
+      "incident_count": 24,
+      "recent_incident_count": 5,
       "top_incidents": [
+        {
+          "time": "2026-08-17T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-17T00:00:00Z",
           "title": "Montenegro",
@@ -1017,16 +1027,6 @@
         {
           "time": "2026-08-13T00:00:00Z",
           "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.063,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-13T00:00:00Z",
-          "title": "Eperjes, Baranya, Hungary",
           "event_type": "unknown",
           "score": 0.063,
           "source": "GDELT",
@@ -1125,10 +1125,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1164,
+    "incident_count": 1166,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 128
+    "rss_story_count_raw": 126
   },
   "legend": {
     "levels": [
