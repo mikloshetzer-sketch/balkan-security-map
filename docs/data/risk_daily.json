@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-17T01:58:11Z",
+  "generated_utc": "2026-08-17T03:15:56Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.05,
+    "overall_score": 1.053,
     "confidence": "medium",
-    "confidence_value": 0.585,
+    "confidence_value": 0.588,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,26 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.849,
-      "military": 0.008,
-      "policing": 0.03,
-      "migration": 0.012,
-      "social": 0.008,
-      "infrastructure": 0.03
+      "political": 1.858,
+      "military": 0.007,
+      "policing": 0.023,
+      "migration": 0.005,
+      "social": 0.007,
+      "infrastructure": 0.026
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.361,
+        "overall_score": 1.365,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
+        "country": "Turkey",
+        "overall": "elevated",
+        "overall_score": 1.167,
         "drivers": [
           "unknown"
         ]
@@ -41,16 +49,7 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.142,
-        "drivers": [
-          "unknown",
-          "armed_clash"
-        ]
-      },
-      {
-        "country": "Turkey",
-        "overall": "elevated",
-        "overall_score": 1.13,
+        "overall_score": 1.079,
         "drivers": [
           "unknown"
         ]
@@ -74,17 +73,97 @@
     ],
     "top_drivers": [
       "unknown",
-      "explosion",
-      "armed_clash"
+      "explosion"
     ]
   },
   "countries": [
     {
+      "country": "Greece",
+      "overall": "normal",
+      "overall_score": 1.996,
+      "confidence": "medium",
+      "confidence_value": 0.592,
+      "dimensions": {
+        "political": "tense",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 3.383,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown",
+        "explosion"
+      ],
+      "incident_count": 235,
+      "recent_incident_count": 29,
+      "top_incidents": [
+        {
+          "time": "2026-08-16T21:27:03Z",
+          "title": "Wildfires kill two in Greece and torch Belgian nature reserve",
+          "event_type": "explosion",
+          "score": 0.401,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-17T00:00:00Z",
+          "title": "Athens, AttikíR, Greece",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-17T00:00:00Z",
+          "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-17T00:00:00Z",
+          "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-17T00:00:00Z",
+          "title": "Athens, AttikíR, Greece",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.97,
+      "overall_score": 1.967,
       "confidence": "medium",
-      "confidence_value": 0.593,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -95,18 +174,18 @@
       },
       "dimension_scores": {
         "political": 3.318,
-        "military": 0.088,
-        "policing": 0.088,
+        "military": 0.069,
+        "policing": 0.069,
         "migration": 0.069,
-        "social": 0.088,
+        "social": 0.069,
         "infrastructure": 0.069
       },
       "drivers": [
         "unknown",
         "explosion"
       ],
-      "incident_count": 235,
-      "recent_incident_count": 21,
+      "incident_count": 234,
+      "recent_incident_count": 20,
       "top_incidents": [
         {
           "time": "2026-08-17T00:51:23Z",
@@ -156,87 +235,6 @@
         {
           "time": "2026-08-16T00:00:00Z",
           "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Greece",
-      "overall": "normal",
-      "overall_score": 1.956,
-      "confidence": "medium",
-      "confidence_value": 0.592,
-      "dimensions": {
-        "political": "tense",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 3.326,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 231,
-      "recent_incident_count": 25,
-      "top_incidents": [
-        {
-          "time": "2026-08-16T21:27:03Z",
-          "title": "Wildfires kill two in Greece and torch Belgian nature reserve",
-          "event_type": "explosion",
-          "score": 0.401,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-17T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-17T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-16T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-16T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -329,7 +327,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.361,
+      "overall_score": 1.365,
       "confidence": "medium",
       "confidence_value": 0.598,
       "dimensions": {
@@ -341,12 +339,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.399,
-        "military": 0.01,
+        "political": 2.4,
+        "military": 0.018,
         "policing": 0.056,
         "migration": 0.0,
-        "social": 0.01,
-        "infrastructure": 0.039
+        "social": 0.018,
+        "infrastructure": 0.047
       },
       "drivers": [
         "unknown"
@@ -407,93 +405,9 @@
       ]
     },
     {
-      "country": "Croatia",
-      "overall": "elevated",
-      "overall_score": 1.142,
-      "confidence": "medium",
-      "confidence_value": 0.602,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.993,
-        "military": 0.0,
-        "policing": 0.083,
-        "migration": 0.083,
-        "social": 0.0,
-        "infrastructure": 0.083
-      },
-      "drivers": [
-        "unknown",
-        "armed_clash"
-      ],
-      "incident_count": 67,
-      "recent_incident_count": 3,
-      "top_incidents": [
-        {
-          "time": "2026-08-16T14:24:25Z",
-          "title": "Belgium faces largest wildfire on record, turns to Europe for air support",
-          "event_type": "armed_clash",
-          "score": 0.339,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "migration",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-08-16T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-16T00:00:00Z",
-          "title": "Vukovar, Vukovarsko-Srijemska, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-15T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-15T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.13,
+      "overall_score": 1.167,
       "confidence": "medium",
       "confidence_value": 0.593,
       "dimensions": {
@@ -505,7 +419,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.045,
+        "political": 2.107,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -515,9 +429,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 74,
-      "recent_incident_count": 2,
+      "incident_count": 75,
+      "recent_incident_count": 3,
       "top_incidents": [
+        {
+          "time": "2026-08-17T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-16T00:00:00Z",
           "title": "Burgazada, Istanbul, Turkey",
@@ -557,10 +481,80 @@
           "dimensions": [
             "political"
           ]
+        }
+      ]
+    },
+    {
+      "country": "Croatia",
+      "overall": "elevated",
+      "overall_score": 1.079,
+      "confidence": "medium",
+      "confidence_value": 0.596,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.967,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 66,
+      "recent_incident_count": 2,
+      "top_incidents": [
+        {
+          "time": "2026-08-16T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-16T00:00:00Z",
+          "title": "Vukovar, Vukovarsko-Srijemska, Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
         },
         {
           "time": "2026-08-15T00:00:00Z",
-          "title": "Manisa, Manisa, Turkey",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-15T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-15T00:00:00Z",
+          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -975,9 +969,9 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.408,
+      "overall_score": 0.428,
       "confidence": "medium",
-      "confidence_value": 0.565,
+      "confidence_value": 0.611,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -987,18 +981,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.778,
+        "political": 0.797,
         "military": 0.006,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.006
+        "infrastructure": 0.034
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 21,
-      "recent_incident_count": 1,
+      "incident_count": 22,
+      "recent_incident_count": 2,
       "top_incidents": [
         {
           "time": "2026-08-15T00:00:00Z",
@@ -1141,7 +1135,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1104,
+    "incident_count": 1108,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 131
