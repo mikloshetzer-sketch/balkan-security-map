@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-18T07:07:40Z",
+  "generated_utc": "2026-08-18T07:58:47Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.063,
+    "overall_score": 1.074,
     "confidence": "medium",
-    "confidence_value": 0.582,
+    "confidence_value": 0.583,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.89,
+      "political": 1.907,
       "military": 0.001,
       "policing": 0.007,
       "migration": 0.001,
       "social": 0.002,
-      "infrastructure": 0.002
+      "infrastructure": 0.006
     },
     "watchlist": [
       {
@@ -57,7 +57,7 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.032,
+        "overall_score": 1.067,
         "drivers": [
           "unknown"
         ]
@@ -72,14 +72,15 @@
       }
     ],
     "top_drivers": [
-      "unknown"
+      "unknown",
+      "deescalation"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.058,
+      "overall_score": 2.072,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -91,7 +92,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.47,
+        "political": 3.49,
         "military": 0.012,
         "policing": 0.012,
         "migration": 0.012,
@@ -101,8 +102,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 244,
-      "recent_incident_count": 36,
+      "incident_count": 246,
+      "recent_incident_count": 38,
       "top_incidents": [
         {
           "time": "2026-08-18T00:00:00Z",
@@ -126,7 +127,7 @@
         },
         {
           "time": "2026-08-18T00:00:00Z",
-          "title": "Greece",
+          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -136,7 +137,7 @@
         },
         {
           "time": "2026-08-18T00:00:00Z",
-          "title": "Athens, AttikíR, Greece",
+          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -559,7 +560,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.032,
+      "overall_score": 1.067,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -571,7 +572,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.888,
+        "political": 1.948,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -581,9 +582,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 66,
-      "recent_incident_count": 5,
+      "incident_count": 67,
+      "recent_incident_count": 6,
       "top_incidents": [
+        {
+          "time": "2026-08-18T00:00:00Z",
+          "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-18T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
@@ -617,16 +628,6 @@
         {
           "time": "2026-08-17T00:00:00Z",
           "title": "Ksamil, Vlore, Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-17T00:00:00Z",
-          "title": "Albania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -877,6 +878,88 @@
       ]
     },
     {
+      "country": "Montenegro",
+      "overall": "normal",
+      "overall_score": 0.572,
+      "confidence": "medium",
+      "confidence_value": 0.622,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.021,
+        "military": 0.0,
+        "policing": 0.065,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.047
+      },
+      "drivers": [
+        "unknown",
+        "deescalation"
+      ],
+      "incident_count": 26,
+      "recent_incident_count": 9,
+      "top_incidents": [
+        {
+          "time": "2026-08-18T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-17T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-17T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-18T07:04:12Z",
+          "title": "Oil prices jump after US-Iran ceasefire expires and Trump threatens Oman",
+          "event_type": "deescalation",
+          "score": 0.095,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-08-18T06:00:17Z",
+          "title": "Isles of Scilly named friendliest place in England – and Barking least friendly",
+          "event_type": "unknown",
+          "score": 0.066,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Slovenia",
       "overall": "normal",
       "overall_score": 0.515,
@@ -957,86 +1040,6 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "normal",
-      "overall_score": 0.481,
-      "confidence": "medium",
-      "confidence_value": 0.609,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 0.88,
-        "military": 0.0,
-        "policing": 0.065,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 24,
-      "recent_incident_count": 7,
-      "top_incidents": [
-        {
-          "time": "2026-08-17T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-17T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-18T06:00:17Z",
-          "title": "Isles of Scilly named friendliest place in England – and Barking least friendly",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-18T05:15:27Z",
-          "title": "Alleged victim tells Alan Jones’s barrister he was ‘groomed for 10 years’ and to ‘get real’ during combative cross-examination",
-          "event_type": "unknown",
-          "score": 0.066,
-          "source": "RSS",
-          "dimensions": [
-            "policing"
-          ]
-        },
-        {
-          "time": "2026-08-15T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.063,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Serbia",
       "overall": "normal",
       "overall_score": 0.012,
@@ -1105,7 +1108,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1107,
+    "incident_count": 1112,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 125
