@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-18T13:59:38Z",
+  "generated_utc": "2026-08-18T14:55:40Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.108,
+    "overall_score": 1.114,
     "confidence": "medium",
     "confidence_value": 0.583,
     "dimensions": {
@@ -22,35 +22,27 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.958,
-      "military": 0.002,
+      "political": 1.967,
+      "military": 0.004,
       "policing": 0.018,
       "migration": 0.001,
-      "social": 0.001,
+      "social": 0.003,
       "infrastructure": 0.026
     },
     "watchlist": [
       {
         "country": "Greece",
         "overall": "elevated",
-        "overall_score": 2.1,
+        "overall_score": 2.099,
         "drivers": [
           "unknown",
           "explosion"
         ]
       },
       {
-        "country": "Hungary",
-        "overall": "elevated",
-        "overall_score": 1.433,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.287,
+        "overall_score": 1.324,
         "drivers": [
           "unknown"
         ]
@@ -70,6 +62,14 @@
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Moldova",
+        "overall": "elevated",
+        "overall_score": 1.05,
+        "drivers": [
+          "unknown"
+        ]
       }
     ],
     "top_drivers": [
@@ -82,7 +82,7 @@
     {
       "country": "Greece",
       "overall": "elevated",
-      "overall_score": 2.1,
+      "overall_score": 2.099,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -109,7 +109,7 @@
       "recent_incident_count": 41,
       "top_incidents": [
         {
-          "time": "2026-08-18T13:10:40Z",
+          "time": "2026-08-18T14:24:50Z",
           "title": "Mechanical fault suspected in helicopter crash that killed British newlyweds in Greece",
           "event_type": "explosion",
           "score": 0.408,
@@ -323,12 +323,12 @@
     },
     {
       "country": "Hungary",
-      "overall": "elevated",
-      "overall_score": 1.433,
+      "overall": "normal",
+      "overall_score": 1.476,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -336,7 +336,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.539,
+        "political": 2.606,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -346,8 +346,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 92,
-      "recent_incident_count": 14,
+      "incident_count": 94,
+      "recent_incident_count": 16,
       "top_incidents": [
         {
           "time": "2026-08-18T00:00:00Z",
@@ -390,10 +390,10 @@
           ]
         },
         {
-          "time": "2026-08-17T00:00:00Z",
-          "title": "Hungary",
+          "time": "2026-08-18T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -404,9 +404,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.287,
+      "overall_score": 1.324,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.595,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -416,18 +416,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.308,
-        "military": 0.0,
+        "political": 2.355,
+        "military": 0.024,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
+        "social": 0.024,
         "infrastructure": 0.0
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 78,
-      "recent_incident_count": 11,
+      "incident_count": 80,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-08-18T00:00:00Z",
@@ -470,10 +470,10 @@
           ]
         },
         {
-          "time": "2026-08-17T00:00:00Z",
+          "time": "2026-08-18T00:00:00Z",
           "title": "Smyrna, Izmir, Turkey",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1113,10 +1113,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1135,
+    "incident_count": 1140,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 129
+    "rss_story_count_raw": 130
   },
   "legend": {
     "levels": [
