@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-19T09:51:23Z",
+  "generated_utc": "2026-08-19T10:48:56Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.169,
+    "overall_score": 1.185,
     "confidence": "medium",
     "confidence_value": 0.588,
     "dimensions": {
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.082,
+      "political": 2.102,
       "military": 0.003,
-      "policing": 0.0,
+      "policing": 0.012,
       "migration": 0.0,
       "social": 0.003,
-      "infrastructure": 0.0
+      "infrastructure": 0.012
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.428,
+        "overall_score": 1.45,
         "drivers": [
           "unknown"
         ]
@@ -41,7 +41,7 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.256,
+        "overall_score": 1.283,
         "drivers": [
           "unknown"
         ]
@@ -49,9 +49,10 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.147,
+        "overall_score": 1.253,
         "drivers": [
-          "unknown"
+          "unknown",
+          "explosion"
         ]
       },
       {
@@ -65,14 +66,15 @@
       {
         "country": "Moldova",
         "overall": "elevated",
-        "overall_score": 0.963,
+        "overall_score": 1.001,
         "drivers": [
           "unknown"
         ]
       }
     ],
     "top_drivers": [
-      "unknown"
+      "unknown",
+      "explosion"
     ]
   },
   "countries": [
@@ -186,7 +188,7 @@
       "top_incidents": [
         {
           "time": "2026-08-19T00:00:00Z",
-          "title": "Bucharest, Bucuresti, Romania",
+          "title": "Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -196,7 +198,7 @@
         },
         {
           "time": "2026-08-19T00:00:00Z",
-          "title": "Romania",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -319,7 +321,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.428,
+      "overall_score": 1.45,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -331,7 +333,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.531,
+        "political": 2.566,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -341,8 +343,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 91,
-      "recent_incident_count": 11,
+      "incident_count": 92,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-08-19T00:00:00Z",
@@ -375,10 +377,10 @@
           ]
         },
         {
-          "time": "2026-08-18T00:00:00Z",
+          "time": "2026-08-19T00:00:00Z",
           "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -386,7 +388,7 @@
         },
         {
           "time": "2026-08-18T00:00:00Z",
-          "title": "Hungary",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -399,7 +401,7 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.256,
+      "overall_score": 1.283,
       "confidence": "medium",
       "confidence_value": 0.595,
       "dimensions": {
@@ -411,7 +413,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.238,
+        "political": 2.283,
         "military": 0.035,
         "policing": 0.0,
         "migration": 0.0,
@@ -421,8 +423,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 74,
-      "recent_incident_count": 10,
+      "incident_count": 75,
+      "recent_incident_count": 11,
       "top_incidents": [
         {
           "time": "2026-08-19T00:00:00Z",
@@ -437,6 +439,16 @@
         {
           "time": "2026-08-19T00:00:00Z",
           "title": "Akyaka, Mugla, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-19T00:00:00Z",
+          "title": "Menemen, Izmir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -463,25 +475,15 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-18T00:00:00Z",
-          "title": "Ismir, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.147,
+      "overall_score": 1.253,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.597,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -491,22 +493,45 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.079,
+        "political": 2.172,
         "military": 0.0,
-        "policing": 0.0,
+        "policing": 0.147,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.0
+        "infrastructure": 0.147
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "explosion"
       ],
-      "incident_count": 69,
-      "recent_incident_count": 5,
+      "incident_count": 71,
+      "recent_incident_count": 7,
       "top_incidents": [
+        {
+          "time": "2026-08-19T10:16:41Z",
+          "title": "Fresh Ukraine corruption probe adds to pressure on Zelenskyy ahead of key vote – Europe live",
+          "event_type": "explosion",
+          "score": 0.455,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "infrastructure"
+          ]
+        },
         {
           "time": "2026-08-19T00:00:00Z",
           "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-19T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -527,26 +552,6 @@
         {
           "time": "2026-08-18T00:00:00Z",
           "title": "Osijek, Osjecko-Baranjska, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-18T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-17T00:00:00Z",
-          "title": "Croatia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -639,7 +644,7 @@
     {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.963,
+      "overall_score": 1.001,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -651,7 +656,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.773,
+        "political": 1.837,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -661,10 +666,20 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 50,
-      "recent_incident_count": 8,
+      "incident_count": 51,
+      "recent_incident_count": 9,
       "top_incidents": [
         {
+          "time": "2026-08-19T00:00:00Z",
+          "title": "Moldova",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-08-18T00:00:00Z",
           "title": "Moldova",
           "event_type": "unknown",
@@ -697,16 +712,6 @@
         {
           "time": "2026-08-18T00:00:00Z",
           "title": "Moldova",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-18T00:00:00Z",
-          "title": "Chisinau, Chisinau, Moldova",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1092,10 +1097,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1083,
+    "incident_count": 1088,
     "country_count": 14,
     "active_country_count": 12,
-    "rss_story_count_raw": 129
+    "rss_story_count_raw": 128
   },
   "legend": {
     "levels": [
