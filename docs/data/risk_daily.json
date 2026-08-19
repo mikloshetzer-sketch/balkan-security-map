@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-19T13:13:02Z",
+  "generated_utc": "2026-08-19T14:01:10Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.202,
+    "overall_score": 1.205,
     "confidence": "medium",
     "confidence_value": 0.588,
     "dimensions": {
@@ -22,7 +22,7 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.132,
+      "political": 2.137,
       "military": 0.004,
       "policing": 0.002,
       "migration": 0.0,
@@ -30,14 +30,6 @@
       "infrastructure": 0.018
     },
     "watchlist": [
-      {
-        "country": "Hungary",
-        "overall": "elevated",
-        "overall_score": 1.45,
-        "drivers": [
-          "unknown"
-        ]
-      },
       {
         "country": "Turkey",
         "overall": "elevated",
@@ -66,6 +58,14 @@
         "country": "Moldova",
         "overall": "elevated",
         "overall_score": 1.001,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
+        "country": "Montenegro",
+        "overall": "elevated",
+        "overall_score": 0.842,
         "drivers": [
           "unknown"
         ]
@@ -321,12 +321,12 @@
     },
     {
       "country": "Hungary",
-      "overall": "elevated",
-      "overall_score": 1.45,
+      "overall": "normal",
+      "overall_score": 1.492,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
-        "political": "elevated",
+        "political": "tense",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -334,7 +334,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.566,
+        "political": 2.631,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -344,8 +344,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 92,
-      "recent_incident_count": 12,
+      "incident_count": 94,
+      "recent_incident_count": 14,
       "top_incidents": [
         {
           "time": "2026-08-19T00:00:00Z",
@@ -388,10 +388,10 @@
           ]
         },
         {
-          "time": "2026-08-18T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "time": "2026-08-19T00:00:00Z",
+          "title": "Balatonlelle, Somogy, Hungary",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1095,7 +1095,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1098,
+    "incident_count": 1100,
     "country_count": 14,
     "active_country_count": 12,
     "rss_story_count_raw": 129
