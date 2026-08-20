@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-20T17:48:57Z",
+  "generated_utc": "2026-08-20T19:04:59Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.156,
+    "overall_score": 1.168,
     "confidence": "medium",
-    "confidence_value": 0.595,
+    "confidence_value": 0.596,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,14 +22,23 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.039,
-      "military": 0.021,
+      "political": 2.057,
+      "military": 0.029,
       "policing": 0.001,
       "migration": 0.001,
-      "social": 0.014,
-      "infrastructure": 0.004
+      "social": 0.023,
+      "infrastructure": 0.012
     },
     "watchlist": [
+      {
+        "country": "Romania",
+        "overall": "elevated",
+        "overall_score": 2.033,
+        "drivers": [
+          "unknown",
+          "explosion"
+        ]
+      },
       {
         "country": "Hungary",
         "overall": "elevated",
@@ -49,7 +58,7 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.17,
+        "overall_score": 1.258,
         "drivers": [
           "unknown"
         ]
@@ -57,15 +66,7 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.081,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Moldova",
-        "overall": "elevated",
-        "overall_score": 1.06,
+        "overall_score": 1.115,
         "drivers": [
           "unknown"
         ]
@@ -73,6 +74,7 @@
     ],
     "top_drivers": [
       "unknown",
+      "explosion",
       "armed_clash"
     ]
   },
@@ -80,7 +82,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.038,
+      "overall_score": 2.052,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -92,7 +94,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.444,
+        "political": 3.464,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -102,8 +104,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 241,
-      "recent_incident_count": 27,
+      "incident_count": 243,
+      "recent_incident_count": 29,
       "top_incidents": [
         {
           "time": "2026-08-20T00:00:00Z",
@@ -159,10 +161,10 @@
     },
     {
       "country": "Romania",
-      "overall": "normal",
-      "overall_score": 2.014,
+      "overall": "elevated",
+      "overall_score": 2.033,
       "confidence": "medium",
-      "confidence_value": 0.591,
+      "confidence_value": 0.593,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -172,19 +174,33 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.406,
-        "military": 0.036,
+        "political": 3.413,
+        "military": 0.144,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.036
+        "social": 0.11,
+        "infrastructure": 0.144
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "explosion"
       ],
-      "incident_count": 221,
-      "recent_incident_count": 29,
+      "incident_count": 222,
+      "recent_incident_count": 30,
       "top_incidents": [
+        {
+          "time": "2026-08-20T18:02:33Z",
+          "title": "Romanian jet blasts drone near offshore gas platform, president blames Moscow",
+          "event_type": "explosion",
+          "score": 0.451,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "military",
+            "social",
+            "infrastructure"
+          ]
+        },
         {
           "time": "2026-08-20T00:00:00Z",
           "title": "Romania",
@@ -224,23 +240,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-20T00:00:00Z",
-          "title": "Cotroceni, Romania (general), Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.75,
+      "overall_score": 1.763,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -252,7 +258,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.024,
+        "political": 3.044,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -262,8 +268,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 153,
-      "recent_incident_count": 23,
+      "incident_count": 154,
+      "recent_incident_count": 24,
       "top_incidents": [
         {
           "time": "2026-08-20T00:00:00Z",
@@ -427,6 +433,26 @@
       "top_incidents": [
         {
           "time": "2026-08-20T00:00:00Z",
+          "title": "Kocaeli, Balikesir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T00:00:00Z",
           "title": "Safiye, Kocaeli, Turkey",
           "event_type": "unknown",
           "score": 0.178,
@@ -454,33 +480,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-20T00:00:00Z",
-          "title": "Kocaeli, Balikesir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-20T00:00:00Z",
-          "title": "Kemal, Edirne, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.17,
+      "overall_score": 1.258,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -492,7 +498,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.117,
+        "political": 2.26,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -502,8 +508,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 70,
-      "recent_incident_count": 9,
+      "incident_count": 73,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-08-20T00:00:00Z",
@@ -560,7 +566,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.081,
+      "overall_score": 1.115,
       "confidence": "medium",
       "confidence_value": 0.593,
       "dimensions": {
@@ -572,7 +578,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.951,
+        "political": 2.007,
         "military": 0.012,
         "policing": 0.012,
         "migration": 0.012,
@@ -582,11 +588,21 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 61,
-      "recent_incident_count": 9,
+      "incident_count": 62,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-08-20T00:00:00Z",
+          "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.178,
@@ -607,7 +623,7 @@
         },
         {
           "time": "2026-08-20T00:00:00Z",
-          "title": "Albania",
+          "title": "Shengjin, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -618,16 +634,6 @@
         {
           "time": "2026-08-19T00:00:00Z",
           "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-19T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1042,7 +1048,7 @@
     {
       "country": "Serbia",
       "overall": "normal",
-      "overall_score": 0.1,
+      "overall_score": 0.094,
       "confidence": "medium",
       "confidence_value": 0.634,
       "dimensions": {
@@ -1054,7 +1060,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.199,
+        "political": 0.186,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -1081,7 +1087,7 @@
           "time": "2026-08-20T12:54:43Z",
           "title": "Drought on Serbia's Sava River reveals long-lost WWII shipwreck",
           "event_type": "unknown",
-          "score": 0.083,
+          "score": 0.069,
           "source": "RSS",
           "dimensions": [
             "political"
@@ -1118,7 +1124,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1120,
+    "incident_count": 1128,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 130
