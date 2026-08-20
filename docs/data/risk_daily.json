@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-20T20:49:33Z",
+  "generated_utc": "2026-08-20T21:46:16Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.16,
+    "overall_score": 1.176,
     "confidence": "medium",
-    "confidence_value": 0.584,
+    "confidence_value": 0.596,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,23 +22,14 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.053,
-      "military": 0.016,
-      "policing": 0.001,
+      "political": 2.066,
+      "military": 0.028,
+      "policing": 0.016,
       "migration": 0.001,
-      "social": 0.009,
-      "infrastructure": 0.014
+      "social": 0.022,
+      "infrastructure": 0.011
     },
     "watchlist": [
-      {
-        "country": "Romania",
-        "overall": "elevated",
-        "overall_score": 2.033,
-        "drivers": [
-          "unknown",
-          "explosion"
-        ]
-      },
       {
         "country": "Hungary",
         "overall": "elevated",
@@ -50,9 +41,10 @@
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.292,
+        "overall_score": 1.38,
         "drivers": [
-          "unknown"
+          "unknown",
+          "explosion"
         ]
       },
       {
@@ -70,18 +62,27 @@
         "drivers": [
           "unknown"
         ]
+      },
+      {
+        "country": "Moldova",
+        "overall": "elevated",
+        "overall_score": 1.06,
+        "drivers": [
+          "unknown"
+        ]
       }
     ],
     "top_drivers": [
       "unknown",
-      "explosion"
+      "explosion",
+      "armed_clash"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.052,
+      "overall_score": 2.059,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -93,7 +94,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.464,
+        "political": 3.474,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -103,8 +104,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 243,
-      "recent_incident_count": 29,
+      "incident_count": 244,
+      "recent_incident_count": 30,
       "top_incidents": [
         {
           "time": "2026-08-20T00:00:00Z",
@@ -160,7 +161,7 @@
     },
     {
       "country": "Romania",
-      "overall": "elevated",
+      "overall": "normal",
       "overall_score": 2.033,
       "confidence": "medium",
       "confidence_value": 0.593,
@@ -174,11 +175,11 @@
       },
       "dimension_scores": {
         "political": 3.413,
-        "military": 0.144,
+        "military": 0.138,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.11,
-        "infrastructure": 0.144
+        "infrastructure": 0.138
       },
       "drivers": [
         "unknown",
@@ -232,7 +233,7 @@
         },
         {
           "time": "2026-08-20T00:00:00Z",
-          "title": "Bucharest, Bucuresti, Romania",
+          "title": "Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -245,9 +246,9 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.76,
+      "overall_score": 1.776,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.591,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -257,7 +258,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.039,
+        "political": 3.063,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -267,8 +268,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 153,
-      "recent_incident_count": 23,
+      "incident_count": 155,
+      "recent_incident_count": 25,
       "top_incidents": [
         {
           "time": "2026-08-20T00:00:00Z",
@@ -405,9 +406,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.292,
+      "overall_score": 1.38,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.598,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -417,19 +418,31 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.315,
-        "military": 0.0,
-        "policing": 0.0,
+        "political": 2.403,
+        "military": 0.02,
+        "policing": 0.195,
         "migration": 0.0,
-        "social": 0.0,
+        "social": 0.02,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "explosion"
       ],
-      "incident_count": 76,
-      "recent_incident_count": 11,
+      "incident_count": 79,
+      "recent_incident_count": 14,
       "top_incidents": [
+        {
+          "time": "2026-08-20T20:41:24Z",
+          "title": "US places sanctions on 10 people over alleged Hezbollah cash-smuggling ring",
+          "event_type": "explosion",
+          "score": 0.408,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing"
+          ]
+        },
         {
           "time": "2026-08-20T00:00:00Z",
           "title": "Kocaeli, Balikesir, Turkey",
@@ -463,16 +476,6 @@
         {
           "time": "2026-08-20T00:00:00Z",
           "title": "Izmir, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-20T00:00:00Z",
-          "title": "Kocaeli, Balikesir, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -805,9 +808,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.766,
+      "overall_score": 0.83,
       "confidence": "medium",
-      "confidence_value": 0.6,
+      "confidence_value": 0.607,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -817,19 +820,31 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.392,
-        "military": 0.054,
+        "political": 1.375,
+        "military": 0.201,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.033
+        "social": 0.15,
+        "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "armed_clash"
       ],
       "incident_count": 32,
       "recent_incident_count": 10,
       "top_incidents": [
+        {
+          "time": "2026-08-20T08:16:01Z",
+          "title": "Kyiv residents rescued as Russian strikes damage buildings across the city",
+          "event_type": "armed_clash",
+          "score": 0.311,
+          "source": "RSS",
+          "dimensions": [
+            "military",
+            "social"
+          ]
+        },
         {
           "time": "2026-08-20T00:00:00Z",
           "title": "Montenegro",
@@ -863,16 +878,6 @@
         {
           "time": "2026-08-19T00:00:00Z",
           "title": "Grlja, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-19T00:00:00Z",
-          "title": "Baricska, VeszpréHU, Hungary",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1045,9 +1050,9 @@
     {
       "country": "Serbia",
       "overall": "normal",
-      "overall_score": 0.061,
-      "confidence": "low",
-      "confidence_value": 0.5,
+      "overall_score": 0.094,
+      "confidence": "medium",
+      "confidence_value": 0.634,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -1057,7 +1062,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.122,
+        "political": 0.186,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -1067,8 +1072,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 1,
-      "recent_incident_count": 1,
+      "incident_count": 2,
+      "recent_incident_count": 2,
       "top_incidents": [
         {
           "time": "2026-08-19T00:00:00Z",
@@ -1076,6 +1081,16 @@
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T12:54:43Z",
+          "title": "Drought on Serbia's Sava River reveals long-lost WWII shipwreck",
+          "event_type": "unknown",
+          "score": 0.069,
+          "source": "RSS",
           "dimensions": [
             "political"
           ]
@@ -1111,10 +1126,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1125,
+    "incident_count": 1132,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 90
+    "rss_story_count_raw": 130
   },
   "legend": {
     "levels": [
