@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-20T01:54:51Z",
+  "generated_utc": "2026-08-20T03:13:07Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.066,
+    "overall_score": 1.071,
     "confidence": "medium",
     "confidence_value": 0.582,
     "dimensions": {
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.895,
+      "political": 1.904,
       "military": 0.004,
       "policing": 0.014,
       "migration": 0.001,
       "social": 0.003,
-      "infrastructure": 0.027
+      "infrastructure": 0.014
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.375,
+        "overall_score": 1.402,
         "drivers": [
           "unknown"
         ]
@@ -41,7 +41,7 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.146,
+        "overall_score": 1.145,
         "drivers": [
           "unknown",
           "explosion"
@@ -58,7 +58,7 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 0.958,
+        "overall_score": 1.003,
         "drivers": [
           "unknown"
         ]
@@ -74,7 +74,6 @@
     ],
     "top_drivers": [
       "unknown",
-      "armed_clash",
       "explosion"
     ]
   },
@@ -82,9 +81,9 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 1.959,
+      "overall_score": 1.953,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.59,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -94,31 +93,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.319,
+        "political": 3.322,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.159
+        "infrastructure": 0.0
       },
       "drivers": [
-        "unknown",
-        "armed_clash"
+        "unknown"
       ],
       "incident_count": 230,
       "recent_incident_count": 16,
       "top_incidents": [
-        {
-          "time": "2026-08-19T15:47:43Z",
-          "title": "How satellite technology can help Europe battle wildfires",
-          "event_type": "armed_clash",
-          "score": 0.33,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "infrastructure"
-          ]
-        },
         {
           "time": "2026-08-20T00:00:00Z",
           "title": "Greece",
@@ -132,6 +119,16 @@
         {
           "time": "2026-08-20T00:00:00Z",
           "title": "Balkans, Greece (general), Greece",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T00:00:00Z",
+          "title": "Athens, AttikíR, Greece",
           "event_type": "unknown",
           "score": 0.209,
           "source": "GDELT",
@@ -324,7 +321,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.375,
+      "overall_score": 1.402,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -336,7 +333,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.447,
+        "political": 2.491,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -346,9 +343,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 92,
-      "recent_incident_count": 9,
+      "incident_count": 93,
+      "recent_incident_count": 10,
       "top_incidents": [
+        {
+          "time": "2026-08-20T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-08-20T00:00:00Z",
           "title": "Hungary",
@@ -388,23 +395,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-08-19T00:00:00Z",
-          "title": "Szombathely, Vas, Hungary",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.146,
+      "overall_score": 1.145,
       "confidence": "medium",
       "confidence_value": 0.596,
       "dimensions": {
@@ -418,10 +415,10 @@
       "dimension_scores": {
         "political": 1.974,
         "military": 0.0,
-        "policing": 0.162,
+        "policing": 0.16,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.162
+        "infrastructure": 0.16
       },
       "drivers": [
         "unknown",
@@ -434,7 +431,7 @@
           "time": "2026-08-19T14:14:54Z",
           "title": "Ukrainian diver arrested in Croatia over Nord Stream pipeline bombings",
           "event_type": "explosion",
-          "score": 0.337,
+          "score": 0.332,
           "source": "RSS",
           "dimensions": [
             "policing",
@@ -566,7 +563,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 0.958,
+      "overall_score": 1.003,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -578,7 +575,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.764,
+        "political": 1.84,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -588,10 +585,20 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 57,
-      "recent_incident_count": 5,
+      "incident_count": 58,
+      "recent_incident_count": 6,
       "top_incidents": [
         {
+          "time": "2026-08-20T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
           "time": "2026-08-19T00:00:00Z",
           "title": "Albania",
           "event_type": "unknown",
@@ -623,16 +630,6 @@
         },
         {
           "time": "2026-08-19T00:00:00Z",
-          "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-18T00:00:00Z",
           "title": "Albania",
           "event_type": "unknown",
           "score": 0.125,
@@ -898,12 +895,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.269,
-        "military": 0.016,
-        "policing": 0.016,
+        "political": 1.268,
+        "military": 0.015,
+        "policing": 0.015,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.016
+        "infrastructure": 0.015
       },
       "drivers": [
         "unknown"
@@ -1112,10 +1109,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1058,
+    "incident_count": 1060,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 131
+    "rss_story_count_raw": 130
   },
   "legend": {
     "levels": [
