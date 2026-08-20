@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-20T04:02:08Z",
+  "generated_utc": "2026-08-20T04:58:21Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.905,
-      "military": 0.007,
-      "policing": 0.014,
+      "political": 1.912,
+      "military": 0.008,
+      "policing": 0.003,
       "migration": 0.001,
-      "social": 0.003,
-      "infrastructure": 0.017
+      "social": 0.004,
+      "infrastructure": 0.004
     },
     "watchlist": [
       {
@@ -39,15 +39,6 @@
         ]
       },
       {
-        "country": "Croatia",
-        "overall": "elevated",
-        "overall_score": 1.145,
-        "drivers": [
-          "unknown",
-          "explosion"
-        ]
-      },
-      {
         "country": "Turkey",
         "overall": "elevated",
         "overall_score": 1.131,
@@ -56,9 +47,17 @@
         ]
       },
       {
+        "country": "Croatia",
+        "overall": "elevated",
+        "overall_score": 1.083,
+        "drivers": [
+          "unknown"
+        ]
+      },
+      {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.003,
+        "overall_score": 1.046,
         "drivers": [
           "unknown"
         ]
@@ -73,8 +72,7 @@
       }
     ],
     "top_drivers": [
-      "unknown",
-      "explosion"
+      "unknown"
     ]
   },
   "countries": [
@@ -399,88 +397,6 @@
       ]
     },
     {
-      "country": "Croatia",
-      "overall": "elevated",
-      "overall_score": 1.145,
-      "confidence": "medium",
-      "confidence_value": 0.596,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.974,
-        "military": 0.0,
-        "policing": 0.16,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.16
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 68,
-      "recent_incident_count": 7,
-      "top_incidents": [
-        {
-          "time": "2026-08-19T14:14:54Z",
-          "title": "Ukrainian diver arrested in Croatia over Nord Stream pipeline bombings",
-          "event_type": "explosion",
-          "score": 0.332,
-          "source": "RSS",
-          "dimensions": [
-            "policing",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-08-20T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-20T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.209,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-19T00:00:00Z",
-          "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-19T00:00:00Z",
-          "title": "Zagreb, Zagreb, Grad, Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Turkey",
       "overall": "elevated",
       "overall_score": 1.131,
@@ -561,9 +477,9 @@
       ]
     },
     {
-      "country": "Albania",
+      "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.003,
+      "overall_score": 1.083,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -575,7 +491,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.84,
+        "political": 1.974,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -585,12 +501,102 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 58,
+      "incident_count": 67,
       "recent_incident_count": 6,
       "top_incidents": [
         {
           "time": "2026-08-20T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-19T00:00:00Z",
+          "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-19T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-19T00:00:00Z",
+          "title": "Zagreb, Zagreb, Grad, Croatia",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Albania",
+      "overall": "elevated",
+      "overall_score": 1.046,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.912,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 59,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-08-20T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T00:00:00Z",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.209,
           "source": "GDELT",
@@ -621,16 +627,6 @@
         {
           "time": "2026-08-19T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-19T00:00:00Z",
-          "title": "Albania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -803,9 +799,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.718,
+      "overall_score": 0.737,
       "confidence": "medium",
-      "confidence_value": 0.6,
+      "confidence_value": 0.604,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -815,18 +811,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.291,
-        "military": 0.042,
-        "policing": 0.009,
+        "political": 1.3,
+        "military": 0.059,
+        "policing": 0.026,
         "migration": 0.009,
-        "social": 0.009,
+        "social": 0.026,
         "infrastructure": 0.042
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 31,
-      "recent_incident_count": 10,
+      "incident_count": 32,
+      "recent_incident_count": 11,
       "top_incidents": [
         {
           "time": "2026-08-19T00:00:00Z",
@@ -1109,7 +1105,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1062,
+    "incident_count": 1063,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 130
