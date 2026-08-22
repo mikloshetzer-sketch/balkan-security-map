@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-22T04:52:37Z",
+  "generated_utc": "2026-08-22T05:46:31Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.065,
+    "overall_score": 1.077,
     "confidence": "medium",
-    "confidence_value": 0.584,
+    "confidence_value": 0.593,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.894,
-      "military": 0.002,
+      "political": 1.903,
+      "military": 0.016,
       "policing": 0.015,
       "migration": 0.0,
-      "social": 0.001,
-      "infrastructure": 0.019
+      "social": 0.01,
+      "infrastructure": 0.02
     },
     "watchlist": [
       {
         "country": "Turkey",
         "overall": "elevated",
-        "overall_score": 1.295,
+        "overall_score": 1.304,
         "drivers": [
           "unknown"
         ]
@@ -41,7 +41,7 @@
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.288,
+        "overall_score": 1.296,
         "drivers": [
           "unknown"
         ]
@@ -49,7 +49,7 @@
       {
         "country": "Croatia",
         "overall": "elevated",
-        "overall_score": 1.196,
+        "overall_score": 1.231,
         "drivers": [
           "unknown"
         ]
@@ -74,7 +74,8 @@
     ],
     "top_drivers": [
       "unknown",
-      "explosion"
+      "explosion",
+      "armed_clash"
     ]
   },
   "countries": [
@@ -321,9 +322,9 @@
     {
       "country": "Turkey",
       "overall": "elevated",
-      "overall_score": 1.295,
+      "overall_score": 1.304,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -333,18 +334,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.32,
-        "military": 0.0,
+        "political": 2.324,
+        "military": 0.015,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
+        "social": 0.015,
+        "infrastructure": 0.015
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 82,
-      "recent_incident_count": 11,
+      "incident_count": 83,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-08-22T00:00:00Z",
@@ -401,9 +402,9 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.288,
+      "overall_score": 1.296,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -413,7 +414,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.308,
+        "political": 2.322,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -423,8 +424,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 90,
-      "recent_incident_count": 6,
+      "incident_count": 91,
+      "recent_incident_count": 7,
       "top_incidents": [
         {
           "time": "2026-08-22T00:00:00Z",
@@ -481,7 +482,7 @@
     {
       "country": "Croatia",
       "overall": "elevated",
-      "overall_score": 1.196,
+      "overall_score": 1.231,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -493,7 +494,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.16,
+        "political": 2.217,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -503,12 +504,22 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 73,
-      "recent_incident_count": 8,
+      "incident_count": 74,
+      "recent_incident_count": 9,
       "top_incidents": [
         {
           "time": "2026-08-22T00:00:00Z",
           "title": "Croatia",
+          "event_type": "unknown",
+          "score": 0.209,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-22T00:00:00Z",
+          "title": "Paklenica, Sisacko-Moslavacka, Croatia",
           "event_type": "unknown",
           "score": 0.209,
           "source": "GDELT",
@@ -539,16 +550,6 @@
         {
           "time": "2026-08-21T00:00:00Z",
           "title": "Croatia",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-21T00:00:00Z",
-          "title": "Sibenik, ibensko-Kniniska, Croatia",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -801,6 +802,88 @@
       ]
     },
     {
+      "country": "Montenegro",
+      "overall": "normal",
+      "overall_score": 0.648,
+      "confidence": "medium",
+      "confidence_value": 0.608,
+      "dimensions": {
+        "political": "normal",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.074,
+        "military": 0.157,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.106,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown",
+        "armed_clash"
+      ],
+      "incident_count": 30,
+      "recent_incident_count": 5,
+      "top_incidents": [
+        {
+          "time": "2026-08-20T08:16:01Z",
+          "title": "Kyiv residents rescued as Russian strikes damage buildings across the city",
+          "event_type": "armed_clash",
+          "score": 0.217,
+          "source": "RSS",
+          "dimensions": [
+            "military",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-08-21T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-21T00:00:00Z",
+          "title": "Gazivoda, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-19T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.063,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Slovenia",
       "overall": "elevated",
       "overall_score": 0.602,
@@ -873,86 +956,6 @@
           "title": "Slovenia",
           "event_type": "unknown",
           "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Montenegro",
-      "overall": "normal",
-      "overall_score": 0.564,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "normal",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.074,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 28,
-      "recent_incident_count": 3,
-      "top_incidents": [
-        {
-          "time": "2026-08-21T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-21T00:00:00Z",
-          "title": "Gazivoda, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-20T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-19T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.063,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-19T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.063,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1043,9 +1046,9 @@
     {
       "country": "Serbia",
       "overall": "normal",
-      "overall_score": 0.031,
-      "confidence": "low",
-      "confidence_value": 0.5,
+      "overall_score": 0.054,
+      "confidence": "medium",
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -1055,7 +1058,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.062,
+        "political": 0.107,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -1065,8 +1068,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 1,
-      "recent_incident_count": 0,
+      "incident_count": 2,
+      "recent_incident_count": 1,
       "top_incidents": [
         {
           "time": "2026-08-19T00:00:00Z",
@@ -1074,6 +1077,16 @@
           "event_type": "unknown",
           "score": 0.063,
           "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T12:54:43Z",
+          "title": "Drought on Serbia's Sava River reveals long-lost WWII shipwreck",
+          "event_type": "unknown",
+          "score": 0.047,
+          "source": "RSS",
           "dimensions": [
             "political"
           ]
@@ -1109,10 +1122,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1092,
+    "incident_count": 1098,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 88
+    "rss_story_count_raw": 130
   },
   "legend": {
     "levels": [
