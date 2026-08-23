@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-23T21:38:53Z",
+  "generated_utc": "2026-08-23T22:42:55Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.118,
+    "overall_score": 1.123,
     "confidence": "medium",
-    "confidence_value": 0.584,
+    "confidence_value": 0.594,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.993,
-      "military": 0.0,
+      "political": 1.996,
+      "military": 0.007,
       "policing": 0.002,
       "migration": 0.0,
-      "social": 0.0,
+      "social": 0.004,
       "infrastructure": 0.002
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.426,
+        "overall_score": 1.431,
         "drivers": [
           "unknown"
         ]
@@ -72,14 +72,15 @@
       }
     ],
     "top_drivers": [
-      "unknown"
+      "unknown",
+      "armed_clash"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.009,
+      "overall_score": 2.017,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -91,7 +92,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.402,
+        "political": 3.414,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -101,8 +102,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 237,
-      "recent_incident_count": 25,
+      "incident_count": 238,
+      "recent_incident_count": 26,
       "top_incidents": [
         {
           "time": "2026-08-23T00:00:00Z",
@@ -319,9 +320,9 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.426,
+      "overall_score": 1.431,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -331,7 +332,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.519,
+        "political": 2.526,
         "military": 0.0,
         "policing": 0.024,
         "migration": 0.0,
@@ -341,7 +342,7 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 100,
+      "incident_count": 101,
       "recent_incident_count": 12,
       "top_incidents": [
         {
@@ -879,9 +880,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.645,
+      "overall_score": 0.686,
       "confidence": "medium",
-      "confidence_value": 0.595,
+      "confidence_value": 0.611,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -892,16 +893,17 @@
       },
       "dimension_scores": {
         "political": 1.219,
-        "military": 0.0,
+        "military": 0.088,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
+        "social": 0.052,
         "infrastructure": 0.0
       },
       "drivers": [
-        "unknown"
+        "unknown",
+        "armed_clash"
       ],
-      "incident_count": 30,
+      "incident_count": 32,
       "recent_incident_count": 3,
       "top_incidents": [
         {
@@ -945,13 +947,14 @@
           ]
         },
         {
-          "time": "2026-08-20T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.063,
-          "source": "GDELT",
+          "time": "2026-08-20T08:16:01Z",
+          "title": "Kyiv residents rescued as Russian strikes damage buildings across the city",
+          "event_type": "armed_clash",
+          "score": 0.105,
+          "source": "RSS",
           "dimensions": [
-            "political"
+            "military",
+            "social"
           ]
         }
       ]
@@ -1039,9 +1042,9 @@
     {
       "country": "Serbia",
       "overall": "normal",
-      "overall_score": 0.091,
-      "confidence": "low",
-      "confidence_value": 0.5,
+      "overall_score": 0.101,
+      "confidence": "medium",
+      "confidence_value": 0.613,
       "dimensions": {
         "political": "normal",
         "military": "normal",
@@ -1051,7 +1054,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.181,
+        "political": 0.201,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -1061,7 +1064,7 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 2,
+      "incident_count": 3,
       "recent_incident_count": 1,
       "top_incidents": [
         {
@@ -1080,6 +1083,16 @@
           "event_type": "unknown",
           "score": 0.063,
           "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-20T12:54:43Z",
+          "title": "Drought on Serbia's Sava River reveals long-lost WWII shipwreck",
+          "event_type": "unknown",
+          "score": 0.022,
+          "source": "RSS",
           "dimensions": [
             "political"
           ]
@@ -1115,10 +1128,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1137,
+    "incident_count": 1142,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 89
+    "rss_story_count_raw": 127
   },
   "legend": {
     "levels": [
