@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-24T19:50:06Z",
+  "generated_utc": "2026-08-24T20:51:22Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.144,
+    "overall_score": 1.152,
     "confidence": "medium",
-    "confidence_value": 0.584,
+    "confidence_value": 0.585,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.034,
-      "military": 0.003,
+      "political": 2.045,
+      "military": 0.004,
       "policing": 0.002,
       "migration": 0.0,
-      "social": 0.003,
-      "infrastructure": 0.003
+      "social": 0.004,
+      "infrastructure": 0.007
     },
     "watchlist": [
       {
@@ -63,9 +63,9 @@
         ]
       },
       {
-        "country": "Kosovo",
+        "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 0.78,
+        "overall_score": 0.796,
         "drivers": [
           "unknown"
         ]
@@ -239,7 +239,7 @@
     {
       "country": "Bulgaria",
       "overall": "normal",
-      "overall_score": 1.688,
+      "overall_score": 1.702,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -251,7 +251,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.923,
+        "political": 2.946,
         "military": 0.018,
         "policing": 0.0,
         "migration": 0.0,
@@ -261,8 +261,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 150,
-      "recent_incident_count": 16,
+      "incident_count": 151,
+      "recent_incident_count": 17,
       "top_incidents": [
         {
           "time": "2026-08-24T00:00:00Z",
@@ -286,7 +286,7 @@
         },
         {
           "time": "2026-08-24T00:00:00Z",
-          "title": "Bulgaria",
+          "title": "Bezmer, Dobrich, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -296,7 +296,7 @@
         },
         {
           "time": "2026-08-24T00:00:00Z",
-          "title": "Bezmer, Dobrich, Bulgaria",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -319,9 +319,9 @@
     {
       "country": "Hungary",
       "overall": "normal",
-      "overall_score": 1.501,
+      "overall_score": 1.503,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.592,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -331,7 +331,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.644,
+        "political": 2.647,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -341,7 +341,7 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 102,
+      "incident_count": 103,
       "recent_incident_count": 18,
       "top_incidents": [
         {
@@ -717,6 +717,86 @@
       ]
     },
     {
+      "country": "Bosnia and Herzegovina",
+      "overall": "elevated",
+      "overall_score": 0.796,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.485,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 33,
+      "recent_incident_count": 6,
+      "top_incidents": [
+        {
+          "time": "2026-08-24T00:00:00Z",
+          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-24T00:00:00Z",
+          "title": "Srebrenica, Republika Srpska, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-24T00:00:00Z",
+          "title": "Banovici, Bosnia and Herzegovina (general), Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-24T00:00:00Z",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.182,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-23T00:00:00Z",
+          "title": "Ivanica, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
+          "event_type": "unknown",
+          "score": 0.129,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Kosovo",
       "overall": "elevated",
       "overall_score": 0.78,
@@ -877,11 +957,11 @@
       ]
     },
     {
-      "country": "Bosnia and Herzegovina",
+      "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.74,
+      "overall_score": 0.655,
       "confidence": "medium",
-      "confidence_value": 0.59,
+      "confidence_value": 0.609,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -891,98 +971,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.387,
-        "military": 0.0,
-        "policing": 0.0,
+        "political": 1.171,
+        "military": 0.022,
+        "policing": 0.027,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
+        "social": 0.022,
+        "infrastructure": 0.049
       },
       "drivers": [
         "unknown"
       ],
       "incident_count": 32,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-08-24T00:00:00Z",
-          "title": "Republika Srpska, Republika Srpska, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.21,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-24T00:00:00Z",
-          "title": "Banovici, Bosnia and Herzegovina (general), Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.182,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-24T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.182,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-23T00:00:00Z",
-          "title": "Ivanica, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-22T00:00:00Z",
-          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
-          "event_type": "unknown",
-          "score": 0.129,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.618,
-      "confidence": "medium",
-      "confidence_value": 0.6,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.156,
-        "military": 0.0,
-        "policing": 0.027,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 30,
-      "recent_incident_count": 4,
+      "recent_incident_count": 6,
       "top_incidents": [
         {
           "time": "2026-08-24T00:00:00Z",
@@ -1015,18 +1015,20 @@
           ]
         },
         {
-          "time": "2026-08-21T00:00:00Z",
-          "title": "Montenegro",
+          "time": "2026-08-24T15:54:12Z",
+          "title": "Houthis claim strike on Saudi tanker in latest Red Sea escalation",
           "event_type": "unknown",
-          "score": 0.063,
-          "source": "GDELT",
+          "score": 0.067,
+          "source": "RSS",
           "dimensions": [
-            "political"
+            "military",
+            "social",
+            "infrastructure"
           ]
         },
         {
           "time": "2026-08-21T00:00:00Z",
-          "title": "Gazivoda, Montenegro (general), Montenegro",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.063,
           "source": "GDELT",
@@ -1115,10 +1117,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1137,
+    "incident_count": 1142,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 92
+    "rss_story_count_raw": 130
   },
   "legend": {
     "levels": [
