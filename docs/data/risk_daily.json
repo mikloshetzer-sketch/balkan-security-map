@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-25T16:59:42Z",
+  "generated_utc": "2026-08-25T17:49:19Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.149,
+    "overall_score": 1.145,
     "confidence": "medium",
-    "confidence_value": 0.586,
+    "confidence_value": 0.585,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.042,
-      "military": 0.002,
-      "policing": 0.001,
+      "political": 2.032,
+      "military": 0.003,
+      "policing": 0.0,
       "migration": 0.0,
-      "social": 0.0,
-      "infrastructure": 0.002
+      "social": 0.001,
+      "infrastructure": 0.005
     },
     "watchlist": [
       {
@@ -72,15 +72,14 @@
       }
     ],
     "top_drivers": [
-      "unknown",
-      "explosion"
+      "unknown"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.017,
+      "overall_score": 2.024,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -92,7 +91,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.414,
+        "political": 3.425,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -102,8 +101,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 236,
-      "recent_incident_count": 32,
+      "incident_count": 237,
+      "recent_incident_count": 33,
       "top_incidents": [
         {
           "time": "2026-08-25T00:00:00Z",
@@ -720,9 +719,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.853,
+      "overall_score": 0.784,
       "confidence": "medium",
-      "confidence_value": 0.624,
+      "confidence_value": 0.617,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -732,30 +731,19 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.552,
-        "military": 0.028,
-        "policing": 0.019,
+        "political": 1.411,
+        "military": 0.04,
+        "policing": 0.0,
         "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.028
+        "social": 0.013,
+        "infrastructure": 0.059
       },
       "drivers": [
-        "unknown",
-        "explosion"
+        "unknown"
       ],
       "incident_count": 34,
       "recent_incident_count": 10,
       "top_incidents": [
-        {
-          "time": "2026-08-25T04:00:47Z",
-          "title": "At least 35,000 excess deaths recorded in Europe’s back-to-back heatwaves",
-          "event_type": "explosion",
-          "score": 0.31,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        },
         {
           "time": "2026-08-25T00:00:00Z",
           "title": "Montenegro",
@@ -791,6 +779,16 @@
           "title": "Baranya County, Baranya, Hungary",
           "event_type": "unknown",
           "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-24T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1117,10 +1115,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1136,
+    "incident_count": 1137,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 94
+    "rss_story_count_raw": 134
   },
   "legend": {
     "levels": [
