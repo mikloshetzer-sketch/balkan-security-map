@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-08-30T17:33:43Z",
+  "generated_utc": "2026-08-30T21:13:22Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.161,
+    "overall_score": 1.156,
     "confidence": "medium",
-    "confidence_value": 0.587,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,27 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.049,
+      "political": 2.041,
       "military": 0.002,
-      "policing": 0.023,
-      "migration": 0.001,
-      "social": 0.004,
-      "infrastructure": 0.024
+      "policing": 0.025,
+      "migration": 0.0,
+      "social": 0.002,
+      "infrastructure": 0.019
     },
     "watchlist": [
       {
+        "country": "Turkey",
+        "overall": "elevated",
+        "overall_score": 1.474,
+        "drivers": [
+          "unknown",
+          "explosion"
+        ]
+      },
+      {
         "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 1.433,
+        "overall_score": 1.423,
         "drivers": [
           "unknown",
           "explosion"
@@ -42,7 +51,7 @@
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.274,
+        "overall_score": 1.301,
         "drivers": [
           "unknown"
         ]
@@ -50,7 +59,7 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.142,
+        "overall_score": 1.174,
         "drivers": [
           "unknown"
         ]
@@ -59,14 +68,6 @@
         "country": "Croatia",
         "overall": "elevated",
         "overall_score": 1.036,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Moldova",
-        "overall": "elevated",
-        "overall_score": 0.919,
         "drivers": [
           "unknown"
         ]
@@ -320,12 +321,12 @@
     },
     {
       "country": "Turkey",
-      "overall": "normal",
-      "overall_score": 1.482,
+      "overall": "elevated",
+      "overall_score": 1.474,
       "confidence": "medium",
       "confidence_value": 0.596,
       "dimensions": {
-        "political": "tense",
+        "political": "elevated",
         "military": "normal",
         "policing": "normal",
         "migration": "normal",
@@ -333,9 +334,9 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.616,
+        "political": 2.59,
         "military": 0.0,
-        "policing": 0.0,
+        "policing": 0.07,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.0
@@ -348,10 +349,10 @@
       "recent_incident_count": 11,
       "top_incidents": [
         {
-          "time": "2026-08-30T15:12:03Z",
-          "title": "At least eight dead and 22 missing after ferry capsizes off northern Cyprus",
+          "time": "2026-08-30T15:12:02Z",
+          "title": "At least eight dead and 18 missing after ferry capsizes off northern Cyprus",
           "event_type": "explosion",
-          "score": 0.401,
+          "score": 0.332,
           "source": "RSS",
           "dimensions": [
             "political"
@@ -379,7 +380,7 @@
         },
         {
           "time": "2026-08-30T00:00:00Z",
-          "title": "Dumlupinar, Kü, Turkey",
+          "title": "Mahmut, Edirne, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -389,7 +390,7 @@
         },
         {
           "time": "2026-08-30T00:00:00Z",
-          "title": "Kemal, Edirne, Turkey",
+          "title": "Dumlupinar, Kü, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -402,7 +403,7 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 1.433,
+      "overall_score": 1.423,
       "confidence": "medium",
       "confidence_value": 0.597,
       "dimensions": {
@@ -416,10 +417,10 @@
       "dimension_scores": {
         "political": 2.439,
         "military": 0.0,
-        "policing": 0.232,
+        "policing": 0.193,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.232
+        "infrastructure": 0.193
       },
       "drivers": [
         "unknown",
@@ -432,7 +433,7 @@
           "time": "2026-08-30T13:00:58Z",
           "title": "Ratko Mladić, the ‘Butcher of Bosnia’, could not escape death. But his fascist ideas and ideology live on | Ed Vulliamy",
           "event_type": "explosion",
-          "score": 0.489,
+          "score": 0.404,
           "source": "RSS",
           "dimensions": [
             "policing",
@@ -484,7 +485,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.274,
+      "overall_score": 1.301,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -496,7 +497,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.286,
+        "political": 2.329,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -506,8 +507,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 87,
-      "recent_incident_count": 8,
+      "incident_count": 88,
+      "recent_incident_count": 9,
       "top_incidents": [
         {
           "time": "2026-08-30T00:00:00Z",
@@ -540,10 +541,10 @@
           ]
         },
         {
-          "time": "2026-08-29T00:00:00Z",
+          "time": "2026-08-30T00:00:00Z",
           "title": "Hungary",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -551,7 +552,7 @@
         },
         {
           "time": "2026-08-29T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
+          "title": "Hungary",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -564,7 +565,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.142,
+      "overall_score": 1.174,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -576,7 +577,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.072,
+        "political": 2.123,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -586,8 +587,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 66,
-      "recent_incident_count": 9,
+      "incident_count": 67,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-08-30T00:00:00Z",
@@ -620,10 +621,10 @@
           ]
         },
         {
-          "time": "2026-08-29T00:00:00Z",
-          "title": "Albania",
+          "time": "2026-08-30T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -882,88 +883,6 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 0.762,
-      "confidence": "medium",
-      "confidence_value": 0.626,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.311,
-        "military": 0.022,
-        "policing": 0.065,
-        "migration": 0.019,
-        "social": 0.046,
-        "infrastructure": 0.083
-      },
-      "drivers": [
-        "unknown",
-        "explosion"
-      ],
-      "incident_count": 36,
-      "recent_incident_count": 9,
-      "top_incidents": [
-        {
-          "time": "2026-08-30T12:05:31Z",
-          "title": "Nasa space telescope launches after surviving Trump budget cuts",
-          "event_type": "explosion",
-          "score": 0.375,
-          "source": "RSS",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-30T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-29T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-28T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-08-30T15:08:33Z",
-          "title": "Venezuela’s Delcy Rodríguez defends ‘endless’ benefits of her oil deal with Trump",
-          "event_type": "unknown",
-          "score": 0.067,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "infrastructure"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Kosovo",
       "overall": "elevated",
       "overall_score": 0.675,
@@ -1039,6 +958,86 @@
           "source": "GDELT",
           "dimensions": [
             "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Montenegro",
+      "overall": "elevated",
+      "overall_score": 0.656,
+      "confidence": "medium",
+      "confidence_value": 0.616,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.143,
+        "military": 0.022,
+        "policing": 0.065,
+        "migration": 0.0,
+        "social": 0.028,
+        "infrastructure": 0.059
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 35,
+      "recent_incident_count": 8,
+      "top_incidents": [
+        {
+          "time": "2026-08-30T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-29T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-28T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-30T18:50:27Z",
+          "title": "Prisons ‘one major event from disaster’ after U-turn on early release scheme",
+          "event_type": "unknown",
+          "score": 0.066,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-08-30T15:35:11Z",
+          "title": "Jason Arday accuser given three-month teaching ban but can continue research",
+          "event_type": "unknown",
+          "score": 0.066,
+          "source": "RSS",
+          "dimensions": [
+            "policing"
           ]
         }
       ]
@@ -1122,10 +1121,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1110,
+    "incident_count": 1111,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 127
+    "rss_story_count_raw": 128
   },
   "legend": {
     "levels": [
