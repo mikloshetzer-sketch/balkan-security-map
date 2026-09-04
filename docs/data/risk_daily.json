@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-04T19:40:16Z",
+  "generated_utc": "2026-09-04T22:28:41Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.193,
+    "overall_score": 1.203,
     "confidence": "medium",
-    "confidence_value": 0.587,
+    "confidence_value": 0.589,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.086,
+      "political": 2.09,
       "military": 0.003,
-      "policing": 0.031,
-      "migration": 0.008,
-      "social": 0.037,
-      "infrastructure": 0.011
+      "policing": 0.058,
+      "migration": 0.007,
+      "social": 0.042,
+      "infrastructure": 0.01
     },
     "watchlist": [
       {
         "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 1.455,
+        "overall_score": 1.453,
         "drivers": [
           "unknown"
         ]
@@ -75,7 +75,8 @@
     "top_drivers": [
       "unknown",
       "riot",
-      "protest"
+      "protest",
+      "explosion"
     ]
   },
   "countries": [
@@ -162,7 +163,7 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 1.929,
+      "overall_score": 1.938,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -174,7 +175,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.287,
+        "political": 3.301,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -184,8 +185,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 228,
-      "recent_incident_count": 23,
+      "incident_count": 229,
+      "recent_incident_count": 24,
       "top_incidents": [
         {
           "time": "2026-09-04T00:00:00Z",
@@ -322,7 +323,7 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 1.455,
+      "overall_score": 1.453,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -335,10 +336,10 @@
       },
       "dimension_scores": {
         "political": 2.563,
-        "military": 0.025,
+        "military": 0.021,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.025,
+        "social": 0.021,
         "infrastructure": 0.0
       },
       "drivers": [
@@ -416,7 +417,7 @@
       "dimension_scores": {
         "political": 2.482,
         "military": 0.006,
-        "policing": 0.057,
+        "policing": 0.056,
         "migration": 0.0,
         "social": 0.0,
         "infrastructure": 0.006
@@ -611,7 +612,7 @@
         },
         {
           "time": "2026-09-04T00:00:00Z",
-          "title": "Albania",
+          "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -621,7 +622,7 @@
         },
         {
           "time": "2026-09-04T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
+          "title": "Albania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -884,9 +885,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.76,
+      "overall_score": 0.887,
       "confidence": "medium",
-      "confidence_value": 0.63,
+      "confidence_value": 0.651,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -896,74 +897,73 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.234,
+        "political": 1.275,
         "military": 0.013,
-        "policing": 0.0,
-        "migration": 0.106,
-        "social": 0.106,
-        "infrastructure": 0.142
+        "policing": 0.346,
+        "migration": 0.091,
+        "social": 0.18,
+        "infrastructure": 0.127
       },
       "drivers": [
         "unknown",
-        "protest"
+        "protest",
+        "explosion"
       ],
-      "incident_count": 30,
-      "recent_incident_count": 8,
+      "incident_count": 32,
+      "recent_incident_count": 10,
       "top_incidents": [
+        {
+          "time": "2026-09-04T21:51:27Z",
+          "title": "Ex-safety manager given 19 months’ prison over five-year-old’s hyperbaric chamber fire death",
+          "event_type": "explosion",
+          "score": 0.375,
+          "source": "RSS",
+          "dimensions": [
+            "policing"
+          ]
+        },
+        {
+          "time": "2026-09-04T19:47:40Z",
+          "title": "Meloni marks government longevity at Bari rally with 2027 vote in sight",
+          "event_type": "protest",
+          "score": 0.189,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-09-04T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-04T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-09-04T16:12:10Z",
           "title": "Farage plans fall visit with Le Pen in France",
           "event_type": "protest",
-          "score": 0.191,
+          "score": 0.159,
           "source": "RSS",
           "dimensions": [
             "political",
             "migration",
             "social",
             "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-09-04T13:56:56Z",
-          "title": "Nigel Farage: Departing aides guilty of only ‘loose pub talk’",
-          "event_type": "protest",
-          "score": 0.191,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "migration",
-            "social",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-09-04T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-04T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-03T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
           ]
         }
       ]
@@ -1117,7 +1117,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1098,
+    "incident_count": 1101,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 132
