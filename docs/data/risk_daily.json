@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-11T19:47:14Z",
+  "generated_utc": "2026-09-11T22:41:21Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,9 +10,9 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.221,
+    "overall_score": 1.225,
     "confidence": "medium",
-    "confidence_value": 0.585,
+    "confidence_value": 0.586,
     "dimensions": {
       "political": "elevated",
       "military": "normal",
@@ -22,9 +22,9 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.157,
+      "political": 2.162,
       "military": 0.003,
-      "policing": 0.012,
+      "policing": 0.016,
       "migration": 0.0,
       "social": 0.012,
       "infrastructure": 0.002
@@ -34,14 +34,6 @@
         "country": "Bulgaria",
         "overall": "elevated",
         "overall_score": 1.461,
-        "drivers": [
-          "unknown"
-        ]
-      },
-      {
-        "country": "Turkey",
-        "overall": "elevated",
-        "overall_score": 1.46,
         "drivers": [
           "unknown"
         ]
@@ -65,11 +57,19 @@
       {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.282,
+        "overall_score": 1.283,
         "drivers": [
           "unknown",
           "protest",
           "riot"
+        ]
+      },
+      {
+        "country": "Moldova",
+        "overall": "elevated",
+        "overall_score": 1.217,
+        "drivers": [
+          "unknown"
         ]
       }
     ],
@@ -185,7 +185,7 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 201,
+      "incident_count": 202,
       "recent_incident_count": 32,
       "top_incidents": [
         {
@@ -231,6 +231,86 @@
         {
           "time": "2026-09-11T00:00:00Z",
           "title": "Bucharest, Bucuresti, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Turkey",
+      "overall": "normal",
+      "overall_score": 1.502,
+      "confidence": "medium",
+      "confidence_value": 0.594,
+      "dimensions": {
+        "political": "tense",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.635,
+        "military": 0.009,
+        "policing": 0.04,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.009
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 91,
+      "recent_incident_count": 16,
+      "top_incidents": [
+        {
+          "time": "2026-09-11T00:00:00Z",
+          "title": "Smyrna, Izmir, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-11T00:00:00Z",
+          "title": "Ertugrul, Bursa, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-11T00:00:00Z",
+          "title": "Edirne, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-11T00:00:00Z",
+          "title": "Silivri, Istanbul, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-11T00:00:00Z",
+          "title": "Corlu, Tekirdag, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -311,86 +391,6 @@
         {
           "time": "2026-09-11T00:00:00Z",
           "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Turkey",
-      "overall": "elevated",
-      "overall_score": 1.46,
-      "confidence": "medium",
-      "confidence_value": 0.594,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.57,
-        "military": 0.009,
-        "policing": 0.04,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.009
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 89,
-      "recent_incident_count": 14,
-      "top_incidents": [
-        {
-          "time": "2026-09-11T00:00:00Z",
-          "title": "Smyrna, Izmir, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-11T00:00:00Z",
-          "title": "Ertugrul, Bursa, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-11T00:00:00Z",
-          "title": "Edirne, Edirne, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-11T00:00:00Z",
-          "title": "Silivri, Istanbul, Turkey",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-11T00:00:00Z",
-          "title": "Corlu, Tekirdag, Turkey",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -563,7 +563,7 @@
     {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.282,
+      "overall_score": 1.283,
       "confidence": "medium",
       "confidence_value": 0.598,
       "dimensions": {
@@ -575,7 +575,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.258,
+        "political": 2.259,
         "military": 0.0,
         "policing": 0.053,
         "migration": 0.0,
@@ -965,9 +965,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.645,
+      "overall_score": 0.661,
       "confidence": "medium",
-      "confidence_value": 0.601,
+      "confidence_value": 0.607,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -979,7 +979,7 @@
       "dimension_scores": {
         "political": 1.153,
         "military": 0.028,
-        "policing": 0.065,
+        "policing": 0.118,
         "migration": 0.0,
         "social": 0.028,
         "infrastructure": 0.0
@@ -987,8 +987,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 27,
-      "recent_incident_count": 3,
+      "incident_count": 28,
+      "recent_incident_count": 4,
       "top_incidents": [
         {
           "time": "2026-09-11T00:00:00Z",
@@ -1111,7 +1111,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1094,
+    "incident_count": 1098,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 135
