@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-12T17:15:56Z",
+  "generated_utc": "2026-09-12T19:29:14Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.17,
+    "overall_score": 1.178,
     "confidence": "medium",
     "confidence_value": 0.585,
     "dimensions": {
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.074,
-      "military": 0.002,
+      "political": 2.086,
+      "military": 0.001,
       "policing": 0.01,
       "migration": 0.0,
       "social": 0.01,
-      "infrastructure": 0.002
+      "infrastructure": 0.001
     },
     "watchlist": [
       {
@@ -49,9 +49,19 @@
       {
         "country": "Bosnia and Herzegovina",
         "overall": "elevated",
-        "overall_score": 1.301,
+        "overall_score": 1.297,
         "drivers": [
           "unknown"
+        ]
+      },
+      {
+        "country": "Albania",
+        "overall": "elevated",
+        "overall_score": 1.296,
+        "drivers": [
+          "unknown",
+          "protest",
+          "riot"
         ]
       },
       {
@@ -60,16 +70,6 @@
         "overall_score": 1.288,
         "drivers": [
           "unknown"
-        ]
-      },
-      {
-        "country": "Albania",
-        "overall": "elevated",
-        "overall_score": 1.213,
-        "drivers": [
-          "unknown",
-          "protest",
-          "riot"
         ]
       }
     ],
@@ -80,6 +80,86 @@
     ]
   },
   "countries": [
+    {
+      "country": "Romania",
+      "overall": "normal",
+      "overall_score": 1.942,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "tense",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 3.307,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 204,
+      "recent_incident_count": 24,
+      "top_incidents": [
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Bucharest, Bucuresti, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Kogalniceanu, Romania (general), Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
     {
       "country": "Greece",
       "overall": "normal",
@@ -151,86 +231,6 @@
         {
           "time": "2026-09-12T00:00:00Z",
           "title": "Athens, AttikíR, Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Romania",
-      "overall": "normal",
-      "overall_score": 1.924,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "tense",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 3.279,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 202,
-      "recent_incident_count": 22,
-      "top_incidents": [
-        {
-          "time": "2026-09-12T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-12T00:00:00Z",
-          "title": "Bucharest, Bucuresti, Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-12T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-12T00:00:00Z",
-          "title": "Bucharest, Bucuresti, Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-12T00:00:00Z",
-          "title": "Kogalniceanu, Romania (general), Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -350,16 +350,6 @@
       "top_incidents": [
         {
           "time": "2026-09-12T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-12T00:00:00Z",
           "title": "Hungary",
           "event_type": "unknown",
           "score": 0.178,
@@ -391,6 +381,16 @@
         {
           "time": "2026-09-12T00:00:00Z",
           "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -483,7 +483,7 @@
     {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 1.301,
+      "overall_score": 1.297,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -495,7 +495,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.329,
+        "political": 2.322,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -510,9 +510,9 @@
       "top_incidents": [
         {
           "time": "2026-09-12T00:00:00Z",
-          "title": "Srebrenica, Republika Srpska, Bosnia-Herzegovina",
+          "title": "Sarajevo, Federation of Bosnia and Herzegovina, Bosnia-Herzegovina",
           "event_type": "unknown",
-          "score": 0.21,
+          "score": 0.182,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -553,6 +553,88 @@
           "title": "Jadar, Republika Srpska, Bosnia-Herzegovina",
           "event_type": "unknown",
           "score": 0.149,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Albania",
+      "overall": "elevated",
+      "overall_score": 1.296,
+      "confidence": "medium",
+      "confidence_value": 0.598,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.282,
+        "military": 0.0,
+        "policing": 0.053,
+        "migration": 0.0,
+        "social": 0.107,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown",
+        "protest",
+        "riot"
+      ],
+      "incident_count": 76,
+      "recent_incident_count": 11,
+      "top_incidents": [
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Tirana, Tirane, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Kurbin, Qarku i Lezhes, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Drin, Qarku Shkoder, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-12T00:00:00Z",
+          "title": "Begaj, Qarku Kukes, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -633,88 +715,6 @@
           "title": "Giurgiulesti, Cahul, Moldova",
           "event_type": "unknown",
           "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
-      "country": "Albania",
-      "overall": "elevated",
-      "overall_score": 1.213,
-      "confidence": "medium",
-      "confidence_value": 0.599,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.142,
-        "military": 0.0,
-        "policing": 0.053,
-        "migration": 0.0,
-        "social": 0.107,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown",
-        "protest",
-        "riot"
-      ],
-      "incident_count": 73,
-      "recent_incident_count": 8,
-      "top_incidents": [
-        {
-          "time": "2026-09-12T00:00:00Z",
-          "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-12T00:00:00Z",
-          "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-12T00:00:00Z",
-          "title": "Kurbin, Qarku i Lezhes, Albania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-11T00:00:00Z",
-          "title": "Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-11T00:00:00Z",
-          "title": "Vlora, Vlore, Albania",
-          "event_type": "unknown",
-          "score": 0.125,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -965,7 +965,7 @@
     {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.504,
+      "overall_score": 0.5,
       "confidence": "medium",
       "confidence_value": 0.602,
       "dimensions": {
@@ -978,11 +978,11 @@
       },
       "dimension_scores": {
         "political": 0.897,
-        "military": 0.023,
+        "military": 0.019,
         "policing": 0.038,
         "migration": 0.0,
-        "social": 0.023,
-        "infrastructure": 0.023
+        "social": 0.019,
+        "infrastructure": 0.019
       },
       "drivers": [
         "unknown"
@@ -998,18 +998,6 @@
           "source": "GDELT",
           "dimensions": [
             "political"
-          ]
-        },
-        {
-          "time": "2026-09-12T13:25:03Z",
-          "title": "Ukrainians tell of their survival under Russian attack – video",
-          "event_type": "unknown",
-          "score": 0.068,
-          "source": "RSS",
-          "dimensions": [
-            "military",
-            "social",
-            "infrastructure"
           ]
         },
         {
@@ -1035,6 +1023,16 @@
         {
           "time": "2026-09-09T00:00:00Z",
           "title": "Olasz, Baranya, Hungary",
+          "event_type": "unknown",
+          "score": 0.063,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-09T00:00:00Z",
+          "title": "Montenegro",
           "event_type": "unknown",
           "score": 0.063,
           "source": "GDELT",
@@ -1113,10 +1111,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1083,
+    "incident_count": 1088,
     "country_count": 14,
     "active_country_count": 13,
-    "rss_story_count_raw": 133
+    "rss_story_count_raw": 134
   },
   "legend": {
     "levels": [
