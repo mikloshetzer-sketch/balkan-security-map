@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-09-26T13:11:18Z",
+  "generated_utc": "2026-09-26T17:17:21Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.171,
+    "overall_score": 1.185,
     "confidence": "medium",
     "confidence_value": 0.589,
     "dimensions": {
@@ -22,14 +22,23 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.061,
-      "military": 0.011,
-      "policing": 0.013,
+      "political": 2.088,
+      "military": 0.009,
+      "policing": 0.012,
       "migration": 0.003,
-      "social": 0.023,
-      "infrastructure": 0.018
+      "social": 0.018,
+      "infrastructure": 0.016
     },
     "watchlist": [
+      {
+        "country": "Hungary",
+        "overall": "elevated",
+        "overall_score": 1.41,
+        "drivers": [
+          "unknown",
+          "protest"
+        ]
+      },
       {
         "country": "Bulgaria",
         "overall": "elevated",
@@ -39,18 +48,9 @@
         ]
       },
       {
-        "country": "Hungary",
-        "overall": "elevated",
-        "overall_score": 1.394,
-        "drivers": [
-          "unknown",
-          "protest"
-        ]
-      },
-      {
         "country": "Albania",
         "overall": "elevated",
-        "overall_score": 1.255,
+        "overall_score": 1.335,
         "drivers": [
           "unknown"
         ]
@@ -82,9 +82,9 @@
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.004,
+      "overall_score": 2.037,
       "confidence": "medium",
-      "confidence_value": 0.592,
+      "confidence_value": 0.594,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -94,7 +94,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.381,
+        "political": 3.429,
         "military": 0.0,
         "policing": 0.111,
         "migration": 0.0,
@@ -105,9 +105,19 @@
         "unknown",
         "explosion"
       ],
-      "incident_count": 218,
-      "recent_incident_count": 28,
+      "incident_count": 221,
+      "recent_incident_count": 31,
       "top_incidents": [
+        {
+          "time": "2026-09-26T16:54:55Z",
+          "title": "Greek authorities seek answers after six killed in Athens apartment block explosion",
+          "event_type": "explosion",
+          "score": 0.401,
+          "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-09-25T12:48:20Z",
           "title": "Explosion near Acropolis collapses building in Athens’ Plaka, injuring two",
@@ -148,23 +158,13 @@
           "dimensions": [
             "political"
           ]
-        },
-        {
-          "time": "2026-09-26T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
         }
       ]
     },
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.86,
+      "overall_score": 1.871,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -176,7 +176,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.187,
+        "political": 3.203,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -186,8 +186,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 177,
-      "recent_incident_count": 18,
+      "incident_count": 178,
+      "recent_incident_count": 19,
       "top_incidents": [
         {
           "time": "2026-09-26T00:00:00Z",
@@ -322,6 +322,87 @@
       ]
     },
     {
+      "country": "Hungary",
+      "overall": "elevated",
+      "overall_score": 1.41,
+      "confidence": "medium",
+      "confidence_value": 0.594,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 2.485,
+        "military": 0.029,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.029,
+        "infrastructure": 0.029
+      },
+      "drivers": [
+        "unknown",
+        "protest"
+      ],
+      "incident_count": 94,
+      "recent_incident_count": 11,
+      "top_incidents": [
+        {
+          "time": "2026-09-26T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-26T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-26T00:00:00Z",
+          "title": "Budapest, Budapest, Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-26T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-26T00:00:00Z",
+          "title": "Hungary",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Bulgaria",
       "overall": "elevated",
       "overall_score": 1.404,
@@ -402,93 +483,9 @@
       ]
     },
     {
-      "country": "Hungary",
-      "overall": "elevated",
-      "overall_score": 1.394,
-      "confidence": "medium",
-      "confidence_value": 0.594,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 2.451,
-        "military": 0.041,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.041,
-        "infrastructure": 0.041
-      },
-      "drivers": [
-        "unknown",
-        "protest"
-      ],
-      "incident_count": 93,
-      "recent_incident_count": 10,
-      "top_incidents": [
-        {
-          "time": "2026-09-26T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-26T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-26T00:00:00Z",
-          "title": "Budapest, Budapest, Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-26T00:00:00Z",
-          "title": "Hungary",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-25T13:31:13Z",
-          "title": "Zelenskyy warns $27B funding gap could leave Ukraine short of weapons",
-          "event_type": "protest",
-          "score": 0.167,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "social",
-            "infrastructure"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Albania",
       "overall": "elevated",
-      "overall_score": 1.255,
+      "overall_score": 1.335,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -500,7 +497,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.255,
+        "political": 2.383,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -510,8 +507,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 85,
-      "recent_incident_count": 9,
+      "incident_count": 88,
+      "recent_incident_count": 12,
       "top_incidents": [
         {
           "time": "2026-09-26T00:00:00Z",
@@ -524,20 +521,30 @@
           ]
         },
         {
-          "time": "2026-09-25T00:00:00Z",
+          "time": "2026-09-26T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
           ]
         },
         {
-          "time": "2026-09-25T00:00:00Z",
+          "time": "2026-09-26T00:00:00Z",
           "title": "Albania",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-26T00:00:00Z",
+          "title": "Durres, Qarku i Durresit, Albania",
+          "event_type": "unknown",
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -546,16 +553,6 @@
         {
           "time": "2026-09-25T00:00:00Z",
           "title": "Tirana, Tirane, Albania",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-25T00:00:00Z",
-          "title": "Durres, Qarku i Durresit, Albania",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -806,9 +803,89 @@
       ]
     },
     {
+      "country": "Kosovo",
+      "overall": "elevated",
+      "overall_score": 1.01,
+      "confidence": "medium",
+      "confidence_value": 0.59,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.852,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown"
+      ],
+      "incident_count": 48,
+      "recent_incident_count": 7,
+      "top_incidents": [
+        {
+          "time": "2026-09-26T00:00:00Z",
+          "title": "Mitrovica, Mitrovica, Kosovo",
+          "event_type": "unknown",
+          "score": 0.21,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-26T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-26T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-24T00:00:00Z",
+          "title": "Zubin Potok, Komuna e Zubin Potokut, Kosovo",
+          "event_type": "unknown",
+          "score": 0.149,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-09-25T00:00:00Z",
+          "title": "Kosovo",
+          "event_type": "unknown",
+          "score": 0.125,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
-      "overall_score": 0.964,
+      "overall_score": 0.948,
       "confidence": "medium",
       "confidence_value": 0.601,
       "dimensions": {
@@ -820,11 +897,11 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.693,
+        "political": 1.678,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
-        "social": 0.203,
+        "social": 0.169,
         "infrastructure": 0.0
       },
       "drivers": [
@@ -838,7 +915,7 @@
           "time": "2026-09-26T09:28:45Z",
           "title": "Russia strikes Ukraine as Putin denies plans to attack Europe amid growing tensions",
           "event_type": "explosion",
-          "score": 0.425,
+          "score": 0.351,
           "source": "RSS",
           "dimensions": [
             "political",
@@ -888,89 +965,9 @@
       ]
     },
     {
-      "country": "Kosovo",
-      "overall": "elevated",
-      "overall_score": 0.925,
-      "confidence": "medium",
-      "confidence_value": 0.59,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.708,
-        "military": 0.0,
-        "policing": 0.0,
-        "migration": 0.0,
-        "social": 0.0,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown"
-      ],
-      "incident_count": 46,
-      "recent_incident_count": 5,
-      "top_incidents": [
-        {
-          "time": "2026-09-26T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-24T00:00:00Z",
-          "title": "Zubin Potok, Komuna e Zubin Potokut, Kosovo",
-          "event_type": "unknown",
-          "score": 0.149,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-25T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-25T00:00:00Z",
-          "title": "Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-09-25T00:00:00Z",
-          "title": "Drenas, Komuna e Drenasit, Kosovo",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Montenegro",
       "overall": "normal",
-      "overall_score": 0.536,
+      "overall_score": 0.507,
       "confidence": "medium",
       "confidence_value": 0.645,
       "dimensions": {
@@ -982,12 +979,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.846,
-        "military": 0.081,
-        "policing": 0.057,
+        "political": 0.834,
+        "military": 0.065,
+        "policing": 0.04,
         "migration": 0.0,
-        "social": 0.057,
-        "infrastructure": 0.082
+        "social": 0.04,
+        "infrastructure": 0.065
       },
       "drivers": [
         "unknown",
@@ -1007,18 +1004,6 @@
           ]
         },
         {
-          "time": "2026-09-25T13:44:55Z",
-          "title": "Pakistan locks down Islamabad as Imran Khan’s party vows to march on capital",
-          "event_type": "protest",
-          "score": 0.174,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social"
-          ]
-        },
-        {
           "time": "2026-09-25T00:00:00Z",
           "title": "Montenegro",
           "event_type": "unknown",
@@ -1036,6 +1021,18 @@
           "source": "GDELT",
           "dimensions": [
             "political"
+          ]
+        },
+        {
+          "time": "2026-09-25T13:44:55Z",
+          "title": "Pakistan locks down Islamabad as Imran Khan’s party vows to march on capital",
+          "event_type": "protest",
+          "score": 0.121,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social"
           ]
         },
         {
@@ -1119,7 +1116,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1094,
+    "incident_count": 1104,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 133
