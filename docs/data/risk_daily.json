@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-15T18:21:16Z",
+  "generated_utc": "2026-10-15T22:25:27Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.133,
+    "overall_score": 1.146,
     "confidence": "medium",
     "confidence_value": 0.611,
     "dimensions": {
@@ -22,18 +22,18 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 1.981,
-      "military": 0.01,
-      "policing": 0.029,
-      "migration": 0.001,
-      "social": 0.027,
-      "infrastructure": 0.024
+      "political": 2.001,
+      "military": 0.008,
+      "policing": 0.033,
+      "migration": 0.0,
+      "social": 0.031,
+      "infrastructure": 0.03
     },
     "watchlist": [
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.318,
+        "overall_score": 1.368,
         "drivers": [
           "unknown"
         ]
@@ -49,7 +49,7 @@
       {
         "country": "Montenegro",
         "overall": "elevated",
-        "overall_score": 0.989,
+        "overall_score": 1.015,
         "drivers": [
           "unknown",
           "explosion",
@@ -77,15 +77,15 @@
       "unknown",
       "protest",
       "explosion",
-      "blockade",
-      "mass_detention"
+      "violent_protest",
+      "blockade"
     ]
   },
   "countries": [
     {
       "country": "Greece",
       "overall": "normal",
-      "overall_score": 2.026,
+      "overall_score": 2.04,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -97,18 +97,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.422,
+        "political": 3.444,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.0,
-        "infrastructure": 0.068
+        "infrastructure": 0.056
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 211,
-      "recent_incident_count": 42,
+      "incident_count": 213,
+      "recent_incident_count": 44,
       "top_incidents": [
         {
           "time": "2026-10-15T00:00:00Z",
@@ -165,7 +165,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.974,
+      "overall_score": 1.982,
       "confidence": "medium",
       "confidence_value": 0.592,
       "dimensions": {
@@ -177,18 +177,18 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.345,
-        "military": 0.048,
+        "political": 3.357,
+        "military": 0.044,
         "policing": 0.0,
         "migration": 0.0,
         "social": 0.024,
-        "infrastructure": 0.024
+        "infrastructure": 0.02
       },
       "drivers": [
         "unknown"
       ],
-      "incident_count": 203,
-      "recent_incident_count": 35,
+      "incident_count": 204,
+      "recent_incident_count": 36,
       "top_incidents": [
         {
           "time": "2026-10-15T00:00:00Z",
@@ -257,12 +257,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.285,
-        "military": 0.012,
-        "policing": 0.012,
-        "migration": 0.012,
-        "social": 0.012,
-        "infrastructure": 0.012
+        "political": 3.287,
+        "military": 0.0,
+        "policing": 0.0,
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.035
       },
       "drivers": [
         "unknown"
@@ -325,9 +325,9 @@
     {
       "country": "Albania",
       "overall": "normal",
-      "overall_score": 1.603,
+      "overall_score": 1.651,
       "confidence": "medium",
-      "confidence_value": 0.609,
+      "confidence_value": 0.613,
       "dimensions": {
         "political": "tense",
         "military": "normal",
@@ -337,20 +337,34 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.725,
-        "military": 0.041,
-        "policing": 0.133,
+        "political": 2.766,
+        "military": 0.034,
+        "policing": 0.213,
         "migration": 0.0,
-        "social": 0.236,
-        "infrastructure": 0.073
+        "social": 0.313,
+        "infrastructure": 0.155
       },
       "drivers": [
         "unknown",
-        "protest"
+        "protest",
+        "violent_protest"
       ],
-      "incident_count": 98,
-      "recent_incident_count": 23,
+      "incident_count": 100,
+      "recent_incident_count": 25,
       "top_incidents": [
+        {
+          "time": "2026-10-15T21:34:56Z",
+          "title": "Albania: Violent protests rock Tirana for third straight day",
+          "event_type": "violent_protest",
+          "score": 0.375,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social",
+            "infrastructure"
+          ]
+        },
         {
           "time": "2026-10-15T17:52:49Z",
           "title": "Albania’s prime minister vows not to resign over student-led protests",
@@ -360,20 +374,6 @@
           "dimensions": [
             "political",
             "social"
-          ]
-        },
-        {
-          "time": "2026-10-15T14:56:57Z",
-          "title": "College of Europe looted and torched during Albanian student protests",
-          "event_type": "protest",
-          "score": 0.206,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "military",
-            "policing",
-            "social",
-            "infrastructure"
           ]
         },
         {
@@ -411,7 +411,7 @@
     {
       "country": "Turkey",
       "overall": "normal",
-      "overall_score": 1.521,
+      "overall_score": 1.559,
       "confidence": "medium",
       "confidence_value": 0.601,
       "dimensions": {
@@ -423,7 +423,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.642,
+        "political": 2.702,
         "military": 0.014,
         "policing": 0.176,
         "migration": 0.0,
@@ -435,8 +435,8 @@
         "explosion",
         "blockade"
       ],
-      "incident_count": 106,
-      "recent_incident_count": 16,
+      "incident_count": 108,
+      "recent_incident_count": 18,
       "top_incidents": [
         {
           "time": "2026-10-14T08:22:48Z",
@@ -479,13 +479,13 @@
           ]
         },
         {
-          "time": "2026-10-14T14:59:37Z",
-          "title": "Turkish police raid Halk TV in Istanbul, sparking outrage over media freedom",
-          "event_type": "blockade",
-          "score": 0.169,
-          "source": "RSS",
+          "time": "2026-10-15T00:00:00Z",
+          "title": "Edirne, Edirne, Turkey",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
           "dimensions": [
-            "policing"
+            "political"
           ]
         }
       ]
@@ -493,7 +493,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.318,
+      "overall_score": 1.368,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -505,7 +505,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.356,
+        "political": 2.435,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -515,8 +515,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 82,
-      "recent_incident_count": 12,
+      "incident_count": 84,
+      "recent_incident_count": 14,
       "top_incidents": [
         {
           "time": "2026-10-15T00:00:00Z",
@@ -653,9 +653,9 @@
     {
       "country": "Montenegro",
       "overall": "elevated",
-      "overall_score": 0.989,
+      "overall_score": 1.015,
       "confidence": "medium",
-      "confidence_value": 0.621,
+      "confidence_value": 0.623,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -665,27 +665,37 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.707,
+        "political": 1.763,
         "military": 0.019,
-        "policing": 0.078,
+        "policing": 0.077,
         "migration": 0.0,
-        "social": 0.023,
-        "infrastructure": 0.162
+        "social": 0.019,
+        "infrastructure": 0.147
       },
       "drivers": [
         "unknown",
         "explosion",
         "mass_detention"
       ],
-      "incident_count": 39,
-      "recent_incident_count": 11,
+      "incident_count": 41,
+      "recent_incident_count": 13,
       "top_incidents": [
         {
           "time": "2026-10-14T19:01:29Z",
           "title": "Zimbabwean author Simbarashe Kundizeza denies using AI to write prize-winning story",
           "event_type": "explosion",
-          "score": 0.31,
+          "score": 0.216,
           "source": "RSS",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-10-15T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
           "dimensions": [
             "political"
           ]
@@ -704,7 +714,7 @@
           "time": "2026-10-15T08:00:25Z",
           "title": "LGBTQ+ people go into hiding in Senegal as hundreds are arrested",
           "event_type": "mass_detention",
-          "score": 0.158,
+          "score": 0.157,
           "source": "RSS",
           "dimensions": [
             "policing",
@@ -714,16 +724,6 @@
         {
           "time": "2026-10-14T00:00:00Z",
           "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.125,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-10-14T00:00:00Z",
-          "title": "Morinj, Montenegro (general), Montenegro",
           "event_type": "unknown",
           "score": 0.125,
           "source": "GDELT",
@@ -1136,10 +1136,10 @@
     }
   ],
   "stats": {
-    "incident_count": 1159,
+    "incident_count": 1171,
     "country_count": 14,
     "active_country_count": 14,
-    "rss_story_count_raw": 135
+    "rss_story_count_raw": 134
   },
   "legend": {
     "levels": [
