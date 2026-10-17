@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-17T17:18:42Z",
+  "generated_utc": "2026-10-17T19:31:44Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.247,
+    "overall_score": 1.25,
     "confidence": "medium",
     "confidence_value": 0.591,
     "dimensions": {
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.199,
+      "political": 2.206,
       "military": 0.001,
-      "policing": 0.015,
-      "migration": 0.003,
-      "social": 0.013,
-      "infrastructure": 0.022
+      "policing": 0.014,
+      "migration": 0.001,
+      "social": 0.01,
+      "infrastructure": 0.019
     },
     "watchlist": [
       {
@@ -42,7 +42,7 @@
       {
         "country": "Hungary",
         "overall": "elevated",
-        "overall_score": 1.348,
+        "overall_score": 1.344,
         "drivers": [
           "unknown"
         ]
@@ -75,8 +75,8 @@
     "top_drivers": [
       "unknown",
       "explosion",
-      "protest",
       "violent_protest",
+      "protest",
       "mass_detention"
     ]
   },
@@ -164,7 +164,7 @@
     {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.879,
+      "overall_score": 1.9,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -176,7 +176,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.215,
+        "political": 3.244,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -186,9 +186,19 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 196,
-      "recent_incident_count": 15,
+      "incident_count": 198,
+      "recent_incident_count": 17,
       "top_incidents": [
+        {
+          "time": "2026-10-17T00:00:00Z",
+          "title": "Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
         {
           "time": "2026-10-17T00:00:00Z",
           "title": "Romania",
@@ -221,17 +231,7 @@
         },
         {
           "time": "2026-10-17T00:00:00Z",
-          "title": "Romania",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-10-17T00:00:00Z",
-          "title": "Tulcea, Tulcea, Romania",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -271,16 +271,6 @@
       "top_incidents": [
         {
           "time": "2026-10-17T00:00:00Z",
-          "title": "Bulgaria",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-10-17T00:00:00Z",
           "title": "Sofia, Sofiya-Grad, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
@@ -291,7 +281,7 @@
         },
         {
           "time": "2026-10-17T00:00:00Z",
-          "title": "Burgas, Burgas, Bulgaria",
+          "title": "Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -302,6 +292,16 @@
         {
           "time": "2026-10-17T00:00:00Z",
           "title": "Bulgaria",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-10-17T00:00:00Z",
+          "title": "Burgas, Burgas, Bulgaria",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -324,7 +324,7 @@
     {
       "country": "Albania",
       "overall": "normal",
-      "overall_score": 1.583,
+      "overall_score": 1.596,
       "confidence": "medium",
       "confidence_value": 0.6,
       "dimensions": {
@@ -336,26 +336,26 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.717,
+        "political": 2.744,
         "military": 0.0,
-        "policing": 0.111,
+        "policing": 0.101,
         "migration": 0.0,
-        "social": 0.111,
-        "infrastructure": 0.111
+        "social": 0.101,
+        "infrastructure": 0.101
       },
       "drivers": [
         "unknown",
-        "protest",
-        "violent_protest"
+        "violent_protest",
+        "protest"
       ],
-      "incident_count": 104,
-      "recent_incident_count": 18,
+      "incident_count": 105,
+      "recent_incident_count": 19,
       "top_incidents": [
         {
-          "time": "2026-10-17T11:33:31Z",
-          "title": "Police, demonstrators clash on sidelines of mass French protests",
-          "event_type": "protest",
-          "score": 0.246,
+          "time": "2026-10-15T21:34:56Z",
+          "title": "Albania: Violent protests rock Tirana for third straight day",
+          "event_type": "violent_protest",
+          "score": 0.21,
           "source": "RSS",
           "dimensions": [
             "political",
@@ -365,10 +365,10 @@
           ]
         },
         {
-          "time": "2026-10-15T21:34:56Z",
-          "title": "Albania: Violent protests rock Tirana for third straight day",
-          "event_type": "violent_protest",
-          "score": 0.21,
+          "time": "2026-10-17T11:33:31Z",
+          "title": "Police, demonstrators clash on sidelines of mass French protests",
+          "event_type": "protest",
+          "score": 0.203,
           "source": "RSS",
           "dimensions": [
             "political",
@@ -493,7 +493,7 @@
     {
       "country": "Hungary",
       "overall": "elevated",
-      "overall_score": 1.348,
+      "overall_score": 1.344,
       "confidence": "medium",
       "confidence_value": 0.597,
       "dimensions": {
@@ -505,12 +505,12 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 2.386,
-        "military": 0.01,
-        "policing": 0.018,
-        "migration": 0.018,
-        "social": 0.018,
-        "infrastructure": 0.018
+        "political": 2.383,
+        "military": 0.007,
+        "policing": 0.015,
+        "migration": 0.015,
+        "social": 0.015,
+        "infrastructure": 0.015
       },
       "drivers": [
         "unknown"
@@ -815,7 +815,7 @@
       "overall": "elevated",
       "overall_score": 0.75,
       "confidence": "medium",
-      "confidence_value": 0.624,
+      "confidence_value": 0.619,
       "dimensions": {
         "political": "elevated",
         "military": "normal",
@@ -825,27 +825,27 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.3,
+        "political": 1.334,
         "military": 0.0,
         "policing": 0.053,
-        "migration": 0.023,
-        "social": 0.023,
-        "infrastructure": 0.111
+        "migration": 0.0,
+        "social": 0.0,
+        "infrastructure": 0.09
       },
       "drivers": [
         "unknown",
-        "explosion",
-        "mass_detention"
+        "mass_detention",
+        "explosion"
       ],
       "incident_count": 36,
-      "recent_incident_count": 4,
+      "recent_incident_count": 3,
       "top_incidents": [
         {
-          "time": "2026-10-14T19:01:29Z",
-          "title": "Zimbabwean author Simbarashe Kundizeza denies using AI to write prize-winning story",
-          "event_type": "explosion",
-          "score": 0.213,
-          "source": "RSS",
+          "time": "2026-10-17T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
           "dimensions": [
             "political"
           ]
@@ -1109,7 +1109,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1156,
+    "incident_count": 1159,
     "country_count": 14,
     "active_country_count": 12,
     "rss_story_count_raw": 135
