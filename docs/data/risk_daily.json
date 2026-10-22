@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-22T18:37:59Z",
+  "generated_utc": "2026-10-22T22:27:36Z",
   "method_version": "risk_snapshot_v2_2_rss_integrated",
   "sources": {
     "gdelt_geo": true,
@@ -10,7 +10,7 @@
   },
   "region": {
     "overall": "elevated",
-    "overall_score": 1.193,
+    "overall_score": 1.194,
     "confidence": "medium",
     "confidence_value": 0.613,
     "dimensions": {
@@ -22,12 +22,12 @@
       "infrastructure": "normal"
     },
     "dimension_scores": {
-      "political": 2.078,
-      "military": 0.026,
-      "policing": 0.014,
+      "political": 2.083,
+      "military": 0.023,
+      "policing": 0.013,
       "migration": 0.0,
-      "social": 0.044,
-      "infrastructure": 0.027
+      "social": 0.041,
+      "infrastructure": 0.023
     },
     "watchlist": [
       {
@@ -55,21 +55,21 @@
         ]
       },
       {
-        "country": "Montenegro",
-        "overall": "elevated",
-        "overall_score": 1.048,
-        "drivers": [
-          "unknown",
-          "explosion",
-          "critical_infra_incident"
-        ]
-      },
-      {
         "country": "Bosnia and Herzegovina",
         "overall": "elevated",
         "overall_score": 1.041,
         "drivers": [
           "unknown"
+        ]
+      },
+      {
+        "country": "Montenegro",
+        "overall": "elevated",
+        "overall_score": 1.022,
+        "drivers": [
+          "unknown",
+          "explosion",
+          "critical_infra_incident"
         ]
       }
     ],
@@ -82,93 +82,9 @@
   },
   "countries": [
     {
-      "country": "Greece",
-      "overall": "normal",
-      "overall_score": 1.936,
-      "confidence": "medium",
-      "confidence_value": 0.595,
-      "dimensions": {
-        "political": "tense",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 3.266,
-        "military": 0.0,
-        "policing": 0.068,
-        "migration": 0.0,
-        "social": 0.314,
-        "infrastructure": 0.0
-      },
-      "drivers": [
-        "unknown",
-        "protest"
-      ],
-      "incident_count": 204,
-      "recent_incident_count": 30,
-      "top_incidents": [
-        {
-          "time": "2026-10-22T16:54:48Z",
-          "title": "Reader Q&A: What’s next for France after a weekend of riots? Ask our Europe columnists",
-          "event_type": "protest",
-          "score": 0.207,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "policing",
-            "social"
-          ]
-        },
-        {
-          "time": "2026-10-21T21:02:01Z",
-          "title": "Greece: Thousands flood Athens streets in education protest",
-          "event_type": "protest",
-          "score": 0.181,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "social"
-          ]
-        },
-        {
-          "time": "2026-10-22T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-10-22T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-10-22T00:00:00Z",
-          "title": "Greece",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Romania",
       "overall": "normal",
-      "overall_score": 1.916,
+      "overall_score": 1.935,
       "confidence": "medium",
       "confidence_value": 0.591,
       "dimensions": {
@@ -180,7 +96,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 3.268,
+        "political": 3.296,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -190,8 +106,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 190,
-      "recent_incident_count": 29,
+      "incident_count": 192,
+      "recent_incident_count": 31,
       "top_incidents": [
         {
           "time": "2026-10-22T00:00:00Z",
@@ -225,7 +141,7 @@
         },
         {
           "time": "2026-10-22T00:00:00Z",
-          "title": "Cluj-Napoca, Cluj, Romania",
+          "title": "Bucharest, Bucuresti, Romania",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -235,7 +151,90 @@
         },
         {
           "time": "2026-10-22T00:00:00Z",
-          "title": "Romania",
+          "title": "Cluj-Napoca, Cluj, Romania",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
+      "country": "Greece",
+      "overall": "normal",
+      "overall_score": 1.933,
+      "confidence": "medium",
+      "confidence_value": 0.595,
+      "dimensions": {
+        "political": "tense",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 3.264,
+        "military": 0.0,
+        "policing": 0.068,
+        "migration": 0.0,
+        "social": 0.29,
+        "infrastructure": 0.0
+      },
+      "drivers": [
+        "unknown",
+        "protest"
+      ],
+      "incident_count": 204,
+      "recent_incident_count": 30,
+      "top_incidents": [
+        {
+          "time": "2026-10-22T16:54:48Z",
+          "title": "Reader Q&A: What’s next for France after a weekend of riots? Ask our Europe columnists",
+          "event_type": "protest",
+          "score": 0.207,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "policing",
+            "social"
+          ]
+        },
+        {
+          "time": "2026-10-22T00:00:00Z",
+          "title": "Athens, AttikíR, Greece",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-10-22T00:00:00Z",
+          "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-10-22T00:00:00Z",
+          "title": "Greece",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-10-22T00:00:00Z",
+          "title": "Greece",
           "event_type": "unknown",
           "score": 0.178,
           "source": "GDELT",
@@ -647,90 +646,6 @@
       ]
     },
     {
-      "country": "Montenegro",
-      "overall": "elevated",
-      "overall_score": 1.048,
-      "confidence": "medium",
-      "confidence_value": 0.626,
-      "dimensions": {
-        "political": "elevated",
-        "military": "normal",
-        "policing": "normal",
-        "migration": "normal",
-        "social": "normal",
-        "infrastructure": "normal"
-      },
-      "dimension_scores": {
-        "political": 1.665,
-        "military": 0.242,
-        "policing": 0.019,
-        "migration": 0.0,
-        "social": 0.028,
-        "infrastructure": 0.35
-      },
-      "drivers": [
-        "unknown",
-        "explosion",
-        "critical_infra_incident"
-      ],
-      "incident_count": 47,
-      "recent_incident_count": 13,
-      "top_incidents": [
-        {
-          "time": "2026-10-22T15:46:56Z",
-          "title": "Russia bombards Kyiv with missiles hours after agreeing to resume talks with Ukraine",
-          "event_type": "explosion",
-          "score": 0.38,
-          "source": "RSS",
-          "dimensions": [
-            "military",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-10-22T13:05:30Z",
-          "title": "Some US diplomats told to leave Saudi Arabia amid Houthi attacks",
-          "event_type": "critical_infra_incident",
-          "score": 0.285,
-          "source": "RSS",
-          "dimensions": [
-            "political",
-            "infrastructure"
-          ]
-        },
-        {
-          "time": "2026-10-22T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-10-22T00:00:00Z",
-          "title": "Balkan, Montenegro (general), Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        },
-        {
-          "time": "2026-10-22T00:00:00Z",
-          "title": "Montenegro",
-          "event_type": "unknown",
-          "score": 0.178,
-          "source": "GDELT",
-          "dimensions": [
-            "political"
-          ]
-        }
-      ]
-    },
-    {
       "country": "Bosnia and Herzegovina",
       "overall": "elevated",
       "overall_score": 1.041,
@@ -811,9 +726,93 @@
       ]
     },
     {
+      "country": "Montenegro",
+      "overall": "elevated",
+      "overall_score": 1.022,
+      "confidence": "medium",
+      "confidence_value": 0.626,
+      "dimensions": {
+        "political": "elevated",
+        "military": "normal",
+        "policing": "normal",
+        "migration": "normal",
+        "social": "normal",
+        "infrastructure": "normal"
+      },
+      "dimension_scores": {
+        "political": 1.649,
+        "military": 0.214,
+        "policing": 0.019,
+        "migration": 0.0,
+        "social": 0.028,
+        "infrastructure": 0.302
+      },
+      "drivers": [
+        "unknown",
+        "explosion",
+        "critical_infra_incident"
+      ],
+      "incident_count": 47,
+      "recent_incident_count": 13,
+      "top_incidents": [
+        {
+          "time": "2026-10-22T15:46:56Z",
+          "title": "Russia bombards Kyiv with missiles hours after agreeing to resume talks with Ukraine",
+          "event_type": "explosion",
+          "score": 0.317,
+          "source": "RSS",
+          "dimensions": [
+            "military",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-10-22T13:05:30Z",
+          "title": "Some US diplomats told to leave Saudi Arabia amid Houthi attacks",
+          "event_type": "critical_infra_incident",
+          "score": 0.237,
+          "source": "RSS",
+          "dimensions": [
+            "political",
+            "infrastructure"
+          ]
+        },
+        {
+          "time": "2026-10-22T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-10-22T00:00:00Z",
+          "title": "Balkan, Montenegro (general), Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        },
+        {
+          "time": "2026-10-22T00:00:00Z",
+          "title": "Montenegro",
+          "event_type": "unknown",
+          "score": 0.178,
+          "source": "GDELT",
+          "dimensions": [
+            "political"
+          ]
+        }
+      ]
+    },
+    {
       "country": "Moldova",
       "overall": "elevated",
-      "overall_score": 0.846,
+      "overall_score": 0.889,
       "confidence": "medium",
       "confidence_value": 0.59,
       "dimensions": {
@@ -825,7 +824,7 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 1.572,
+        "political": 1.646,
         "military": 0.0,
         "policing": 0.0,
         "migration": 0.0,
@@ -835,8 +834,8 @@
       "drivers": [
         "unknown"
       ],
-      "incident_count": 37,
-      "recent_incident_count": 9,
+      "incident_count": 38,
+      "recent_incident_count": 10,
       "top_incidents": [
         {
           "time": "2026-10-22T00:00:00Z",
@@ -879,10 +878,10 @@
           ]
         },
         {
-          "time": "2026-10-21T00:00:00Z",
-          "title": "Moldova",
+          "time": "2026-10-22T00:00:00Z",
+          "title": "Ungheni, Ungheni, Moldova",
           "event_type": "unknown",
-          "score": 0.125,
+          "score": 0.178,
           "source": "GDELT",
           "dimensions": [
             "political"
@@ -1053,7 +1052,7 @@
     {
       "country": "Serbia",
       "overall": "normal",
-      "overall_score": 0.233,
+      "overall_score": 0.218,
       "confidence": "high",
       "confidence_value": 0.843,
       "dimensions": {
@@ -1065,11 +1064,11 @@
         "infrastructure": "normal"
       },
       "dimension_scores": {
-        "political": 0.198,
-        "military": 0.052,
-        "policing": 0.052,
+        "political": 0.19,
+        "military": 0.043,
+        "policing": 0.043,
         "migration": 0.0,
-        "social": 0.187,
+        "social": 0.179,
         "infrastructure": 0.0
       },
       "drivers": [
@@ -1083,7 +1082,7 @@
           "time": "2026-10-22T15:01:35Z",
           "title": "Rocky campaign nears end as Serbia prepares for watershed election – as it happened",
           "event_type": "protest",
-          "score": 0.211,
+          "score": 0.174,
           "source": "RSS",
           "dimensions": [
             "political",
@@ -1154,7 +1153,7 @@
     }
   ],
   "stats": {
-    "incident_count": 1107,
+    "incident_count": 1110,
     "country_count": 14,
     "active_country_count": 13,
     "rss_story_count_raw": 135
